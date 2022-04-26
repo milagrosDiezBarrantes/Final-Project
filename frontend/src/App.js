@@ -1,27 +1,32 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LandingPage from "./Components/HomeComponent/LandingPage";
-
+import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
+import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
+import DetailComic from "./Components/HomeComponent/HomeComic/DetailComic/DetailComic"
+import DetailCharacter from "./Components/HomeComponent/HomeCharacter/DetailCharacter/DetailCharacter"
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
-          <Route />
+        <Routes>
+          <Route path='/LandingPage' component={LandingPage} />
           <Route path='/homeCharacter' component={HomeCharacter} />
           <Route path='/homeComics' component={HomeComics} />
-          <Route path='/subcription' component={Subcription} />
-          <Route path='/form' component={Form} />
+          {/* <Route path='/subcription' component={Subcription} />
+          <Route path='/form' component={Form} /> */}
           <Route path='/detailComic/:id' component={DetailComic} />
           <Route path='/detailCharacter/:id' component={DetailCharacter} />
-          <Route path='/biography' component={Biography} />
-        </Switch>
+          {/* <Route path='/biography' component={Biography} /> */}
+        </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
+
 
 export default App;
 
