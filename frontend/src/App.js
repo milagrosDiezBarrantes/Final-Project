@@ -4,7 +4,7 @@ import data from "./data";
 function App() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Hello World :-)</h1>
       <button>Info de llamada ppal </button>
       <div className="fiacaClass">
         {data.results.map((comic) => (
