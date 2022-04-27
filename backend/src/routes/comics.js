@@ -3,9 +3,10 @@
 
    const router = Router();
 
-   const {getComics} = require('../controllers/comics.js');
+   const {getComics, getById} = require('../controllers/comics.js');
 
 
    router.get('/', getComics);
+   router.get('/:id', getById);
 
    module.exports = router;
