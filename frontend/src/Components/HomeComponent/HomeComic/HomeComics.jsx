@@ -5,7 +5,7 @@ const HomeComics = () => {
     return (
         <div>
             <h1>HomeComics</h1>
-            < SearchBarComics />
+            <SearchBarComics />
         </div>
     )
 }
