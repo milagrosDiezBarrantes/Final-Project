@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import LandingPage from "./Components/HomeComponent/LandingPage";
+import LandingPage from "./Components/LandingPage/LandingPage";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import DetailComic from "./Components/HomeComponent/HomeComic/DetailComic/DetailComic"
@@ -13,16 +13,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<Login/>} />
-          <Route path='/LandingPage' element={<LandingPage/>} />
-          <Route path='/homeCharacter' element={<HomeCharacter/>} />
-          <Route path='/homeComics' element={<HomeComics/>} />
-          {/* <Route path='/subcription' element={Subcription} />
-          <Route path='/form' element={Form} /> */}
-          <Route path='/detailComic/:id' element={<DetailComic/>} />
-          <Route path='/detailCharacter/:id' element={<DetailCharacter/>} />
-          {/* <Route path='/biography' element={Biography} /> */}
-
+          <Route path='/login' element={<Login />} />
+          <Route path='/LandingPage' element={<LandingPage />} />
+          <Route path='/homeCharacter' element={<HomeCharacter />} />
+          <Route path='/homeComics' element={<HomeComics />} />
+          <Route path='/detailComic/:id' element={<DetailComic />} />
+          <Route path='/detailCharacter/:id' element={<DetailCharacter />} />
         </Routes>
       </BrowserRouter>
     </div>
