@@ -5,10 +5,14 @@ const initialStateOfComic = {
     copyComics: []
 }
 
-function ComicsReducer(state = initialStateOfComic, action) {
+function ComicsReducer(state = initialStateOfComic, { type, payload }) {
     // eslint-disable-next-line default-case
-    switch (action.type) {
-
+    switch (type) {
+        case GET_TITLE:
+            return {
+                ...state,
+                Comics: payload
+            }
 
         default:
             return { ...state };

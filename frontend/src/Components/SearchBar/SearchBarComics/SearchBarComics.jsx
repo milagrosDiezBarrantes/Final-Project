@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getTitle } from '../../Redux/Actions/actions';
+import { getComicsByTitle } from '../../../Redux/Actions/actions';
 
-export const Search = () => {
+export const SearchBarComics = () => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
 
@@ -13,7 +13,7 @@ export const Search = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(getTitle(title));
+        dispatch(getComicsByTitle(title));
         setTitle('');
         if (!title) {
             alert("Comic's title not found");
@@ -21,8 +21,18 @@ export const Search = () => {
     }
     return (
         <div>
-            <input type="text" value={title} placeholder="Search comic's title" onChange={e => { handleChange(e) }} />
-            <button type="submit" onClick={e => { handleSubmit(e) }}>Search</button>
+            <input
+                type="text"
+                value={title}
+                placeholder="Search comic's title"
+                onChange={e => { handleChange(e) }}
+            />
+            <button
+                type="submit"
+                onClick={e => { handleSubmit(e) }}
+            >
+                Search
+            </button>
         </div>
     )
 }
