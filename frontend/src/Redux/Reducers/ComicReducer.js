@@ -1,3 +1,5 @@
+import { GET_TITLE } from '../Actions/actions'
+
 const initialStateOfComic = {
     Comics: [],
     copyComics: []
