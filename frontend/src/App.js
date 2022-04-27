@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LandingPage from "./Components/LandingPage/LandingPage";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
-import DetailComic from "./Components/HomeComponent/HomeComic/DetailComic/DetailComic"
-import DetailCharacter from "./Components/HomeComponent/HomeCharacter/DetailCharacter/DetailCharacter"
+import DetailComic from "./Components/Details/DetailComic/DetailComic"
+import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
 
 
