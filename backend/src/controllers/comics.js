@@ -7,11 +7,11 @@ const { API_KEY, HASH_KEY } = process.env;
 const getComics = async (req, res, next) => {
   const { title } = req.query;
   try {
-    if (title ) {
-      let toRender = await getByTitle(title, date);     
-      return toRender === [] ? res.status(404).json({message: 'No comics found'}) 
-      : res.status(200).json(toRender);
-    }    
+    if (title) {
+      let toRender = await getByTitle(title, date);
+      return toRender === [] ? res.status(404).json({ message: 'No comics found' })
+        : res.status(200).json(toRender);
+    }
 
     let allComics = await axios.get(
       `https://gateway.marvel.com/v1/public/comics?noVariants=true&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}&limit=100`
@@ -24,7 +24,9 @@ const getComics = async (req, res, next) => {
       description: comic.description,
       img: comic.thumbnail.path + "." + comic.thumbnail.extension,
     }));
+
     console.log(toRender.length);
+
     res.status(200).json(toRender);
   } catch (error) {
     next(error);
@@ -78,7 +80,7 @@ const getByTitle = async (title) => {
       })),
       serie: comic.series.name, //si es una serie de revistas aca viene el nombre de la misma
     }));
-return toRender;
+    return toRender;
   } catch (error) {
     return error;
   }

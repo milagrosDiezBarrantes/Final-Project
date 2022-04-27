@@ -1,12 +1,11 @@
+const { Router } = require('express');
 
-   const {Router} = require('express');
+const router = Router();
 
-   const router = Router();
-
-   const {getComics, getById} = require('../controllers/comics.js');
+const { getComics, getById } = require('../controllers/comics.js');
 
 
-   router.get('/', getComics);
-   router.get('/:id', getById);
+router.get('/', getComics);
+router.get('/:id', getById);
 
-   module.exports = router;
+module.exports = router;

@@ -1,4 +1,4 @@
-import { GET_CHARACTERS } from '../Actions/actions'
+// import { GET_CHARACTERS } from '../Actions/actions'
 
 const initialStateOfCharacter = {
     Characters: [],

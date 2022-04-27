@@ -3,22 +3,18 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LandingPage from "./Components/LandingPage/LandingPage";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
-import DetailComic from "./Components/HomeComponent/HomeComic/DetailComic/DetailComic"
-import DetailCharacter from "./Components/HomeComponent/HomeCharacter/DetailCharacter/DetailCharacter"
-import Login from "./Components/Login/Login.jsx";
-
+// import Login from "./Components/Login/Login.jsx";
+// import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<Login />} />
+          {/* <Route path='/login' element={<Login />} /> */}
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
-          <Route path='/detailComic/:id' element={<DetailComic />} />
-          <Route path='/detailCharacter/:id' element={<DetailCharacter />} />
         </Routes>
       </BrowserRouter>
     </div>
