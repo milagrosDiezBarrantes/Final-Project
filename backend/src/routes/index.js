@@ -10,6 +10,6 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use('/characters', characters);
-router.use('/comics', comicsRoute)
+router.use('/comics', comicsRoute);
 
 module.exports = router;
