@@ -7,11 +7,11 @@ const { API_KEY, HASH_KEY } = process.env;
 const getComics = async (req, res, next) => {
   const { title } = req.query;
   try {
-    if (title) {
-      let toRender = await getByTitle(title);
+    if (title ) {
+      let toRender = await getByTitle(title, date);     
       return toRender === [] ? res.status(404).json({message: 'No comics found'}) 
       : res.status(200).json(toRender);
-    }
+    }    
 
     let allComics = await axios.get(
       `https://gateway.marvel.com/v1/public/comics?noVariants=true&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}&limit=100`
@@ -24,6 +24,7 @@ const getComics = async (req, res, next) => {
       description: comic.description,
       img: comic.thumbnail.path + "." + comic.thumbnail.extension,
     }));
+    console.log(toRender.length);
     res.status(200).json(toRender);
   } catch (error) {
     next(error);
@@ -56,11 +57,11 @@ const getById = async (req, res, next) => {
     next(error);
   }
 };
-//trae resultados con coincidencia parcia desde inicio , es decir title = "iron" va a traer a todos los comics que empiecen con "iron", ahora si empieza con The iron, chau no lo va a encontrar :/
+//trae resultados con coincidencia parcial desde inicio , es decir title = "iron" va a traer a todos los comics que empiecen con "iron", ahora si empieza con The iron, chau no lo va a encontrar :/
 const getByTitle = async (title) => {
   try {
     let search = await axios(
-      `https://gateway.marvel.com/v1/public/comics?noVariants=true&limit=20&titleStartsWith=${title}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
+      `https://gateway.marvel.com/v1/public/comics?noVariants=true&limit=100&titleStartsWith=${title}&dateDescriptor=${date}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
 
     search = search.data.data.results;
 
@@ -82,6 +83,8 @@ return toRender;
     return error;
   }
 };
+
+
 
 module.exports = { getComics, getById, getByTitle };
 //     try{
