@@ -1,8 +1,13 @@
 import React from 'react'
+import { Search } from '../../SearchBar/SearchBar'
 
 const HomeComics = () => {
     return (
-        <div>HomeComics</div>
+        <div>
+            <h1>HomeComics</h1>
+            <Search />
+
+        </div>
     )
 }
 
