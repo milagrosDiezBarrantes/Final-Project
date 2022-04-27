@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
 		`https://gateway.marvel.com/v1/public/characters?ts=1&apikey=bd53436ddc2010965cb5bd917e524599&hash=9a7d38583231dff6e8e2d78db1ce9f60&limit=100`
 	);
 	characters = characters.data.data.results;
-	console.log(characters.length);
 	let arr = characters.map((e) => ({
 		id: e.id,
 		name: e.name,
