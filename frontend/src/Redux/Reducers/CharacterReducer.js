@@ -1,14 +1,19 @@
-// import { GET_CHARACTERS } from '../Actions/actions'
+import { GET_CHARACTER_ID } from '../Actions/actions'
 
 const initialStateOfCharacter = {
     Characters: [],
-    copyCharacters: []
+    copyCharacters: [],
+    detailCharacter:{}
 }
 
-function CharactersReducer(state = initialStateOfCharacter, action) {
+function CharactersReducer(state = initialStateOfCharacter, {type, payload}) {
     // eslint-disable-next-line default-case
-    switch (action.type) {
-
+    switch (type) {
+        case GET_CHARACTER_ID:
+            return {
+                ...state,
+                detailCharacter:payload
+            }
 
         default:
             return { ...state };
