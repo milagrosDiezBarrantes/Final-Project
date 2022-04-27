@@ -8,7 +8,7 @@ const getComics = async (req, res, next) => {
   const { title } = req.query;
   try {
     if (title) {
-      let toRender = await getByTitle(title, date);
+      let toRender = await getByTitle(title);
       return toRender === [] ? res.status(404).json({ message: 'No comics found' })
         : res.status(200).json(toRender);
     }
