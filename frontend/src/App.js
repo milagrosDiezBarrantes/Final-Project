@@ -3,7 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LandingPage from "./Components/LandingPage/LandingPage";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
+import DetailComic from "./Components/Details/DetailComic/DetailComic"
+import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
+
+// import Login from "./Components/Login/Login.jsx";
 // import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 
 function App() {
@@ -11,7 +15,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<Login />} />
+          {/* <Route path='/login' element={<Login />} /> */}
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
