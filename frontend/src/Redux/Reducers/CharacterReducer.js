@@ -1,4 +1,4 @@
-import { GET_CHARACTER_ID } from '../Actions/actions'
+import { GET_CHARACTER_ID,GET_NAME } from '../Actions/actions'
 
 const initialStateOfCharacter = {
     Characters: [],
@@ -14,6 +14,11 @@ function CharactersReducer(state = initialStateOfCharacter, {type, payload}) {
                 ...state,
                 detailCharacter:payload
             }
+            case GET_NAME:
+                return {
+                    ...state,
+                    Characters: payload
+                }
 
         default:
             return { ...state };
