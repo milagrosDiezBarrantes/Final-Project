@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<div>ruta default, cliente levantado</div>}/>
           <Route path='/login' element={<Login />} />
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
