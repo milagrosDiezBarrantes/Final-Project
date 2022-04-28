@@ -7,18 +7,18 @@ import DetailComic from "./Components/Details/DetailComic/DetailComic"
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
 
+// import Login from "./Components/Login/Login.jsx";
+// import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<Login />} />
+          {/* <Route path='/login' element={<Login />} /> */}
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
-          <Route path='/detailComic/:id' element={<DetailComic />} />
-          <Route path='/detailCharacter/:id' element={<DetailCharacter />} />
         </Routes>
       </BrowserRouter>
     </div>
