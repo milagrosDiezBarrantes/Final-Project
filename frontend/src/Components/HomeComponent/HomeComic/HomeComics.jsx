@@ -6,6 +6,7 @@ const HomeComics = () => {
         <div>
             <h1>HomeComics</h1>
             <SearchBarComics />
+            {/* state.map((e)=><div> <Card name=${}  </div>) */}
         </div>
     )
 }
