@@ -5,20 +5,6 @@ let { API_KEY, HASH_KEY } = process.env;
 
 const router = Router();
 
-router.get("/:id/:extra", async (req, res) => {
-	let {id , extra } = req.params
-	let { API_KEY, HASH_KEY } = process.env;
-	console.log(API_KEY, HASH_KEY);
-	let character = await axios.get(
-		`https://gateway.marvel.com/v1/public/characters/${id}/${extra}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
-
-	);
-	character = character.data.data.results
-
-	res.status(200).json(character);
-});
-
-
 router.get("/:id/:comics", async (req, res) => {
 	let {id , comics } = req.params
 	let { API_KEY, HASH_KEY } = process.env;
@@ -38,6 +24,22 @@ router.get("/:id/:comics", async (req, res) => {
 	  }));
 	res.status(200).json(character);
 });
+
+router.get("/:id/:extra", async (req, res) => {
+	let {id , extra } = req.params
+	let { API_KEY, HASH_KEY } = process.env;
+	console.log(API_KEY, HASH_KEY);
+	let character = await axios.get(
+		`https://gateway.marvel.com/v1/public/characters/${id}/${extra}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
+
+	);
+	character = character.data.data.results
+
+	res.status(200).json(character);
+});
+
+
+
 
 
 router.get("/:id", async (req, res) => {
