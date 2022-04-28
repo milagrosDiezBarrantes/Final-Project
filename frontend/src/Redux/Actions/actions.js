@@ -45,7 +45,7 @@ export function getCharacterByName(name){ //obten personajes por nombre
         }
         catch (error) {
             console.log(error)
-            alert('Name not found', err)
+            alert('Name not found', error)
         }
     }
 }
