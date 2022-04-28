@@ -350,7 +350,7 @@ template {
 [hidden] {
   display: none;
 }
-
+/* 
 .fiacaClass{
   display: flex;
     justify-content: center;
@@ -372,4 +372,4 @@ template {
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     padding: 20px;
     margin: 10px;
-}
+} */
