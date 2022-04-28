@@ -21,14 +21,24 @@ try{
 
  
   
-      return res.status(201).json(user);
+      return res.status(201).json("user");
 
 
 
-}catch(e){
-    console.log(e,"algo pasó con el post del user")
+}catch(error){
+    console.log(error,"algo pasó con el post del user")
 }
 
 
 
 });
+
+router.get("/", async (req, res) => {
+    let users = await User.findAll()
+
+
+   if(users.length===0){return res.send("tabla vacía")}
+   return res.send(users||"tabla vacía")
+});
+
+module.exports = router;

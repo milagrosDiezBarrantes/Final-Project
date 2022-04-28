@@ -1,5 +1,5 @@
 
-import { GET_CHARACTER_ID, GET_CHARACTERS } from '../Actions/actions'
+import { GET_CHARACTER_ID, GET_CHARACTERS,GET_NAME } from '../Actions/actions'
 
 
 
