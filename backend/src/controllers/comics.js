@@ -63,7 +63,7 @@ const getById = async (req, res, next) => {
 const getByTitle = async (title) => {
   try {
     let search = await axios(
-      `https://gateway.marvel.com/v1/public/comics?noVariants=true&limit=100&titleStartsWith=${title}&dateDescriptor=${date}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
+      `https://gateway.marvel.com/v1/public/comics?noVariants=true&limit=100&titleStartsWith=${title}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
 
     search = search.data.data.results;
 
