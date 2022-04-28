@@ -36,6 +36,7 @@ export function getCharacterId(id) { // Obtener personaje por id
 
 
 
+
 //================COMICS=================//
 
 export function getAllComics(){          //para trerce todos los comics

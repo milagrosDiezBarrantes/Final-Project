@@ -20,7 +20,20 @@ router.get("/", async (req, res) => {
 		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
 	}));
 
-	res.send(arr);
+	res.status(200).send(arr);
+});
+
+router.get("/:id", async (req, res) => {
+	let {id} = req.params
+	/* https://gateway.marvel.com/v1/public/characters?ts=1&apikey=bd53436ddc2010965cb5bd917e524599&hash=9a7d38583231dff6e8e2d78db1ce9f60 */
+	console.log(API_KEY, HASH_KEY);
+	// let characters =await axios.get(`https://gateway.marvel.com/v1/public/characters?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
+	let characters = await axios.get(
+		`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=bd53436ddc2010965cb5bd917e524599&hash=9a7d38583231dff6e8e2d78db1ce9f60`
+	);
+	characters = characters.data.data.results[0];
+
+	res.send(characters);
 });
 
 module.exports = router;
