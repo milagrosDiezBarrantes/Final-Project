@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useDispatch } from 'react-redux';
 import {getCharacterByName} from "../../../Redux/Actions/actions"
 
-export const SearchBarCharacter= () => {
+const SearchBarCharacter= () => {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
 
@@ -39,3 +39,6 @@ export const SearchBarCharacter= () => {
         </div>
     )
 }
+
+
+export default SearchBarCharacter
