@@ -29,11 +29,11 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { User, Plan } = sequelize.models;
+const { Users } = sequelize.models;
 
 
-User.belongsTo(Plan, {as:"subscribe", })
-Plan.hasMany(User, {as:"User", foreignKey:"subscribeId"})
+// User.belongsTo(Plan, {as:"subscribe", })
+// Plan.hasMany(User, {as:"User", foreignKey:"subscribeId"})
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
