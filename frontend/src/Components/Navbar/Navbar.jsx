@@ -13,14 +13,14 @@ export default function Navbar() {
   return (
     <>
       <NavContainer>
-        <h2>Navbar <span>Responsive</span></h2>
+        <h2>Marvel</h2>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <a onClick={handleClick} href="#h">Home Amigoss</a>
-          <a onClick={handleClick} href="#h">Comics</a>
-          <a onClick={handleClick} href="#h">About</a>
-          <a onClick={handleClick} href="#h">Contact</a>
-          <a onClick={handleClick} href="#h">Login</a>
-          <Link to="/login">PRESS START</Link>
+          <Link to="/homeCharacter">Characters</Link>
+          <Link to="/homeComics">Comics</Link>
+          <Link to="#h">About</Link>
+          <Link to="#h">Contact</Link>
+          <Link to="/form">Sign up</Link>
+          <Link to="/login">Login</Link>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />
