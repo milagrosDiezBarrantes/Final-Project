@@ -5,6 +5,7 @@ export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const GET_NAME = "GET_NAME" // buscar character por nombre
 
+
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
     return async function (dispatch) {
@@ -37,7 +38,6 @@ export function getCharacterId(id) { // Obtener personaje por id
         }
     }
 }
-
 export function getCharacterByName(name) { //obten personajes por nombre
     return async function (dispatch) {
         try {
@@ -53,8 +53,6 @@ export function getCharacterByName(name) { //obten personajes por nombre
         }
     }
 }
-
-
 
 //================COMICS=================//
 
@@ -90,4 +88,3 @@ export function getComicsByTitle(title) {
         }
     }
 }
-
