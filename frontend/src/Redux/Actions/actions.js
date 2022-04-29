@@ -10,10 +10,11 @@ export function getAllCharacters() {    // Obtener todos los personajes
     return async function (dispatch) {
         try {
             const allCharacters = await axios.get('http://localhost:3001/characters');
+
             return dispatch({
                 type: GET_CHARACTERS,
                 payload: allCharacters.data
-            })
+            });
         }
         catch (error) {
             console.log(error)
@@ -23,7 +24,9 @@ export function getAllCharacters() {    // Obtener todos los personajes
 export function getCharacterId(id) { // Obtener personaje por id
     return async function (dispatch) {
         try {
-            const {data} = await axios.get(`http://localhost:3001/characters/:${id}`);
+
+            const { data } = await axios.get(`http://localhost:3001/characters/:${id}`);
+
             return dispatch({
                 type: GET_CHARACTER_ID,
                 payload: data
@@ -34,10 +37,11 @@ export function getCharacterId(id) { // Obtener personaje por id
         }
     }
 }
-export function getCharacterByName(name){ //obten personajes por nombre
+
+export function getCharacterByName(name) { //obten personajes por nombre
     return async function (dispatch) {
         try {
-            const {data} = await axios.get(`http://localhost:3001/characters?name=${name}`);// sin terminar
+            const { data } = await axios.get(`http://localhost:3001/characters?name=${name}`);// sin terminar
             return dispatch({
                 type: GET_NAME,
                 payload: data
@@ -54,10 +58,10 @@ export function getCharacterByName(name){ //obten personajes por nombre
 
 //================COMICS=================//
 
-export function getAllComics(){          //para trerce todos los comics
+export function getAllComics() {          //para trerce todos los comics
     return async function (dispatch) {
         try {
-            const {data} = await axios.get(``)
+            const { data } = await axios.get(``)
             return dispatch({
                 type: GET_COMICS,
                 payload: data
@@ -68,6 +72,10 @@ export function getAllComics(){          //para trerce todos los comics
         }
     }
 }
+
+
+
+
 export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
