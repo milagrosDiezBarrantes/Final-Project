@@ -5,9 +5,7 @@
   }
   
   .container_card{
-    top:5rem ;
     display:inline-block ;
-    margin: 15px ;
     position: relative;
     width: 320px;
     height: 395px;

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
@@ -7,7 +8,6 @@ const router = Router();
 
 router.get("/:id/:comics", async (req, res) => {
 	let {id , comics } = req.params
-	let { API_KEY, HASH_KEY } = process.env;
 	console.log(API_KEY, HASH_KEY);
 	let character = await axios.get(
 		`https://gateway.marvel.com/v1/public/characters/${id}/${comics}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
@@ -27,7 +27,6 @@ router.get("/:id/:comics", async (req, res) => {
 
 router.get("/:id/:extra", async (req, res) => {
 	let {id , extra } = req.params
-	let { API_KEY, HASH_KEY } = process.env;
 	console.log(API_KEY, HASH_KEY);
 	let character = await axios.get(
 		`https://gateway.marvel.com/v1/public/characters/${id}/${extra}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
@@ -44,7 +43,6 @@ router.get("/:id/:extra", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 	let {id} = req.params
-	let { API_KEY, HASH_KEY } = process.env;
 	console.log(API_KEY, HASH_KEY);
 	let character = await axios.get(
 		`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
@@ -71,7 +69,6 @@ router.get("/:id", async (req, res) => {
 
 
 router.get("/", async (req, res) => {
-	let { API_KEY, HASH_KEY } = process.env;
 	try{
 		const {name} = req.query
 		//let characters = await axios.get(

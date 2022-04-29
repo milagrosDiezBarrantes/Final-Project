@@ -3,12 +3,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from "react-paginate"
 import { getAllCharacters } from '../../../Redux/Actions/actions';
 import "./HomeCharacter.css"
+import SerchbarCharacters from "../../SearchBar/SearchBarCharacters/SearchBarCharacters"
+
+import NavBar from '../../Navbar/Navbar.jsx';
 
 const HomeCharacter = () => {
     const dispatch = useDispatch()
     const Characters = useSelector(state => state.CharactersReducer.copyCharacters)
 
-    // console.log(Characters)
+
+    //======================Experimento===============
+
+    const [vgNames, setVgNames] = useState([])
+    const [text, setText] = useState('')
+    const [suggestions, setSuggestions] = useState([])
+
+
+
+    //======================Experimento===============//
+
     //===========Paginado===============//
 
 
@@ -29,7 +42,7 @@ const HomeCharacter = () => {
     console.log(data)
 
 
-    function handlePageClick({ selected: selectedPage }) {
+    const handlePageClick = ({ selected: selectedPage }) => {
         // console.log('selectedPage', selectedPage);
         setCurrentPage(selectedPage);
     }
@@ -65,10 +78,8 @@ const HomeCharacter = () => {
     return (
         <div className='container'>
 
-            <h1>Heroes</h1>
-            <div className='all_games'>
-                {currentPageData}
-            </div>
+            <NavBar />
+            <SerchbarCharacters/>
             <div className='paginas'>
                 <ReactPaginate
                     previousLabel={'<- Previous'}
@@ -82,6 +93,10 @@ const HomeCharacter = () => {
                     activeClassName={'pagination_link--active'}
                 />
             </div>
+            <div className='all_games'>
+                {currentPageData}
+            </div>
+
 
         </div>
     )
