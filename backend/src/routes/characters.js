@@ -89,7 +89,7 @@ router.get("/", async (req, res) => {
 						res.status(200).json(charForN)
 					}
 					else{
-						res.status(200).json([])
+						res.status(200).json("character not exist")
 					}
 	
 		}
