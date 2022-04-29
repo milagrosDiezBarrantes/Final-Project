@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getComicsByTitle } from '../../../Redux/Actions/actions';
 
-export const SearchBarComics = () => {
+export default function SearchBarComics () {
+
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
 
