@@ -7,7 +7,7 @@ export const Form = () => {
     const [error, setError] = useState({});
 
     function validate (input) {
-        const validName = /^[a-zA-ZÀ-ÿ\s]{1,40}$/; // Letras y espacios, pueden llevar acentos.
+        const validName = /^[a-zA-z]*[a-zA-Z\\-_@&$%#\s]{3,18}$/; // Letras y espacios, pueden llevar acentos.
         const validUser = /^[a-zA-Z0-9_.\-.]{4,16}$/; // Letras, numeros, guion y guion_bajo
         const validEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         const validPassword = /^.{4,12}$/; // 4 a 12 digitos.
@@ -17,7 +17,7 @@ export const Form = () => {
         if(!input.firstName) {
             error.firstName = 'This field cannot be empty';
         }
-        else if(!validName.test(input.name)) {
+        else if(!validName.test(input.firstName)) {
             error.firstName = 'Special characters or numbers are not allowed';
         }
         if(!input.lastName) {
@@ -29,7 +29,7 @@ export const Form = () => {
         else if(!input.age) {
             error.age = 'This field cannot be empty'
         }
-        else if(input.age.length < 16) {
+        else if(input.age <= 16) {
             error.age = 'You must be over 16 years old';
         }
         else if(!input.userName) {
@@ -37,6 +37,12 @@ export const Form = () => {
         }
         else if(!validUser.test(input.userName)) {
             error.userName = 'The user must have 4 to 10 digits';
+        }
+        else if(!input.email.length) {
+            error.email = 'This field cannot be empty';
+        }
+        else if(!validEmail.test(input.email)) {
+            error.email = 'Special characters or numbers are not allowed';
         }
         else if(!input.password) {
             error.password = 'This field cannot be empty';
@@ -46,12 +52,6 @@ export const Form = () => {
         }
         else if(input.password !== input.password2) {
             error.password2 = 'Both passwords must be the same';
-        }
-        else if(!input.email.length) {
-            error.email = 'This field cannot be empty';
-        }
-        else if(!validEmail.test(input.email)) {
-            error.email = 'Special characters or numbers are not allowed';
         }
         else if(input.picture && !validPicture.test(input.picture)) {
             error.picture = 'This is not a valid URL'
@@ -74,6 +74,7 @@ export const Form = () => {
         password: "",
         password2:"",
         picture:"",
+        plan:"standar"
     })
 
     useEffect(() =>  {
@@ -104,10 +105,10 @@ export const Form = () => {
             email: "",
             password: "",
             password2: "",
-            picture: ""
+            picture: "",
+            plan:"standar"
         })
     }
-    
 
     return (
         <>
@@ -162,7 +163,7 @@ export const Form = () => {
                     <label>User name*:</label>
                     <input 
                     type="text"
-                    placeholder="Username"
+                    placeholder="User name"
                     name="userName"
                     onChange={handleChange}
                     />
@@ -191,10 +192,10 @@ export const Form = () => {
                 <div>
                     <label>Password*:</label>
                     <input 
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    onChange={handleChange}
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        onChange={handleChange}
                     />
                     {
                         error.password && 
@@ -247,7 +248,8 @@ export const Form = () => {
                 <div>
                     <button 
                         type="submit"
-                        disabled={disable}>
+                        disabled={disable}
+                        onChange={handleChange}>
                         Sign up
                     </button>
                 </div>
