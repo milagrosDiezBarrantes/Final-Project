@@ -62,7 +62,7 @@ export function getCharacterByName(name) { //obten personajes por nombre
 export function getAllComics() {          //para trerce todos los comics
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(``)
+            const { data } = await axios.get(`http://localhost:3001/comics`)
             return dispatch({
                 type: GET_COMICS,
                 payload: data
