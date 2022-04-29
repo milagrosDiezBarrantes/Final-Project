@@ -1,9 +1,11 @@
 import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
+export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const GET_NAME = "GET_NAME" // buscar character por nombre
+
 
 
 //================CHARACTERS=================//
@@ -87,4 +89,22 @@ export function getComicsByTitle(title) {
             alert('Title not found', err)
         }
     }
+
+}
+
+//================USER=================//
+export function postUser(payload) {
+    return async function(dispatch) {
+        try {
+            const urlPost = await axios.post('http://localhost:3001/user', payload);
+            return dispatch ({
+                type: POST_USER,
+                payload: urlPost.data
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
 }
