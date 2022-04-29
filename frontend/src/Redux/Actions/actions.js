@@ -1,9 +1,12 @@
 import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
+export const GET_BY_ID = "GET_BY_ID";
+export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const GET_NAME = "GET_NAME" // buscar character por nombre
+
 
 
 //================CHARACTERS=================//
@@ -59,7 +62,7 @@ export function getCharacterByName(name) { //obten personajes por nombre
 export function getAllComics() {          //para trerce todos los comics
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(``)
+            const { data } = await axios.get(`http://localhost:3001/comics`)
             return dispatch({
                 type: GET_COMICS,
                 payload: data
@@ -87,4 +90,38 @@ export function getComicsByTitle(title) {
             alert('Title not found', err)
         }
     }
+
+}
+
+export const getById = (id) => async dispatch => {
+    try{
+       const res= await axios(`http://localhost:3001/comics/${id}`);
+       console.log('llega id?', id)
+       console.log('llega comic al payoad?', res)
+       return dispatch({
+            type: GET_BY_ID,
+            payload: res.data            
+       })
+
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
+//================USER=================//
+export function postUser(payload) {
+    return async function(dispatch) {
+        try {
+            const urlPost = await axios.post('http://localhost:3001/user', payload);
+            return dispatch ({
+                type: POST_USER,
+                payload: urlPost.data
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
 }

@@ -1,0 +1,6 @@
+.container-landing{
+    background-image: url('https://www.cinepremiere.com.mx/wp-content/uploads/2020/04/giphy.gif');
+    background-repeat: no-repeat;
+    background-size:contain;
+    height: 100vh;   
+}

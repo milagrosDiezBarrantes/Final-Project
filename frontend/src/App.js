@@ -6,7 +6,11 @@ import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import DetailComic from "./Components/Details/DetailComic/DetailComic"
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
+
+import { Form } from "./Components/Form/Form";
+
 // import Login from "./Components/Login/Login.jsx";
+
 // import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import NavBar from "./Components/Navbar/Navbar"
 function App() {
@@ -14,14 +18,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* <Route path='/login' element={<Login />} /> */}
-          <Route path='/' element={<div>ruta default, cliente levantado</div>} />
-          <Route path='/login' element={<Login />} />
+
+          <Route path='/login' element={<Login />} /> 
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
-          <Route exact path='/' element={<NavBar />} />
-
+          <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
+          <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter/>} />
+          <Route path='/form' element={<Form />} />
+          <Route path='/' element={<NavBar />} />
+          <Route path='*' element={<LandingPage />} />
         </Routes>
       </BrowserRouter>
     </div>
