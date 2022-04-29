@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
+export const GET_BY_ID = "GET_BY_ID";
 
 //================CHARACTERS=================//
 export function getAllCharacters() {
@@ -37,5 +38,21 @@ export function getComicsByTitle(title) {
             alert('Title not found', err)
         }
     }
+}
+
+export const getById = (id) => async dispatch => {
+    try{
+       const res= await axios(`http://localhost:3001/comics/${id}`);
+       console.log('llega id?', id)
+       console.log('llega comic al payoad?', res)
+       return dispatch({
+            type: GET_BY_ID,
+            payload: res.data            
+       })
+
+    }catch(err){
+        console.log(err);
+    }
+    
 }
 
