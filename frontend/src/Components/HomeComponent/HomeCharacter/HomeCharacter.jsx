@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from "react-paginate"
 import { getAllCharacters } from '../../../Redux/Actions/actions';
 import "./HomeCharacter.css"
+import SerchbarCharacters from "../../SearchBar/SearchBarCharacters/SearchBarCharacters"
 
 import NavBar from '../../Navbar/Navbar.jsx';
 
@@ -77,7 +78,8 @@ const HomeCharacter = () => {
     return (
         <div className='container'>
 
-            <NavBar /> 
+            <NavBar />
+            <SerchbarCharacters/>
             <div className='paginas'>
                 <ReactPaginate
                     previousLabel={'<- Previous'}
