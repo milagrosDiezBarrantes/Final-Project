@@ -2,43 +2,79 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-const { User } = require(`../db`);
+const { Users } = require(`../db`);
 
 const router = Router();
 
 router.post("/", async (req, res) => {
-	const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+	const { email, firstName, lastName, userName, age, password, picture,plan } =
+		req.body;
+//             id
+// email
+// firstName
+// lastName
+// userName
+// age
+// password
+// picture
+	try {
+		const [user, created] = await Users.findOrCreate({
+			where: {
+				email,
+				firstName,
+				lastName,
+				userName,
+				age,
+				password,
+				picture,
+                plan
+			},
+		});
+		console.log("se creó mi usuario pa? " + created);
 
-try{
+		return res.status(201).json({ user, created });
+	} catch (error) {
+		console.log(error, "algo pasó con el post del user");
+	}
 
-    const [user, created] = await User.findOrCreate({
-        where: {
-             email, firstName, lastName, userName, age, password, picture
-        },
-      });
-      console.log("se creó mi usuario pa? "+ created )
-   
+	router.put("/:id", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id } = req.params;
 
- 
-  
-      return res.status(201).json("user");
+		try {
+			console.log(id);
+			const user = await Users.findOne({
+				where: {
+					id: id,
+				},
+			});
+console.log(user)
 
+			await user.update({
+				email: req.body.email,
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				userName: req.body.userName,
+				age: req.body.age,
+				password: req.body.password,
+				picture: req.body.picture,
+				plan: req.body.plan,
+			});
 
-
-}catch(error){
-    console.log(error,"algo pasó con el post del user")
-}
-
-
-
+			return res.status(201).json({ user });
+		} catch (error) {
+			console.log(error, "error en la ruta put user");
+		}
+	});
 });
 
 router.get("/", async (req, res) => {
-    let users = await User.findAll()
+	let users = await Users.findAll();
 
-
-   if(users.length===0){return res.send("tabla vacía")}
-   return res.send(users||"tabla vacía")
+	if (users.length === 0) {
+		return res.send("tabla vacía");
+	}
+	return res.send(users || "tabla vacía");
 });
 
 module.exports = router;
