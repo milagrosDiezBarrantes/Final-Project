@@ -15,18 +15,20 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* <Route path='/login' element={<Login />} /> */}
-          <Route path='/' element={<div>ruta default, cliente levantado</div>}/>
+          <Route path='/' element={<div>ruta default, cliente levantado</div>} />
           <Route path='/login' element={<Login />} />
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
           <Route exact path='/' element={<NavBar />} />
-          
+
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
+
 
 
 
