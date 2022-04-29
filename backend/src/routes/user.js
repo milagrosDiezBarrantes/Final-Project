@@ -36,10 +36,10 @@ router.post("/", async (req, res) => {
 	} catch (error) {
 		console.log(error, "algo pasó con el post del user");
 	}
-
-	router.put("/:id", async (req, res) => {
+});
+	router.put("/db", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.params;
+		const { id } = req.query;
 
 		try {
 			console.log(id);
@@ -48,6 +48,7 @@ router.post("/", async (req, res) => {
 					id: id,
 				},
 			});
+console.log(id)
 console.log(user)
 
 			await user.update({
@@ -66,7 +67,6 @@ console.log(user)
 			console.log(error, "error en la ruta put user");
 		}
 	});
-});
 
 router.get("/", async (req, res) => {
 	let users = await Users.findAll();
