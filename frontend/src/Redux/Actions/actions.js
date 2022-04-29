@@ -13,7 +13,7 @@ export const GET_NAME = "GET_NAME" // buscar character por nombre
 export function getAllCharacters() {    // Obtener todos los personajes
     return async function (dispatch) {
         try {
-            const allCharacters = await axios.get('http://localhost:3001/characters');
+            const allCharacters = await axios.get('http://localhost:3001/characters/all');
 
             return dispatch({
                 type: GET_CHARACTERS,
@@ -44,7 +44,7 @@ export function getCharacterId(id) { // Obtener personaje por id
 export function getCharacterByName(name) { //obten personajes por nombre
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/characters?name=${name}`);// sin terminar
+            const { data } = await axios.get(`http://localhost:3001/characters/all?name=${name}`);// sin terminar
             return dispatch({
                 type: GET_NAME,
                 payload: data

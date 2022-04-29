@@ -7,6 +7,7 @@ let { API_KEY, HASH_KEY } = process.env;
 const router = Router();
 
 router.get("/all", async (req, res) => {
+	const {name} = req.query;
 	try {
 		// let abc = ["a","b","c","d","e","f"];
 		let abc = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","u","v","w","x","y","z"];
@@ -29,8 +30,21 @@ router.get("/all", async (req, res) => {
 		description: e.description,
 		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
 	}));
+	if(name){
 			
-		 
+		characters = characters.filter(char => char.name?.toLowerCase().includes(name.toString().toLowerCase()));
+				if(characters.length){
+				return	res.status(200).json(characters)
+				}
+				else{
+					res.status(200).json([])
+				}
+
+	}	
+		
+
+
+
 		// characters = characters.map((e) =>e.data);
 		// characters = characters.map((e) => ({
 		// 	id: e.id,
