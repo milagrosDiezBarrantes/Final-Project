@@ -41,6 +41,7 @@ const NavContainer = styled.nav`
       font-weight: bold;
     }
   }
+  
   padding: .4rem;
   background-color: #333;
   display: flex;
