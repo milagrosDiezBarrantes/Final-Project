@@ -1,4 +1,5 @@
 import React, { useState }from "react";
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import BurguerButton from './BurguerButton.jsx';
 
@@ -14,11 +15,12 @@ export default function Navbar() {
       <NavContainer>
         <h2>Navbar <span>Responsive</span></h2>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <a onClick={handleClick} href="#h">Home</a>
+          <a onClick={handleClick} href="#h">Home Amigoss</a>
           <a onClick={handleClick} href="#h">Comics</a>
           <a onClick={handleClick} href="#h">About</a>
           <a onClick={handleClick} href="#h">Contact</a>
           <a onClick={handleClick} href="#h">Login</a>
+          <Link to="/login">PRESS START</Link>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />
@@ -39,6 +41,7 @@ const NavContainer = styled.nav`
       font-weight: bold;
     }
   }
+  
   padding: .4rem;
   background-color: #333;
   display: flex;
