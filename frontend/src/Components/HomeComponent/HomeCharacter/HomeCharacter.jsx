@@ -12,7 +12,7 @@ const HomeCharacter = () => {
     //===========Paginado===============//
 
 
-    const PER_PAGE = 10;
+    const PER_PAGE = 8;
 
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
