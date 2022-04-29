@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
+export const POST_USER = "POST_USER";
 
 //================CHARACTERS=================//
 export function getAllCharacters() {
@@ -39,3 +40,18 @@ export function getComicsByTitle(title) {
     }
 }
 
+//================USER=================//
+export function postUser(payload) {
+    return async function(dispatch) {
+        try {
+            const urlPost = await axios.post('http://localhost:3001/user', payload);
+            return dispatch ({
+                type: POST_USER,
+                payload: urlPost.data
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+}

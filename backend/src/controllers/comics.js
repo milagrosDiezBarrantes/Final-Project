@@ -62,8 +62,8 @@ const getById = async (req, res, next) => {
 //trae resultados con coincidencia parcial desde inicio , es decir title = "iron" va a traer a todos los comics que empiecen con "iron", ahora si empieza con The iron, chau no lo va a encontrar :/
 const getByTitle = async (title) => {
   try {
-    let search = await axios(
-      `https://gateway.marvel.com/v1/public/comics?noVariants=true&limit=100&titleStartsWith=${title}&dateDescriptor=${date}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
+    let search = await axios.get(
+      `https://gateway.marvel.com/v1/public/comics?noVariants=true&limit=100&titleStartsWith=${title}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`);
 
     search = search.data.data.results;
 
