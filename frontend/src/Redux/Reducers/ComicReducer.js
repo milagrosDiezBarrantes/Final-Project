@@ -1,8 +1,10 @@
-import { GET_TITLE } from '../Actions/actions'
+import { GET_TITLE, GET_BY_ID } from '../Actions/actions'
+
 
 const initialStateOfComic = {
     Comics: [],
-    copyComics: []
+    copyComics: [],
+    selectedComic: []
 }
 
 function ComicsReducer(state = initialStateOfComic, { type, payload }) {
@@ -13,6 +15,14 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
                 ...state,
                 Comics: payload
             }
+    
+        case GET_BY_ID:{
+            console.log(payload,' en reducer ');
+            return {
+                ...state,
+                selectedComic: payload
+            }
+        }
 
         default:
             return { ...state };

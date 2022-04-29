@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
+export const GET_BY_ID = "GET_BY_ID";
 export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
@@ -90,6 +91,22 @@ export function getComicsByTitle(title) {
         }
     }
 
+}
+
+export const getById = (id) => async dispatch => {
+    try{
+       const res= await axios(`http://localhost:3001/comics/${id}`);
+       console.log('llega id?', id)
+       console.log('llega comic al payoad?', res)
+       return dispatch({
+            type: GET_BY_ID,
+            payload: res.data            
+       })
+
+    }catch(err){
+        console.log(err);
+    }
+    
 }
 
 //================USER=================//

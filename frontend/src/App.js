@@ -23,6 +23,7 @@ function App() {
           <Route path='/LandingPage' element={<LandingPage />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
+          <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/form' element={<Form />} />
           <Route path='/' element={<div>ruta default, cliente levantado</div>} />
           <Route path='/' element={<NavBar />} />
