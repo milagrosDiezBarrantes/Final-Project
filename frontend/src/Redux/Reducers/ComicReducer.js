@@ -1,4 +1,4 @@
-import { GET_TITLE, GET_BY_ID } from '../Actions/actions'
+import { GET_TITLE, GET_BY_ID, GET_COMICS } from '../Actions/actions'
 
 
 const initialStateOfComic = {
@@ -13,7 +13,8 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
         case GET_TITLE:
             return {
                 ...state,
-                Comics: payload
+                Comics: payload,
+                
             }
     
         case GET_BY_ID:{
@@ -23,6 +24,13 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
                 selectedComic: payload
             }
         }
+        case GET_COMICS:
+            return {
+                ...state,
+                Comics: payload,
+                copyComics: payload
+                
+            }
 
         default:
             return { ...state };

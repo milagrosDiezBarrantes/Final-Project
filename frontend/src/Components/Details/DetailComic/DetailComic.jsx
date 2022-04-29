@@ -36,6 +36,7 @@ const DetailComic = () => {
         <div className={styles.description}>
           <p>{detail[0].description}</p>
           <button className={styles.variantcovers}>Variant Covers</button>
+          <button className={styles.variantcovers}>Let's read!</button>
          
         </div>
         <div className={styles.description}>
