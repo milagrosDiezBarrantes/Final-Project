@@ -6,6 +6,7 @@ const LandingPage = () => {
   return (
     <div className='container-landing'>
       <Link to="/homeComics">
+        <button className='btn-landing'>Discover comics</button>
       </Link>
     </div>
   )

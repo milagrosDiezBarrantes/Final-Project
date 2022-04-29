@@ -19,14 +19,14 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path='/login' element={<Login />} /> 
-          <Route path='/LandingPage' element={<LandingPage />} />
-          <Route path='/homeCharacter' element={<HomeCharacter />} />
-          <Route path='/homeComics' element={<HomeComics />} />
-          <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
-          <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter/>} />
-          <Route path='/form' element={<Form />} />
-          <Route path='/' element={<NavBar />} />
+           
+          {/* <Route path='/LandingPage' element={<LandingPage />} /> */}
+            <Route path='/homeCharacter' element={<HomeCharacter />} />
+            <Route path='/homeComics' element={<HomeComics />} />
+            <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
+            <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter/>} />
+            <Route path='/form' element={<Form />} />
+            <Route path='/login' element={<Login />} />
           <Route path='*' element={<LandingPage />} />
         </Routes>
       </BrowserRouter>

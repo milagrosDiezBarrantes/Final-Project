@@ -77,7 +77,7 @@ const HomeCharacter = () => {
     return (
         <div className='container'>
 
-            <NavBar />
+            <NavBar /> 
             <div className='paginas'>
                 <ReactPaginate
                     previousLabel={'<- Previous'}
