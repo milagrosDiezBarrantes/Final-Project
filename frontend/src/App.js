@@ -16,6 +16,8 @@ import FormDos from "./Components/Form/FormDos";
 // import Login from "./Components/Login/Login.jsx";
 
 
+import HomeCharacters from "./Components/HomeComponent/HomeCharacter/HomeCharacters";
+
 import { ThemeProvider } from '@mui/material/styles'
 import theme from "./Styles/Styles";
 
@@ -26,6 +28,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
+          <Route path='/homePrueba' element={<HomeCharacters />} />
           <Route path='/formTres' element={<FormDos />} />
           <Route path='/login' element={<Login />} />
           <Route path='/LandingPage' element={<LandingPage />} />
