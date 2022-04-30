@@ -2,8 +2,8 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
  
-  sequelize.define("comic", {
-    name: {
+  sequelize.define("Comics", {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -12,18 +12,26 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    image: {
+    img: {
       type: DataTypes.TEXT,
     },
-    mail: { 
+    pages: { 
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    banner: { 
+      type: DataTypes.ENUM("true","false"),
+      defaultValue: "true",
       allowNull: true,
     },
     
     createdInDb: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      allowNull: false
+      allowNull: true
     }
+  },{
+    timestamps:false
   });
 };
+
