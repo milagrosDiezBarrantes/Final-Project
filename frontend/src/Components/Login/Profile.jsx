@@ -9,7 +9,7 @@ export const Profile = () => {
   }
   return (
     isAuthenticated && (
-      <div className="Profile-Card">
+      <div >
         <img src={user.picture} alt={user.name} />
         <h2>User Name:</h2>
         <h2>{user.nickname}</h2>

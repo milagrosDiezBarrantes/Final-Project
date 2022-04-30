@@ -40,7 +40,7 @@ const HomeComics = () => {
         data.slice(offset, offset + PER_PAGE)
             .map(({ id, title, img }) => {
                 return (
-                    <div key={id} className='card'>
+                    <div key={id}>
                         <ComicCard
                             id={id}
                             title={title}
@@ -59,17 +59,17 @@ const HomeComics = () => {
         <div>
             <NavBar />
             <SearchBarComics />
-            <div className='paginas'>
+            <div >
                 <ReactPaginate
                     previousLabel={'<- Previous'}
                     nextLabel={'Next ->'}
                     pageCount={pageCount}
                     onPageChange={handlePageClick}
-                    containerClassName={'pagination'}
-                    previousLinkClassName={'pagination_link'}
-                    nextLinkClassName={'pagination_link'}
-                    disabledClassName={'pagination_link--disabled'}
-                    activeClassName={'pagination_link--active'}
+                // containerClassName={'pagination'}
+                // previousLinkClassName={'pagination_link'}
+                // nextLinkClassName={'pagination_link'}
+                // disabledClassName={'pagination_link--disabled'}
+                // activeClassName={'pagination_link--active'}
                 />
             </div>
 
@@ -86,7 +86,7 @@ const HomeComics = () => {
                             image={comic.img} />
                     </div>)
                 )} */}
-            <div className='all_games'>
+            <div >
                 {currentPageData}
             </div>
 
