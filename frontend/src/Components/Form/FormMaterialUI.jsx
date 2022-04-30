@@ -11,7 +11,7 @@ const FormMaterialUI = () => {
     const btnstyle = { margin: '8px 0' }
 
     return (
-        <Grid>
+        <Grid >
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                     <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
