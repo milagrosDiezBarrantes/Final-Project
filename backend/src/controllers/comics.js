@@ -21,11 +21,10 @@ const getComics = async (req, res, next) => {
     let toRender = allComics.map((comic) => ({
       id: comic.id,
       title: comic.title,
-      description: comic.description,
+      description: comic.description,      
       img: comic.thumbnail.path + "." + comic.thumbnail.extension,
+      
     }));
-
-    console.log(toRender.length);
 
     res.status(200).json(toRender);
   } catch (error) {
@@ -43,17 +42,24 @@ const getById = async (req, res, next) => {
     let toRender = comic.map((comic) => ({
       id: comic.id,
       title: comic.title,
-      issue: comic.issueNumber,
       description: comic.description,
       img: comic.thumbnail.path + "." + comic.thumbnail.extension,
-      pages: comic.pageCount,
-      creators: comic.creators.items.map((creator) => ({
-        name: creator.name,
-        role: creator.role, //aca va editor, writer, penciller, etc
-      })),
+      variants:comic.variants?.map((variant) =>({
+        coverName : variant.name,
+        coverId : variant.resourceURI.split('http://gateway.marvel.com/v1/public/comics/')[1],
+      })),//aca va la variesdad de imagen de portadas si hay
+        creators: comic.creators.items?.map((creator) => ({
+          creatorId: creator.resourceURI.split('http://gateway.marvel.com/v1/public/creators/')[1],
+          creatorName: creator.name,
+          creatorRole: creator.role, //aca va editor, writer, penciller, etc
+        })),
       serie: comic.series.name, //si es una serie de revistas aca viene el nombre de la misma
+      serieId: comic.series.resourceURI.split('http://gateway.marvel.com/v1/public/series/')[1],
+      publish: comic.dates?.map((e)=>{
+        return (e.date)//en [0] viene la fecha de fin publicacion, en [1] la fecha de primer publicacion
+      }),
+    
     }));
-
     res.status(200).json(toRender);
   } catch (error) {
     next(error);
@@ -68,19 +74,24 @@ const getByTitle = async (title) => {
 
     search = search.data.data.results;
 
-    let toRender = search?.map((comic) => ({
-      id: comic.id,
-      title: comic.title,
-      issue: comic.issueNumber,
-      description: comic.description,
-      img: comic.thumbnail.path + "." + comic.thumbnail.extension,
-      pages: comic.pageCount,
-      creators: comic.creators.items.map((creator) => ({
-        name: creator.name,
-        role: creator.role, //aca va editor, writer, penciller, etc
-      })),
-      serie: comic.series.name, //si es una serie de revistas aca viene el nombre de la misma
-    }));
+    let toRender = search?.map((comic) => {
+      return ({
+        id: comic.id,
+        title: comic.title,
+        description: comic.description,
+        img: comic.thumbnail.path + "." + comic.thumbnail.extension,
+
+        creators: comic.creators.items?.map((creator) => ({
+          id: creator.resourceURI.split(('http://gateway.marvel.com/v1/public/creators/')[1]),
+          name: creator.name,
+          role: creator.role, //aca va editor, writer, penciller, etc
+        })),
+        serie: comic.series.name,
+        publish: comic.dates?.map((e) => {
+          return (e.date); //en [0] viene la fecha de fin publicacion, en [1] la fecha de primer publicacion
+        })
+      });
+    });
     return toRender;
   } catch (error) {
     return error;

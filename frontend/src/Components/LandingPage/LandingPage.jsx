@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
-    <div className='container-landing'>
+    <div >
       <Link to="/homeComics">
         <button className='btn-landing'>Discover comics</button>
       </Link>
