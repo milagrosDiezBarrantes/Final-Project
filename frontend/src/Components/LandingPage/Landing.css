@@ -2,7 +2,8 @@
     background-image: url('https://www.cinepremiere.com.mx/wp-content/uploads/2020/04/giphy.gif');
     background-repeat: no-repeat;
     background-size:contain;
-    height: 100vh;   
+    height: 100vh;  
+    background-color: black; 
 }
 .btn-landing {
     margin-top: 5%;
