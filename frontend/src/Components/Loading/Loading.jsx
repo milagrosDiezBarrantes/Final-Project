@@ -1,38 +1,40 @@
-import React,{useEffect, useState} from "react";
-import "./Loading.css"
+import React, { useEffect, useState } from "react";
+// import "./Loading.css"
 import spider from "../../Img/Loading/spaider.gif"
 import iron from "../../Img/Loading/ironman2.webp"
 import varios from "../../Img/Loading/varios_icons.gif"
-const Loading = ()=>{
-    const [img,setImg] = useState([varios,iron,])
-    var [num,setNum] = useState(0)
 
-    const cambio = ()=>{
-        setTimeout(()=>{
-            if(num = img.length-1){
+
+const Loading = () => {
+    const [img, setImg] = useState([varios, iron,])
+    var [num, setNum] = useState(0)
+
+    const cambio = () => {
+        setTimeout(() => {
+            if (num = img.length - 1) {
                 setNum(0)
                 console.log(num)
-            }else if(num < img.length-1){
-                setNum(...num+1)
+            } else if (num < img.length - 1) {
+                setNum(...num + 1)
                 console.log(num)
-            }  
-            
-        },1000)
-        
+            }
+
+        }, 1000)
+
     }
-    useEffect(()=>{
-     cambio()   
-    },[num])
+    useEffect(() => {
+        cambio()
+    }, [num])
     return (
-        
-            <div  className="Contenedor_de_carga" >
-                <div className="Girar">
-                    <div className="CambiarColor">
-                            {<img className="img" src={varios}/>}
-                    </div>
+
+        <div  >
+            <div >
+                <div >
+                    {<img src={varios} />}
                 </div>
             </div>
-        
+        </div>
+
     )
 }
 

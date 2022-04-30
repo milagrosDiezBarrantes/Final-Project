@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { postUser } from "../../Redux/Actions/actions";
 import { validate } from "../../Functions/validacionesForm/validacionFormLog";
 
-export const Form = () => {
+const Form = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
 
@@ -72,12 +72,7 @@ export const Form = () => {
                         name="firstName"
                         onChange={handleChange}
                     />
-                    {
-                        error.firstName &&
-                        <p>
-                            {error.firstName}
-                        </p>
-                    }
+                    {error.firstName && <p>  {error.firstName}</p>}
                 </div>
                 <div>
                     <label>Last name*:</label>
@@ -87,12 +82,7 @@ export const Form = () => {
                         name="lastName"
                         onChange={handleChange}
                     />
-                    {
-                        error.lastName &&
-                        <p>
-                            {error.lastName}
-                        </p>
-                    }
+                    {error.lastName && <p>{error.lastName} </p>}
                 </div>
                 <div>
                     <label>Age*:</label>
@@ -102,12 +92,7 @@ export const Form = () => {
                         name="age"
                         onChange={handleChange}
                     />
-                    {
-                        error.age &&
-                        <p>
-                            {error.age}
-                        </p>
-                    }
+                    {error.age && <p>{error.age}</p>}
                 </div>
                 <div>
                     <label>User name*:</label>
@@ -117,12 +102,7 @@ export const Form = () => {
                         name="userName"
                         onChange={handleChange}
                     />
-                    {
-                        error.userName &&
-                        <p>
-                            {error.userName}
-                        </p>
-                    }
+                    {error.userName && <p>{error.userName}</p>}
                 </div>
                 <div>
                     <label>Email*:</label>
@@ -132,12 +112,7 @@ export const Form = () => {
                         name="email"
                         onChange={handleChange}
                     />
-                    {
-                        error.email &&
-                        <p>
-                            {error.email}
-                        </p>
-                    }
+                    {error.email && <p>{error.email}</p>}
                 </div>
                 <div>
                     <label>Password*:</label>
@@ -147,12 +122,7 @@ export const Form = () => {
                         name="password"
                         onChange={handleChange}
                     />
-                    {
-                        error.password &&
-                        <p>
-                            {error.password}
-                        </p>
-                    }
+                    {error.password && <p> {error.password} </p>}
                 </div>
                 <div>
                     <label>Repeat password*:</label>
@@ -162,12 +132,7 @@ export const Form = () => {
                         name="password2"
                         onChange={handleChange}
                     />
-                    {
-                        error.password2 &&
-                        <p>
-                            {error.password2}
-                        </p>
-                    }
+                    {error.password2 && <p>{error.password2}</p>}
                 </div>
                 <div>
                     <label>Picture:</label>
@@ -178,12 +143,7 @@ export const Form = () => {
                         name="picture"
                         onChange={handleChange}
                     />
-                    {
-                        error.picture &&
-                        <p>
-                            {error.picture}
-                        </p>
-                    }
+                    {error.picture && <p>{error.picture}</p>}
                 </div>
                 <div>
                     <label>
@@ -207,3 +167,5 @@ export const Form = () => {
         </>
     )
 }
+
+export default Form
