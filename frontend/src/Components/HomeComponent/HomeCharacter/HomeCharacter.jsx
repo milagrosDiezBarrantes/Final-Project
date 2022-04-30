@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactPaginate from "react-paginate"
 import { getAllCharacters } from '../../../Redux/Actions/actions';
-import "./HomeCharacter.css"
-import SerchbarCharacters from "../../SearchBar/SearchBarCharacters/SearchBarCharacters"
 
 import NavBar from '../../Navbar/Navbar.jsx';
 
@@ -11,16 +9,12 @@ const HomeCharacter = () => {
     const dispatch = useDispatch()
     const Characters = useSelector(state => state.CharactersReducer.copyCharacters)
 
-
-    //======================Experimento===============
-
-    const [vgNames, setVgNames] = useState([])
-    const [text, setText] = useState('')
-    const [suggestions, setSuggestions] = useState([])
-
-
-
     //======================Experimento===============//
+
+    // const [vgNames, setVgNames] = useState([])
+    // const [text, setText] = useState('')
+    // const [suggestions, setSuggestions] = useState([])
+
 
     //===========Paginado===============//
 
@@ -46,6 +40,7 @@ const HomeCharacter = () => {
         // console.log('selectedPage', selectedPage);
         setCurrentPage(selectedPage);
     }
+
     const offset = currentPage * PER_PAGE;
 
     const currentPageData = data ?
@@ -54,7 +49,6 @@ const HomeCharacter = () => {
                 return (
                     <div key={e.id} className='card'>
                         <img
-                            className='box_img'
                             key={e.id}
                             src={e.profilePic}
                             alt={e.name}
@@ -76,24 +70,23 @@ const HomeCharacter = () => {
 
 
     return (
-        <div className='container'>
+        <div>
 
             <NavBar />
-            <SerchbarCharacters/>
-            <div className='paginas'>
+            <div >
                 <ReactPaginate
                     previousLabel={'<- Previous'}
                     nextLabel={'Next ->'}
                     pageCount={pageCount}
                     onPageChange={handlePageClick}
-                    containerClassName={'pagination'}
-                    previousLinkClassName={'pagination_link'}
-                    nextLinkClassName={'pagination_link'}
-                    disabledClassName={'pagination_link--disabled'}
-                    activeClassName={'pagination_link--active'}
+                // containerClassName={'pagination'}
+                // previousLinkClassName={'pagination_link'}
+                // nextLinkClassName={'pagination_link'}
+                // disabledClassName={'pagination_link--disabled'}
+                // activeClassName={'pagination_link--active'}
                 />
             </div>
-            <div className='all_games'>
+            <div >
                 {currentPageData}
             </div>
 
