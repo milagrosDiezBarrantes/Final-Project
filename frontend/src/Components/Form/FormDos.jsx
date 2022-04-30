@@ -1,5 +1,6 @@
 import React from "react"
 import { Button, Container, Input, Paper } from "@mui/material"
+import MyButton from "../../Styles/MyButton"
 
 const FormDos = () => {
     return (
@@ -21,6 +22,11 @@ const FormDos = () => {
                     variant="contained"
                     color="secondary"
                 >Submit</Button>
+
+
+                <MyButton>
+                    Cancel
+                </MyButton >
 
             </Paper>
 
