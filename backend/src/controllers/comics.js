@@ -98,29 +98,6 @@ const getByTitle = async (title) => {
   }
 };
 
-// const getVariantsCoverById = async (id) => {
-//   try {
-//    let covers = await getById(id).variants;
-//    covers.forEach(element => {
-//     let soloId=[];
-//     soloId.push(element.resourceURI.split('http://gateway.marvel.com/v1/public/comics/')[1])
-//       variantsUrlExtracted.push('http://localhost/3001/comics/'+ soloId)
-//   });
-//   return variantsUrlExtracted;
-  
-//   }
-//   catch{
-//     console.log('error')
-//   }
-
-// const setVariantCover = async (urlCoverArr) => {
-//   try{
-//     let allCovers = Promise.all(urlCoverArr)
-//   }
-//   catch{}
-  
-// }
-
 
 
 module.exports = { getComics, getById, getByTitle };
