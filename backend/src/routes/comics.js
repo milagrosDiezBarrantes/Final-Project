@@ -2,7 +2,7 @@ const { Router } = require('express');
 
 const router = Router();
 
-const { getComics, getById } = require('../controllers/comics.js');
+const { getComics, getById  } = require('../controllers/comics.js');
 
 
 router.get('/', getComics);

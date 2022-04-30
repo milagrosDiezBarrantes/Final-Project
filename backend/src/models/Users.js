@@ -39,5 +39,7 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM("standar","premium","admin"),
       allowNull: false
     },
+  },{
+    timestamps:false
   });
 };
