@@ -2,8 +2,8 @@ import { createTheme } from "@mui/material/styles";
 
 
 const Colors = {
-    primary: "#00adb5",
-    secondary: "#9e9e9e",
+    primary: "#212121",
+    secondary: "#b71c1c",
     success: "#4CAF50",
     info: "#00a2ff",
     danger: "#FF5722",
@@ -21,6 +21,7 @@ const Colors = {
     white: "#fff",
     black: "#000"
 };
+
 
 const theme = createTheme({
     palette: {
