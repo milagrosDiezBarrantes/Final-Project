@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SearchBarComics from '../../SearchBar/SearchBarComics/SearchBarComics'
 import ReactPaginate from "react-paginate"
-
 import NavBar from '../../Navbar/Navbar.jsx';
 import ComicCard from '../../Cards/ComicCard/ComicCard';
 
@@ -16,7 +15,7 @@ const HomeComics = () => {
     //===========Paginado===============//
 
 
-    const PER_PAGE = 8;
+    const PER_PAGE = 9;
 
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);

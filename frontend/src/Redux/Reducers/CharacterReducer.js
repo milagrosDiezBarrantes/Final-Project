@@ -26,7 +26,7 @@ function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
             case GET_NAME:
                 return {
                     ...state,
-                    Characters: payload
+                    copyCharacters: payload
                 }
 
         default:

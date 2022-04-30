@@ -13,7 +13,7 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
         case GET_TITLE:
             return {
                 ...state,
-                Comics: payload,
+                copyComics: payload,
                 
             }
     
