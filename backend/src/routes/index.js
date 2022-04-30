@@ -4,12 +4,14 @@ const { Router } = require('express');
 const characters = require('./characters.js');
 const comicsRoute = require('./comics.js');
 const user = require('./user.js');
+const banner = require('./banner.js');
 
 
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+router.use('/banner', banner);
 router.use('/characters', characters);
 router.use('/comics', comicsRoute);
 router.use('/user', user);
