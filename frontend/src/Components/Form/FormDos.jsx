@@ -6,7 +6,8 @@ const FormDos = () => {
     return (
         <Container sx={{
             maxWidth: "400px"
-        }}>
+        }}
+        >
             <Paper sx={{
                 marginTop: "2rem",
                 padding: "1rem"
@@ -23,10 +24,19 @@ const FormDos = () => {
                     color="secondary"
                 >Submit</Button>
 
+                <Button
+                    sx={{
+                        marginTop: "2px"
+                    }}
+                    variant="contained"
+                    color="primary"
+                >Submit</Button>
 
+
+                {/* 
                 <MyButton>
                     Cancel
-                </MyButton >
+                </MyButton > */}
 
             </Paper>
 

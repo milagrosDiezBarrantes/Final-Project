@@ -3,8 +3,7 @@ import { styled } from "@mui/material/styles";
 
 const MyButton = styled(Button)(() => ({
     borderRadius: '10px',
-    color: 'secondary',
-    background: 'secondary'
+    color: 'primary'
 }));
 
 export default MyButton

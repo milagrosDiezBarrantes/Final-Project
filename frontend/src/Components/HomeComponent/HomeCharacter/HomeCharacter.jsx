@@ -5,19 +5,12 @@ import { getAllCharacters } from '../../../Redux/Actions/actions';
 
 import NavBar from '../../Navbar/Navbar.jsx';
 
+
+import { Button, Container, Input, Paper, Box, Grid } from "@mui/material"
+
 const HomeCharacter = () => {
     const dispatch = useDispatch()
     const Characters = useSelector(state => state.CharactersReducer.copyCharacters)
-
-    //======================Experimento===============//
-
-    // const [vgNames, setVgNames] = useState([])
-    // const [text, setText] = useState('')
-    // const [suggestions, setSuggestions] = useState([])
-
-
-    //===========Paginado===============//
-
 
     const PER_PAGE = 8;
 
@@ -47,16 +40,18 @@ const HomeCharacter = () => {
         data.slice(offset, offset + PER_PAGE)
             .map(e => {
                 return (
-                    <div key={e.id} className='card'>
-                        <img
-                            key={e.id}
-                            src={e.profilePic}
-                            alt={e.name}
-                        />
-                        <h1>{e.name}</h1>
-                        <p>{e.description}</p>
+                    <Grid>
+                        <div key={e.id} >
+                            <img
+                                key={e.id}
+                                src={e.profilePic}
+                                alt={e.name}
+                            />
+                            <h1>{e.name}</h1>
+                            <p>{e.description}</p>
 
-                    </div>
+                        </div>
+                    </Grid>
                 )
 
             })
@@ -70,28 +65,35 @@ const HomeCharacter = () => {
 
 
     return (
-        <div>
+        <Container
+            fixed
 
-            <NavBar />
-            <div >
-                <ReactPaginate
-                    previousLabel={'<- Previous'}
-                    nextLabel={'Next ->'}
-                    pageCount={pageCount}
-                    onPageChange={handlePageClick}
-                // containerClassName={'pagination'}
-                // previousLinkClassName={'pagination_link'}
-                // nextLinkClassName={'pagination_link'}
-                // disabledClassName={'pagination_link--disabled'}
-                // activeClassName={'pagination_link--active'}
-                />
+        >
+            {/* <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} /> */}
+
+            <div>
+
+                <NavBar />
+                <div >
+                    <ReactPaginate
+                        previousLabel={'<- Previous'}
+                        nextLabel={'Next ->'}
+                        pageCount={pageCount}
+                        onPageChange={handlePageClick}
+                    // containerClassName={'pagination'}
+                    // previousLinkClassName={'pagination_link'}
+                    // nextLinkClassName={'pagination_link'}
+                    // disabledClassName={'pagination_link--disabled'}
+                    // activeClassName={'pagination_link--active'}
+                    />
+                </div>
+                <div >
+                    {currentPageData}
+                </div>
+
+
             </div>
-            <div >
-                {currentPageData}
-            </div>
-
-
-        </div>
+        </Container>
     )
 }
 
