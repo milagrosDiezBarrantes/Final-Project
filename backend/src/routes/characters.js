@@ -3,22 +3,27 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-
+const { Characters } = require(`../db`)
 const router = Router();
 
 router.get("/all", async (req, res) => {
-	const {name} = req.query;
-	try {
-		// let abc = ["a","b","c","d","e","f"];
-		let abc = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","u","v","w","x","y","z"];
-		
+	let characters =[]
+	 characters = await Characters.findAll()
+	 console.log("soy el characters", characters.length)
+	if(characters.length===0){
 
-	 let characters =[]
-	for (let i = 0; i < abc.length; i++) {
-		console.log(abc[i]);
-	let cha	= axios.get(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${abc[i]}&limit=100&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`)
+		try {	
+
+			let i=0
+while(i < 1561){
+	let cha	= axios.get(`https://gateway.marvel.com/v1/public/characters?limit=100&offset=${i}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`)
 	characters.push(cha)
-	}
+  if(i!=1500){
+  i=i+100   
+  }else{
+    i=i+61 
+  }
+};
 	characters= await Promise.all(characters)
 	characters= characters.map((e)=>e.data.data.results)
 	characters=characters.flat()
@@ -30,33 +35,28 @@ router.get("/all", async (req, res) => {
 		description: e.description,
 		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
 	}));
-	if(name){
-			
-		characters = characters.filter(char => char.name?.toLowerCase().includes(name.toString().toLowerCase()));
-				if(characters.length){
-				return	res.status(200).json(characters)
-				}
-				else{
-					res.status(200).json([])
-				}
-
-	}	
+	console.log("entre al if")
+	characters.forEach( async (e)=> await Characters.create(
+		{
+			id:e.id,
+			name: e.name,
+			profilePic: e.profilePic,
+			description: e.description,
+		}))
 		
-
-
-
-		// characters = characters.map((e) =>e.data);
-		// characters = characters.map((e) => ({
-		// 	id: e.id,
-		// 	name: e.name,
-		// 	description: e.description,
-		// 	profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
-		// }));
-	return	res.status(200).json(characters);
+	return	res.status(201).json(characters);
 	} catch (err) {
 		console.log(err);
 		// next(err)
 	}
+	}
+	return	res.status(200).json(characters);
+
+
+
+
+
+
 });
 
 router.get("/:id/:comics", async (req, res) => {
