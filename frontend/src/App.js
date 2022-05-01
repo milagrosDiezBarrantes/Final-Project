@@ -10,12 +10,10 @@ import DetailComic from "./Components/Details/DetailComic/DetailComic"
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
 import FormMaterialUI from "./Components/Form/FormMaterialUI";
-import NavBar from "./Components/Navbar/Navbar"
+import NavBar from "./Components/Navbar/Navbar";
 import Form from "./Components/Form/Form";
 import FormDos from "./Components/Form/FormDos";
 // import Login from "./Components/Login/Login.jsx";
-
-
 import HomeCharacters from "./Components/HomeComponent/HomeCharacter/HomeCharacters";
 
 import { ThemeProvider } from '@mui/material/styles'
