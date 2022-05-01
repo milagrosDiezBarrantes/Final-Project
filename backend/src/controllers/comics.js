@@ -51,7 +51,7 @@ const getById = async (req, res, next) => {
         creators: comic.creators.items?.map((creator) => ({
           creatorId: creator.resourceURI.split('http://gateway.marvel.com/v1/public/creators/')[1],
           creatorName: creator.name,
-          creatorRole: creator.role, //aca va editor, writer, penciller, etc
+          creatorRole: creator.role //aca va editor, writer, penciller, etc
         })),
       serie: comic.series.name, //si es una serie de revistas aca viene el nombre de la misma
       serieId: comic.series.resourceURI.split('http://gateway.marvel.com/v1/public/series/')[1],
@@ -98,9 +98,32 @@ const getByTitle = async (title) => {
   }
 };
 
+const getSerieById = async (req, res, next) => {
+  try {
+    let serie = await axios.get(
+      `https://gateway.marvel.com/v1/public/series/${req.params.id}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
+    );
+    serie = serie.data.data.results;
+
+    let toRender = serie.map((serie) => ({
+      id: serie.id,
+      title: serie.title,
+      description: serie.description,
+      startYear: serie.startYear,
+      endYear: serie.endYear,
+      img: serie.thumbnail.path + "." + serie.thumbnail.extension,
+      comics: serie.items?.map((comic) => ({
+        id: serie.resourceURI.split(('http://gateway.marvel.com/v1/public/comics/')[1]),
+        }))
+      }));
+    res.status(200).json(toRender);
+  } catch (error) {
+    next(error);
+  }
+};
 
 
-module.exports = { getComics, getById, getByTitle };
+module.exports = { getComics, getById, getByTitle, getSerieById};
 //     try{
 //         const data = await axios('https://gateway.marvel.com/v1/public/comics?ts=1&apikey=92b1929109f0272717c217d062103f24&hash=0a5a4c3c68e3ef9191ccb45e803bcb0b')
 //     data.data? res.status(200).json(data.data) : res.status(500).json({message: 'Error'})
