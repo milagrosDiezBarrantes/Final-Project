@@ -6,6 +6,7 @@ import NavBar from '../../Navbar/Navbar.jsx';
 import ComicCard from '../../Cards/ComicCard/ComicCard';
 
 import { getAllComics } from '../../../Redux/Actions/actions'
+import s from './HomeComics.module.css'
 
 const HomeComics = () => {
 
@@ -15,7 +16,7 @@ const HomeComics = () => {
     //===========Paginado===============//
 
 
-    const PER_PAGE = 9;
+    const PER_PAGE = 12;
 
     const [currentPage, setCurrentPage] = useState(0);
     const [data, setData] = useState([]);
@@ -85,7 +86,7 @@ const HomeComics = () => {
                             image={comic.img} />
                     </div>)
                 )} */}
-            <div >
+            <div className={s.gridImg}>
                 {currentPageData}
             </div>
 
