@@ -15,6 +15,9 @@ import Form from "./Components/Form/Form";
 import FormDos from "./Components/Form/FormDos";
 // import Login from "./Components/Login/Login.jsx";
 import HomeCharacters from "./Components/HomeComponent/HomeCharacter/HomeCharacters";
+import Series from "./Components/Navbar/MainNav";
+import SearchIcon from "./Components/Navbar/MainNav";
+import ComicsIcon from "./Components/Navbar/MainNav";
 
 import { ThemeProvider } from '@mui/material/styles'
 import theme from "./Styles/Styles";
@@ -37,8 +40,11 @@ function App() {
           <Route path='/form' element={<Form />} />
           <Route path='/formDos' element={<FormMaterialUI />} />
           <Route path='/' element={<NavBar />} />
-          <Route path='*' element={<LandingPage />} />
-        </Routes>
+          <Route path='/' element={<Series />} />
+          <Route path='/' element={<SearchIcon />} />
+          <Route path='/' element={<ComicsIcon />} />
+         
+      </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );

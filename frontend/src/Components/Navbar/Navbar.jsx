@@ -28,11 +28,8 @@ export default function Navbar() {
 
   return (
     <React.Fragment>
-       
       <AppBar sx={{ background: "#000000" }}>
-    
       <Toolbar>
-       
         {isMatch ? (
           <>
             <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
@@ -50,10 +47,9 @@ export default function Navbar() {
               valclickedue={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
-              <Tab label="Comics" />
-              
-              <Tab label="About Us" />
-              <Tab label="Contact" />
+                <Tab label="Comics" />
+                <Tab label="About Us" />
+                <Tab label="Contact" />
             </Tabs>
             <Button sx={{ marginLeft: "auto" }} variant="contained">
               Login
@@ -61,6 +57,7 @@ export default function Navbar() {
             <Button sx={{ marginLeft: "10px" }} variant="contained">
               SignUp
             </Button>
+            
           </>
         )}
       </Toolbar>
