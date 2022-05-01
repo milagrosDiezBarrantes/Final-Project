@@ -37,7 +37,7 @@ const DetailComic = () => {
       Loading ...
     </Typography>
   ) : (
-   <Container maxWidth="lg">
+   <Container class="detailed" maxWidth="lg">
 
 <div class="top">
 	<div class="columns">
