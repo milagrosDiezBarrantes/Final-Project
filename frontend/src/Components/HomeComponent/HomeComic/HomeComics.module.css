@@ -1,0 +1,11 @@
+
+.gridImg   
+{ display: grid;
+grid-template-columns: repeat(4, minmax(200px, 1fr));
+grid-gap: 94px;
+padding: 1rem;
+margin-top: 2rem;
+background: rgb(96,48,48);
+background: linear-gradient(292deg, rgba(96,48,48,1) 0%, rgba(0,0,0,1) 50%);
+}
+
