@@ -49,9 +49,9 @@ while(i < 1100){
 		comics=[...comics,...comicsDb]
 	return	res.status(201).send(comics);
 	} catch (err) {
-		console.log(err);
-		// next(err)
-	}
+		  console.log(err);
+	  	// next(err)
+	  }
 	}
 	return	res.status(200).send(comicsDb);
 };
