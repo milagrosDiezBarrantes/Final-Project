@@ -11,6 +11,7 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
     // eslint-disable-next-line default-case
     switch (type) {
         case GET_TITLE:
+            console.log(payload, 'copyComics es este payload en reducer')
             return {
                 ...state,
                 copyComics: payload,

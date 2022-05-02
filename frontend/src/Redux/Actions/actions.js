@@ -81,6 +81,8 @@ export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
             const queryTitle = await axios.get(`http://localhost:3001/comics?title=${title}`)
+
+            console.log(queryTitle.data, 'queryTitle.data')
             return dispatch({
                 type: GET_TITLE,
                 payload: queryTitle.data
