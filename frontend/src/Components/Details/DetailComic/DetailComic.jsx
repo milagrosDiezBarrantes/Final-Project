@@ -34,7 +34,7 @@ const DetailComic = () => {
       Loading ...
     </Typography>
   ) : (
-    <Container class="detailed" maxWidth="lg">
+    <>
       <div>
         <div class="columns">
           <div class="column is-full featured_wrapper p-0">
@@ -87,7 +87,7 @@ const DetailComic = () => {
           </div>
         </div>
       </div>
-    </Container>
+      </>
   );
 };
 export default DetailComic;
