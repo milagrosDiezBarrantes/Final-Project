@@ -4,8 +4,9 @@ import SearchBarComics from '../../SearchBar/SearchBarComics/SearchBarComics'
 import ReactPaginate from "react-paginate"
 import NavBar from '../../Navbar/Navbar.jsx';
 import ComicCard from '../../Cards/ComicCard/ComicCard';
-
+import axios from 'axios'
 import { getAllComics } from '../../../Redux/Actions/actions'
+import CustomPagination from '../../Pagination/Pagination.jsx'
 import s from './HomeComics.module.css'
 
 const HomeComics = () => {
@@ -13,32 +14,64 @@ const HomeComics = () => {
     const dispatch = useDispatch()
     const allComics = useSelector(state => state.ComicsReducer.copyComics)
 
-    //===========Paginado===============//
-
-
-    const PER_PAGE = 12;
-
-    const [currentPage, setCurrentPage] = useState(0);
+    const [page, setPage] = useState(0);
+    
+    const [numOfPages, setNumOfPages] = useState(10);
     const [data, setData] = useState([]);
+    const [copyComics, setCopyComics] = useState([]);
+    const [currentPage, setCurrentPage] = useState();
+    const PER_PAGE=12;
+    const start = (page-1)*12;
+  const end = page * PER_PAGE;
 
-    //Traer datos
+
     useEffect(() => {
         dispatch(getAllComics());
+        setPage(1);
     }, [dispatch])
-
+    
     useEffect(() => {
-        setData(allComics)
+    setData(allComics)
+    setCopyComics(allComics);
     }, [allComics])
 
-    const handlePageClick = ({ selected: selectedPage }) => {
-        setCurrentPage(selectedPage)
-    }
-    const offset = currentPage * PER_PAGE;
 
-    //Aquí mapeamos los datos del paginado
-    const currentPageData = data ?
-        data.slice(offset, offset + PER_PAGE)
-            .map(({ id, title, img }) => {
+  useEffect(() => {
+    window.scroll(0, 0);
+    
+    setCurrentPage(copyComics.slice(start, end));    
+    // eslint-disable-next-line
+  }, [ page])
+
+  
+  console.log('start', start, 'end', end, 'currentPage', currentPage, 'page', page, 'copyComics', copyComics, 'data', data, 'allComics', allComics)
+//   const [page, setPage] = useState(1);
+//     
+
+//     const max = copyPokemons.length / perPage;
+//     const pokemonsPerPage = Math.ceil(max)
+
+
+
+ 
+
+    // Traer datos
+    
+
+    // const handlePageClick = ({ selected: selectedPage }) => {
+    //     setCurrentPage(selectedPage)
+    // }
+    // const offset = currentPage * PER_PAGE;
+
+    // //Aquí mapeamos los datos del paginado
+   
+    // const pageCount = Math.ceil(data.length / PER_PAGE);
+
+    return (
+        <div>
+               
+        {currentPage &&        
+    currentPage.map(({ id, title, img }) => {
                 return (
                     <div key={id}>
                         <ComicCard
@@ -51,16 +84,10 @@ const HomeComics = () => {
                 )
 
             })
-        : <p>No hay nada </p>
+        }
 
-    const pageCount = Math.ceil(data.length / PER_PAGE);
-
-    return (
-        <div>
-            <NavBar />
-            <SearchBarComics />
+                {/* <ReactPaginate
             <div id='container'>
-                <ReactPaginate
                     previousLabel={'<- Previous'}
                     nextLabel={'Next ->'}
                     pageCount={pageCount}
@@ -71,7 +98,7 @@ const HomeComics = () => {
                 // disabledClassName={'pagination_link--disabled'}
                 // activeClassName={'pagination_link--active'}
                 />
-            </div>
+            </div> */}
 
             {/* state.map((e)=><div> <Card name=${}  </div>) */}
 
@@ -86,10 +113,14 @@ const HomeComics = () => {
                             image={comic.img} />
                     </div>)
                 )} */}
-            <div className={s.gridImg}>
+            {/* <div className={s.gridImg}>
                 {currentPageData}
-            </div>
-
+            </div> */}
+<div>
+            {numOfPages > 1 && (
+        <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+      )}
+    </div>
 
         </div>
     )
