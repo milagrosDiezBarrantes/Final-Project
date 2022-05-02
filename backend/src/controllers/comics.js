@@ -47,13 +47,13 @@ while(i < 1100){
       creators:e.creators}
 		}))
 		comics=[...comics,...comicsDb]
-	return	res.status(201).json(comics);
+	return	res.status(201).send(comics);
 	} catch (err) {
 		console.log(err);
 		// next(err)
 	}
 	}
-	return	res.status(200).json(comicsDb);
+	return	res.status(200).send(comicsDb);
 };
 
 const getById = async (req, res, next) => {
