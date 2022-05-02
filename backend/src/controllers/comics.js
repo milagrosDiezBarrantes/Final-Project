@@ -1,35 +1,59 @@
 const axios = require("axios");
+const { Comics } = require(`../db`)
 require("dotenv").config();
 const { API_KEY, HASH_KEY } = process.env;
 
 //search characters whose names start with the given string
 
 const getComics = async (req, res, next) => {
-  const { title } = req.query;
-  try {
-    if (title) {
-      let toRender = await getByTitle(title);
-      return toRender === [] ? res.status(404).json({ message: 'No comics found' })
-        : res.status(200).json(toRender);
-    }
+	let comics =[]
+	 comics = await Comics.findAll()
+	 console.log("soy el comics", comics.length)
+	if(comics.length<6){
 
-    let allComics = await axios.get(
-      `https://gateway.marvel.com/v1/public/comics?noVariants=true&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}&limit=100`
-    );
-    allComics = allComics.data.data.results;
+		try {	
 
-    let toRender = allComics.map((comic) => ({
-      id: comic.id,
-      title: comic.title,
-      description: comic.description,      
-      img: comic.thumbnail.path + "." + comic.thumbnail.extension,
-      
-    }));
-
-    res.status(200).json(toRender);
-  } catch (error) {
-    next(error);
+			let i=0
+while(i < 51986){
+	let cha	= axios.get(`https://gateway.marvel.com/v1/public/comics?limit=100&offset=${i}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`)
+	comics.push(cha)
+  console.log(i)
+  if(i!=51900){
+  i=i+100   
+  }else{
+    i=i+86 
   }
+  console.log(i)
+};
+	comics= await Promise.all(comics)
+	comics= comics.map((e)=>e.data.data.results)
+	comics=comics.flat()
+	console.log(comics.length)
+
+	comics = comics.map((e) => ({
+		id: e.id,
+		name: e.name,
+		description: e.description,
+		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
+    pages:e.pageCount
+	}));
+	console.log("entre al if")
+	comics.forEach( async (e)=> await Comics.create(
+		{
+			id:e.id,
+			name: e.name,
+			profilePic: e.profilePic,
+			description: e.description,
+      pages:e.pages
+		}))
+		
+	return	res.status(201).json(comics);
+	} catch (err) {
+		console.log(err);
+		// next(err)
+	}
+	}
+	return	res.status(200).json(comics);
 };
 
 const getById = async (req, res, next) => {
