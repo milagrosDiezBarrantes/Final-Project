@@ -6,8 +6,8 @@ const { API_KEY, HASH_KEY } = process.env;
 //search characters whose names start with the given string
 
 const getComics = async (req, res, next) => {
-	let comicsDb =[]
-	 comicsDb = await Comics.findAll()
+
+	  let comicsDb = await Comics.findAll()
 	 console.log("soy el comics", comicsDb.length)
    let comics =[] 
 	if(comicsDb.length<6){
@@ -30,7 +30,7 @@ while(i < 1100){
 
 	comics = comics.map((e) => ({
 		id: e.id,
-		name: e.name,
+		title: e.title,
 		description: e.description,
 		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
     pages:e.pageCount,
