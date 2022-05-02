@@ -17,31 +17,3 @@ background: linear-gradient(292deg, rgba(96,48,48,1) 0%, rgba(0,0,0,1) 50%);
     cursor: pointer;
 }
 
-#container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 5rem;
-}
-
-.pagination a {
-    padding: 10px;
-    border: 1px solid #47a7de;
-    color: #47a7de;
-}
-
-.pagination_link {
-    font-weight: bold;
-}
-
-.pagination_link--active a {
-    color: #fff;
-    background: #47a7de;
-}
-
-.pagination_link--disabled a {
-    color: rgb(198, 197, 202);
-    border: 1px solid rgb(198, 197, 202);
-}
-
