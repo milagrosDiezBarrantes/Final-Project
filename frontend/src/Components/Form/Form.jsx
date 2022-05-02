@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { postUser } from "../../Redux/Actions/actions";
 import { validate } from "../../Functions/validacionesForm/validacionFormLog";
+import '../../Components/Form/Form.css';
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -61,9 +62,10 @@ const Form = () => {
     }
 
     return (
-        <>
-            <h1 className="form-title">Sign up</h1>
-            <form onSubmit={handleSubmit}>
+        <div>
+            
+            <form onSubmit={handleSubmit} className="formSign">
+                <h1 className="form-title">Sign up</h1>
                 <div>
                     <label>First name*:</label>
                     <input
@@ -148,6 +150,7 @@ const Form = () => {
                 <div>
                     <label>
                         <input
+                            className="input-accept"
                             type="checkbox"
                             name="terminos"
                             id="terminos"
@@ -157,6 +160,7 @@ const Form = () => {
                 </div>
                 <div>
                     <button
+                        className="btn-form"
                         type="submit"
                         disabled={disable}
                         onChange={handleChange}>
@@ -164,7 +168,7 @@ const Form = () => {
                     </button>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 

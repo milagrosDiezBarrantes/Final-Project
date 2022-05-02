@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DrawerComp from "../Navbar/Drawer";
+import { Link } from 'react-router-dom'
 import {
   AppBar,
   Button,
@@ -48,15 +49,15 @@ export default function Navbar() {
               valclickedue={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
-                <Tab label="Comics" />
+                <Tab href="/homeComics" label="Comics" />
                 <Tab label="About Us" />
                 <Tab label="Contact" />
             </Tabs>
             <Button sx={{ marginLeft: "auto" }} variant="contained">
               <LoginButton/>
             </Button>
-            <Button sx={{ marginLeft: "10px" }} variant="contained">
-              SignUp
+            <Button href="/form" sx={{ marginLeft: "10px" }} variant="contained">
+              Sign up
             </Button>
             
           </>
