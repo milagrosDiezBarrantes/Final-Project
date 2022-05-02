@@ -15,6 +15,9 @@ import ComicsIcon from "./Components/Navbar/MainNav";
 import { ThemeProvider } from '@mui/material/styles'
 import theme from "./Styles/Styles";
 import './index.css';
+import SearchBarComics from "./Components/SearchBar/SearchBarComics/SearchBarComics";
+import SearchBarCharacters from "./Components/SearchBar/SearchBarCharacters/SearchBarCharacters";
+import SearchPrueba from "./Components/SearchBar/SearchBarComics/SearchPrueba";
 
 
 function App() {
@@ -33,6 +36,9 @@ function App() {
           <Route path='/' element={<SearchIcon />} />
           <Route path='/' element={<ComicsIcon />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/searchComics' element={<SearchBarComics />} />
+          <Route path='/searchCharacter' element={<SearchBarCharacters />} />
+          <Route path='/searchPrueba' element={<SearchPrueba />} />
       </Routes>
       </BrowserRouter>
     </ThemeProvider>
