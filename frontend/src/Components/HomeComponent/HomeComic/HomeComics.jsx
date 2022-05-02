@@ -14,7 +14,7 @@ const HomeComics = () => {
     const dispatch = useDispatch()
     const allComics = useSelector(state => state.ComicsReducer.copyComics)
 
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     
     const [numOfPages, setNumOfPages] = useState(10);
     const [data, setData] = useState([]);
@@ -41,82 +41,83 @@ const HomeComics = () => {
     
     setCurrentPage(copyComics.slice(start, end));    
     // eslint-disable-next-line
-  }, [ page])
+  }, [ page, copyComics])
 
   
   console.log('start', start, 'end', end, 'currentPage', currentPage, 'page', page, 'copyComics', copyComics, 'data', data, 'allComics', allComics)
 //   const [page, setPage] = useState(1);
 //     
-
 //     const max = copyPokemons.length / perPage;
 //     const pokemonsPerPage = Math.ceil(max)
-
-
-
- 
-
     // Traer datos
-    
-
     // const handlePageClick = ({ selected: selectedPage }) => {
     //     setCurrentPage(selectedPage)
     // }
     // const offset = currentPage * PER_PAGE;
-
     // //Aquí mapeamos los datos del paginado
-   
     // const pageCount = Math.ceil(data.length / PER_PAGE);
 
     return (
         <div>
-               
-        {currentPage &&        
-    currentPage.map(({ id, title, img }) => {
-                return (
-                    <div key={id}>
-                        <ComicCard
-                            id={id}
-                            title={title}
-                            image={img}
-                        />
 
-                    </div>
-                )
+        <NavBar/>
+        <br/>
+        <br/>
+        <br/>
 
-            })
-        }
-
-                {/* <ReactPaginate
-            <div id='container'>
-                    previousLabel={'<- Previous'}
-                    nextLabel={'Next ->'}
-                    pageCount={pageCount}
-                    onPageChange={handlePageClick}
-                // containerClassName={'pagination'}
-                // previousLinkClassName={'pagination_link'}
-                // nextLinkClassName={'pagination_link'}
-                // disabledClassName={'pagination_link--disabled'}
-                // activeClassName={'pagination_link--active'}
-                />
-            </div> */}
-
-            {/* state.map((e)=><div> <Card name=${}  </div>) */}
-
-            {/* {allComics.length === 0 ? <h1>Loading...</h1> :
-
-                allComics.map((comic) => (
-                    <div key={comic.id}>
-
-                        <ComicCard
-                            id={comic.id}
-                            title={comic.title}
-                            image={comic.img} />
-                    </div>)
-                )} */}
-            {/* <div className={s.gridImg}>
-                {currentPageData}
-            </div> */}
-<div>
+        <div>
+            {numOfPages > 1 && (
+                <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+            )}
+        </div>
+    <div className='Grid'>
+        <SearchBarComics/>
+            {currentPage?.map(({ id, title, img }) => {
+                       return(
+                               <ComicCard
+                                    key={id}
+                                    id={id}
+                                    title={title}
+                                    image={img}
+                               />
+                       )
+       
+                   })
+               }
+       
+                       {/* <ReactPaginate
+                   <div id='container'>
+                           previousLabel={'<- Previous'}
+                           nextLabel={'Next ->'}
+                           pageCount={pageCount}
+                           onPageChange={handlePageClick}
+                       // containerClassName={'pagination'}
+                       // previousLinkClassName={'pagination_link'}
+                       // nextLinkClassName={'pagination_link'}
+                       // disabledClassName={'pagination_link--disabled'}
+                       // activeClassName={'pagination_link--active'}
+                       />
+                   </div> */}
+       
+                   {/* state.map((e)=><div> <Card name=${}  </div>) */}
+       
+                   {/* {allComics.length === 0 ? <h1>Loading...</h1> :
+       
+                       allComics.map((comic) => (
+                           <div key={comic.id}>
+       
+                               <ComicCard
+                                   id={comic.id}
+                                   title={comic.title}
+                                   image={comic.img} />
+                           </div>)
+                       )} */}
+                   {/* <div className={s.gridImg}>
+                       {currentPageData}
+                   </div> */}
+    </div>
+   
+    <div>
             {numOfPages > 1 && (
         <CustomPagination setPage={setPage} numOfPages={numOfPages} />
       )}
