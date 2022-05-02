@@ -5,11 +5,13 @@
 }
 
 .btn-landing{
-    margin-left: 40%;
+    margin-left: 45%;
     border-radius: 10px;
     background-color: #f40612;
     color: white;
-    width: 127px;
-    height: 47px;
+    width: 159px;
+    height: 55px;
     margin-top: 17%;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 18px;
 }
