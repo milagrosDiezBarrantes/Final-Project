@@ -6,23 +6,21 @@ const { API_KEY, HASH_KEY } = process.env;
 //search characters whose names start with the given string
 
 const getComics = async (req, res, next) => {
-	let comics =[]
-	 comics = await Comics.findAll()
-	 console.log("soy el comics", comics.length)
-	if(comics.length<6){
+
+	  let comicsDb = await Comics.findAll()
+	 console.log("soy el comics", comicsDb.length)
+   let comics =[] 
+	if(comicsDb.length<6){
 
 		try {	
 
 			let i=0
-while(i < 51986){
+while(i < 1100){
 	let cha	= axios.get(`https://gateway.marvel.com/v1/public/comics?limit=100&offset=${i}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`)
 	comics.push(cha)
   console.log(i)
-  if(i!=51900){
   i=i+100   
-  }else{
-    i=i+86 
-  }
+
   console.log(i)
 };
 	comics= await Promise.all(comics)
@@ -32,28 +30,30 @@ while(i < 51986){
 
 	comics = comics.map((e) => ({
 		id: e.id,
-		name: e.name,
+		title: e.title,
 		description: e.description,
 		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
-    pages:e.pageCount
+    pages:e.pageCount,
+    creators:e.creators.items?.map(a=>a.name)
 	}));
 	console.log("entre al if")
-	comics.forEach( async (e)=> await Comics.create(
-		{
+	comics.forEach( async (e)=> await Comics.findOrCreate(
+		{where:{
 			id:e.id,
-			name: e.name,
+			title: (e.title?e.title:"Otro comic"),
 			profilePic: e.profilePic,
 			description: e.description,
-      pages:e.pages
+      pages:e.pages,
+      creators:e.creators}
 		}))
-		
+		comics=[...comics,...comicsDb]
 	return	res.status(201).json(comics);
 	} catch (err) {
 		console.log(err);
 		// next(err)
 	}
 	}
-	return	res.status(200).json(comics);
+	return	res.status(200).json(comicsDb);
 };
 
 const getById = async (req, res, next) => {
