@@ -1,0 +1,112 @@
+.Contenedor_de_carga{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    /* -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease; */
+    z-index: 1000;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    clip-path: inset(2px 2px 2px 2px);
+    width: 100%;
+}
+.Girar{
+    height: 300px;
+    width: 300px;
+
+    -webkit-animation:girar 2s linear infinite;
+    -o-animation: girar 2s linear infinite;
+    animation-delay: 0s ;
+    animation:girar 2s linear infinite;
+}
+.CambiarColor{
+    border: 15px solid black;
+    border-top-color: white;
+    border-bottom-color: white;
+    border-top-style: solid;
+    border-bottom-style: solid ;
+    height: 30%;
+    width: 30%;
+    border-radius: 100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    -webkit-animation:colors 4.99s linear infinite;
+    -o-animation: colors 4.99s linear infinite;
+    animation:colors 4.99s linear infinite;
+     /* alternate */ /* both */
+}
+
+@keyframes colors{
+    0%{
+
+        border-top-color: #443a78;
+        border-bottom-color: #443a78;
+    }
+    19.9%{
+        border-top-color: #443a78;
+        border-bottom-color: #443a78;
+    }
+    20%{
+        border-top-color: #cd2b3a;
+        border-bottom-color: #cd2b3a;        
+    }
+    39.9%{
+        border-top-color: #cd2b3a;
+        border-bottom-color: #cd2b3a;        
+    }
+    40%{
+        border-top-color: #454440;
+        border-bottom-color: #454440;
+    }
+    59.9%{
+        border-top-color: #454440;
+        border-bottom-color: #454440;
+    }
+    60%{
+        border-top-color: #377c3c;
+        border-bottom-color: #377c3c;
+    }
+    79.9%{
+        border-top-color: #377c3c;
+        border-bottom-color: #377c3c;
+    }
+    80%{ 
+        border-top-color: #005180;
+        border-bottom-color: #005180;
+    }
+    99.9%{ 
+        border-top-color: #005180;
+        border-bottom-color: #005180;
+    }
+    100%{
+
+        border-top-color: #443a78;
+        border-bottom-color: #443a78;
+    }
+}
+
+
+
+
+@keyframes girar{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+} 
