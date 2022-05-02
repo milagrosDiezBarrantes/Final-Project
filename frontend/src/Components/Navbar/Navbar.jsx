@@ -31,6 +31,7 @@ export default function Navbar() {
   return (
     <React.Fragment>
       <AppBar sx={{ background: "#000000" }}>
+      <SimpleBottomNavigation />
       <Toolbar>
         {isMatch ? (
           <>
@@ -46,7 +47,7 @@ export default function Navbar() {
               sx={{ marginLeft: "auto" }}
               indicatorColor="secondary"
               textColor="inherit"
-              valclickedue={clicked}
+              value={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
                 <Tab href="/homeComics" label="Comics" />
@@ -63,7 +64,7 @@ export default function Navbar() {
           </>
         )}
       </Toolbar>
-      <SimpleBottomNavigation />
+    
     </AppBar>
   </React.Fragment>
 );
