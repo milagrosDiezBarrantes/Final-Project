@@ -59,7 +59,7 @@ const HomeComics = () => {
         <div>
             <NavBar />
             <SearchBarComics />
-            <div >
+            <div id='container'>
                 <ReactPaginate
                     previousLabel={'<- Previous'}
                     nextLabel={'Next ->'}
