@@ -11,6 +11,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     profilePic: {
       type: DataTypes.TEXT,
       allowNull: true,
