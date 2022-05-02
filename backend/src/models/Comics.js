@@ -8,9 +8,9 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
       primaryKey: true,
+      allowNull: true,
     },
     img: {
       type: DataTypes.TEXT,
@@ -21,17 +21,9 @@ module.exports = (sequelize) => {
     },
     banner: { 
       type: DataTypes.ENUM("true","false"),
-      defaultValue: "true",
+      defaultValue: "false",
       allowNull: true,
-    },
-    
-    createdInDb: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-      allowNull: true
     }
-  },{
-    timestamps:false
   });
 };
 
