@@ -34,6 +34,8 @@ while(i < 5695){
 	creators = creators.map((e) => ({
 		id: e.id,
 		firstName: e.firstName,
+		lastName: e.lastName,
+		fullName: e.fullName,
 		comics: e.comics.available,
 		series: e.series.available,
 		stories: e.stories.available,
@@ -45,6 +47,8 @@ while(i < 5695){
 		{
 			id:e.id,
 			firstName: e.firstName,
+			lastName: e.lastName,
+			fullName: e.fullName,
 			comics: e.comics,
 			series: e.series,
 			stories: e.stories,
