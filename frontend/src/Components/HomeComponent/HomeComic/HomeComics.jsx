@@ -47,28 +47,19 @@ const HomeComics = () => {
   console.log('start', start, 'end', end, 'currentPage', currentPage, 'page', page, 'copyComics', copyComics, 'data', data, 'allComics', allComics)
 //   const [page, setPage] = useState(1);
 //     
-
 //     const max = copyPokemons.length / perPage;
 //     const pokemonsPerPage = Math.ceil(max)
-
-
-
- 
-
     // Traer datos
-    
-
     // const handlePageClick = ({ selected: selectedPage }) => {
     //     setCurrentPage(selectedPage)
     // }
     // const offset = currentPage * PER_PAGE;
-
     // //Aquí mapeamos los datos del paginado
-   
     // const pageCount = Math.ceil(data.length / PER_PAGE);
 
     return (
         <div>
+
         <NavBar/>
         <br/>
         <br/>
@@ -82,6 +73,7 @@ const HomeComics = () => {
     
     <SearchBarComics/>
                
+
         {currentPage &&        
     currentPage.map(({ id, title, img }) => {
                 return (
