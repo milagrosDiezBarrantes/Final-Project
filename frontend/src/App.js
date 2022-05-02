@@ -14,7 +14,7 @@ import ComicsIcon from "./Components/Navbar/MainNav";
 
 import { ThemeProvider } from '@mui/material/styles'
 import theme from "./Styles/Styles";
-
+import './index.css';
 
 
 function App() {
