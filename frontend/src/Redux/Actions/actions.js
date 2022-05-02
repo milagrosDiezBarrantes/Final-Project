@@ -80,12 +80,10 @@ export function getAllComics() {          //para trerce todos los comics
 export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
-            const queryTitle = await axios.get(`http://localhost:3001/comics?title=${title}`)
-
-            console.log(queryTitle.data, 'queryTitle.data')
+            //const queryTitle = await axios.get(`http://localhost:3001/comics?title=${title}`)
             return dispatch({
                 type: GET_TITLE,
-                payload: queryTitle.data
+                payload: title
             })
         }
         catch (err) {

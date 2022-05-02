@@ -11,10 +11,11 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
     // eslint-disable-next-line default-case
     switch (type) {
         case GET_TITLE:
-            console.log(payload, 'copyComics es este payload en reducer')
+            let comicss = [...state.Comics]
+            let filtComics = comicss?.filter(comic=>comic.title.toLowerCase().includes(payload.toLowerCase()))
             return {
                 ...state,
-                copyComics: payload,
+                copyComics: filtComics,
                 
             }
     
