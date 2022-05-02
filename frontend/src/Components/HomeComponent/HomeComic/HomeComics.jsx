@@ -14,7 +14,7 @@ const HomeComics = () => {
     const dispatch = useDispatch()
     const allComics = useSelector(state => state.ComicsReducer.copyComics)
 
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     
     const [numOfPages, setNumOfPages] = useState(10);
     const [data, setData] = useState([]);
@@ -41,7 +41,7 @@ const HomeComics = () => {
     
     setCurrentPage(copyComics.slice(start, end));    
     // eslint-disable-next-line
-  }, [ page])
+  }, [ page, copyComics])
 
   
   console.log('start', start, 'end', end, 'currentPage', currentPage, 'page', page, 'copyComics', copyComics, 'data', data, 'allComics', allComics)
@@ -69,6 +69,18 @@ const HomeComics = () => {
 
     return (
         <div>
+        <NavBar/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div>
+            {numOfPages > 1 && (
+        <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+      )}
+    </div>
+    
+    <SearchBarComics/>
                
         {currentPage &&        
     currentPage.map(({ id, title, img }) => {
