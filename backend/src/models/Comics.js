@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: true,
     },
-    profilePic: {
+    img: {
       type: DataTypes.TEXT,
     },
     description: {

@@ -32,7 +32,7 @@ while(i < 1100){
 		id: e.id,
 		title: e.title,
 		description: e.description,
-		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
+		img: e.thumbnail.path + "." + e.thumbnail.extension,
     pages:e.pageCount,
     creators:e.creators.items?.map(a=>a.name)
 	}));
@@ -41,7 +41,7 @@ while(i < 1100){
 		{where:{
 			id:e.id,
 			title: (e.title?e.title:"Otro comic"),
-			profilePic: e.profilePic,
+			img: e.img,
 			description: e.description,
       pages:e.pages,
       creators:e.creators}

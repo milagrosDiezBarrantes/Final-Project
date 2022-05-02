@@ -1,5 +1,5 @@
 const data  = { results:  [
-    {
+    {  
       "id": 82967,
       "digitalId": 0,
       "title": "Marvel Previews (2017)",
