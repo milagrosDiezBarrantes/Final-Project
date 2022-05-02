@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
+import { LoginButton } from "../Login/LoginButton";
 
 export default function Navbar() {
 
@@ -52,7 +53,7 @@ export default function Navbar() {
                 <Tab label="Contact" />
             </Tabs>
             <Button sx={{ marginLeft: "auto" }} variant="contained">
-              Login
+              <LoginButton/>
             </Button>
             <Button sx={{ marginLeft: "10px" }} variant="contained">
               SignUp
