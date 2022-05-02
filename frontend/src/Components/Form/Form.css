@@ -1,7 +1,33 @@
 .err-color {
     color: rgb(197, 29, 29);
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
 .form-title {
     text-align: center;
+}
+
+.formSign {
+    width:320px;
+	padding:16px;
+	border-radius:30px;
+	margin:auto;
+    margin-top: 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+.btn-form {
+    margin-left: 32%;
+    border-radius: 10px;
+    background-color: #f40612;
+    color: white;
+    width: 100px;
+    height: 40px;
+    margin-top: 17%;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 18px;
+}
+
+input {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
