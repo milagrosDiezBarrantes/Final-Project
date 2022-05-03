@@ -1,0 +1,95 @@
+.comicCard {
+    list-style: none;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .container_card{
+    top:5rem ;
+    display:inline-block ;
+    margin: 15px ;
+    position: relative;
+    width: 320px;
+    height: 450px;
+    background:rgb(85, 45, 30);
+    border-radius: 15px;
+    overflow:hidden ;
+    box-shadow: 0px 20px 40px rgba(31, 21, 21, 0.041);
+    list-style: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.container_card:hover{
+    background: #473030;  /* fallback for old browsers */
+	background: rgb(96,48,48);
+background: linear-gradient(292deg, rgba(96,48,48,1) 0%, rgba(17, 42, 201, 0) 89%);
+}
+
+.container_card:hover::before{
+    top: -70%;
+    transform: skewY(390deg) ;
+}
+
+.link_card{
+text-decoration: none;
+}
+
+.img_card_container{
+    position:relative ;
+    width:100% ;
+    display:flex ;
+    justify-content:center;
+    align-items: center;
+    padding-top:20px ;
+    z-index: 1;
+}
+
+.img_card{
+    border-radius: 30%;
+    border: 5px groove rgb(45, 44, 44);
+    height: 250px;
+    max-width:90%;
+    transition:0.8s;
+}
+
+.img_card:hover{
+    top:0 ;
+    max-width:65%;
+	min-height: auto;
+}
+
+.detail_card_container{
+    font-size: 20px;
+    position:relative;
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column ;
+    z-index:1 ;
+	color: whitesmoke;
+}
+
+.name_comic_card{
+    
+    font-size:18px;
+    color:#540a0a ;
+    margin-bottom:47px;
+    text-transform: uppercase;
+    letter-spacing:1px ;
+    text-shadow: 0 10px 25px rgba(167, 166, 168, 0.048);
+}
+
+.card_par{
+    
+    font-size:20px;
+    color: #F7F7F7;
+    top:0 ;
+    letter-spacing:1px;
+    line-height:12px ;
+    margin-bottom: 18px;
+}
+.CharacterDescription{
+    font-size: 15px;
+    color:rgba(0, 0, 0, 0.164);
+}
