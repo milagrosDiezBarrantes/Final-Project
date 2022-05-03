@@ -1,20 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import s from './ComicCard.module.css';
+import './ComicCard.css';
 export default function ComicCard({ image, title, id }) {
 
     return (
         <Link className='link_card' to={`/homeComics/DetailComic/${id}`}>
-            <div className={s.container_card}>
-                <div className={s.img_card_container}>
-                    <img className={s.img_card} src={image} alt={title} />
+           <div className='container_card'>
+                <div className='img_card_container'>
+                            <img className='img_card' src={image} alt={title} />
                 </div>
-                <div className={s.detail_card_container}></div>
-                    <h2 className={s.detail_card_container}>{title}</h2>
-                    <div>
-</div>
+                <div className='detail_card_container'>
+                   <p className='name_comic_card'>{title}</p>
                 </div>
+            </div>
         </Link>
 
     );
