@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import ReactPaginate from "react-paginate"
 import { getAllCharacters } from '../../../Redux/Actions/actions';
 
 import NavBar from '../../Navbar/Navbar.jsx';
+import CharacterCard from "../../Cards/CharacterCard/CharacterCard"
+import CustomPagination from '../../Pagination/Pagination.jsx'
 
-
-import { Button, Container, Input, Paper, Box, Grid } from "@mui/material"
+import "./HomeCharacter.css"
 
 const HomeCharacter = () => {
+
     const dispatch = useDispatch()
+
     const Characters = useSelector(state => state.CharactersReducer.copyCharacters)
 
-    const PER_PAGE = 8;
-
-    const [currentPage, setCurrentPage] = useState(0);
+    const [numOfPages] = useState(10);
+    const [currentPage, setCurrentPage] = useState(1);
     const [data, setData] = useState([]);
 
     //Traer datos
@@ -26,7 +27,7 @@ const HomeCharacter = () => {
         setData(Characters)
     }, [Characters])
 
-    console.log(data)
+    
 
 
     const handlePageClick = ({ selected: selectedPage }) => {
@@ -34,24 +35,19 @@ const HomeCharacter = () => {
         setCurrentPage(selectedPage);
     }
 
-    const offset = currentPage * PER_PAGE;
-
+    const offset = currentPage * numOfPages;
+console.log(data)
     const currentPageData = data ?
-        data.slice(offset, offset + PER_PAGE)
+        data.slice(offset, offset + numOfPages)
             .map(e => {
                 return (
-                    <Grid>
-                        <div key={e.id} >
-                            <img
-                                key={e.id}
-                                src={e.profilePic}
-                                alt={e.name}
-                            />
-                            <h1>{e.name}</h1>
-                            <p>{e.description}</p>
-
-                        </div>
-                    </Grid>
+                    <CharacterCard
+                        key={e.id}
+                        id={e.id}
+                        title={e.name}
+                        image={e.profilePic}
+                        description={e.description}
+                    />
                 )
 
             })
@@ -61,39 +57,25 @@ const HomeCharacter = () => {
 
 
 
-    const pageCount = Math.ceil(data.length / PER_PAGE);
+    const pageCount = Math.ceil(data.length / numOfPages);
 
 
     return (
-        <Container
-            fixed
-
-        >
-            {/* <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} /> */}
-
+        <div className='MaxContained'>
             <div>
-
                 <NavBar />
-                <div >
-                    <ReactPaginate
-                        previousLabel={'<- Previous'}
-                        nextLabel={'Next ->'}
-                        pageCount={pageCount}
-                        onPageChange={handlePageClick}
-                    // containerClassName={'pagination'}
-                    // previousLinkClassName={'pagination_link'}
-                    // nextLinkClassName={'pagination_link'}
-                    // disabledClassName={'pagination_link--disabled'}
-                    // activeClassName={'pagination_link--active'}
-                    />
+                <div className='Paginado'>
+                    <CustomPagination setPage = {setCurrentPage} numOfPages={numOfPages}/>
                 </div>
-                <div >
+                <div>
                     {currentPageData}
                 </div>
-
+                <div className='Paginado'>
+                    <CustomPagination setPage = {setCurrentPage} numOfPages={numOfPages}/>
+                </div>
 
             </div>
-        </Container>
+        </div>
     )
 }
 

@@ -11,7 +11,7 @@
     position: relative;
     width: 320px;
     height: 450px;
-    background:rgb(96,48,48);
+    background:rgb(85, 45, 30);
     border-radius: 15px;
     overflow:hidden ;
     box-shadow: 0px 20px 40px rgba(43, 11, 11, 0.62);
@@ -57,6 +57,9 @@ text-decoration: none;
 }
 
 .img_card{
+    border-radius: 30%;
+    border: 5px groove rgb(45, 44, 44);
+    height: 250px;
     max-width:90%;
     transition:0.8s;
 }
@@ -68,8 +71,9 @@ text-decoration: none;
 }
 
 .detail_card_container{
+    font-size: 20px;
     position:relative;
-    padding:20px;
+    padding:10px;
     display: flex;
     justify-content: center;
     align-items:center;
@@ -98,4 +102,8 @@ text-decoration: none;
     letter-spacing:1px;
     line-height:12px ;
     margin-bottom: 18px;
+}
+.CharacterDescription{
+    font-size: 15px;
+    color:black;
 }

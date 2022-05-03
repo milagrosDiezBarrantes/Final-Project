@@ -8,6 +8,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import MenuIcon from '@material-ui/icons/MenuOutlined';
+
 const pages = ["Comics", "About Us", "Contact", "Login", "SignUp"];
 
 const DrawerComp = () => {

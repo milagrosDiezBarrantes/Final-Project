@@ -1,43 +1,27 @@
+<<<<<<< joel_b
+import React from "react";
+=======
 import React, { useEffect, useState } from "react";
-// import "./Loading.css"
-import spider from "../../Img/Loading/spaider.gif"
-import iron from "../../Img/Loading/ironman2.webp"
+>>>>>>> main
 import varios from "../../Img/Loading/varios_icons.gif"
+import "./Loading.css"
 
 
 const Loading = () => {
-    const [img, setImg] = useState([varios, iron,])
-    var [num, setNum] = useState(0)
-
-    const cambio = () => {
-        setTimeout(() => {
-            if (num = img.length - 1) {
-                setNum(0)
-                console.log(num)
-            } else if (num < img.length - 1) {
-                setNum(...num + 1)
-                console.log(num)
-            }
-
-        }, 1000)
-
-    }
-    useEffect(() => {
-        cambio()
-    }, [num])
+<<<<<<< joel_b
+     
+=======
+    const [img, setImg] = useState([varios])
+    var [num, setNum] = useState(0) 
+>>>>>>> main
     return (
-
-        <div  >
-            <div >
-                <div >
-                    {<img src={varios} />}
+        <div  className="Contenedor_de_carga" >
+            <div className="Girar">
+                <div className="CambiarColor">
+                        {<img className="img" src={varios}/>}
                 </div>
             </div>
         </div>
-
     )
 }
-
-
-
 export default Loading

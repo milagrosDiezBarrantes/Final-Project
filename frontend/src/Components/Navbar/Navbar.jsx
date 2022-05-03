@@ -30,11 +30,11 @@ export default function Navbar() {
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#000000" }}>
+      <AppBar sx={{ background: "#151515" }}>
       <Toolbar>
         {isMatch ? (
           <>
-            <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
+            <Typography sx={{ fontSize: "2rem", paddingLeft: "10%", }}>
               MARVEL
             </Typography>
             <DrawerComp />
@@ -46,24 +46,25 @@ export default function Navbar() {
               sx={{ marginLeft: "auto" }}
               indicatorColor="secondary"
               textColor="inherit"
-              valclickedue={clicked}
+              value={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
-                <Tab href="/homeComics" label="Comics" />
-                <Tab label="About Us" />
-                <Tab label="Contact" />
+               
+                <Tab label="Comics" href="/homeComics" />
+                <Tab label="About Us" href="/AboutUs" />
+                <Tab label="Contact" href="/Contact"  />
             </Tabs>
-            <Button sx={{ marginLeft: "auto" }} variant="contained">
+            <Button >
               <LoginButton/>
             </Button>
-            <Button href="/form" sx={{ marginLeft: "10px" }} variant="contained">
+            <Button href="/form" sx={{ marginLeft: "10px" }} variant="contained"  style={{ color: "white" }}>
               Sign up
             </Button>
             
           </>
         )}
       </Toolbar>
-      <SimpleBottomNavigation />
+    
     </AppBar>
   </React.Fragment>
 );
