@@ -1,23 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;800&display=swap");
-
-body,
 html {
 	background: #000000;
 	padding: 0;
 	margin: 0;
 	padding-bottom: 6rem;
-	font-family: "Montserrat", sans-serif;
 	width: 100%;
 }
 .container {
 	padding-bottom: 4rem;
+	background: #000000;
+	padding: 0;
+	margin: 0;
+	padding-bottom: 6rem;
+	width: 100%;
 }
-img {
+.featured {
 	-webkit-box-reflect: below 5px
 		linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
 	-webkit-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
+	margin: 1rem;
 }
 .container img:hover {
 	-webkit-transform: scale(1.1);
@@ -61,16 +63,18 @@ img {
 }
 .description {
 	display: grid;
+	background: #000000;
 
 }
-button {
+.button {
 	background: #f40612 !important;
 	color: #fff !important;
 	font-size: 18px;
 	padding: 0.5rem 3rem;
 	outline: none;
 	border: 0 !important;
-}
+} 
+
 @media (max-width: 768px) {
 	.title_wrapper {
 		text-align: center;
@@ -95,6 +99,7 @@ button {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 1rem;
     margin-top: 2rem;
+	background: #000000;
 }
 
 
@@ -139,11 +144,4 @@ button {
 }
 .link:hover {
 	color: #3f181a;
-}
-
-.options{
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	grid-gap: 1rem;
-	margin-top: 2rem;
 }

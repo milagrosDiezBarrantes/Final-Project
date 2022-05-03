@@ -1,0 +1,21 @@
+.container-landing {
+    background-image: url('../LandingPage/marvel.jpg');
+    background-position: center; 
+    background-size: cover; 
+    background-repeat: no-repeat; /*para que la imagen de fondo no se repita*/
+    overflow: hidden; /*recorta el exceso de img con (hidden), con (scroll) coloca barra para bajar*/
+    width: 100%;
+    height: 100%;  
+    position:fixed;
+}
+.btn-landing{
+    margin-left: 45%;
+    border-radius: 10px;
+    background-color: #f40612;
+    color: white;
+    width: 159px;
+    height: 55px;
+    margin-top: 17%;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 18px;
+}

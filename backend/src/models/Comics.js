@@ -5,33 +5,35 @@ module.exports = (sequelize) => {
   sequelize.define("Comics", {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true,
+      defaultValue: "Otro comic",
     },
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
       primaryKey: true,
+      allowNull: true,
     },
     img: {
       type: DataTypes.TEXT,
     },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     pages: { 
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     banner: { 
-      type: DataTypes.ENUM("true","false"),
-      defaultValue: "true",
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: true,
     },
-    
-    createdInDb: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-      allowNull: true
+    creators: { 
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: [],
+      allowNull: true,
     }
-  },{
-    timestamps:false
   });
 };
 
