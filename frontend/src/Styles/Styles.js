@@ -35,7 +35,7 @@ const theme = createTheme({
             light: '#f05545',  //Secundario
             main: '#b71c1c',
             dark: '#7f0000',
-            contrastText: '#fff',
+            contrastText: '#A90000',
         },
     },
 });

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getById } from "../../../Redux/Actions/actions";
+import ReactStars from "react-rating-stars-component";
 
 import MyButton from "../../../Styles/MyButton";
 import Container from "@material-ui/core/Container";
@@ -30,64 +31,49 @@ const DetailComic = () => {
   }, [detail]);
 
   return detail.length === 0 ? (
-    <Typography component="h1" variant="h1" align="center" color="text.primary">
+    <Typography component="h3" variant="h3" align="center" color="text.primary">
       Loading ...
     </Typography>
   ) : (
     <>
-      <div>
-        <div class="columns">
-          <div class="column is-full featured_wrapper p-0">
-            <img src={detail[0].img} class="featured" alt={detail[0].title} />
-            <div class="title_wrapper">
-              {/* <span class="has-text-white">{detail[0].issue}</span> */}
-              <h1 class="title is-1 has-text-white"> {detail[0].title} </h1>
-              <MyButton>Read</MyButton>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="columns is-multiline p-0 pt-6 last">
-          <div class="column is-full">
-            <p class="has-text-white"></p>
-          </div>
-
-          <div class="auto_columns">
-            <div>
-              <img src={detail[0].img} alt={detail[0].title} />
-            </div>
-            <div class="bodytitle">
-              <Typography
-                component="h1"
-                variant="h1"
-                align="center"
-                color="text.primary"
-              >
-                <strong>{detail[0].title}</strong>
-              </Typography>
-              <p class="bodytext">{detail[0].description}</p>
-              {detail[0].creators?.map((creator) => (
-				  <div class="role" key={creator.creatorId}>
-					  <strong>{creator.creatorRole}</strong>
-					  <br />
-					  <a href="a ningunlugar" class="link">
-						  {creator.creatorName}
-					  </a>
-				  </div>
-			  ))}
-
-              <div class="options">
-                <MyButton>Read</MyButton>
-                <MyButton>Serie</MyButton>
+     <div className="container">  
+     <h4 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h4>   
+      
+           <img src={detail[0].img} class="featured" alt={detail[0].title} style={{ marginLeft:"auto", marginRight:"auto",height: "35rem", width:'30rem',borderRadius:'10px', textAlign:'center' }}/>
+           <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>
+         
+       <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h3>
+          <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h3>
+        <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>
+        <p  style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}} >{detail[0].description}</p>
+           <div style={{marginLeft:"auto", marginRight:"auto"}}>
+                    <p class="bodytext">{detail[0].description}</p>
+                        <strong>{detail[0].title}</strong>
+                        <p class="bodytext" style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}}>{detail[0].description}</p>
+                        {detail[0].creators?.map((creator) => (
+                        <div class="role" key={creator.creatorId}>
+                          <strong>{creator.creatorRole}</strong>
+                          <br />
+                          <a href="a ningunlugar" class="link">
+                            {creator.creatorName}
+                          </a>
+                        </div>))}
+                        <div class="options">
+                        <MyButton  style={{ color: "white" }}>Read</MyButton>
+                        <MyButton  style={{ color: "white" }}>Serie</MyButton> 
+          
+                    </div>
+              <div style={{marginLeft:"auto", marginRight:"auto"}}>
+              <ReactStars></ReactStars> 
               </div>
-            </div>
-
-            <Navbar />
-          </div>
-        </div>
-      </div>
+              </div>
+                        
+        </div>    
+        <Navbar />
       </>
   );
 };
 export default DetailComic;
+
+
+
