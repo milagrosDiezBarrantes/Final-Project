@@ -34,7 +34,7 @@ function App() {
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
-          <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
+          <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
           <Route path='/form' element={<Form />} />
           <Route path='/' element={<NavBar />} />
 
