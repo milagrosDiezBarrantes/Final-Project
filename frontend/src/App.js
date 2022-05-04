@@ -38,9 +38,9 @@ function App() {
           <Route path='/form' element={<Form />} />
           <Route path='/' element={<NavBar />} />
 
-          <Route path='/homeCharacter' element={<CharactersIcon />} />
+         {/*  <Route path='/homeCharacter' element={<CharactersIcon />} />
           <Route path='/' element={<SearchIcon />} />
-          <Route path='/homeComics' element={<ComicsIcon />} />
+          <Route path='/homeComics' element={<ComicsIcon />} /> */}
 
           <Route path='/login' element={<Login />} />
           <Route path='/searchComics' element={<SearchBarComics />} />
