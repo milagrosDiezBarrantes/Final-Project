@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import "./CharacterCard.css"
 
 export default function ComicCard({ image, title, id, description }) {
-    const chamuyo = "Un Gran Heroe"
+    const chamuyo = "Un Gran Heroe";
+    
     return (
         <Link className='link_card' to={`/homeCharacter/DetailCharacter/${id}`}>
             <div className="container_card">

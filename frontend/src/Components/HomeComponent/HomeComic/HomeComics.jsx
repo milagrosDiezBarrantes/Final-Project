@@ -79,62 +79,25 @@ const HomeComics = () => {
 
         <div>
             {numOfPages > 1 && (
-                <CustomPagination setPage={setPage} numOfPages={numOfPages} />
-            )}
+              <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+             )}
         </div>
-    <div className='Grid'>
-        <SearchBarComics/>
-            {currentPage?.map(({ id, title, img }) => {
-                       return(
-                               <ComicCard
-                                    key={id}
-                                    id={id}
-                                    title={title}
-                                    image={img}
-                               />
-                       )
-       
-                   })
-               }
-       
-                       {/* <ReactPaginate
-                   <div id='container'>
-                           previousLabel={'<- Previous'}
-                           nextLabel={'Next ->'}
-                           pageCount={pageCount}
-                           onPageChange={handlePageClick}
-                       // containerClassName={'pagination'}
-                       // previousLinkClassName={'pagination_link'}
-                       // nextLinkClassName={'pagination_link'}
-                       // disabledClassName={'pagination_link--disabled'}
-                       // activeClassName={'pagination_link--active'}
-                       />
-                   </div> */}
-       
-                   {/* state.map((e)=><div> <Card name=${}  </div>) */}
-       
-                   {/* {allComics.length === 0 ? <h1>Loading...</h1> :
-       
-                       allComics.map((comic) => (
-                           <div key={comic.id}>
-       
-                               <ComicCard
-                                   id={comic.id}
-                                   title={comic.title}
-                                   image={comic.img} />
-                           </div>)
-                       )} */}
-                   {/* <div className={s.gridImg}>
-                       {currentPageData}
-                   </div> */}
-    </div>
-   
-    <div>
-            {numOfPages > 1 && (
-        <CustomPagination setPage={setPage} numOfPages={numOfPages} />
-      )}
-    </div>
-        
+       <SearchBarComics/>
+        {currentPage &&        
+          currentPage.map(({ id, title, img }) => {
+             return (
+                 <div key={id}>
+                    <ComicCard id={id} title={title} image={img} />
+                  </div>
+                )
+
+            })
+        }
+        <div>
+          {numOfPages > 1 && (
+           <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+           )}
+        </div>
         </div>
     )
 
