@@ -22,7 +22,7 @@ import SearchBarCharacters from "./Components/SearchBar/SearchBarCharacters/Sear
 import SearchPrueba from "./Components/SearchBar/SearchBarComics/SearchPrueba";
 import "./App.css";
 import { Container } from "@material-ui/core";
-
+import Subscribe from "./Components/Subscribe/Suscribe";
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -30,7 +30,8 @@ function App() {
       <div className="app">
         <Container>
         <Routes>
-          <Route path='/' element={<LandingPage />} />
+          <Route path='/prueba' element={<Subscribe/>} />
+          <Route path='/' element={<LandingPage/>} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
@@ -38,9 +39,9 @@ function App() {
           <Route path='/form' element={<Form />} />
           <Route path='/' element={<NavBar />} />
 
-          <Route path='/homeCharacter' element={<CharactersIcon />} />
+         {/*  <Route path='/homeCharacter' element={<CharactersIcon />} />
           <Route path='/' element={<SearchIcon />} />
-          <Route path='/homeComics' element={<ComicsIcon />} />
+          <Route path='/homeComics' element={<ComicsIcon />} /> */}
 
           <Route path='/login' element={<Login />} />
           <Route path='/searchComics' element={<SearchBarComics />} />
