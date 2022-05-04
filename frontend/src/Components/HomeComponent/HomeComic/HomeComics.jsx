@@ -56,6 +56,18 @@ const HomeComics = () => {
     // const offset = currentPage * PER_PAGE;
     // //Aquí mapeamos los datos del paginado
     // const pageCount = Math.ceil(data.length / PER_PAGE);
+    const preference = async function(){
+        let id =await axios.post(`http://localhost:3001/mercado`,{})
+        return id.data }
+     let preferences= preference()
+
+    var script = document.createElement("script");
+    script.src = "https://www.mercadopago.com.ar/integrations/vs/web-payment-checkout.js";
+    script.type="text/javascript";
+    script.dataset.preferenceId = preferences.preferenceId;
+    document.getElementById("mercado").innerHTML="";
+    document.querySelector("mercado").appendChild(script);
+
 
     return (
         <div>
@@ -122,7 +134,7 @@ const HomeComics = () => {
         <CustomPagination setPage={setPage} numOfPages={numOfPages} />
       )}
     </div>
-
+        
         </div>
     )
 

@@ -63,3 +63,4 @@ Promise.all([catAutos, catDeportes, catVideojuegos,catVideojuegos2])
     console.log([catAutos, catDeportes, catVideojuegos,catVideojuegos2]);
   });
 
+
