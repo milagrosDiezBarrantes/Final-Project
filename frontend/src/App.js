@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import LandingPage from "./Components/LandingPage/LandingPage";
+import Banner from "./Components/Banner/Banner";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import DetailComic from "./Components/Details/DetailComic/DetailComic"
@@ -30,7 +30,7 @@ function App() {
       <div className="app">
         <Container>
         <Routes>
-          <Route path='/' element={<LandingPage />} />
+          <Route path='/' element={<Banner />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
