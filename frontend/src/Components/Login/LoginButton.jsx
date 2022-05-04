@@ -5,6 +5,15 @@ import { Button } from '@mui/material';
 export const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <Button onClick={() => loginWithRedirect()} sx={{ marginLeft: "10px" }} variant="contained"  style={{ color: "white" }} >Login</Button>;
+  return (
+      <Button 
+        onClick={() => loginWithRedirect()} 
+        sx={{ marginLeft: "10px" }} 
+        variant="contained"  
+        style={{ color: "white" }} 
+      >
+        Login
+      </Button>
+  )
 };
 
