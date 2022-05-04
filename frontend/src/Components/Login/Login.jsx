@@ -5,7 +5,6 @@ import { LogoutButton } from "./LogoutButton.jsx";
 import { Profile } from "./Profile.jsx";
 
 
-
 function Login() {
   const { isAuthenticated } = useAuth0();
 
@@ -16,6 +15,7 @@ function Login() {
       {
         isAuthenticated ? (
           <>
+       
             <Profile />
             <LogoutButton />
           </>
