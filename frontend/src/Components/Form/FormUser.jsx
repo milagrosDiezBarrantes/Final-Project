@@ -1,20 +1,23 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { postUser } from "../../Redux/Actions/actions";
 import { validate } from "../../Functions/validacionesForm/validacionFormLog";
-import '../../Components/Form/Form.css';
+import { Container, Form, Button} from 'semantic-ui-react';
+import { useNavigate} from 'react-router-dom'; 
+import '../Form/Form.css';
 
-const Form = () => {
+const FormUser = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
+    const navigate= useNavigate(); 
 
 
-    const disable = useMemo(() => {
-        if (error.firstName || error.lastName || error.age || error.userName || error.email || error.password || error.password2 || error.picture) {
-            return true;
-        }
-        return false;
-    }, [error])
+    // const disable = useMemo(() => {
+    //     if (error.firstName || error.lastName || error.age || error.userName || error.email || error.password || error.password2 || error.picture) {
+    //         return true;
+    //     }
+    //     return false;
+    // }, [error])
 
     const [input, setInput] = useState({
         firstName: "",
@@ -59,13 +62,22 @@ const Form = () => {
             picture: "",
             plan: "standar"
         })
+        navigate('/login');
     }
 
     return (
-        <div>
-            
-            <form onSubmit={handleSubmit} className="formSign">
-                <h1 className="form-title">Sign up</h1>
+        <Container
+            style={{
+                textAlign: "center",
+                display:"flex",
+                alignItems:"center",
+                flexDirection: "column",
+                justifyContent:"center",
+                height:"100vh",
+            }}
+        >
+            <h1>Sign up</h1>
+            <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>First name*:</label>
                     <input
@@ -159,17 +171,15 @@ const Form = () => {
                     </label>
                 </div>
                 <div>
-                    <button
-                        className="btn-form"
+                    <Button
                         type="submit"
-                        disabled={disable}
                         onChange={handleChange}>
                         Sign up
-                    </button>
+                    </Button>
                 </div>
-            </form>
-        </div>
+            </Form>
+        </Container>
     )
 }
 
-export default Form
+export default FormUser

@@ -7,7 +7,6 @@ import DetailComic from "./Components/Details/DetailComic/DetailComic"
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
 import NavBar from "./Components/Navbar/Navbar";
-import Form from "./Components/Form/Form";
 
 import CharactersIcon from "./Pages/CharactersIcon/CharactersIcon"
 import ComicsIcon from "./Pages/ComicsIcon/ComicsIcon"
@@ -22,6 +21,7 @@ import SearchBarCharacters from "./Components/SearchBar/SearchBarCharacters/Sear
 import SearchPrueba from "./Components/SearchBar/SearchBarComics/SearchPrueba";
 import "./App.css";
 import { Container } from "@material-ui/core";
+import FormUser from "./Components/Form/FormUser";
 
 function App() {
   return (
@@ -35,17 +35,18 @@ function App() {
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route path='/form' element={<Form />} />
+          <Route path='/formUser' element={<FormUser />} />
           <Route path='/' element={<NavBar />} />
-
+{/* 
           <Route path='/homeCharacter' element={<CharactersIcon />} />
           <Route path='/' element={<SearchIcon />} />
-          <Route path='/homeComics' element={<ComicsIcon />} />
+          <Route path='/homeComics' element={<ComicsIcon />} /> */}
 
           <Route path='/login' element={<Login />} />
           <Route path='/searchComics' element={<SearchBarComics />} />
           <Route path='/searchCharacter' element={<SearchBarCharacters />} />
           <Route path='/searchPrueba' element={<SearchPrueba />} />
+
       </Routes>
       </Container>
     </div>
