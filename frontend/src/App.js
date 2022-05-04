@@ -7,10 +7,6 @@ import DetailComic from "./Components/Details/DetailComic/DetailComic"
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
 import NavBar from "./Components/Navbar/Navbar";
-
-import CharactersIcon from "./Pages/CharactersIcon/CharactersIcon"
-import ComicsIcon from "./Pages/ComicsIcon/ComicsIcon"
-import SearchIcon from "./Components/Navbar/MainNav";
 import SimpleBottomNavigation from "./Components/Navbar/MainNav"
 
 import { ThemeProvider } from '@mui/material/styles'
