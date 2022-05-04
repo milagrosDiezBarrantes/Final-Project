@@ -7,6 +7,48 @@ const SECRET =
 const PAYPAL_API = "https://api-m.sandbox.paypal.com"; // live: "https://api-m.paypal.com"  para deploy
 const auth = { user: CLIENT, pass: SECRET };
 
+const createPayment = (req, res) => {
+
+    const body = {
+        intent: 'CAPTURE',
+        purchase_units: [{
+            amount: {
+                currency_code: 'USD', //https://developer.paypal.com/docs/api/reference/currency-codes/
+                value: '115'
+            }
+        }],
+        application_context: {
+            brand_name: `MiTienda.com`,
+            landing_page: 'NO_PREFERENCE', // Default, para mas informacion https://developer.paypal.com/docs/api/orders/v2/#definition-order_application_context
+            user_action: 'PAY_NOW', // Accion para que en paypal muestre el monto del pago
+            return_url: `http://localhost:3000/execute-payment`, // Url despues de realizar el pago
+            cancel_url: `http://localhost:3000/cancel-payment` // Url despues de realizar el pago
+        }
+    }
+    //https://api-m.sandbox.paypal.com/v2/checkout/orders [POST]
+
+    request.post(`${PAYPAL_API}/v2/checkout/orders`, {
+        auth,
+        body,
+        json: true
+    }, (err, response) => {
+        res.json({ data: response.body })
+    })
+}
+
+const executePayment = (req, res) => {
+    const token = req.query.token; //<-----------
+
+    request.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {
+        auth,
+        body: {},
+        json: true
+    }, (err, response) => {
+        res.json({ data: response.body })
+    })
+}
+
+
 const createProduct = function (req, res) {
 	const product = {
 		name: "Subscription Marvel",
@@ -29,7 +71,7 @@ const createProduct = function (req, res) {
 	);
 };
 
-function createPlan(req, res) {
+const createPlan =function (req, res) {
 	const { body } = req;
 
 	const plan = {
@@ -98,7 +140,7 @@ nexDay= new Date(nexDay)
             },
             email_address: "customer@example.com",
         },
-        return_url: 'http://localhost:3000/homeComics',
+        return_url: 'http://localhost:3000/paypal/success',
         cancel_url: 'http://localhost:3000/homeCharacters'
 
     }
@@ -110,4 +152,12 @@ nexDay= new Date(nexDay)
         res.json({ data: response.body })
     })
 }
-module.exports = { createProduct, createPlan,generateSubscription };
+const success = (req, res) => {
+   
+        res.json("gracias vuelva pronto")
+    
+}
+
+
+module.exports = { createProduct, createPlan,generateSubscription,createPayment,
+	executePayment ,success};
