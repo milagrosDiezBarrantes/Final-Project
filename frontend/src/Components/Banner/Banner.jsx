@@ -16,35 +16,37 @@ const Login = (props) => {
             </a>
             </NavMenu>
  </Nav>
-    <Container >
-      <Content>
-        <CTA >
-          <SignUp target="_blank" href="/AboutUs">Más Información</SignUp>
-          <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
-        </CTA>
-        <BackgroundImg />
-      </Content>
-    </Container>
-   
-   <ContainerPlan>
-   <Pricing>
-      <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
-      <Caption>Disfrutá MARVEL PLUS + por un precio único mensual. </Caption>
-      <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
-      <PriceValue>ARS 995/mes (final)* </PriceValue>
-      <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
-    </Pricing> 
-    
-    <Pricing>
-      <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
-      <Caption>Disfrutá MARVEL PLUS + ANUAL </Caption>
-      <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
-      <PriceValue>ARS 3.850/año (final)*</PriceValue>
-      <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
-     </Pricing> 
-     
-   </ContainerPlan>
-      
+  
+      <Container >
+        <Content>
+          <CTA >
+            <SignUp target="_blank" href="/AboutUs">Más Información</SignUp>
+            <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
+          </CTA>
+          <BackgroundImg />
+        </Content>
+      </Container>
+  <div class="overlay"> 
+      <ContainerPlan>
+      <div className="">
+      <Pricing>
+          <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
+          <Caption>Disfrutá MARVEL PLUS + por un precio único mensual. </Caption>
+          <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
+          <PriceValue>ARS 995/mes (final)* </PriceValue>
+          <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
+        </Pricing> 
+        </div>
+        <Pricing>
+          <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
+          <Caption>Disfrutá MARVEL PLUS + ANUAL </Caption>
+          <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
+          <PriceValue>ARS 3.850/año (final)*</PriceValue>
+          <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
+        </Pricing> 
+        
+      </ContainerPlan>
+  </div>  
     </>
   );
 };
@@ -104,6 +106,7 @@ const ContainerPlan = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    
   }
 `;
 
