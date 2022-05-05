@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;   
+    padding: 0  20px;
+}
+
+.details_container{
+    display: flex;
+    width: 750px;
+    height: 80vh;
+    background: rgb(108, 0, 0);
+    border-radius: 15px;
+    box-shadow: 0 0 5px #520101, 0 0 40px #3b0000, 0 0 80px #530000;;
+}
+
+.description{
+    background: #fffdfd;
+    position: relative;
+    width: 100vw;
+    border-radius: 28px;
+}
+
+.header, .description{
+    padding: 28px;
+    text-align: center;
+}
+
+.header img{
+    width: 350px;
+    height: 350px;
+    margin-bottom: 20px;
+}
+
+.header h2{
+    color: rgb(1, 0, 0);
+    letter-spacing: 20px;
+    
+}
+
+.title{
+    margin-right: 10px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-size: 30px;
+    letter-spacing: 1.5px;
+}
+
+.my_button{
+    margin: 20px;
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 10px 20px;
+    color: rgba(68, 68, 69, 1.00);
+    letter-spacing: 3px;
+    font-size: 18px;
+    transition: 0.2s;
+    border-radius: 10px;
+    border: none;
+    left: 70px;
+    cursor: pointer;
+}
+
+
+.my_button:hover{
+color: black;
+box-shadow: 0 10px 15px rgba(5, 4, 8, 0.397);
+border: none;
+cursor: pointer;
+}
+
+
+
+
+

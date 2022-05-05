@@ -1,10 +1,12 @@
-import { GET_TITLE, GET_BY_ID, GET_COMICS } from '../Actions/actions'
+import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS } from '../Actions/actions'
 import { FILT_BY_CHARACTER,FILT_BY_CREATOR } from '../Actions/FilterOrderActions';
 
-const initialStateOfComic = {
+const initialState = {
     Comics: [],
     copyComics: [],
-    selectedComic: []
+    selectedComic: [],
+    users:[],
+    copyUsers:[]
 } 
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -13,7 +15,7 @@ const initialStateOfComic = {
     }
     return newA
 } */
-function ComicsReducer(state = initialStateOfComic, { type, payload }) {
+function ComicsReducer(state = initialState, { type, payload }) {
     // eslint-disable-next-line default-case
     switch (type) {
         case GET_TITLE:
@@ -52,6 +54,13 @@ function ComicsReducer(state = initialStateOfComic, { type, payload }) {
                 ...state,
                 copyComics:filtComics
             }
+        case GET_USERS:
+            return{
+                ...state,
+                users:payload,
+                copyUsers:payload
+            }
+        
 
         default:
             return { ...state };

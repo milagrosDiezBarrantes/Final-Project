@@ -6,7 +6,7 @@ const comicsRoute = require('./comics.js');
 const user = require('./user.js');
 const banner = require('./banner.js');
 const creators = require('./creators.js');
-const mercado = require('./mercado.js');
+// const mercado = require('./mercado.js');
 const paypal = require('./paypal.js');
 
 
@@ -19,7 +19,7 @@ router.use('/characters', characters);
 router.use('/comics', comicsRoute);
 router.use('/user', user);
 router.use('/creators', creators);
-router.use('/mercado', mercado);
+// router.use('/mercado', mercado);
 router.use('/paypal', paypal);
 
 

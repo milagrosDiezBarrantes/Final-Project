@@ -8,11 +8,11 @@ export default function Subscribe(){
     const usuario ={
         id:123456789,
         fistName:"John",
-        lastName:Doe,
+        lastName:"Doe",
         gmail:"sb-6qytu15277014@personal.example.com",   
     }
     const prueba = async()=>{
-        const envio = await axios.post('https://localhost:3001/paypal/create-payment',usuario)
+        const envio = await axios.post('https://localhost:3001/paypal/create-payment',{usuario})
     }
     return (
     <div  className='MasterConatiner'>
