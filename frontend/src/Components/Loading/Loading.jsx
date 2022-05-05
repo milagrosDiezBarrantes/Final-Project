@@ -1,8 +1,4 @@
-<<<<<<< joel_b
 import React from "react";
-=======
-import React, { useEffect, useState } from "react";
->>>>>>> main
 import varios from "../../Img/Loading/varios_icons.gif"
 import "./Loading.css"
 
