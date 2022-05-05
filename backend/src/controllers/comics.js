@@ -175,7 +175,23 @@ const createComic = async (req, res, next) => {
   // }
 }
 
-module.exports = { getComics, getById, getByTitle, getSerieById, createComic };
+const updateComic = async (req, res, next) => {
+  const {id} = req.params;
+  const {info} = req.body;
+  try{
+    const comic = await Comics.findByIdAndUpdate(id, {
+      $set: {
+        info
+    }
+  });
+  res.status(200).send('Comic succesfully updated');
+  }catch(error){
+    next(error);
+  }
+    
+}
+
+module.exports = { getComics, getById, getByTitle, getSerieById, createComic, updateComic };
 //     try{
 //         const data = await axios('https://gateway.marvel.com/v1/public/comics?ts=1&apikey=92b1929109f0272717c217d062103f24&hash=0a5a4c3c68e3ef9191ccb45e803bcb0b')
 //     data.data? res.status(200).json(data.data) : res.status(500).json({message: 'Error'})
