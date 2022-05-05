@@ -8,9 +8,15 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: "Otro comic",
     },
+    idPrincipal:{
+      type:DataTypes.UUID,
+      defaultValue:DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull:false
+
+    },
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       allowNull: true,
     },
     img: {
