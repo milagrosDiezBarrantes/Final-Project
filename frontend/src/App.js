@@ -19,6 +19,7 @@ import './index.css';
 import SearchBarComics from "./Components/SearchBar/SearchBarComics/SearchBarComics";
 import SearchBarCharacters from "./Components/SearchBar/SearchBarCharacters/SearchBarCharacters";
 import SearchPrueba from "./Components/SearchBar/SearchBarComics/SearchPrueba";
+import Admin from "./Components/Admin/Admin";
 import "./App.css";
 import { Container } from "@material-ui/core";
 import FormUser from "./Components/Form/FormUser";
@@ -46,6 +47,8 @@ function App() {
           <Route path='/searchComics' element={<SearchBarComics />} />
           <Route path='/searchCharacter' element={<SearchBarCharacters />} />
           <Route path='/searchPrueba' element={<SearchPrueba />} />
+
+          <Route path='/admin' element={<Admin/>} />
 
       </Routes>
       </Container>
