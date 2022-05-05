@@ -8,7 +8,8 @@ export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const GET_NAME = "GET_NAME" // buscar character por nombre
 export const GET_USERS = "GET_USERS" 
 export const FILT_BY_PLAN = "FILT_BY_PLAN"
-
+//Autentication
+export const AUTHENTICATED = "AUTHENTICATED"
 
 
 //================CHARACTERS=================//
@@ -145,5 +146,12 @@ export const filterByPlan = (plan) =>{
     return{
         type: FILT_BY_PLAN,
         payload: plan
+    }
+}
+//================AUTHENTICATED=================//
+export function authenticateUser(){
+    return{
+        type: AUTHENTICATED,
+        payload: true
     }
 }

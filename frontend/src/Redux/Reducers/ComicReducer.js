@@ -1,4 +1,4 @@
-import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS, FILT_BY_PLAN } from '../Actions/actions'
+import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS, FILT_BY_PLAN, AUTHENTICATED } from '../Actions/actions'
 import { FILT_BY_CHARACTER,FILT_BY_CREATOR } from '../Actions/FilterOrderActions';
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     copyComics: [],
     selectedComic: [],
     users:[],
-    copyUsers:[]
+    copyUsers:[],
+    authenticated: false,
 } 
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -68,7 +69,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
                 ...state,
                 copyUsers:filtered,
             }
-        
+        case AUTHENTICATED:
+            return {
+                ...state,
+                authenticated:payload
+            }
 
         default:
             return { ...state };
