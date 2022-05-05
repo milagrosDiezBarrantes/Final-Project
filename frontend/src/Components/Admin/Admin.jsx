@@ -1,9 +1,9 @@
-import React from "react";
+import {React, useEffect} from "react";
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
-import {getAllUsers} from '../../Redux/Actions/actions';
+import {getAllUsers, filterByPlan} from '../../Redux/Actions/actions';
 
 const Admin = () => {
   //CRUD COMICS
@@ -13,12 +13,16 @@ const Admin = () => {
   
   const usersList =useSelector((state) => state);
 
-  let  users = usersList.ComicsReducer.users;
+  let  users = usersList.ComicsReducer.copyUsers;
   console.log('users', users);
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   const handleFilter = (e) => {
       e.preventDefault();
-    //   dispatchEvent(filter(e.target.value))
+    dispatch(filterByPlan(e.target.value))
     console.log("filtramooo", e.target.value);
   };
   const handleAll = (e) => {
@@ -29,6 +33,7 @@ const Admin = () => {
   return (
       <div>
       {/* //seccion de acciones */}
+      <h2>Comics</h2>
         <div>
             
             {/*goes to form to create */}

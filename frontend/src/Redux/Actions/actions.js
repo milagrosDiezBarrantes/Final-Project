@@ -7,6 +7,7 @@ export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const GET_NAME = "GET_NAME" // buscar character por nombre
 export const GET_USERS = "GET_USERS" 
+export const FILT_BY_PLAN = "FILT_BY_PLAN"
 
 
 
@@ -75,9 +76,6 @@ export function getAllComics() {          //para trerce todos los comics
     }
 }
 
-
-
-
 export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
@@ -127,18 +125,25 @@ export function postUser(payload) {
 
 }
 
-export function getAllUsers (){
+export function getAllUsers (){    
     return async function(dispatch) {
         try {
             const users = await axios('http://localhost:3001/user');
+            console.log(users.data)
             return dispatch ({
                 type: GET_USERS,
                 payload: users.data
             })
-
     }
     catch(error){
         console.log(error)
     }
 }
+}
+
+export const filterByPlan = (plan) =>{
+    return{
+        type: FILT_BY_PLAN,
+        payload: plan
+    }
 }

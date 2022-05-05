@@ -1,4 +1,4 @@
-import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS } from '../Actions/actions'
+import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS, FILT_BY_PLAN } from '../Actions/actions'
 import { FILT_BY_CHARACTER,FILT_BY_CREATOR } from '../Actions/FilterOrderActions';
 
 const initialState = {
@@ -59,6 +59,14 @@ function ComicsReducer(state = initialState, { type, payload }) {
                 ...state,
                 users:payload,
                 copyUsers:payload
+            }
+
+        case FILT_BY_PLAN:
+            const backUp = [...state.users]
+            const filtered = backUp.filter(user => user.plan === payload)
+            return{
+                ...state,
+                copyUsers:filtered,
             }
         
 
