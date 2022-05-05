@@ -4,6 +4,7 @@ import { getAllCharacters } from '../../../Redux/Actions/actions';
 import NavBar from '../../Navbar/Navbar.jsx';
 import CharacterCard from "../../Cards/CharacterCard/CharacterCard"
 import CustomPagination from '../../Pagination/Pagination.jsx'
+import AppBanner from "../../Publicidad/Publicidad";
 
 import "./HomeCharacter.css"
 
@@ -51,6 +52,7 @@ console.log(data)
 
     return (
         <div className='MaxContained'>
+            <AppBanner/>
             <div>
                 <NavBar />
                 <div className='Paginado'>
@@ -62,7 +64,7 @@ console.log(data)
                 <div className='Paginado'>
                     <CustomPagination setPage = {setCurrentPage} numOfPages={numOfPages}/>
                 </div>
-
+               
             </div>
         </div>
     )
