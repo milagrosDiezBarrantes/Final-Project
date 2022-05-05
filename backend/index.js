@@ -8,7 +8,7 @@ conn.sync({ force: false }).then(() => {
   });
 });
 
-/* const { Comics } = require('../backend/src/db');
+const { Comics } = require('../backend/src/db');
 var catAutos =  Comics.findOrCreate({
   where:{
     id:100003,
@@ -62,4 +62,4 @@ Promise.all([catAutos, catDeportes, catVideojuegos,catVideojuegos2])
   .then(res => {
     console.log([catAutos, catDeportes, catVideojuegos,catVideojuegos2]);
   });
- */
+
