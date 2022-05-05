@@ -1,21 +1,30 @@
 import React from "react";
 
-import {useSelector} from 'react-redux';
-
+import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate } from "react-router-dom";
+
+import {getAllUsers} from '../../Redux/Actions/actions';
 
 const Admin = () => {
   //CRUD COMICS
 
   const history = useNavigate();
+  const dispatch = useDispatch();
   
-  const users =useSelector((state) => state.users);
+  const usersList =useSelector((state) => state);
+
+  let  users = usersList.ComicsReducer.users;
+  console.log('users', users);
 
   const handleFilter = (e) => {
       e.preventDefault();
     //   dispatchEvent(filter(e.target.value))
     console.log("filtramooo", e.target.value);
   };
+  const handleAll = (e) => {
+    e.preventDefault();
+    dispatch(getAllUsers())
+ }
 
   return (
       <div>
@@ -44,7 +53,7 @@ const Admin = () => {
                     <option value='inactive'>Canceled</option>
                     </select>
 
-                <button onClick={console.log('click en mostrar resultados')}>Show all users</button>
+                <button onClick={handleAll}>Show all users</button>
              </div>
                 <div>
 
