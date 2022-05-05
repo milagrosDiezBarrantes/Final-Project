@@ -1,43 +1,89 @@
 import React from "react";
 
+import {useSelector} from 'react-redux';
+
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   //CRUD COMICS
 
   const history = useNavigate();
-  // const [comicUpdate, setComicUpdate] = React.useState({});
-  // const [deleteComic, setDeleteComic] = React.useState({});
-  // //related to business logic
-  //  const [users, setUsers] = React.useState([]);//nro de usuarios
-  //  const [newUsers, setNewUsers] = React.useState([]);//nro de usuarios nuevos
-  //  const [lostUsers, setLostUsers] = React.useState([]);//nro de usuarios perdidos
+  
+  const users =useSelector((state) => state.users);
 
-  //  const [comics, setComics] = React.useState([]);//nro de comics
-  //  const [trend, setTrend] = React.useState([]);//tendencia
-  //  const [newApiComics, setNewApiComics] = React.useState([]);//nuevos comics
-  //  const [characters, setCharacters] = React.useState([]);//personajes destacados
-
-  //  const [earns, setEarns] = React.useState([]);//billing month
-
-  const handleClick = () => {
-    console.log("click");
+  const handleFilter = (e) => {
+      e.preventDefault();
+    //   dispatchEvent(filter(e.target.value))
+    console.log("filtramooo", e.target.value);
   };
 
   return (
-    <div>
       <div>
-      {/*goes to form to create */}
-        <button onClick={() => history("/admin/addComic")}>
-          Add New Comic
-        </button>
+      {/* //seccion de acciones */}
+        <div>
+            
+            {/*goes to form to create */}
+            <button onClick={() => history("/admin/addComic")}>
+            Add New Comic
+            </button>
+            {/*goes to form to editar, agregar input para search by id */}
+            <button onClick={() => history("/admin/editComic")}>
+                Edit Comic
+            </button>
+
+        </div>
+
+         {/* //seccion de acciones */}
+         <div>
+             <div>
+                 <h2>Users</h2>
+                <select onChange={handleFilter}>
+                 <option value= ''>Filter by Plan</option>
+                    <option value='standar'>Standar</option>
+                    <option value='premium'>Premium</option>
+                    <option value='inactive'>Canceled</option>
+                    </select>
+
+                <button onClick={console.log('click en mostrar resultados')}>Show all users</button>
+             </div>
+                <div>
+
+                {users?.map((user) => {
+                    return (
+                        <div key={user.id}>
+                            <table> 
+                                <thead>
+                                   <tr>
+                                       <th>Full Name</th>
+                                       
+                                       <th>email</th>
+                                       <th>Plan</th>
+
+                                   </tr> 
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>{user.firstName + user.lastName}</td>
+                                        <td>
+                                            {user.email}
+                                        </td>
+                                        <td>
+                                            {user.plan}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    )
+                })}                    
+         </div>
+
       </div>
-       {/*goes to form to editar, agregar input para search by id */}
-      <button type="input" onClick={() => history("/admin/editComic")}>
-        Edit Comic
-      </button>
-    </div>
-  );
-};
+
+      </div>
+  )
+}
 
 export default Admin;
