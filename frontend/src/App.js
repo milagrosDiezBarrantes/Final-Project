@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import LandingPage from "./Components/LandingPage/LandingPage";
+import Banner from "./Components/Banner/Banner";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import DetailComic from "./Components/Details/DetailComic/DetailComic"
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
 import Login from "./Components/Login/Login.jsx";
 import NavBar from "./Components/Navbar/Navbar";
-import Form from "./Components/Form/Form";
 
 import CharactersIcon from "./Pages/CharactersIcon/CharactersIcon"
 import ComicsIcon from "./Pages/ComicsIcon/ComicsIcon"
@@ -20,9 +19,11 @@ import './index.css';
 import SearchBarComics from "./Components/SearchBar/SearchBarComics/SearchBarComics";
 import SearchBarCharacters from "./Components/SearchBar/SearchBarCharacters/SearchBarCharacters";
 import SearchPrueba from "./Components/SearchBar/SearchBarComics/SearchPrueba";
+import Admin from "./Components/Admin/Admin";
 import "./App.css";
 import { Container } from "@material-ui/core";
-import Subscribe from "./Components/Subscribe/Suscribe";
+import FormUser from "./Components/Form/FormUser";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -30,16 +31,15 @@ function App() {
       <div className="app">
         <Container>
         <Routes>
-          <Route path='/prueba' element={<Subscribe/>} />
-          <Route path='/' element={<LandingPage/>} />
+          <Route path='/' element={<Banner />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route path='/form' element={<Form />} />
+          <Route path='/formUser' element={<FormUser />} />
           <Route path='/' element={<NavBar />} />
-
-         {/*  <Route path='/homeCharacter' element={<CharactersIcon />} />
+{/* 
+          <Route path='/homeCharacter' element={<CharactersIcon />} />
           <Route path='/' element={<SearchIcon />} />
           <Route path='/homeComics' element={<ComicsIcon />} /> */}
 
@@ -47,6 +47,9 @@ function App() {
           <Route path='/searchComics' element={<SearchBarComics />} />
           <Route path='/searchCharacter' element={<SearchBarCharacters />} />
           <Route path='/searchPrueba' element={<SearchPrueba />} />
+
+          <Route path='/admin' element={<Admin/>} />
+
       </Routes>
       </Container>
     </div>

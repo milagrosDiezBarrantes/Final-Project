@@ -1,4 +1,3 @@
-
 import React from "react";
 import varios from "../../Img/Loading/varios_icons.gif"
 import "./Loading.css"

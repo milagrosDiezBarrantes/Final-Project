@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: center;
+}
+.logout{
+    margin: 30px;
+    position: center;
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 50px 50px;
+    color: rgb(255, 255, 255);
+    letter-spacing: 3px;
+    font-size: 38px;
+    transition: 0.2s;
+    border-radius: 10px;
+    border: none;
+    left: 70px;
+    cursor: pointer;
+    padding: 10px;
+    background:rgb(63, 8, 1);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 30px;
+    transition: 0.8s;
+    letter-spacing: 1px;
+  
+}
+
+.my_button:hover{
+    color: black;
+    box-shadow: 0 10px 15px rgba(5, 4, 8, 0.397);
+    border: none;
+    cursor: pointer;
+    }
+span{
+    color:#ffffff;
+}
+
+.letra{
+    color:#ffff
+}
