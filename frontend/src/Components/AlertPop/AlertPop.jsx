@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaExclamationCircle } from 'react-icons/fa';
 
-export const AlertPop = ({ activeAlert, actionAlert, handleOpenAlert, handleSuccess }) => {
+const AlertPop = ({ activeAlert, actionAlert, handleOpenAlert, handleSuccess }) => {
     return (
         <div>
             {
@@ -32,3 +32,4 @@ export const AlertPop = ({ activeAlert, actionAlert, handleOpenAlert, handleSucc
         </div>
     )
 }
+export default AlertPop;
