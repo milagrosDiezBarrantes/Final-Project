@@ -13,7 +13,6 @@ const Login = (props) => {
   const {isAuthenticated, loginWithRedirect} = useAuth0();
   const dispatch = useDispatch();
   const authorized = useSelector(state => state.ComicsReducer.authenticated);
-  // const authorized_status= authorized
   console.log(authorized)
   console.log(isAuthenticated, 'autenticado en banner?');
   console.log(useAuth0(), 'useAuth0');
@@ -62,18 +61,18 @@ const Login = (props) => {
       <ContainerPlan>   
       <div className="">
       <Pricing>
-          <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
-          <Caption>Disfrutá MARVEL PLUS + por un precio único mensual. </Caption>
-          <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
-          <PriceValue>ARS 995/mes (final)* </PriceValue>
+          <Title> GET MARVEL COMIC Y STARPLUS+ </Title>
+          <Caption>Get endless entertainment, enjoy your favorites comics and series. </Caption>
+          <Caption>Save money with this bundle.</Caption>
+          <PriceValue>ARS 995/month (final)* </PriceValue>
           <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
         </Pricing> 
         </div> <div></div>
         <Pricing>
-          <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
-          <Caption>Disfrutá MARVEL PLUS + ANUAL </Caption>
-          <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
-          <PriceValue>ARS 3.850/año (final)*</PriceValue>
+          <Title> GET MARVEL COMIC</Title>
+          <Caption>Year subscription MARVEL PLUS</Caption>
+          <Caption>Access endless Marvel Comics World for a new price! </Caption>
+          <PriceValue>ARS 3.850/year (final)*</PriceValue>
           <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
         </Pricing> 
         
@@ -84,7 +83,7 @@ const Login = (props) => {
      <Container >
         <Content>
           <CTA >
-            <SignUp target="_blank" href="/AboutUs">Más Información</SignUp>
+            <SignUp target="_blank" href="/AboutUs">Tell me more</SignUp>
             <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
           </CTA>
           <BackgroundImg />
@@ -105,7 +104,7 @@ top: 40px;
 min-height: 95vh;
 padding: 5px calc(3.5vw + 5px);
 overflow-x: hidden;
-${'' /* background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg") no-repeat center center fixed; */}
+background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg") no-repeat center center fixed;
 background-size: cover;
 `;
 
@@ -147,7 +146,7 @@ margin-bottom: 10px;
 :last-child {
   margin-left: 5;
   margin-right: 10;
-  ${'' /* background-image: url('http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg'); */}
+  background-image: url('http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg');
 }
 `;
 const PriceValue = styled.div`
@@ -262,7 +261,7 @@ const Container = styled.section`
   flex-direction: column;
   height: 100vh;
   text-align: center;
-  ${'' /* background-image: url('https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg'); */}
+  background-image: url('https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg');
   opacity: 0.8;
   background-repeat: no-repeat;
   background-size: cover;
@@ -282,7 +281,7 @@ const Content = styled.div`
   padding: 80px 40px;
 `;
 const BackgroundImg = styled.div`
-  ${'' /* background-image: url('../Banner/img/mrv.gif'); */}
+  background-image: url('../Banner/img/mrv.gif');
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
