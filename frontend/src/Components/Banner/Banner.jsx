@@ -5,13 +5,38 @@ import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Login = (props) => {
-  const { loginWithRedirect} = useAuth0();
-  console.log(useAuth0());
-  
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { authenticateUser } from "../../Redux/Actions/actions";
 
+const Login = (props) => {
+  const {isAuthenticated, loginWithRedirect} = useAuth0();
+  const dispatch = useDispatch();
+  const authorized = useSelector(state => state.ComicsReducer.authenticated);
+  console.log(authorized)
+  console.log(isAuthenticated, 'autenticado en banner?');
+  console.log(useAuth0(), 'useAuth0');
+
+  useEffect(() => {
+    dispatch(authenticateUser());
+    
+  },[]);
+   
   
   return (
+    isAuthenticated && authorized ? (
+      <Nav>
+      <a href="/">
+        <Logo src={logo} alt="Marvel" />
+      </a>
+      
+      <a href='/login'  onClick={() => 
+        loginWithRedirect()} >      
+        <LogIn>MY PROFILE</LogIn>
+      </a>
+     
+   </Nav>)
+   :
 <>
 
   <Nav>
@@ -36,18 +61,18 @@ const Login = (props) => {
       <ContainerPlan>   
       <div className="">
       <Pricing>
-          <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
-          <Caption>Disfrutá MARVEL PLUS + por un precio único mensual. </Caption>
-          <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
-          <PriceValue>ARS 995/mes (final)* </PriceValue>
+          <Title> GET MARVEL COMIC Y STARPLUS+ </Title>
+          <Caption>Get endless entertainment, enjoy your favorites comics and series. </Caption>
+          <Caption>Save money with this bundle.</Caption>
+          <PriceValue>ARS 995/month (final)* </PriceValue>
           <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
         </Pricing> 
         </div> <div></div>
         <Pricing>
-          <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
-          <Caption>Disfrutá MARVEL PLUS + ANUAL </Caption>
-          <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
-          <PriceValue>ARS 3.850/año (final)*</PriceValue>
+          <Title> GET MARVEL COMIC</Title>
+          <Caption>Year subscription MARVEL PLUS</Caption>
+          <Caption>Access endless Marvel Comics World for a new price! </Caption>
+          <PriceValue>ARS 3.850/year (final)*</PriceValue>
           <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
         </Pricing> 
         
@@ -58,7 +83,7 @@ const Login = (props) => {
      <Container >
         <Content>
           <CTA >
-            <SignUp target="_blank" href="/AboutUs">Más Información</SignUp>
+            <SignUp target="_blank" href="/AboutUs">Tell me more</SignUp>
             <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
           </CTA>
           <BackgroundImg />
