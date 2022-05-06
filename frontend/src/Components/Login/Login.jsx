@@ -25,18 +25,23 @@ function Login() {
 
 
   return (
-    <div className="container">
-      {/* <header > */}
+    <div>
       {
-        isAuthenticated ? (
-          <>
-            <Profile />
-            <LogoutButton />
-          </>
-        ) : (
-          <LoginButton />
-        )}
-      {/* </header> */}
+        isAuthenticated ? <LogoutButton /> : <LoginButton />
+      } 
+        <Profile />
+
+        {/* <div className="container">
+        {
+          isAuthenticated ? (
+            <>
+              <Profile />
+              <LogoutButton />
+            </>
+          ) : (
+            <LoginButton />
+          )}
+        </div> */}
     </div>
   );
 }

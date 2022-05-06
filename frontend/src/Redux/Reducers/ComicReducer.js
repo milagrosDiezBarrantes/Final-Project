@@ -1,4 +1,4 @@
-import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS, FILT_BY_PLAN, AUTHENTICATED } from '../Actions/actions'
+import { GET_TITLE, GET_BY_ID, GET_COMICS, GET_USERS, FILT_BY_PLAN, AUTHENTICATED, UPDATE_COMIC, DELETE_COMIC } from '../Actions/actions'
 import { FILT_BY_CHARACTER,FILT_BY_CREATOR } from '../Actions/FilterOrderActions';
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
     users:[],
     copyUsers:[],
     authenticated: false,
+
 } 
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -41,7 +42,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
                 copyComics: payload
                 
             }
-        case FILT_BY_CHARACTER: //// en proceso 
+        case FILT_BY_CHARACTER: 
             return{
                 ...state,
                 copyComics:[]
@@ -61,7 +62,20 @@ function ComicsReducer(state = initialState, { type, payload }) {
                 users:payload,
                 copyUsers:payload
             }
-
+        case UPDATE_COMIC:
+			const comicEdit = state.Comics.findIndex(c => c.id === type.payload.id);
+			state.Comics[comicEdit] = type.payload;
+            console.log(comicEdit)
+			return {
+				...state,
+				copyComics: [...state.Comics]
+			};
+        case DELETE_COMIC:
+            let deletedComic = state.Comics.filter(c => c.id !== type.payload.id)
+            return {
+                ...state,
+                copyComics: [...deletedComic]
+            };
         case FILT_BY_PLAN:
             const backUp = [...state.users]
             const filtered = backUp.filter(user => user.plan === payload)
@@ -74,7 +88,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
                 ...state,
                 authenticated:payload
             }
-
         default:
             return { ...state };
     }

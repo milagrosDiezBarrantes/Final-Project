@@ -7,12 +7,19 @@ export const LogoutButton = () => {
 
   return (
     <div>
-        <button className="logout" >
+
+        {/* <button >
+          <a href="mailto:281212.namaste@gmail.com?Subject=Te%20contacto%20de%20tu%20portafolio">Contact Me</a>
+        </button> */}
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+          LOG OUT
+        </button>
+        {/* <button className="logout" >
           <a  className="letra" color="white" href="mailto:281212.namaste@gmail.com?Subject=Te%20contacto%20de%20tu%20portafolio">Contact Me</a>
         </button>
         <button className="logout" onClick={() => logout({ returnTo: window.location.origin })}>
-          Logout
-        </button>
+          LOGOUT
+        </button> */}
     </div>
   );
 };
