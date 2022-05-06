@@ -41,3 +41,5 @@ border-radius: 50%;
 -webkit-border-radius: 50%;
 border: 3px solid #81adf8;
 `;
+
+export default Profile;
