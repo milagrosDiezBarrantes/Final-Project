@@ -49,7 +49,7 @@ export const FormUpdateComic = (id) => {
             <Form style={{ width:"30%"}} onSubmit={handleSubmit}>
                 <Button 
                     onClick={() => {
-                        setComicDetail({
+                        setcomicDetail({
                             name: '',
                             description: '',
                             image: '',
