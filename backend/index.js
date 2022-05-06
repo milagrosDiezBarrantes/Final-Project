@@ -37,7 +37,7 @@ var catVideojuegos =  Comics.findOrCreate({
   where:{
     id:100001,
     title:"The Amazing Henry-Man 3",
-    img:"https://wallpapers.com/wallpapers/sitting-thanos-comic-book-tfb685lrvo6g6b0b.html",
+    img:"https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/66/Captain_Marvel_-_P%C3%B3ster_Diciembre_2018.png/revision/latest?cb=20191029195629&path-prefix=es",
     pages:50,  
     banner:true,
     creators:["HENRYs"]
@@ -49,7 +49,7 @@ var catVideojuegos2 =  Comics.findOrCreate({
   where:{
     id:100004,
     title:"The Amazing Henry-Man 4",
-  img:"https://wallpapers.com/wallpapers/the-joker-comic-book-ar6jo7r3w1y7bflt.html?embed=true",
+  img:"https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/hc_940x529/public/media/image/2016/08/15-seres-mas-poderosos-marvel-comics_2.jpg?itok=LowwWYhz",
   pages:50,
   banner:true,
   creators:["HENRYs"]
@@ -62,4 +62,5 @@ Promise.all([catAutos, catDeportes, catVideojuegos,catVideojuegos2])
   .then(res => {
     console.log([catAutos, catDeportes, catVideojuegos,catVideojuegos2]);
   });
+
 
