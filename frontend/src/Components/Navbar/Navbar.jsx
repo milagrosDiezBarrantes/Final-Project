@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import DrawerComp from "../Navbar/Drawer";
 //import { Link } from 'react-router-dom'
+import logo from "../Banner/img/marvel.jpg";
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import styled from "styled-components";
 import {
   AppBar,
-  Button,
   Tab,
   Tabs,
   Toolbar,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
-import { LoginButton } from "../Login/LoginButton";
+import { LogoutButton } from "../Login/LogoutButton";
 
 export default function Navbar() {
 
@@ -29,19 +31,27 @@ export default function Navbar() {
   
 
   return (
-    <React.Fragment>
+    <>
       <AppBar sx={{ background: "#151515" }}>
       <Toolbar>
-        {isMatch ? (
+        {/* {isMatch ? (
           <>
             <Typography sx={{ fontSize: "2rem", paddingLeft: "10%", }}>
               MARVEL
             </Typography>
-            <DrawerComp />
-        
           </>
         ) : (
-          <>
+          <> */}
+
+            <a href="/">
+              <img 
+                src={logo} 
+                alt="Marvel" 
+                style={{ maxHeight: '100%',
+                width: '80px',
+                marginLeft: '30px',
+                display: 'inline-block'}} />
+            </a>
             <Tabs
               sx={{ marginLeft: "auto" }}
               indicatorColor="secondary"
@@ -49,25 +59,36 @@ export default function Navbar() {
               value={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
-               
                 <Tab label="Comics" href="/homeComics" />
-                <Tab label="About Us" href="/AboutUs" />
-                <Tab label="Contact" href="/Contact"  />
+                {/* <Tab label="About Us" href="/AboutUs" />
+                <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
-            <Button >
-              <LoginButton/>
-            </Button>
-            <Button href="/form" sx={{ marginLeft: "10px" }} variant="contained"  style={{ color: "white" }}>
-              Sign up
-            </Button>
-            
-          </>
-        )}
+            <Stack direction="row" spacing={2}>
+              <Avatar alt="image user" src="/static/images/avatar/1.jpg" />
+            </Stack>
+            <LogIn>
+              <LogoutButton style={{borderRadius:'none', backGround:'transparent'}}/>
+            </LogIn> 
       </Toolbar>
+      <SimpleBottomNavigation />
     
     </AppBar>
-  </React.Fragment>
-);
-};
+  </>
+  )
+}
 
+const LogIn = styled.a`
+  border: 2px solid #f9f9f9;
+  border-radius: 7px;
+  margin: 0 20px;
+  padding: 7px 15px;
+  letter-spacing: 1.2px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
+  &:hover {
+    background-color: #f9f9f9;
+    color: #000;
+  }
+`;

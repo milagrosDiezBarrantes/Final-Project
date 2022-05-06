@@ -36,24 +36,32 @@ export const FormUpdateComic = (handleClose, id) => {
 
     const [activeAlertUpgrade, setActiveAlertUpgrade] = useState(false);
     
-    const handleOpenAlert = () => {
+    const handleOpenAlertUpgrade = () => {
         setActiveAlertUpgrade(!activeAlertUpgrade)
+    }
+
+    const [successForm, setSuccessForm] = useState(false);
+    const handleUpgradeSuccesForm = () => {
+        setSuccessForm(!successForm);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleOpenAlert()
+        handleOpenAlertUpgrade()
     }
 
     useEffect(() => {
-        dispatch(updateComic(id));
-        setcomicDetail({
-            title:'',
-            description: '',
-            image:'',   
-        })
+        if(successForm) {
+            dispatch(updateComic(id));
+            setcomicDetail({
+                title:'',
+                description: '',
+                image:'',   
+            })
 
-        handleClose()
-    }, [dispatch, id])
+            handleClose();
+            handleUpgradeSuccesForm()
+        }
+    }, [dispatch, successForm])
 
     return (
         <Container 
@@ -115,7 +123,7 @@ export const FormUpdateComic = (handleClose, id) => {
                 activeAlert = {activeAlertUpgrade}
                 actionAlert ='update'
                 handleOpenAlert = {handleOpenAlertUpgrade}
-                handleSuccess = {handlUpgradeSuccesForm}
+                handleSuccess = {handleUpgradeSuccesForm}
 
             />
         </Container>
