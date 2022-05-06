@@ -14,10 +14,9 @@ import {
   useTheme,
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
-import { LogoutButton } from "../Login/LogoutButton";
-
+import { useAuth0 } from "@auth0/auth0-react";
 export default function Navbar() {
-
+  const { logout } = useAuth0();
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
   console.log(theme);
@@ -64,11 +63,11 @@ export default function Navbar() {
                 <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
             <Stack direction="row" spacing={2}>
-              <Avatar alt="image user" src="/static/images/avatar/1.jpg" />
+              <Avatar alt="A" src="/static/images/avatar/1.jpg" />
             </Stack>
-            <LogIn>
-              <LogoutButton style={{borderRadius:'none', backGround:'transparent'}}/>
-            </LogIn> 
+            <a href='/'  onClick={() => logout({ returnTo: window.location.origin })} >
+            <LogIn>LOG OUT</LogIn>
+          </a>
       </Toolbar>
       <SimpleBottomNavigation />
     
