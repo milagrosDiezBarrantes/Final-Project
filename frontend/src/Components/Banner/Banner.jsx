@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../Banner/img/marvel.jpg"
-const Login = (props) => {
+import HeaderBanner from "../Banner/Header/Header";
 
+const Login = (props) => {
   return (
 <>
-<Nav>
+
+  <Nav>
       <a href="/login">
         <Logo src={logo} alt="Marvel" />
       </a>
@@ -15,19 +17,13 @@ const Login = (props) => {
               <span>SUSCRIBIRTE AHORA</span>
             </a>
             </NavMenu>
- </Nav>
-  
-      <Container >
-        <Content>
-          <CTA >
-            <SignUp target="_blank" href="/AboutUs">Más Información</SignUp>
-            <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
-          </CTA>
-          <BackgroundImg />
-        </Content>
-      </Container>
+   </Nav>
+
+      <HeaderBanner />
+      
+<Cont>
   <div class="overlay"> 
-      <ContainerPlan>
+      <ContainerPlan>   
       <div className="">
       <Pricing>
           <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
@@ -36,7 +32,7 @@ const Login = (props) => {
           <PriceValue>ARS 995/mes (final)* </PriceValue>
           <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
         </Pricing> 
-        </div>
+        </div> <div></div>
         <Pricing>
           <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
           <Caption>Disfrutá MARVEL PLUS + ANUAL </Caption>
@@ -46,10 +42,36 @@ const Login = (props) => {
         </Pricing> 
         
       </ContainerPlan>
-  </div>  
+  </div>
+</Cont>
+  <div>
+     <Container >
+        <Content>
+          <CTA >
+            <SignUp target="_blank" href="/AboutUs">Más Información</SignUp>
+            <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
+          </CTA>
+          <BackgroundImg />
+        </Content>
+      </Container>
+    </div>  
     </>
   );
 };
+
+
+
+const Cont = styled.div`
+display: block;
+color: #f8f8f8;
+position: relative;
+top: 40px;
+min-height: 95vh;
+padding: 5px calc(3.5vw + 5px);
+overflow-x: hidden;
+background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg") no-repeat center center fixed;
+background-size: cover;
+`;
 
 
 const Caption = styled.div`
@@ -70,8 +92,8 @@ const Title = styled.div`
   font-weight: 600;
   margin-bottom: 20px;
 `;
-
 const Pricing = styled.div`
+
 display: flex;
 justify-content: center;
 background: center;
@@ -80,14 +102,15 @@ background: #fff;
 flex-direction: column;
 border-radius: 10px;
 box-sizing: border-box;
-box-shadow: 0 11px 16px rgba(0, 0, 0, 0.1);
+box-shadow: 10px 11px 16px 10px rgba(0, 0, 0, 0.1);
 padding: 40px;
 text-align: center;
 user-select: none;
-margin-right: 10px;
+margin-right: 30px;
 margin-bottom: 10px;
 :last-child {
-  margin-right: 0;
+  margin-left: 5;
+  margin-right: 10;
   background-image: url('http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg');
 }
 `;
@@ -99,7 +122,6 @@ const PriceValue = styled.div`
   line-height: 28px;
   margin-bottom: 20px;
 `;
-
 const ContainerPlan = styled.div`
     display: flex;
     @media (max-width: 500px) {
@@ -109,7 +131,6 @@ const ContainerPlan = styled.div`
     
   }
 `;
-
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
@@ -205,7 +226,7 @@ const Container = styled.section`
   flex-direction: column;
   height: 100vh;
   text-align: center;
-  background-image: url('https://p4.wallpaperbetter.com/wallpaper/710/234/443/superman-batman-dc-marvel-iron-man-captain-america-green-lantern-spider-man-wolverine-the-flash-hulk-hd-wallpaper-preview.jpg');
+  background-image: url('https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg');
   opacity: 0.8;
   background-repeat: no-repeat;
   background-size: cover;

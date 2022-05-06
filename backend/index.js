@@ -7,7 +7,7 @@ conn.sync({ force: false }).then(() => {
     console.log('%s listening at 3001'); 
   });
 });
-
+/*
 const { Comics } = require('../backend/src/db');
 var catAutos =  Comics.findOrCreate({
   where:{
@@ -62,4 +62,4 @@ Promise.all([catAutos, catDeportes, catVideojuegos,catVideojuegos2])
   .then(res => {
     console.log([catAutos, catDeportes, catVideojuegos,catVideojuegos2]);
   });
-
+*/
