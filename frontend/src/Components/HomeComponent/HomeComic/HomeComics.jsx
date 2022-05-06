@@ -13,7 +13,6 @@ const HomeComics = () => {
 
     const dispatch = useDispatch()
     const allComics = useSelector(state => state.ComicsReducer.copyComics)
-    
     const [page, setPage] = useState(1);
     const [numOfPages, setNumOfPages] = useState(10);
     const [data, setData] = useState([]);
@@ -51,16 +50,16 @@ const HomeComics = () => {
              )}
         </div>
        <SearchBarComics/>
+        <div className='grid'>
         {currentPage &&        
           currentPage.map(({ id, title, img }) => {
              return (
-                 <div key={id}>
                     <ComicCard id={id} title={title} image={img} />
-                  </div>
                 )
 
             })
         }
+        </div>
         <div>
           {numOfPages > 1 && (
            <CustomPagination setPage={setPage} numOfPages={numOfPages} />
