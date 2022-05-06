@@ -131,7 +131,6 @@ const getByTitle = async (title) => {
     return error;
   }
 };
-
 const getSerieById = async (req, res, next) => {
   try {
     let serie = await axios.get(
@@ -157,23 +156,31 @@ const getSerieById = async (req, res, next) => {
     next(error);
   }
 };
+//=====Crear Comic=====//
+const createComic = async (req,res,next)=>{
+  try {
+    const {title,img,description,pages,creators} = req.body
+    if (title && img && description && creators){
+      const createComic = await Comics.create({
+        title,
+        img,
+        description,
+        pages,
+        creators,
+      })
+      res.status(200).send({ msg: "Comic successfully created" })
+    }else{
 
-const createComic = async (req, res, next) => {
-  // const { title, description, img, pages, creators, serie, publish } = req.body;
-  // if(!title || !description){res.status(400).send("Missing data")}
-  // try{
-  //   const comic = await Comics.create({
-      
-  //     title, description, img, pages, creators, serie, publish,
-  
-  //   });
-  //   res.status(201).send('Comic succesfully added to DB'); 
-    
-  // }
-  // catch(error){
-  //   next(error);
-  // }
+      res.status(404).send({msg:"faltan datos",data:[title,img,description,pages,creators]})
+    }
+  }
+  catch (err) {
+    console.log(err)
+    next(err)
+  }
 }
+
+
 
 const updateComic = async (req, res, next) => {
   const {id} = req.params;
@@ -192,11 +199,3 @@ const updateComic = async (req, res, next) => {
 }
 
 module.exports = { getComics, getById, getByTitle, getSerieById, createComic, updateComic };
-//     try{
-//         const data = await axios('https://gateway.marvel.com/v1/public/comics?ts=1&apikey=92b1929109f0272717c217d062103f24&hash=0a5a4c3c68e3ef9191ccb45e803bcb0b')
-//     data.data? res.status(200).json(data.data) : res.status(500).json({message: 'Error'})
-
-//     }catch(error){
-//         console.log(error)
-//     }
-// })
