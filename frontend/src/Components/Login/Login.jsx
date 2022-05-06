@@ -10,19 +10,9 @@ function Login() {
 
   return (
     <div>
-      {/* <header > */}
-
       {
-        isAuthenticated ? (
-          <>
-       
-            <Profile />
-            <LogoutButton />
-          </>
-        ) : (
-          <LoginButton />
-        )}
-      {/* </header> */}
+        isAuthenticated ? <LogoutButton /> : <LoginButton />} 
+        <Profile />
     </div>
   );
 }

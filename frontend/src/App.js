@@ -21,7 +21,10 @@ import SearchBarCharacters from "./Components/SearchBar/SearchBarCharacters/Sear
 import SearchPrueba from "./Components/SearchBar/SearchBarComics/SearchPrueba";
 import "./App.css";
 import { Container } from "@material-ui/core";
-import FormUser from "./Components/Form/FormUser";
+import FormAdmin from "./Components/Form/FormAdmin";
+import  Lecture from "./Components/Lecture/Lecture";
+import { Profile } from "./Components/Login/Profile";
+
 
 function App() {
   return (
@@ -35,17 +38,19 @@ function App() {
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route path='/formUser' element={<FormUser />} />
+          <Route path='/formAdmin' element={<FormAdmin />} />
           <Route path='/' element={<NavBar />} />
 {/* 
           <Route path='/homeCharacter' element={<CharactersIcon />} />
           <Route path='/' element={<SearchIcon />} />
           <Route path='/homeComics' element={<ComicsIcon />} /> */}
-
+          <Route exact path='/lecture' element={<Lecture />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/searchComics' element={<SearchBarComics />} />
           <Route path='/searchCharacter' element={<SearchBarCharacters />} />
           <Route path='/searchPrueba' element={<SearchPrueba />} />
+          
 
       </Routes>
       </Container>

@@ -58,7 +58,7 @@ const DetailComic = () => {
                           </a>
                         </div>))}
                         <div class="options">
-                        <MyButton  style={{ color: "white" }}>Read</MyButton>
+                        <MyButton  href="/lecture" style={{ color: "white" }}>Read</MyButton>
                         <MyButton  style={{ color: "white" }}>Serie</MyButton> 
           
                     </div>

@@ -2,10 +2,12 @@ import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
+export const GET_NAME = "GET_NAME";
 export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
-export const GET_NAME = "GET_NAME" // buscar character por nombre
+export const USER_EDIT = "USER_EDIT" 
+
 
 
 
@@ -44,7 +46,7 @@ export function getCharacterId(id) { // Obtener personaje por id
 export function getCharacterByName(name) { //obten personajes por nombre
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/characters/all?name=${name}`);// sin terminar
+            const { data } = await axios.get(`http://localhost:3001/characters/all?name=${name}`);
             return dispatch({
                 type: GET_NAME,
                 payload: data
@@ -124,4 +126,23 @@ export function postUser(payload) {
         }
     }
 
+}
+
+
+//======================USER EDIT ===============
+export const userEdit = (user) => {
+    return async (dispatch) => {
+        try {
+            console.log(user);
+            const editUser = await axios.put(`http://localhost:3001/user/${user._id}`, user);
+            console.log(editUser, 'se edita?');
+            return dispatch({
+                type: USER_EDIT,
+                payload: editUser.data
+            })
+        }
+        catch(err) {
+            console.log(err, 'userEdit || Error');
+        }
+    }
 }

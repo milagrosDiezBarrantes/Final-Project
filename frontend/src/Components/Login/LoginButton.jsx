@@ -9,7 +9,7 @@ export const LoginButton = () => {
     loginWithRedirect()} 
     sx={{ marginLeft: "10px" }} 
     variant="contained"  
-    style={{ color: "white" }} >Login
+    style={{ color: "white" }} >LOGIN
     </Button>;
 };
 
