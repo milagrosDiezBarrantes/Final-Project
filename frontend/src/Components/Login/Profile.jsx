@@ -1,6 +1,9 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import {Button} from "semantic-ui-react";
+
 
 import './style.css';
 
@@ -16,14 +19,21 @@ export const Profile = () => {
       
       <div className="container">
          <div className="details_container">
+         <h1 className="">User Name:</h1>
+        <h2 className="">{user.nickname}</h2>
          <div className="header">
          <ProfileImage src={user.picture} alt={user.name}  />
         <div className=""></div>
-        <h1 className="">User Name:</h1>
-        <h2 className="">{user.nickname}</h2>
-        <h3 className="">Name:</h3>
-        <h4 className="">{user.name}</h4>
-        <p className="">Email: {user.email}</p>
+        <Button className="button">
+          <Link to="/editProfile">
+            <span>Edit Profile</span>
+          </Link>
+        </Button>
+        
+         {/*<h3 className="">Name:</h3>
+
+        comentado para muestra viernes <h4 className="">{user.name}</h4>
+        <p className="">Email: {user.email}</p> */}
         </div>
         </div>
         </div>

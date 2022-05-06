@@ -15,6 +15,7 @@ import "./App.css";
 import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import  Lecture from "./Components/Lecture/Lecture";
+import FormEditUser from "./Components/FormEditUser/FormEditUser";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<Admin/>} />
-          <Route path='/editProfile' element={<Profile/>} />
+          <Route path='/editProfile' element={<FormEditUser/>} />
       </Routes>
       </Container>
     </div>
