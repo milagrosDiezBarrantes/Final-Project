@@ -16,7 +16,7 @@ import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
-import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic";
+import {FormUpdateComic} from "./Components/FormUpdateComic/FormUpdateComic";
 
 
 function App() {
