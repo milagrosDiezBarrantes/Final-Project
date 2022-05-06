@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getComicsByTitle } from '../../../Redux/Actions/actions';
+import {FiSearch} from 'react-icons/fi';
 
 export default function SearchBarComics () {
 
@@ -21,19 +22,25 @@ export default function SearchBarComics () {
         }
     }
     return (
-        <div>
-            <input
-                type="text"
+
+
+        <div >
+            <input style ={{ borderRadius:'25px', border:'none', width:'30%', padding:'10px', margin:'10px'}} type="text" placeholder="Search for a comic" value={title} onChange={handleChange} />
+                {/* type="text"
                 value={title}
                 placeholder="Search comic's title"
                 onChange={e => { handleChange(e) }}
-            />
+            /> */}
             <button
+            style={{background:'transparent', border:'none', width:'10%', padding:'10px', overflow: 'visible',
+    /* margin: auto; */
+    position: 'relative',
+    margin: '-81px'}}
                 type="submit"
                 onClick={e => { handleSubmit(e) }}
             >
-                Search
+             <FiSearch />
             </button>
-        </div>
+        </div> 
     )
 }

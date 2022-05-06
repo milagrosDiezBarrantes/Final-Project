@@ -5,7 +5,7 @@ import { Container, Form, Button} from 'semantic-ui-react';
 import { useNavigate} from 'react-router-dom';
 import { validate } from "../../Functions/validacionesForm/validacionFormLog";
 
-const FormEditUser = ({_id, handleClose}) => {
+const FormEditUser = ({id, handleClose}) => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const navigate= useNavigate(); 
@@ -36,7 +36,7 @@ const FormEditUser = ({_id, handleClose}) => {
         let info= {
             email,
             password,
-            _id
+            id
         }
         dispatch(userEdit(info)).then(handleClose());
         navigate('/profile');
@@ -76,6 +76,10 @@ const FormEditUser = ({_id, handleClose}) => {
                     />
                     {error.password && <p style={{ color:"red"}} > {error.password} </p>}
                 </div>
+                {/* agrego salto página para presentar */}
+                <br/>
+                <br/>
+                <br/>
                 <div>
                     <Button onClick={handleClose}> VOLVER </Button>
                     <Button type="submit"> CONFIRMAR </Button>

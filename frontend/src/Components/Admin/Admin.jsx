@@ -55,8 +55,10 @@ const options = [
            <Button onClick={() => history("/admin/addComic")}>Add New Comic</Button>
            <Button onClick={() => history("/admin/editComic")}>Edit Comic</Button>
            <Button onClick={() => history("'Comic deleted")}>Delete Comic</Button>
-
-
+<br/>
+<br/>
+<br/>
+<br/>
          {/* //seccion filtros */}
 
 
@@ -71,12 +73,15 @@ const options = [
                     <option value='standar'>Monthly</option>
                     <option value='premium'>Annual</option>
                     <option value='inactive'>Canceled</option>
-                 </select>
-
-                
+                 </select>                
                 <button onClick={handleAll}>Show all users</button>
              </div>
                 <div>
+
+                <br/>
+<br/>
+<br/>
+<br/>
 
                         <Table celled>
     <Table.Header>
@@ -124,10 +129,17 @@ const options = [
         </Table.HeaderCell>
       </Table.Row>
     </Table.Footer>
-  
+    <br/>
+<br/>
+<br/>
+<br/>
 
       </div>
         {/* Seccion stats */}
+
+        <Button onClick={() => history("/nunca jamás")}>New users</Button>
+        <Button onClick={() => history("/nunca jamás")}>Lost users</Button>
+        <Button onClick={() => history("'nunca jamás")}>Billing</Button>
 
 
       </div>

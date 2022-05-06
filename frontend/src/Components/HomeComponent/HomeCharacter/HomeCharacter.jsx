@@ -11,7 +11,7 @@ import "./HomeCharacter.css"
 const HomeCharacter = () => {
     const dispatch = useDispatch()
     const Characters = useSelector(state => state.CharactersReducer.copyCharacters)
-    const [numOfPages] = useState(10);
+    const [numOfPages] = useState(12);
     const [currentPage, setCurrentPage] = useState(1);
     const [data, setData] = useState([]);
     
@@ -55,9 +55,9 @@ console.log(data)
             <AppBanner/>
             <div>
                 <NavBar />
-                <div className='Paginado'>
+                {/* comentado previo a presentación porque los paginados superiro e inferior no se coordinan <div className='Paginado'>
                     <CustomPagination setPage = {setCurrentPage} numOfPages={numOfPages}/>
-                </div>
+                </div> */}
                 <div>
                     {currentPageData}
                 </div>

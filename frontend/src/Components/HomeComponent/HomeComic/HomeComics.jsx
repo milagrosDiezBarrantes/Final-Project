@@ -59,6 +59,10 @@ const HomeComics = () => {
             })
         }
         </div>
+        <br/>
+        <br/>
+        <br/>
+        
         <div>
           {numOfPages > 1 && (
            <CustomPagination setPage={setPage} numOfPages={numOfPages} />
