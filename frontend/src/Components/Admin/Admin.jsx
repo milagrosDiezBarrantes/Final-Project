@@ -71,9 +71,7 @@ const options = [
                     <option value='standar'>Monthly</option>
                     <option value='premium'>Annual</option>
                     <option value='inactive'>Canceled</option>
-                 </select>
-
-                
+                 </select>                
                 <button onClick={handleAll}>Show all users</button>
              </div>
                 <div>
@@ -128,6 +126,10 @@ const options = [
 
       </div>
         {/* Seccion stats */}
+
+        <Button onClick={() => history("/nunca jamás")}>New users</Button>
+        <Button onClick={() => history("/nunca jamás")}>Lost users</Button>
+        <Button onClick={() => history("'nunca jamás")}>Billing</Button>
 
 
       </div>
