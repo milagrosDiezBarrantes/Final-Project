@@ -16,7 +16,7 @@ background: linear-gradient(292deg, rgba(96,48,48,1) 0%, rgba(0,0,0,1) 50%);
 .Paginado{
     padding:30px;
 }
-.Grid{
+.grid{
     width: 100%;
     display: grid;
     grid-template-columns: auto auto auto ;
