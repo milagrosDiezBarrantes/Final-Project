@@ -9,15 +9,15 @@ module.exports = (sequelize) => {
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     fullName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     profilePic: {
       type: DataTypes.TEXT,
@@ -26,18 +26,22 @@ module.exports = (sequelize) => {
     comics:{
       type:DataTypes.INTEGER ,
       primaryKey: true,
+      allowNull:true
     },
     series:{
       type:DataTypes.INTEGER ,
       primaryKey: true,
+      allowNull:true
     },
     stories:{
       type:DataTypes.INTEGER ,
       primaryKey: true,
+      allowNull:true
     },
     events:{
       type:DataTypes.INTEGER ,
       primaryKey: true,
+      allowNull:true
     },
   });
 };

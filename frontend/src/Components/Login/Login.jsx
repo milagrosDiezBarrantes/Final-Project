@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton.jsx";
 import { LogoutButton } from "./LogoutButton.jsx";
 import { Profile } from "./Profile.jsx";
+import styled from "styled-components";
 
 
 function Login() {
@@ -13,8 +14,21 @@ function Login() {
       {
         isAuthenticated ? <LogoutButton /> : <LoginButton />} 
         <Profile />
+
+        <div className="container">
+        {
+          isAuthenticated ? (
+            <>
+              <Profile />
+              <LogoutButton />
+            </>
+          ) : (
+            <LoginButton />
+          )}
+        </div>
     </div>
   );
 }
 
 export default Login;
+

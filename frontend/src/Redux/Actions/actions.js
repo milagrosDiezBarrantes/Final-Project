@@ -2,11 +2,12 @@ import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
-export const GET_NAME = "GET_NAME";
 export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const USER_EDIT = "USER_EDIT" 
+export const GET_NAME = "GET_NAME" // buscar character por nombre
+export const GET_USERS = "GET_USERS" 
 
 
 
@@ -129,6 +130,7 @@ export function postUser(payload) {
 }
 
 
+
 //======================USER EDIT ===============
 export const userEdit = (user) => {
     return async (dispatch) => {
@@ -146,3 +148,20 @@ export const userEdit = (user) => {
         }
     }
 }
+
+export function getAllUsers (){
+    return async function(dispatch) {
+        try {
+            const users = await axios('http://localhost:3001/user');
+            return dispatch ({
+                type: GET_USERS,
+                payload: users.data
+            })
+
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+}
+
