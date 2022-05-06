@@ -37,19 +37,22 @@ const DetailComic = () => {
     <>
      <div className="container">  
      
-     <h4 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h4>   
+     {/* <h4 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h4>    */}
       
       <img src={detail[0].img} class="featured" alt={detail[0].title} style={{ marginLeft:"auto", marginRight:"auto",height: "35rem", width:'30rem',borderRadius:'10px', textAlign:'center' }}/>
       
-           <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>  
-          <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h3>
+           {/* <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>  
+          <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}
+          </h3>
               <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h3>
             <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>
-            <p  style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}} >{detail[0].description}</p>
+            <p  style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}} >{detail[0].description}</p> */}
               <div style={{marginLeft:"auto", marginRight:"auto"}}>
-                    <p class="bodytext">{detail[0].description}</p>
-                        <strong>{detail[0].title}</strong>
-                        <p class="bodytext" style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}}>{detail[0].description}</p>
+
+              <h1><strong>{detail[0].title}</strong></h1>
+                    <p style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white", marginLeft:"auto", marginRight:"auto"}} class="bodytext">{detail[0].description}</p>
+                        
+                        {/* <p class="bodytext" style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}}>{detail[0].description}</p> */}
                         {detail[0].creators?.map((creator) => (
                         <div class="role" key={creator.creatorId}>
                           <strong>{creator.creatorRole}</strong>
