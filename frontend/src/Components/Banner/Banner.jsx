@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../Banner/img/marvel.jpg"
 import HeaderBanner from "../Banner/Header/Header";
-
+import CheckoutBut from "../PayPal/PayPal";
 const Login = (props) => {
   return (
 <>
@@ -30,7 +30,7 @@ const Login = (props) => {
           <Caption>Disfrutá MARVEL PLUS + por un precio único mensual. </Caption>
           <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
           <PriceValue>ARS 995/mes (final)* </PriceValue>
-          <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
+          <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
         </Pricing> 
         </div> <div></div>
         <Pricing>
@@ -38,7 +38,7 @@ const Login = (props) => {
           <Caption>Disfrutá MARVEL PLUS + ANUAL </Caption>
           <Caption>Ahorrá contratando los dos servicios juntos con esta oferta única. </Caption>
           <PriceValue>ARS 3.850/año (final)*</PriceValue>
-          <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
+          <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
         </Pricing> 
         
       </ContainerPlan>
