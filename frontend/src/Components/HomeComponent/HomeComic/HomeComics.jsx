@@ -39,16 +39,15 @@ const HomeComics = () => {
     // eslint-disable-next-line
   }, [ page, copyComics])
 
-  console.log('start', start, 'end', end, 'currentPage', currentPage, 'page', page, 'copyComics', copyComics, 'data', data, 'allComics', allComics)
 
     return (
         <div className='MaxContained'>
         <NavBar/>
-        <div  className='Paginado'>
+        {/* <div  className='Paginado'>
             {numOfPages > 1 && (
               <CustomPagination setPage={setPage} numOfPages={numOfPages} />
              )}
-        </div>
+        </div> */}
        <SearchBarComics/>
         <div className='grid'>
         {currentPage &&        

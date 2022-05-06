@@ -11,10 +11,10 @@ const Login = (props) => {
       <a href="/login">
         <Logo src={logo} alt="Marvel" />
       </a>
-        <LogIn>INICIAR SESIÓN</LogIn>
+        <LogIn>LOG IN</LogIn>
           <NavMenu>
             <a href='/formUser'>
-              <span>SUSCRIBIRTE AHORA</span>
+              <span>SUSCRIBE NOW</span>
             </a>
             </NavMenu>
    </Nav>
