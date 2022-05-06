@@ -76,6 +76,10 @@ const FormEditUser = ({id, handleClose}) => {
                     />
                     {error.password && <p style={{ color:"red"}} > {error.password} </p>}
                 </div>
+                {/* agrego salto página para presentar */}
+                <br/>
+                <br/>
+                <br/>
                 <div>
                     <Button onClick={handleClose}> VOLVER </Button>
                     <Button type="submit"> CONFIRMAR </Button>
