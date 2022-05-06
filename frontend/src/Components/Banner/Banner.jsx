@@ -16,13 +16,12 @@ const Login = (props) => {
       </a>
       <a href='/login'  onClick={() => 
         loginWithRedirect()} >
-        <LogIn>INICIAR SESIÓN</LogIn>
+        <LogIn>LOG IN</LogIn>
       </a>
       <a href='/login' >
-        <LogIn>SUSCRIBITE AHORA</LogIn>
+        <LogIn>SUSCRIBE NOW</LogIn>
       </a>
    </Nav>
-
       <HeaderBanner />
       
 <Cont>

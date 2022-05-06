@@ -12,6 +12,7 @@ import Navbar from "../../Navbar/Navbar";
 
 import "./DetailComic.css"
 
+
 const DetailComic = () => {
   const { id } = useParams();
   const dispatch = useDispatch();

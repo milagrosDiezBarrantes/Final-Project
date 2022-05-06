@@ -4,12 +4,15 @@ export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
 export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
-export const GET_CHARACTER_ID = "GET_CHARACTER_ID"; // caso personaje por id
 export const USER_EDIT = "USER_EDIT"; 
-export const GET_NAME = "GET_NAME"; // buscar character por nombre
-export const GET_USERS = "GET_USERS"; 
 export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
+export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
+export const GET_NAME = "GET_NAME" // buscar character por nombre
+export const GET_USERS = "GET_USERS" 
+export const FILT_BY_PLAN = "FILT_BY_PLAN"
+//Autentication
+export const AUTHENTICATED = "AUTHENTICATED"
 
 
 //================CHARACTERS=================//
@@ -77,7 +80,6 @@ export function getAllComics() {          //para trerce todos los comics
     }
 }
 
-
 export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
@@ -128,7 +130,6 @@ export function postUser(payload) {
 }
 
 
-
 //======================USER EDIT ===============
 export const userEdit = (user) => {
     return async (dispatch) => {
@@ -147,10 +148,11 @@ export const userEdit = (user) => {
     }
 }
 
-export function getAllUsers (){
+export function getAllUsers (){    
     return async function(dispatch) {
         try {
             const users = await axios('http://localhost:3001/user');
+            console.log(users.data)
             return dispatch ({
                 type: GET_USERS,
                 payload: users.data
@@ -198,4 +200,19 @@ export const deleteComic = (id) => {
         }
     }
 };
+
+
+export const filterByPlan = (plan) =>{
+    return{
+        type: FILT_BY_PLAN,
+        payload: plan
+    }
+}
+//================AUTHENTICATED=================//
+export function authenticateUser(){
+    return{
+        type: AUTHENTICATED,
+        payload: true
+    }
+}
 

@@ -10,12 +10,11 @@ import { ThemeProvider } from '@mui/material/styles'
 import theme from "./Styles/Styles";
 import './index.css';
 import Admin from "./Components/Admin/Admin";
+import Profile from "./Components/Login/Profile";
 import "./App.css";
 import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import  Lecture from "./Components/Lecture/Lecture";
-import { Profile } from "./Components/Login/Profile";
-
 
 function App() {
   return (
@@ -34,13 +33,11 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<Admin/>} />
+          <Route path='/editProfile' element={<Profile/>} />
       </Routes>
       </Container>
     </div>
-
       </BrowserRouter>
-   
-
     </ThemeProvider>
   );
 }

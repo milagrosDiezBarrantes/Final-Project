@@ -1,9 +1,13 @@
-import React from "react";
+import React,{ useEffect} from "react";
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
-import {getAllUsers} from '../../Redux/Actions/actions';
+import {getAllUsers, filterByPlan} from '../../Redux/Actions/actions';
+
+import { Icon, Label, Menu, Table, Dropdown, Button } from 'semantic-ui-react'
+
+
 
 const Admin = () => {
   //CRUD COMICS
@@ -12,84 +16,119 @@ const Admin = () => {
   const dispatch = useDispatch();
   
   const usersList =useSelector((state) => state);
-
-  let  users = usersList.ComicsReducer.users;
+  let  users = usersList.ComicsReducer.copyUsers;
+  const [showUsers, setShowUsers] = React.useState(false);
+console.log(showUsers);
+  
   console.log('users', users);
+
+
+  
+const options = [
+    { key: 'standar', text: 'Monthly', value: 'standar' },
+    { key: 'premium', text: 'Annual', value: 'premium' },
+    { key: 'inactive', text: 'Inactive', value: 'inactive' }
+  ]
+  
+
+  
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   const handleFilter = (e) => {
       e.preventDefault();
-    //   dispatchEvent(filter(e.target.value))
-    console.log("filtramooo", e.target.value);
+      setShowUsers(true);
+    dispatch(filterByPlan(e.target.value))
   };
   const handleAll = (e) => {
     e.preventDefault();
-    dispatch(getAllUsers())
+    setShowUsers(!showUsers);    
  }
 
   return (
       <div>
       {/* //seccion de acciones */}
-        <div>
-            
+      <h2>Comics</h2>
+        
             {/*goes to form to create */}
-            <button onClick={() => history("/admin/addComic")}>
-            Add New Comic
-            </button>
-            {/*goes to form to editar, agregar input para search by id */}
-            <button onClick={() => history("/admin/editComic")}>
-                Edit Comic
-            </button>
+           <Button onClick={() => history("/admin/addComic")}>Add New Comic</Button>
+           <Button onClick={() => history("/admin/editComic")}>Edit Comic</Button>
+           <Button onClick={() => history("'Comic deleted")}>Delete Comic</Button>
 
-        </div>
 
-         {/* //seccion de acciones */}
+         {/* //seccion filtros */}
+
+
+
+
+
          <div>
              <div>
                  <h2>Users</h2>
-                <select onChange={handleFilter}>
+                <select >
                  <option value= ''>Filter by Plan</option>
-                    <option value='standar'>Standar</option>
-                    <option value='premium'>Premium</option>
+                    <option value='standar'>Monthly</option>
+                    <option value='premium'>Annual</option>
                     <option value='inactive'>Canceled</option>
-                    </select>
+                 </select>
 
+                
                 <button onClick={handleAll}>Show all users</button>
              </div>
                 <div>
 
-                {users?.map((user) => {
+                        <Table celled>
+    <Table.Header>
+    <Label ribbon>USERS</Label>
+      <Table.Row>
+        <Table.HeaderCell>Fullname</Table.HeaderCell>
+        <Table.HeaderCell>email</Table.HeaderCell>
+        <Table.HeaderCell>Username</Table.HeaderCell>
+        <Table.HeaderCell>Plan</Table.HeaderCell>
+        <Table.HeaderCell>Id</Table.HeaderCell>
+      </Table.Row>
+    </Table.Header>
+
+    {showUsers && users?.map((user) => {
                     return (
-                        <div key={user.id}>
-                            <table> 
-                                <thead>
-                                   <tr>
-                                       <th>Full Name</th>
-                                       
-                                       <th>email</th>
-                                       <th>Plan</th>
-
-                                   </tr> 
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>{user.firstName + user.lastName}</td>
-                                        <td>
-                                            {user.email}
-                                        </td>
-                                        <td>
-                                            {user.plan}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    )
-                })}                    
+    
+                        <Table.Row>    
+        <Table.Cell>{user.firstName + user.lastName}</Table.Cell>
+        <Table.Cell>{user.email}</Table.Cell>
+        <Table.Cell>{user.userName}</Table.Cell>
+        <Table.Cell>{user.plan}</Table.Cell>
+        <Table.Cell>Edit:{user.id}</Table.Cell>
+      
+        </Table.Row>
+              
+              )
+                })}       
+                                         </Table>            
          </div>
+         <Table.Footer>
+      <Table.Row>
+        <Table.HeaderCell colSpan='3'>
+          <Menu floated='right' pagination>
+            <Menu.Item as='a' icon>
+              <Icon name='chevron left' />
+            </Menu.Item>
+            <Menu.Item as='a'>1</Menu.Item>
+            <Menu.Item as='a'>2</Menu.Item>
+            <Menu.Item as='a'>3</Menu.Item>
+            <Menu.Item as='a'>4</Menu.Item>
+            <Menu.Item as='a' icon>
+              <Icon name='chevron' />
+            </Menu.Item>
+          </Menu>
+        </Table.HeaderCell>
+      </Table.Row>
+    </Table.Footer>
+  
 
       </div>
+        {/* Seccion stats */}
+
 
       </div>
   )
