@@ -6,7 +6,11 @@ import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = (props) => {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect} = useAuth0();
+  console.log(useAuth0());
+  
+
+  
   return (
 <>
 
@@ -14,10 +18,12 @@ const Login = (props) => {
       <a href="/banner">
         <Logo src={logo} alt="Marvel" />
       </a>
+      
       <a href='/login'  onClick={() => 
-        loginWithRedirect()} >
+        loginWithRedirect()} >      
         <LogIn>LOG IN</LogIn>
       </a>
+     
       <a href='/login'  onClick={() => 
         loginWithRedirect()} >
         <LogIn>SUSCRIBE NOW</LogIn>
