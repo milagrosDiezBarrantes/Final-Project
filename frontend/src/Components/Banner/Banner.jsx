@@ -3,20 +3,24 @@ import styled from "styled-components";
 import logo from "../Banner/img/marvel.jpg"
 import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Login = (props) => {
+  const { loginWithRedirect } = useAuth0();
   return (
 <>
 
   <Nav>
-      <a href="/login">
+      <a href="/banner">
         <Logo src={logo} alt="Marvel" />
       </a>
+      <a href='/login'  onClick={() => 
+        loginWithRedirect()} >
         <LogIn>INICIAR SESIÓN</LogIn>
-          <NavMenu>
-            <a href='/formUser'>
-              <span>SUSCRIBIRTE AHORA</span>
-            </a>
-            </NavMenu>
+      </a>
+      <a href='/login' >
+        <LogIn>SUSCRIBITE AHORA</LogIn>
+      </a>
    </Nav>
 
       <HeaderBanner />
@@ -211,7 +215,7 @@ const Nav = styled.nav`
   background-color: #040709;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   z-index: 3;
 `;
 const Logo = styled.img`

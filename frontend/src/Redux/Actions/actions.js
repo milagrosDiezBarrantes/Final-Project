@@ -4,12 +4,12 @@ export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
 export const POST_USER = "POST_USER";
 export const GET_COMICS = "GET_COMICS"
-export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
-export const USER_EDIT = "USER_EDIT" 
-export const GET_NAME = "GET_NAME" // buscar character por nombre
-export const GET_USERS = "GET_USERS" 
-
-
+export const GET_CHARACTER_ID = "GET_CHARACTER_ID"; // caso personaje por id
+export const USER_EDIT = "USER_EDIT"; 
+export const GET_NAME = "GET_NAME"; // buscar character por nombre
+export const GET_USERS = "GET_USERS"; 
+export const UPDATE_COMIC = "UPDATE_COMIC";
+export const DELETE_COMIC = "DELETE_COMIC";
 
 
 //================CHARACTERS=================//
@@ -78,8 +78,6 @@ export function getAllComics() {          //para trerce todos los comics
 }
 
 
-
-
 export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
@@ -98,13 +96,13 @@ export function getComicsByTitle(title) {
 
 export const getById = (id) => async dispatch => {
     try{
-       const res= await axios(`http://localhost:3001/comics/${id}`);
-       console.log('llega id?', id)
-       console.log('llega comic al payoad?', res)
-       return dispatch({
+        const res= await axios(`http://localhost:3001/comics/${id}`);
+        console.log('llega id?', id)
+        console.log('llega comic al payoad?', res)
+        return dispatch({
             type: GET_BY_ID,
             payload: res.data            
-       })
+    })
 
     }catch(err){
         console.log(err);
@@ -157,11 +155,47 @@ export function getAllUsers (){
                 type: GET_USERS,
                 payload: users.data
             })
-
     }
     catch(error){
         console.log(error)
     }
 }
 }
+
+// ==================ADMIN POST============================
+
+export function updateComic(comic) {
+    return async function(dispatch) {
+        try {
+            const comicE = {
+                title: comic.title,
+                description: comic.description,
+                image: comic.image,
+            };
+            const editComic = await axios.put(`http://localhost:3001/comics/${comic.id}`, comicE);
+            return dispatch ({
+                type: UPDATE_COMIC,
+                payload: editComic.data
+            })
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+}
+
+export const deleteComic = (id) => {
+    return async (dispatch) => {
+        try {
+            const comicDelete= await axios.delete(`http://localhost:3001/comics/${id}`);
+            return dispatch({
+                type: "DELETE_COMIC",
+                payload: comicDelete.data.remove,
+            })
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+};
 

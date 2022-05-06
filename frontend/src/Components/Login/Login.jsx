@@ -12,10 +12,11 @@ function Login() {
   return (
     <div>
       {
-        isAuthenticated ? <LogoutButton /> : <LoginButton />} 
+        isAuthenticated ? <LogoutButton /> : <LoginButton />
+      } 
         <Profile />
 
-        <div className="container">
+        {/* <div className="container">
         {
           isAuthenticated ? (
             <>
@@ -25,7 +26,7 @@ function Login() {
           ) : (
             <LoginButton />
           )}
-        </div>
+        </div> */}
     </div>
   );
 }
