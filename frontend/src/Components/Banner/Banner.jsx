@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../Banner/img/marvel.jpg"
+import CheckoutBut from "../PayPal/PayPal";
 const Login = (props) => {
 
   return (
@@ -36,6 +37,7 @@ const Login = (props) => {
           <PriceValue>ARS 995/mes (final)* </PriceValue>
           <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
         </Pricing> 
+        <CheckoutBut  totalPrice={7} items={1} totalItems={1}/>
         </div>
         <Pricing>
           <Title> CONTRATÁ MARVEL+ Y STARPLUS+ </Title>
@@ -45,6 +47,7 @@ const Login = (props) => {
           <SignUp target="_blank" href="/formUser">CONTRATAR AHORA</SignUp>
         </Pricing> 
         
+          <CheckoutBut  totalPrice={30} items={1} totalItems={1}/>
       </ContainerPlan>
   </div>  
     </>

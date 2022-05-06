@@ -3,7 +3,7 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-
+const { Creators } = require(`../db`)
 const router = Router();
 
 router.get("/all", async (req, res) => {
@@ -15,11 +15,11 @@ router.get("/all", async (req, res) => {
 		try {	
 
 			let i=0
-while(i < 5695){
+while(i < 5595){
 	let cha	= axios.get(`https://gateway.marvel.com/v1/public/creators?limit=100&offset=${i}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`)
 	creators.push(cha)
   console.log(i)
-  if(i!=5600){
+  if(i!=5500){
   i=i+100   
   }else{
     i=i+95
@@ -43,9 +43,11 @@ while(i < 5695){
 		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
 	}));
 	console.log("entre al if")
-	creators.forEach( async (e)=> await Comics.create(
-		{
-			id:e.id,
+	creators.forEach( async (e)=> await Creators.findOrCreate(
+		{where:
+
+			{
+				id:e.id,
 			firstName: e.firstName,
 			lastName: e.lastName,
 			fullName: e.fullName,
@@ -54,7 +56,8 @@ while(i < 5695){
 			stories: e.stories,
 			events: e.events,
 			profilePic: e.profilePic,
-		}))
+		}
+	}))
 		
 	return	res.status(201).json(creators);
 	} catch (err) {

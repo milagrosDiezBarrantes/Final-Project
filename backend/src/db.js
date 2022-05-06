@@ -30,7 +30,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 const { Users,Comics } = sequelize.models;
-
+Users.belongsToMany(Comics,{through:"Favorites" })
+Comics.belongsToMany(Users,{through: "Favorites"})
 
 // User.belongsTo(Plan, {as:"subscribe", })
 // Plan.hasMany(User, {as:"User", foreignKey:"subscribeId"})

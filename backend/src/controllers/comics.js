@@ -12,7 +12,7 @@ const getComics = async (req, res, next) => {
   if (comicsDb.length < 6) {
     try {
       let i = 0;
-      while (i < 1100) {
+      while (i < 1500) {
         let cha = axios.get(
           `https://gateway.marvel.com/v1/public/comics?limit=100&offset=${i}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
         );
@@ -30,24 +30,22 @@ const getComics = async (req, res, next) => {
       comics = comics.map((e) => ({
         id: e.id,
         title: e.title,
-        description: e.description,
         img: e.thumbnail.path + "." + e.thumbnail.extension,
         pages: e.pageCount,
         creators: e.creators.items?.map((a) => a.name),
       }));
       console.log("entre al if");
       comics.forEach(
-        async (e) =>
+        async (e) =>{if(!e.img.includes("image_not_available")&&e.title.length>4){
           await Comics.findOrCreate({
             where: {
               id: e.id,
-              title: e.title ? e.title : "Otro comic",
+              title: e.title,
               img: e.img,
-              description: e.description,
               pages: e.pages,
               creators: e.creators,
             },
-          })
+          })}}
       );
       comics = [...comics, ...comicsDb];
       return res.status(201).send(comics);

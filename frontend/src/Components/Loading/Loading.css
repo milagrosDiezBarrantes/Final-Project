@@ -28,17 +28,13 @@
     animation:girar 2s linear infinite;
 }
 .CambiarColor{
-<<<<<<< joel_b
+
     border: 15px solid black;
     border-top-color: white;
     border-bottom-color: white;
     border-top-style: solid;
     border-bottom-style: solid ;
-=======
-    border: 15px  black;
-    border-top-color: white;
-    border-bottom-color: white;
->>>>>>> main
+
     height: 30%;
     width: 30%;
     border-radius: 100%;
