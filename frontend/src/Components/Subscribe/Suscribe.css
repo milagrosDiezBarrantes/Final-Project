@@ -1,0 +1,56 @@
+.MaterContainer{
+    height:  200%;
+    width: 200%;
+    position: absolute;
+    display: flex;
+    
+}
+.ContainedSubscriptions{
+    border:5px solido red;
+    height: 90%;
+    width: 80%;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Subscription{
+    border:1px groove black;
+    border-radius: 20%;
+    
+    height: 700px;
+    width: 49%;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.Standar{
+ background-color: blue;
+ box-shadow: 10px 5px 5px rgb(22, 22, 63);
+}
+.Premium{
+    background-color: rgb(163, 163, 40);
+    box-shadow: 10px 5px 5px rgb(49, 49, 23);
+}
+
+
+.button {
+    background: #3498db;
+    width: 180px;
+    padding: 4px 0;
+    
+    
+}
+
+
