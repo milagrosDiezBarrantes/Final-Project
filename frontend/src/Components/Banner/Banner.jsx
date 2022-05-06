@@ -5,13 +5,39 @@ import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Login = (props) => {
-  const { loginWithRedirect} = useAuth0();
-  console.log(useAuth0());
-  
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { authenticateUser } from "../../Redux/Actions/actions";
 
+const Login = (props) => {
+  const {isAuthenticated, loginWithRedirect} = useAuth0();
+  const dispatch = useDispatch();
+  const authorized = useSelector(state => state.ComicsReducer.authenticated);
+  // const authorized_status= authorized
+  console.log(authorized)
+  console.log(isAuthenticated, 'autenticado en banner?');
+  console.log(useAuth0(), 'useAuth0');
+
+  useEffect(() => {
+    dispatch(authenticateUser());
+    
+  },[]);
+   
   
   return (
+    isAuthenticated && authorized ? (
+      <Nav>
+      <a href="/">
+        <Logo src={logo} alt="Marvel" />
+      </a>
+      
+      <a href='/login'  onClick={() => 
+        loginWithRedirect()} >      
+        <LogIn>MY PROFILE</LogIn>
+      </a>
+     
+   </Nav>)
+   :
 <>
 
   <Nav>
@@ -79,7 +105,7 @@ top: 40px;
 min-height: 95vh;
 padding: 5px calc(3.5vw + 5px);
 overflow-x: hidden;
-background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg") no-repeat center center fixed;
+${'' /* background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg") no-repeat center center fixed; */}
 background-size: cover;
 `;
 
@@ -121,7 +147,7 @@ margin-bottom: 10px;
 :last-child {
   margin-left: 5;
   margin-right: 10;
-  background-image: url('http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg');
+  ${'' /* background-image: url('http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg'); */}
 }
 `;
 const PriceValue = styled.div`
@@ -236,7 +262,7 @@ const Container = styled.section`
   flex-direction: column;
   height: 100vh;
   text-align: center;
-  background-image: url('https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg');
+  ${'' /* background-image: url('https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg'); */}
   opacity: 0.8;
   background-repeat: no-repeat;
   background-size: cover;
@@ -256,7 +282,7 @@ const Content = styled.div`
   padding: 80px 40px;
 `;
 const BackgroundImg = styled.div`
-  background-image: url('../Banner/img/mrv.gif');
+  ${'' /* background-image: url('../Banner/img/mrv.gif'); */}
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
