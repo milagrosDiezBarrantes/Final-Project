@@ -5,8 +5,7 @@ module.exports = (sequelize) => {
   sequelize.define("Comics", {
     title: {
       type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: "Otro comic",
+      allowNull: false,
     },
     idPrincipal:{
       type:DataTypes.UUID,
@@ -17,14 +16,10 @@ module.exports = (sequelize) => {
     },
     id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     img: {
       type: DataTypes.TEXT,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
     },
     pages: { 
       type: DataTypes.INTEGER,
