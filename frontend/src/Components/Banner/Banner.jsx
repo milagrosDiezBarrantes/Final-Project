@@ -15,7 +15,7 @@ const Login = (props) => {
 <>
 
   <Nav>
-      <a href="/banner">
+      <a href="/">
         <Logo src={logo} alt="Marvel" />
       </a>
       
