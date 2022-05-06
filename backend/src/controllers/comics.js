@@ -160,7 +160,7 @@ const getSerieById = async (req, res, next) => {
 const createComic = async (req,res,next)=>{
   try {
     const {title,img,description,pages,creators} = req.body
-    if (title && img && description && creators){
+    if (title && img && description){
       const createComic = await Comics.create({
         title,
         img,
@@ -168,10 +168,10 @@ const createComic = async (req,res,next)=>{
         pages,
         creators,
       })
-      res.status(200).send({ msg: "Comic successfully created" })
+      res.status(200).send(  {message: "Comic successfully created"})
     }else{
 
-      res.status(404).send({msg:"faltan datos",data:[title,img,description,pages,creators]})
+      res.status(404).send({ "Missing data": [title,img,description,pages,creators]})
     }
   }
   catch (err) {
@@ -194,8 +194,7 @@ const updateComic = async (req, res, next) => {
   res.status(200).send('Comic succesfully updated');
   }catch(error){
     next(error);
-  }
-    
+  } 
 }
 
 module.exports = { getComics, getById, getByTitle, getSerieById, createComic, updateComic };
