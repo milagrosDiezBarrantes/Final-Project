@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import cinco from "../Home/img/cinco.jpg";
-import cuatro from "../Home/img/cuatro.jpg";
-import tres from "../Home/img/tres.jpg";
-import dos from "../Home/img/dos.jpg";
-import uno from "../Home/img/uno.jpg";
+import cinco from "./img/cinco.jpg";
+import cuatro from "./img/cuatro.jpg";
+import tres from "./img/tres.jpg";
+import dos from "./img/dos.jpg";
+import uno from "./img/uno.jpg";
 
 
 
@@ -24,29 +24,19 @@ const ImgSlider = ()=>{
   return (
     <Carousel {...settings}>
       <Wrap>
-          <a>
             <img img className="uno" src={uno} alt="slider"/>
-          </a>
       </Wrap>
       <Wrap>
-          <a>
             <img  img className="dos" src={dos} alt="slider"/>
-          </a>
       </Wrap>
       <Wrap>
-          <a>
             <img  img className="tres" src={tres} alt="slider"/>
-          </a>
       </Wrap>
       <Wrap>
-          <a>
             <img  img className="cuatro" src={cuatro} alt="slider"/>
-          </a>
       </Wrap>
       <Wrap>
-          <a>
             <img  img className="cinco" src={cinco} alt="slider"/>
-          </a>
       </Wrap>
     </Carousel>
   )
