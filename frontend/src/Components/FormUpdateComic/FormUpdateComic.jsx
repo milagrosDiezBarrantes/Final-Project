@@ -6,7 +6,7 @@ import { FaTimesCircle } from 'react-icons/fa';
 import AlertPopUp from '../AlertPop/AlertPop';
 import { validate } from '../../Functions/validacionesForm/validationForm';
 
-export const FormUpdateComic = (handleClose, id) => {
+const FormUpdateComic = ({handleClose, id}) => {
     const dispatch = useDispatch();
     const comic = useState(state => state.ComicReducer.copyComics);
     const [comicDetail, setcomicDetail] = useState({
@@ -31,7 +31,9 @@ export const FormUpdateComic = (handleClose, id) => {
         let {name, value} = e.target;
         setcomicDetail({ ...comicDetail, [name]: value });
 
+
         setError(validate({ ...comicDetail, [name]: value }));
+    
     }
 
     const [activeAlertUpgrade, setActiveAlertUpgrade] = useState(false);
@@ -48,6 +50,7 @@ export const FormUpdateComic = (handleClose, id) => {
         e.preventDefault();
         handleOpenAlertUpgrade()
     }
+
 
     useEffect(() => {
         if(successForm) {
@@ -128,3 +131,5 @@ export const FormUpdateComic = (handleClose, id) => {
         </Container>
     )
 }
+
+export default FormUpdateComic
