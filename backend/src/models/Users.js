@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     age: {
-      type: DataTypes.TEXT,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     password: {
@@ -35,11 +35,9 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    plan: {
-      type: DataTypes.ENUM("standar","premium","admin"),
+    plan_id: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-  },{
-    timestamps:false
   });
 };
