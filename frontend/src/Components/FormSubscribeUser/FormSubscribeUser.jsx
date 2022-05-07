@@ -27,6 +27,7 @@ export const FormSubscribeUser = () => {
         password: '',
         password2: '',
         picture:'',
+        plan_id: 12
     })
 
     useEffect(() => {
@@ -57,6 +58,7 @@ export const FormSubscribeUser = () => {
             password: '',
             password2: '',
             picture:'',
+            _id: 'standar'
         })
         navigate('/profile');
     }
@@ -96,7 +98,7 @@ export const FormSubscribeUser = () => {
                 <div>
                     <label>Age:</label>
                     <input
-                        type="text"
+                        type="number"
                         placeholder="Age"
                         name="age"
                         onChange={handleChange}
