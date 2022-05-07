@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaExclamationCircle } from 'react-icons/fa';
 
+
 const AlertPop = ({ activeAlert, actionAlert, handleOpenAlert, handleSuccess }) => {
     return (
         <div>

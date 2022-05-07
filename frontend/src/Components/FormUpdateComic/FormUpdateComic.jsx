@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { getById, updateComic } from '../../Redux/Actions/actions';
-import { validation } from './Validation';
 import { Container, Form, Button} from 'semantic-ui-react';
 import { FaTimesCircle } from 'react-icons/fa';
 import AlertPopUp from '../AlertPop/AlertPop';
+import { validate } from '../../Functions/validacionesForm/validationForm';
 
-export const FormUpdateComic = (handleClose, id) => {
+const FormUpdateComic = ({handleClose, id}) => {
     const dispatch = useDispatch();
     const comic = useState(state => state.ComicReducer.copyComics);
     const [comicDetail, setcomicDetail] = useState({
@@ -15,7 +15,7 @@ export const FormUpdateComic = (handleClose, id) => {
         image: '',
     });
 
-    const [err, setErr] = useState({});
+    const [error, setError] = useState({});
     const {title, description, image} = comicDetail;
 
     useEffect(()=> {
@@ -31,7 +31,9 @@ export const FormUpdateComic = (handleClose, id) => {
         let {name, value} = e.target;
         setcomicDetail({ ...comicDetail, [name]: value });
 
-        setErr(validation({ ...comicDetail, [name]: value }));
+
+        setError(validate({ ...comicDetail, [name]: value }));
+    
     }
 
     const [activeAlertUpgrade, setActiveAlertUpgrade] = useState(false);
@@ -49,19 +51,20 @@ export const FormUpdateComic = (handleClose, id) => {
         handleOpenAlertUpgrade()
     }
 
+
     useEffect(() => {
         if(successForm) {
             dispatch(updateComic(id));
             setcomicDetail({
                 title:'',
                 description: '',
-                image:'',   
+                image:'',  
             })
 
-            handleClose();
-            handleUpgradeSuccesForm()
+            // handleClose();
+            // handleUpgradeSuccesForm()
         }
-    }, [dispatch, successForm])
+    }, [dispatch, id, successForm])
 
     return (
         <Container 
@@ -97,7 +100,7 @@ export const FormUpdateComic = (handleClose, id) => {
                         value={title}
                         onChange={handleChange}
                     />
-                    {err.title && <p style={{ color:"red"}}> {err.title}</p>}
+                    {error.title && <p style={{ color:"red"}}> {error.title}</p>}
                 </div>
                 <div>
                     <label>Description:</label>
@@ -116,7 +119,7 @@ export const FormUpdateComic = (handleClose, id) => {
                         onChange={handleChange}
                         placeholder='Image comic'
                     />
-                    {err.image && <p style={{ color:"red"}}> {err.image}</p>}
+                    {error.image && <p style={{ color:"red"}}> {error.image}</p>}
                 </div>
             </Form>
             <AlertPopUp
@@ -124,8 +127,9 @@ export const FormUpdateComic = (handleClose, id) => {
                 actionAlert ='update'
                 handleOpenAlert = {handleOpenAlertUpgrade}
                 handleSuccess = {handleUpgradeSuccesForm}
-
             />
         </Container>
     )
 }
+
+export default FormUpdateComic
