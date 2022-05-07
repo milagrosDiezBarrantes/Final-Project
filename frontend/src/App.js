@@ -17,7 +17,8 @@ import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
 import {FormUpdateComic} from "./Components/FormUpdateComic/FormUpdateComic";
-
+import Paypal from './Components/PayPal/PayPal.jsx';
+import { FormSubscribeUser } from "./Components/FormSubscribeUser/FormSubscribeUser";
 
 function App() {
   return (
@@ -32,12 +33,14 @@ function App() {
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
           <Route path='/formAdmin' element={<FormAdmin />} />
-          <Route exact path='/lecture' element={<Lecture />} />
+          <Route path='/lecture' element={<Lecture />} />
+          <Route path='/formSubscribe' element={<FormSubscribeUser />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<Admin/>} />
           <Route path='/editProfile' element={<FormEditUser/>} />
           <Route path='/admin/xomic' element={<FormUpdateComic/>} />
+          <Route path='paypal' element={<Paypal/>} />
 
       </Routes>
       </Container>

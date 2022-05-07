@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { userEdit } from "../../Redux/Actions/actions";
-import { Container, Form, Button} from 'semantic-ui-react';
-import { useNavigate} from 'react-router-dom';
-import { validate } from "../../Functions/validacionesForm/validationForm";
+import { useNavigate } from 'react-router-dom';
+import { Container, Form, Button } from 'semantic-ui-react';
+import { validate } from '../../Functions/validacionesForm/validationForm';
+import { postUser } from '../../Redux/Actions/actions';
 
-const FormEditUser = ({id, handleClose}) => {
+export const FormSubscribeUser = () => {
+
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const navigate= useNavigate(); 
 
+    const disable = useMemo(() => {
+        if(error.firstName || error.lastName || error.userName || error.password || error.password2 || error.email || error.picture) {
+            return true;
+        }
+        return false;
+    }, [error])
+
     const [input, setInput] = useState({
-        email: "",
-        password: "", 
+        firstName: '',
+        lastName: '',
+        userName:'',
+        password: '',
+        password2: '',
+        email:'',
+        picture:'',
     })
 
     useEffect(() => {
@@ -33,16 +46,18 @@ const FormEditUser = ({id, handleClose}) => {
 
     function handleSubmit(e, email, password) {
         e.preventDefault();
-        let info= {
-            email,
-            password,
-            id
-        }
-        dispatch(userEdit(info)).then(handleClose());
-        navigate('/profile');
+        dispatch(postUser(input));
+        setInput({
+            firstName: '',
+            lastName: '',
+            userName:'',
+            password: '',
+            password2: '',
+            email:'',
+            picture:'',
+        })
+        navigate('/paypal');
     }
-
-
     return (
         <Container
             style={{
@@ -54,7 +69,7 @@ const FormEditUser = ({id, handleClose}) => {
                 height:"100vh",
             }}
         >
-            <h1>EDITAR DATOS</h1>
+            <h1>Subscribe</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>Email:</label>
@@ -81,12 +96,9 @@ const FormEditUser = ({id, handleClose}) => {
                 <br/>
                 <br/>
                 <div>
-                    <Button onClick={handleClose}> VOLVER </Button>
-                    <Button type="submit"> CONFIRMAR </Button>
+                    <Button onChange={handleChange} type='submit' disabled={disable}> Sign up </Button>
                 </div>
             </Form>
         </Container>
     )
 }
-
-export default FormEditUser;

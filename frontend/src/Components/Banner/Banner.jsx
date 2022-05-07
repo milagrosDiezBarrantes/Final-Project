@@ -20,25 +20,22 @@ const Login = (props) => {
   useEffect(() => {
     dispatch(authenticateUser());
     
-  },[]);
-   
+  },[dispatch]);
   
   return (
     isAuthenticated && authorized ? (
       <Nav>
-      <a href="/">
-        <Logo src={logo} alt="Marvel" />
-      </a>
-      
-      <a href='/login'  onClick={() => 
-        loginWithRedirect()} >      
-        <LogIn>MY PROFILE</LogIn>
-      </a>
-     
-   </Nav>)
-   :
+        <a href="/">
+          <Logo src={logo} alt="Marvel" />
+        </a>
+        
+        <a href='/login'  onClick={() => 
+          loginWithRedirect()} >      
+          <LogIn>MY PROFILE</LogIn>
+        </a>
+      </Nav>)
+  :
 <>
-
   <Nav>
       <a href="/">
         <Logo src={logo} alt="Marvel" />
@@ -48,12 +45,10 @@ const Login = (props) => {
         loginWithRedirect()} >      
         <LogIn>LOG IN</LogIn>
       </a>
-     
-      <a href='/login'  onClick={() => 
-        loginWithRedirect()} >
+      <a href='/formSubscribe' >
         <LogIn>SUSCRIBE NOW</LogIn>
       </a>
-   </Nav>
+    </Nav>
       <HeaderBanner />
       
 <Cont>
