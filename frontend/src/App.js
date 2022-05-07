@@ -16,8 +16,8 @@ import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
-import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic";
-
+import {FormUpdateComic} from "./Components/FormUpdateComic/FormUpdateComic";
+import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
       <div className="app">
         <Container>
         <Routes>
+          <Route path="/favorite" element={<Favorite />} />
           <Route exact path='/' element={<Banner />} />
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
@@ -38,7 +39,6 @@ function App() {
           <Route path='/admin' element={<Admin/>} />
           <Route path='/editProfile' element={<FormEditUser/>} />
           <Route path='/admin/xomic' element={<FormUpdateComic/>} />
-
       </Routes>
       </Container>
     </div>

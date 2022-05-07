@@ -20,9 +20,9 @@ export const Profile = () => {
       <div className="container">
          <div className="details_container">
          <h1 className="">User Name:</h1>
-        <h2 className="">{user.nickname}</h2>
+        <h2 className="">{user.userName}</h2>
          <div className="header">
-         <ProfileImage src={user.picture} alt={user.name}  />
+         <ProfileImage src={user.picture} alt={user.fistName}  />
         <div className=""></div>
         <Button className="button">
           <Link to="/editProfile">
@@ -30,7 +30,7 @@ export const Profile = () => {
           </Link>
         </Button>
         
-         {/*<h3 className="">Name:</h3>
+        {/*<h3 className="">Name:</h3>
 
         comentado para muestra viernes <h4 className="">{user.name}</h4>
         <p className="">Email: {user.email}</p> */}
