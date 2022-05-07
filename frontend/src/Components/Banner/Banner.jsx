@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../Banner/img/marvel.jpg"
+import logo from "../Banner/img/marvel.jpg";
 import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -10,104 +10,110 @@ import { useEffect } from "react";
 import { authenticateUser } from "../../Redux/Actions/actions";
 
 const Login = (props) => {
-  const {isAuthenticated, loginWithRedirect} = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
-  const authorized = useSelector(state => state.ComicsReducer.authenticated);
-  console.log(authorized)
-  console.log(isAuthenticated, 'autenticado en banner?');
-  console.log(useAuth0(), 'useAuth0');
+  const authorized = useSelector((state) => state.ComicsReducer.authenticated);
 
   useEffect(() => {
     dispatch(authenticateUser());
-    
-  },[]);
-   
-  
-  return (
-    isAuthenticated && authorized ? (
-      <Nav>
-      <a href="/">
-        <Logo src={logo} alt="Marvel" />
-      </a>
-      
-      <a href='/login'  onClick={() => 
-        loginWithRedirect()} >      
-        <LogIn>MY PROFILE</LogIn>
-      </a>
-     
-   </Nav>)
-   :
-<>
+  }, []);
 
-  <Nav>
-      <a href="/">
-        <Logo src={logo} alt="Marvel" />
-      </a>
-      
-      <a href='/login'  onClick={() => 
-        loginWithRedirect()} >      
-        <LogIn>LOG IN</LogIn>
-      </a>
-     
-      <a href='/login'  onClick={() => 
-        loginWithRedirect()} >
-        <LogIn>SUSCRIBE NOW</LogIn>
-      </a>
-   </Nav>
+  return isAuthenticated && authorized ? (
+    <>
+      <Nav>
+        <a href="/">
+          <Logo src={logo} alt="Marvel" />
+        </a>
+
+        <a href="/homeComics">
+          <LogIn>HOME</LogIn>
+        </a>
+      </Nav>
       <HeaderBanner />
-      
-<Cont>
-  <div class="overlay"> 
-      <ContainerPlan>   
-      <div className="">
-      <Pricing>
-          <Title> GET MARVEL COMIC Y STARPLUS+ </Title>
-          <Caption>Get endless entertainment, enjoy your favorites comics and series. </Caption>
-          <Caption>Save money with this bundle.</Caption>
-          <PriceValue>ARS 995/month (final)* </PriceValue>
-          <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
-        </Pricing> 
-        </div> <div></div>
-        <Pricing>
-          <Title> GET MARVEL COMIC</Title>
-          <Caption>Year subscription MARVEL PLUS</Caption>
-          <Caption>Access endless Marvel Comics World for a new price! </Caption>
-          <PriceValue>ARS 3.850/year (final)*</PriceValue>
-          <SignUp target="_blank" href="/formUser"><CheckoutBut  totalPrice={7} items={1} totalItems={1}/></SignUp>
-        </Pricing> 
-        
-      </ContainerPlan>
-  </div>
-</Cont>
-  <div>
-     <Container >
-        <Content>
-          <CTA >
-            <SignUp target="_blank" href="/AboutUs">Tell me more</SignUp>
-            <Description>Get Primer Access to Raya and the last Dragon for an additional fee with a Marvel + Subscription. As of 04/05/2022, the price of Marvel + and The Marvel Bundle will increase by $1.</Description>
-          </CTA>
-          <BackgroundImg />
-        </Content>
-      </Container>
-    </div>  
+    </>
+  ) : (
+    <>
+      (
+      <Nav>
+        <a href="/">
+          <Logo src={logo} alt="Marvel" />
+        </a>
+
+        <a href="/login" onClick={() => loginWithRedirect()}>
+          <LogIn>LOG IN</LogIn>
+        </a>
+
+        <a href="/login" onClick={() => loginWithRedirect()}>
+          <LogIn>SUSCRIBE NOW</LogIn>
+        </a>
+      </Nav>
+      )
+      <HeaderBanner />
+      <Cont>
+        <div class="overlay">
+          <ContainerPlan>
+            <div className="">
+              <Pricing>
+                <Title> GET MARVEL COMIC Y STARPLUS+ </Title>
+                <Caption>
+                  Get endless entertainment, enjoy your favorites comics and
+                  series.{" "}
+                </Caption>
+                <Caption>Save money with this bundle.</Caption>
+                <PriceValue>ARS 995/month (final)* </PriceValue>
+                <SignUp target="_blank" href="/formUser">
+                  <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+                </SignUp>
+              </Pricing>
+            </div>{" "}
+            <div></div>
+            <Pricing>
+              <Title> GET MARVEL COMIC</Title>
+              <Caption>Year subscription MARVEL PLUS</Caption>
+              <Caption>
+                Access endless Marvel Comics World for a new price!{" "}
+              </Caption>
+              <PriceValue>ARS 3.850/year (final)*</PriceValue>
+              <SignUp target="_blank" href="/formUser">
+                <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+              </SignUp>
+            </Pricing>
+          </ContainerPlan>
+        </div>
+      </Cont>
+      <div>
+        <Container>
+          <Content>
+            <CTA>
+              <SignUp target="_blank" href="/AboutUs">
+                Tell me more
+              </SignUp>
+              <Description>
+                Get Primer Access to Raya and the last Dragon for an additional
+                fee with a Marvel + Subscription. As of 04/05/2022, the price of
+                Marvel + and The Marvel Bundle will increase by $1.
+              </Description>
+            </CTA>
+            <BackgroundImg />
+          </Content>
+        </Container>
+      </div>
     </>
   );
 };
 
-
-
 const Cont = styled.div`
-display: block;
-color: #f8f8f8;
-position: relative;
-top: 40px;
-min-height: 95vh;
-padding: 5px calc(3.5vw + 5px);
-overflow-x: hidden;
-background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg") no-repeat center center fixed;
-background-size: cover;
+  display: block;
+  color: #f8f8f8;
+  position: relative;
+  top: 40px;
+  min-height: 95vh;
+  padding: 5px calc(3.5vw + 5px);
+  overflow-x: hidden;
+  background: url("https://wallup.net/wp-content/uploads/2019/10/584202-captain-america-avengers-748x468.jpg")
+    no-repeat center center fixed;
+  background-size: cover;
 `;
-
 
 const Caption = styled.div`
   display: flex;
@@ -128,26 +134,25 @@ const Title = styled.div`
   margin-bottom: 20px;
 `;
 const Pricing = styled.div`
-
-display: flex;
-justify-content: center;
-background: center;
-width: 390px;
-background: #fff;
-flex-direction: column;
-border-radius: 10px;
-box-sizing: border-box;
-box-shadow: 10px 11px 16px 10px rgba(0, 0, 0, 0.1);
-padding: 40px;
-text-align: center;
-user-select: none;
-margin-right: 30px;
-margin-bottom: 10px;
-:last-child {
-  margin-left: 5;
-  margin-right: 10;
-  background-image: url('http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg');
-}
+  display: flex;
+  justify-content: center;
+  background: center;
+  width: 390px;
+  background: #fff;
+  flex-direction: column;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 10px 11px 16px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+  user-select: none;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  :last-child {
+    margin-left: 5;
+    margin-right: 10;
+    background-image: url("http://4everstatic.com/imagenes/850xX/abstractos/fondo-rojo-170204.jpg");
+  }
 `;
 const PriceValue = styled.div`
   display: flex;
@@ -158,12 +163,11 @@ const PriceValue = styled.div`
   margin-bottom: 20px;
 `;
 const ContainerPlan = styled.div`
-    display: flex;
-    @media (max-width: 500px) {
+  display: flex;
+  @media (max-width: 500px) {
     display: flex;
     flex-direction: column;
     width: 100%;
-    
   }
 `;
 const NavMenu = styled.div`
@@ -261,12 +265,11 @@ const Container = styled.section`
   flex-direction: column;
   height: 100vh;
   text-align: center;
-  background-image: url('https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg');
+  background-image: url("https://cdn.wallpapersafari.com/47/0/gjPEi8.jpg");
   opacity: 0.8;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
- 
 `;
 const Content = styled.div`
   margin-bottom: 10vw;
@@ -281,7 +284,7 @@ const Content = styled.div`
   padding: 80px 40px;
 `;
 const BackgroundImg = styled.div`
-  background-image: url('../Banner/img/mrv.gif');
+  background-image: url("../Banner/img/mrv.gif");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -292,7 +295,6 @@ const BackgroundImg = styled.div`
   right: 0;
   height: 100vh;
   z-index: -1;
-  
 `;
 const CTA = styled.div`
   max-width: 650px;
@@ -314,26 +316,25 @@ const SignUp = styled.a`
   font-weight: bold;
   border-radius: 4px;
 
-  &:hover{
+  &:hover {
     background-color: #0483ee;
   }
 `;
 const Description = styled.p`
-font-size: 13px;
-font-weight: 1000;
-letter-spacing: 1.3px;
-line-height: 1.5;
-border-radius: 10px;
-display:inline-block ;
+  font-size: 13px;
+  font-weight: 1000;
+  letter-spacing: 1.3px;
+  line-height: 1.5;
+  border-radius: 10px;
+  display: inline-block;
 
-position: relative;
-width: 500px;
-height: 65px;
-background:#;
-border-radius: 15px;
-overflow:hidden ;
-box-shadow: 0px 10px 10px ;
+  position: relative;
+  width: 500px;
+  height: 65px;
+  background: #;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 10px 10px;
 `;
-
 
 export default Login;
