@@ -5,7 +5,7 @@ import { Container, Form, Button} from 'semantic-ui-react';
 import { useNavigate} from 'react-router-dom';
 import { validate } from "../../Functions/validacionesForm/validationForm";
 
-const FormEditUser = ({id, handleClose}) => {
+const FormEditUser = ({ handleClose}) => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const navigate= useNavigate(); 
@@ -13,6 +13,7 @@ const FormEditUser = ({id, handleClose}) => {
     const [input, setInput] = useState({
         email: "",
         password: "", 
+        password2: "", 
     })
 
     useEffect(() => {
@@ -31,14 +32,14 @@ const FormEditUser = ({id, handleClose}) => {
         }))
     }
 
-    function handleSubmit(e, email, password) {
+    function handleSubmit(e, email, password, password2) {
         e.preventDefault();
-        let info= {
+        setInput ({
             email,
             password,
-            id
-        }
-        dispatch(userEdit(info)).then(handleClose());
+            password2,
+        })
+        dispatch(userEdit()).then(handleClose());
         navigate('/profile');
     }
 
@@ -73,16 +74,28 @@ const FormEditUser = ({id, handleClose}) => {
                         placeholder="Password"
                         name="password"
                         onChange={handleChange}
+                        autocomplete="current-password"
                     />
                     {error.password && <p style={{ color:"red"}} > {error.password} </p>}
+                </div>
+                <div>
+                    <label>Repeat password*:</label>
+                    <input
+                        type="new-password"
+                        placeholder="Repeat password"
+                        name="password2"
+                        onChange={handleChange}
+                        autocomplete="new-password"
+                    />
+                    {error.password2 && <p style={{ color:"red"}} > {error.password2} </p>}
                 </div>
                 {/* agrego salto página para presentar */}
                 <br/>
                 <br/>
                 <br/>
                 <div>
-                    <Button onClick={handleClose}> VOLVER </Button>
-                    <Button type="submit"> CONFIRMAR </Button>
+                    <Button onClick={handleClose}> Back </Button>
+                    <Button type="submit"> Confirm </Button>
                 </div>
             </Form>
         </Container>

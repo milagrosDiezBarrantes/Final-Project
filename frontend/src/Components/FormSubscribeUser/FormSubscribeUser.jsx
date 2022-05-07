@@ -12,7 +12,7 @@ export const FormSubscribeUser = () => {
     const navigate= useNavigate(); 
 
     const disable = useMemo(() => {
-        if(error.firstName || error.lastName || error.userName || error.password || error.password2 || error.email || error.picture) {
+        if(error.firstName || error.lastName || error.userName || error.password || error.password2 || error.email || error.age ) {
             return true;
         }
         return false;
@@ -21,10 +21,11 @@ export const FormSubscribeUser = () => {
     const [input, setInput] = useState({
         firstName: '',
         lastName: '',
+        age:'',
         userName:'',
+        email:'',
         password: '',
         password2: '',
-        email:'',
         picture:'',
     })
 
@@ -44,19 +45,20 @@ export const FormSubscribeUser = () => {
         }))
     }
 
-    function handleSubmit(e, email, password) {
+    function handleSubmit(e) {
         e.preventDefault();
         dispatch(postUser(input));
         setInput({
             firstName: '',
             lastName: '',
+            age:'',
             userName:'',
+            email:'',
             password: '',
             password2: '',
-            email:'',
             picture:'',
         })
-        navigate('/paypal');
+        navigate('/profile');
     }
     return (
         <Container
@@ -72,12 +74,53 @@ export const FormSubscribeUser = () => {
             <h1>Subscribe</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
+                    <label>First name:</label>
+                    <input
+                        type="text"
+                        placeholder="First name"
+                        name="firstName"
+                        onChange={handleChange}
+                    />
+                    {error.firstName && <p style={{ color:"red"}} >{error.firstName}</p>}
+                </div>
+                <div>
+                    <label>Last name:</label>
+                    <input
+                        type="text"
+                        placeholder="Last name"
+                        name="lastName"
+                        onChange={handleChange}
+                    />
+                    {error.lastName && <p style={{ color:"red"}} >{error.lastName}</p>}
+                </div>
+                <div>
+                    <label>Age:</label>
+                    <input
+                        type="text"
+                        placeholder="Age"
+                        name="age"
+                        onChange={handleChange}
+                    />
+                    {error.age && <p style={{ color:"red"}} >{error.age}</p>}
+                </div>
+                <div>
+                    <label>User name:</label>
+                    <input
+                        type="text"
+                        placeholder="User name"
+                        name="userName"
+                        onChange={handleChange}
+                    />
+                    {error.userName && <p style={{ color:"red"}} >{error.userName}</p>}
+                </div>
+                <div>
                     <label>Email:</label>
                     <input
                         type="email"
                         placeholder="Email"
                         name="email"
                         onChange={handleChange}
+                        autoComplete="username"
                     />
                     {error.email && <p style={{ color:"red"}} >{error.email}</p>}
                 </div>
@@ -88,8 +131,30 @@ export const FormSubscribeUser = () => {
                         placeholder="Password"
                         name="password"
                         onChange={handleChange}
+                        autoComplete="current-password"
                     />
                     {error.password && <p style={{ color:"red"}} > {error.password} </p>}
+                </div>
+                <div>
+                    <label>Repeat password*:</label>
+                    <input
+                        type="password"
+                        placeholder="Repeat password"
+                        name="password2"
+                        onChange={handleChange}
+                        autoComplete="new-password"
+                    />
+                    {error.password2 && <p style={{ color:"red"}} > {error.password2} </p>}
+                </div>
+                <div>
+                    <label>Image:</label>
+                    <input
+                        type="URL"
+                        placeholder="Your image"
+                        name="picture"
+                        onChange={handleChange}
+                    />
+                    {error.picture && <p style={{ color:"red"}} > {error.picture} </p>}
                 </div>
                 {/* agrego salto página para presentar */}
                 <br/>

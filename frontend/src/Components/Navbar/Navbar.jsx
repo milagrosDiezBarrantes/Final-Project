@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DrawerComp from "../Navbar/Drawer";
-//import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from "../Banner/img/marvel.jpg";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
@@ -62,9 +62,9 @@ export default function Navbar() {
                 {/* <Tab label="About Us" href="/AboutUs" />
                 <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
-            <Stack direction="row" spacing={2}>
+            <Link to= '/profile'>
               <Avatar alt="A" src="/static/images/avatar/1.jpg" />
-            </Stack>
+            </Link>
             <a href='/'  onClick={() => logout({ returnTo: window.location.origin })} >
             <LogIn>LOG OUT</LogIn>
           </a>

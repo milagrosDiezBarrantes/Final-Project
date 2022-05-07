@@ -6,40 +6,29 @@ export function validate(input) {
     const validPassword = /^.{4,12}$/; // 4 a 12 digitos.
     const validPicture= /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/ ;
     const validTitle = /^[a-zA-Z\s]+$/
+    const validAge = /^[1-9][0-9]*$/
     
     let error = {};
     
-    if (!input.validFirstName.length) {
-        error.firstName = 'This field cannot be empty';
-    }
-    if (!validFirstName.test(input.firstName)) {
+    if (input.firstName && !validFirstName.test(input.firstName)) {
         error.firstName = 'Special characters or numbers are not allowed';
     }
-    if (!input.validLastName.length) {
-        error.lastName = 'This field cannot be empty';
-    }
-    if (!validLastName.test(input.lastName)) {
+    if (input.lastName && !validLastName.test(input.lastName)) {
         error.lastName = 'Special characters or numbers are not allowed';
     }
-    if (!input.userName) {
-        error.userName = 'This field cannot be empty';
-    }
-    if (!validUser.test(input.userName)) {
+    if (input.userName && !validUser.test(input.userName)) {
         error.userName = 'The user must have 4 to 10 digits';
     }
-    if (!input.description) {
+    if(input.age <= 16 && !validAge.test(input.age)) {
+        error.age = 'Must be 16 years';
+    }
+    if (input.description) {
         error.description = 'This field cannot be empty';
     }
-    if (!input.email.length) {
-        error.email = 'This field cannot be empty';
-    }
-    if (!validEmail.test(input.email)) {
+    if (input.email && !validEmail.test(input.email)) {
         error.email = 'Special characters or numbers are not allowed';
     }
-    if (!input.password) {
-        error.password = 'This field cannot be empty';
-    }
-    if (!validPassword.test(input.password)) {
+    if (input.password && !validPassword.test(input.password)) {
         error.password = 'The password must have 4 to 10 digits';
     }
     if (input.password !== input.password2) {
@@ -48,7 +37,7 @@ export function validate(input) {
     if(input.picture && !validPicture.test(input.picture)) {
         error.picture = 'This is not a valid URL'
     }
-    if (!input.validTitle.length) {
+    if (!input.validTitle) {
         error.title = 'This field cannot be empty';
     }
     if (!validTitle.test(input.title)) {

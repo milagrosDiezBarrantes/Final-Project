@@ -45,7 +45,7 @@ const Login = (props) => {
           <LogIn>LOG IN</LogIn>
         </a>
 
-        <a href="/login" onClick={() => loginWithRedirect()}>
+        <a href="/formSubscribe">
           <LogIn>SUSCRIBE NOW</LogIn>
         </a>
       </Nav>
