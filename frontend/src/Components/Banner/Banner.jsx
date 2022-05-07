@@ -16,10 +16,12 @@ const Login = (props) => {
 
   useEffect(() => {
     dispatch(authenticateUser());
-  }, []);
-
-  return isAuthenticated && authorized ? (
-    <>
+    
+  },[]);
+  
+  return (
+    isAuthenticated && authorized ? (
+      <>
       <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
@@ -43,7 +45,7 @@ const Login = (props) => {
           <LogIn>LOG IN</LogIn>
         </a>
 
-        <a href="/login" onClick={() => loginWithRedirect()}>
+        <a href="/formSubscribe">
           <LogIn>SUSCRIBE NOW</LogIn>
         </a>
       </Nav>
@@ -99,7 +101,7 @@ const Login = (props) => {
         </Container>
       </div>
     </>
-  );
+  ));
 };
 
 const Cont = styled.div`

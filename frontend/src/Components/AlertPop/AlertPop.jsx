@@ -1,5 +1,5 @@
-// import React from 'react';
-// import { FaExclamationCircle } from 'react-icons/fa';
+import React from 'react';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 
 const AlertPop = ({ activeAlert, actionAlert, handleOpenAlert, handleSuccess }) => {
