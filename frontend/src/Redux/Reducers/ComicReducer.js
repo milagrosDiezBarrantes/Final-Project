@@ -7,6 +7,7 @@ import {
   AUTHENTICATED,
   UPDATE_COMIC,
   DELETE_COMIC,
+  UPDATE_PERMISSION,
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -21,6 +22,10 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
+  google: {},
+  rememberMe: !!window.localStorage.getItem('loggedInUser'),
+  loggedInUser: JSON.parse(window.localStorage.getItem('loggedInUser')) || {},
+  loggedInAdmin: JSON.parse(window.localStorage.getItem('loggedInAdmin')) || {},
 };
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -78,6 +83,9 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
+    case UPDATE_PERMISSION:
+
+
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;

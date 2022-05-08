@@ -2,17 +2,19 @@ import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
-export const POST_USER = "POST_USER";
+export const CREATE_USER = "CREATE_USER";
 export const GET_COMICS = "GET_COMICS"
 export const USER_EDIT = "USER_EDIT"; 
 export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
-export const GET_NAME = "GET_NAME" // buscar character por nombre
-export const GET_USERS = "GET_USERS" 
-export const FILT_BY_PLAN = "FILT_BY_PLAN"
+export const GET_NAME = "GET_NAME"; // buscar character por nombre
+export const GET_USERS = "GET_USERS";
+export const FILT_BY_PLAN = "FILT_BY_PLAN";
 //Autentication
-export const AUTHENTICATED = "AUTHENTICATED"
+export const AUTHENTICATED = "AUTHENTICATED";
+export const REMEMBER_ME = "REMEMBER_ME";
+export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 
 
 //================CHARACTERS=================//
@@ -113,21 +115,45 @@ export const getById = (id) => async dispatch => {
 }
 
 //================USER=================//
-export function postUser(payload) {
-    return async function(dispatch) {
+export function createUser(payload, setLoading) {
+    return async function() {
         try {
-            const urlPost = await axios.post('http://localhost:3001/user', payload);
-            return dispatch ({
-                type: POST_USER,
-                payload: urlPost.data
-            })
-        }
+            const urlPost = await axios.post('http://localhost:3001/user', payload), {
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${window.localStorage.getItem(
+                    'token'
+                )}`,
+            },
+        });
+        setLoading(false);
+        return urlPost
         catch (error) {
             console.log(error)
         }
     }
 
+export const updatePermission(payload) {
+    return async function (dispatch) {
+        try {
+            const update = await axios.put('http://localhost:3001/user', payload), {
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${window.localStorage.getItem(
+                    'token'
+                )}`,
+            },
+        })
+        return dispatch({
+            type: 'UPDATE_PERMISSION',
+            payload: update.data
+        })
+        catch (error) {
+            console.log(error)
+        }
+    }
 }
+
 
 
 //======================USER EDIT ===============
@@ -162,6 +188,12 @@ export function getAllUsers (){
         console.log(error)
     }
 }
+}
+
+export function setRememberMe() {
+	return {
+        type: 'REMEMBER_ME' 
+    }
 }
 
 // ==================ADMIN POST============================

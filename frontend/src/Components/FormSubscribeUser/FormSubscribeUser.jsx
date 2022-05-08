@@ -5,7 +5,7 @@ import { Container, Form, Button } from 'semantic-ui-react';
 import { validate } from '../../Functions/validacionesForm/validationForm';
 import { postUser } from '../../Redux/Actions/actions';
 
-export const FormSubscribeUser = () => {
+const FormSubscribeUser = () => {
 
     const dispatch = useDispatch();
     const [error, setError] = useState({});
@@ -27,7 +27,6 @@ export const FormSubscribeUser = () => {
         password: '',
         password2: '',
         picture:'',
-        plan_id: 12
     })
 
     useEffect(() => {
@@ -58,7 +57,6 @@ export const FormSubscribeUser = () => {
             password: '',
             password2: '',
             picture:'',
-            _id: 'standar'
         })
         navigate('/profile');
     }
@@ -73,7 +71,7 @@ export const FormSubscribeUser = () => {
                 height:"100vh",
             }}
         >
-            <h1>Subscribe</h1>
+            <h1>SUBSCRIBE</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>First name:</label>
@@ -169,3 +167,5 @@ export const FormSubscribeUser = () => {
         </Container>
     )
 }
+
+export default FormSubscribeUser
