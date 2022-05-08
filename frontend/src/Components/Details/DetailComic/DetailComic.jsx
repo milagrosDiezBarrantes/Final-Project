@@ -28,7 +28,6 @@ const DetailComic = () => {
     setShow(false);
   }, [dispatch, id]);
 
-  //const [bkg, setBkg] = React.useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
