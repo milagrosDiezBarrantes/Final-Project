@@ -52,11 +52,6 @@ while(i < 1561){
 	}
 	return	res.status(200).json(characters);
 
-
-
-
-
-
 });
 
 router.get("/:id/:comics", async (req, res) => {

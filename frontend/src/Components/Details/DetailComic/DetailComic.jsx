@@ -7,11 +7,12 @@ import { getByCreators } from "../../../Redux/Actions/FilterOrderActions";
 import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
 //import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
 import Navbar from "../../Navbar/Navbar";
 import { Link } from "react-router-dom";
 
 import "./DetailComic.css";
+import Loading from "../../Loading/Loading";
+
 
 const DetailComic = () => {
   const { id } = useParams();
@@ -21,13 +22,13 @@ const DetailComic = () => {
   let detail = comics.selectedComic;
   const creators = useSelector((state) => state.ComicsReducer.copyComics);
 
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState(true);
+
 
   useEffect(() => {
     dispatch(getById(id));
+    setShow(false);
   }, [dispatch, id]);
-
-  //const [bkg, setBkg] = React.useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -36,9 +37,12 @@ const DetailComic = () => {
   };
 
   return detail.length === 0 ? (
-    <Typography component="h3" variant="h3" align="center" color="text.primary">
-      Loading...
-    </Typography>
+   
+    <Loading/>
+    // <Typography component="h3" variant="h3" align="center" color="text.primary">
+    //   Loading...
+    // </Typography>
+
   ) : (
     <>
       <div className="container">
