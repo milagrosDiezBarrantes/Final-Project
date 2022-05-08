@@ -5,13 +5,8 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 //import TvIcon from "@material-ui/icons/Tv";
 import ComicsIcon from "@material-ui/icons/Movie";
 import SearchIcon from "@material-ui/icons/Search";
-<<<<<<< Updated upstream
 import CharactersIcon from "@material-ui/icons/Whatshot";
 import { useHistory } from "react-router-dom";
-=======
-import Personajes from "@material-ui/icons/Whatshot";
-//import { useHistory } from "react-router-dom";
->>>>>>> Stashed changes
 import FavoriteIcon from '@material-ui/icons/Favorite';
 const useStyles = makeStyles({
   root: {
@@ -26,23 +21,7 @@ const useStyles = makeStyles({
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-<<<<<<< Updated upstream
 
-=======
-  /*const history = useHistory();
-  useEffect(() => {
-    if (value === 0) {
-      history.push("/");
-    } else if (value === 1) {
-      history.push("/homeComics");
-    } else if (value === 2) {
-      history.push("/series");
-    } else if (value === 3) {
-      history.push("/search");
-    }
-  }, [value, history]);
-*/
->>>>>>> Stashed changes
   return (
     <BottomNavigation
       value={value}
@@ -54,14 +33,9 @@ export default function SimpleBottomNavigation() {
     >
       <BottomNavigationAction
         style={{ color: "white" }}
-<<<<<<< Updated upstream
         label="Characters"
         href="/homeCharacter"
         icon={<CharactersIcon />}
-=======
-        label="Series"
-        icon={<Personajes />}
->>>>>>> Stashed changes
       />
       <BottomNavigationAction
         style={{ color: "white" }}
