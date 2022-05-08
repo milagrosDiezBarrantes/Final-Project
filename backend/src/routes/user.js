@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-const { Users , Plans,Favorites } = require(`../db`);
+const { Users , Plans,Favorites_comics,Favorites_characters } = require(`../db`);
 
 const router = Router();
 
@@ -89,9 +89,9 @@ console.log(user)
 			console.log(error, "error en la ruta put user");
 		}
 	});
-	router.post("/favorites", async (req, res) => {
+	router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://3000/user/favoritesComics,{id:iduser,idcomics:arraydeids})
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id,idComic } = req.body;
+		const { id,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
 			console.log(id);
@@ -100,9 +100,64 @@ console.log(user)
 					id: id,
 				},
 			});
-			user.setComics(idComic)
+			user.setComics(idComics)
 
 			return res.status(201).json({ user });
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
+		}
+	});
+	router.get("/favoritesComics", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+
+		try {
+			console.log(id);
+			const favorites = await Favorites_comics.findAll({
+				where: {
+					UserId: id,
+				},
+			});
+			
+
+			return res.status(201).json({ favorites });
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
+		}
+	});
+	router.post("/favoritesCharacters", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id,idCharacters } = req.body;
+
+		try {
+			console.log(id);
+			const characters = await Users.findOne({
+				where: {
+					id: id,
+				},
+			});
+			user.setCharacters(idCharacters)
+
+			return res.status(201).json({ characters });
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
+		}
+	});
+
+	router.get("/favoritesCharacters", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+
+		try {
+			console.log(id);
+			const characters = await Favorites_characters.findAll({
+				where: {
+					UserId: id,
+				},
+			});
+			
+
+			return res.status(201).json({ characters });
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
 		}

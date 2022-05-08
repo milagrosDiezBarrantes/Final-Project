@@ -29,9 +29,12 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Users,Comics,Payments,Plans } = sequelize.models;
-Users.belongsToMany(Comics,{through:"Favorites" })
-Comics.belongsToMany(Users,{through: "Favorites"})
+const { Users,Comics,Payments,Plans,Characters } = sequelize.models;
+Users.belongsToMany(Comics,{through:"Favorites_comics" })
+Comics.belongsToMany(Users,{through: "Favorites_comics"})
+
+Users.belongsToMany(Characters,{through:"Favorites_characters" })
+Characters.belongsToMany(Users,{through: "Favorites_characters"})
 
 Payments.belongsTo(Users,{foreingKey:"client_id"})
 Users.hasOne(Payments,{foreingKey:"client_id"})
