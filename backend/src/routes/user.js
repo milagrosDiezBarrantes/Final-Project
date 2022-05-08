@@ -2,14 +2,14 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-const { Users } = require(`../db`);
+const { Users , Plans,Favorites } = require(`../db`);
 
 const router = Router();
 
 router.post("/", async (req, res) => {
-	const { email, firstName, lastName, userName, age, password, picture,plan } =
+	const { email, firstName, lastName, userName, age, password, picture,plan_id } =
 		req.body;
-//             id
+// id
 // email
 // firstName
 // lastName
@@ -27,9 +27,13 @@ router.post("/", async (req, res) => {
 				age,
 				password,
 				picture,
-                plan
+				plan_id
 			},
 		});
+		// let ElPlan = await Plans.findAll({
+		// 	where: { name: plan },
+		//   });
+		//   await user.setPlans(ElPlan.id);
 		console.log("se creó mi usuario pa? " + created);
 
 		return res.status(201).json({ user, created });
@@ -39,7 +43,7 @@ router.post("/", async (req, res) => {
 });
 	router.put("/db", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.query;
+		const { id } = req.body;
 
 		try {
 			console.log(id);
@@ -59,12 +63,48 @@ console.log(user)
 				age: req.body.age,
 				password: req.body.password,
 				picture: req.body.picture,
-				plan: req.body.plan,
+				plan_id: req.body.plan_id,
 			});
 
 			return res.status(201).json({ user });
 		} catch (error) {
 			console.log(error, "error en la ruta put user");
+		}
+	});
+	
+	router.get("/byid", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id } = req.body;
+
+		try {
+			console.log(id);
+			const user = await Users.findOne({
+				where: {
+					id: id,
+				},
+			});
+
+			return res.status(201).json({ user });
+		} catch (error) {
+			console.log(error, "error en la ruta put user");
+		}
+	});
+	router.post("/favorites", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id,idComic } = req.body;
+
+		try {
+			console.log(id);
+			const user = await Users.findOne({
+				where: {
+					id: id,
+				},
+			});
+			user.setComics(idComic)
+
+			return res.status(201).json({ user });
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
 		}
 	});
 
