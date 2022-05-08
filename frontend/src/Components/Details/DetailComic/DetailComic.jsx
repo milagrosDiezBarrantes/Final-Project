@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import "./DetailComic.css";
 import Loading from "../../Loading/Loading";
 
+
 const DetailComic = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -23,11 +24,11 @@ const DetailComic = () => {
 
   const [show, setShow] = React.useState(true);
 
+
   useEffect(() => {
     dispatch(getById(id));
     setShow(false);
   }, [dispatch, id]);
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -36,11 +37,12 @@ const DetailComic = () => {
   };
 
   return detail.length === 0 ? (
-    
+   
     <Loading/>
     // <Typography component="h3" variant="h3" align="center" color="text.primary">
     //   Loading...
     // </Typography>
+
   ) : (
     <>
       <div className="container">
