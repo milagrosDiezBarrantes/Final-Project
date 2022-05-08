@@ -43,6 +43,10 @@ function App() {
           <Route path='/editProfile' element={<FormEditUser/>} />
           <Route path='/admin/comic' element={<FormUpdateComic/>} />
           <Route path='/formSubscribe' element={<FormSubscribeUser/>} />
+          <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
+          <Route path='/form' element={<Form />} />
+          <Route path='/formDos' element={<FormMaterialUI />} />
+          <Route path='/' element={<NavBar />} />
       </Routes>
       </Container>
     </div>
