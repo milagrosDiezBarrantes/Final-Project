@@ -30,7 +30,6 @@ function App() {
           <Route path='/homeCharacter' element={<HomeCharacter />} />
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
-<<<<<<< Updated upstream
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
           <Route path='/formAdmin' element={<FormAdmin />} />
           <Route exact path='/lecture' element={<Lecture />} />
@@ -39,14 +38,6 @@ function App() {
           <Route path='/admin' element={<Admin/>} />
           <Route path='/editProfile' element={<FormEditUser/>} />
           <Route path='/admin/comic' element={<FormUpdateComic/>} />
-=======
-          <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route path='/form' element={<Form />} />
-          <Route path='/formDos' element={<FormMaterialUI />} />
-          <Route path='/' element={<NavBar />} />
-         
-         
->>>>>>> Stashed changes
       </Routes>
       </Container>
     </div>
