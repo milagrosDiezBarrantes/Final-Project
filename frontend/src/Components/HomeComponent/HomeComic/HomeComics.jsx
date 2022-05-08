@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SearchBarComics from "../../SearchBar/SearchBarComics/SearchBarComics";
-import NavBar from "../../Navbar/Navbar.jsx";
-import ComicCard from "../../Cards/ComicCard/ComicCard";
-import { getAllComics } from "../../../Redux/Actions/actions";
-import CustomPagination from "../../Pagination/Pagination.jsx";
+
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import SearchBarComics from '../../SearchBar/SearchBarComics/SearchBarComics'
+import ReactPaginate from "react-paginate"
+import NavBar from '../../Navbar/Navbar.jsx';
+import ComicCard from '../../Cards/ComicCard/ComicCard';
+import axios from 'axios'
+import { getAllComics } from '../../../Redux/Actions/actions'
+import CustomPagination from '../../Pagination/Pagination.jsx'
+import s from './HomeComics.css'
+import AppBanner from "../../Publicidad/Publicidad";
+import '../../Publicidad/Publicidad';
+
+import avengers from '../../Publicidad/imag/Avengers_logo.png';
+import avengersLogo from '../../Publicidad/imag/Avengers.png';
 
 const HomeComics = () => {
   const dispatch = useDispatch();
@@ -47,19 +56,37 @@ const HomeComics = () => {
       <div className="grid">
         {currentPage &&
           currentPage.map(({ id, title, img }) => {
-            return <ComicCard id={id} title={title} image={img} />;
-          })}
-      </div>
-      <br />
-      <br />
-      
-      <div>
-        {numOfPages > 1 && (
-          <CustomPagination setPage={setPage} numOfPages={numOfPages} />
-        )}
-      </div>
-    </div>
-  );
-};
+             return (
+                    <ComicCard id={id} title={title} image={img} />
+                )
+
+            })
+        }
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        
+        <div>
+          {numOfPages > 1 && (
+           <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+           )}
+        </div>
+        <div className="app__banner">
+            <img src={avengers} alt="Avengers"/>
+            <div className="app__banner-text">
+                ¡Todo lo que buscas<br/>
+                en un solo lugar!
+            </div>
+            <img src={avengersLogo} alt="Avengers logo"/>
+        </div>
+
+        </div>
+         
+    
+         
+    )
+
+}
 
 export default HomeComics;
