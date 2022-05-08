@@ -5,8 +5,8 @@
 }
 
 .container{
-    display: flex;
-    align-items: center;
+    display: grid;
+    align-items: right;
     justify-content: center;
     height: 100vh;
     background: #0a0000;  /* fallback for old browsers */

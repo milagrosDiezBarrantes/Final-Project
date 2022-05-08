@@ -1,14 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Banner from "./Components/Banner/Banner";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
-import DetailComic from "./Components/Details/DetailComic/DetailComic"
-import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter"
+import DetailComic from "./Components/Details/DetailComic/DetailComic";
+import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter";
 import Login from "./Components/Login/Login.jsx";
-import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Styles/Styles";
-import './index.css';
+import "./index.css";
 import Admin from "./Components/Admin/Admin";
 import Profile from "./Components/Login/Profile";
 import "./App.css";
@@ -16,7 +16,6 @@ import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
-import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic.jsx";
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 
 function App() {
@@ -47,8 +46,4 @@ function App() {
   );
 }
 
-
 export default App;
-
-
-

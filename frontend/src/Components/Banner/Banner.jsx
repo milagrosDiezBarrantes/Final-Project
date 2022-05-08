@@ -35,7 +35,7 @@ const Login = (props) => {
     </>
   ) : (
     <>
-      (
+      
       <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
@@ -49,7 +49,7 @@ const Login = (props) => {
           <LogIn>SUSCRIBE NOW</LogIn>
         </a>
       </Nav>
-      )
+      
       <HeaderBanner />
       <Cont>
         <div class="overlay">
