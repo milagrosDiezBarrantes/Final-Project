@@ -8,6 +8,12 @@ import axios from 'axios'
 import { getAllComics } from '../../../Redux/Actions/actions'
 import CustomPagination from '../../Pagination/Pagination.jsx'
 import s from './HomeComics.css'
+import AppBanner from "../../Publicidad/Publicidad";
+import '../../Publicidad/Publicidad';
+
+import avengers from '../../Publicidad/imag/Avengers_logo.png';
+import avengersLogo from '../../Publicidad/imag/Avengers.png';
+
 
 const HomeComics = () => {
 
@@ -68,7 +74,19 @@ const HomeComics = () => {
            <CustomPagination setPage={setPage} numOfPages={numOfPages} />
            )}
         </div>
+        <div className="app__banner">
+            <img src={avengers} alt="Avengers"/>
+            <div className="app__banner-text">
+                ¡Todo lo que buscas<br/>
+                en un solo lugar!
+            </div>
+            <img src={avengersLogo} alt="Avengers logo"/>
         </div>
+
+        </div>
+         
+    
+         
     )
 
 }

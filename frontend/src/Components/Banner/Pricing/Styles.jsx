@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   `;
 
 export const ContainerPricing = styled.div`
+  top: 100px;
   display: flex;
   justify-content: center;
   width: 390px;
@@ -44,6 +45,7 @@ export const Container = styled.div`
   }
 `;
 export const LogoContainer = styled.div`
+  
   display: flex;
   justify-content: center;
   width: 100%;
@@ -65,6 +67,7 @@ export const Title = styled.div`
   margin-bottom: 20px;
 `;
 export const Caption = styled.div`
+ 
   display: flex;
   height: 40px;
   align-items: center;
