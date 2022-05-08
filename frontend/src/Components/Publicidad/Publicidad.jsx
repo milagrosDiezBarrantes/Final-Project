@@ -1,4 +1,4 @@
- import './Publicidad.scss';
+//  import './Publicidad.scss';
 import avengers from '../Publicidad/imag/Avengers.png';
 import avengersLogo from '../Publicidad/imag/Avengers_logo.png';
 
