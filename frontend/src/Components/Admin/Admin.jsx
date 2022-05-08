@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import {getAllUsers, filterByPlan} from '../../Redux/Actions/actions';
 
-import { Icon, Label, Menu, Table, Dropdown, Button } from 'semantic-ui-react'
-
+import { Icon, Label, Menu, Table, Dropdown, Button, Accordion, Modal } from 'semantic-ui-react'
 
 
 const Admin = () => {
@@ -17,21 +16,14 @@ const Admin = () => {
   
   const usersList =useSelector((state) => state);
   let  users = usersList.ComicsReducer.copyUsers;
+  const { column, data, direction } = useSelector((state) => state.ComicsReducer.sort);
   const [showUsers, setShowUsers] = React.useState(false);
-console.log(showUsers);
-  
-  console.log('users', users);
-
-
   
 const options = [
-    { key: 'standar', text: 'Monthly', value: 'standar' },
-    { key: 'premium', text: 'Annual', value: 'premium' },
-    { key: 'inactive', text: 'Inactive', value: 'inactive' }
+    { key: 'standar', text: 'Monthly', value: '1' },
+    { key: 'premium', text: 'Annual', value: '2' },
+    { key: 'inactive', text: 'Inactive', value: '3' }
   ]
-  
-
-  
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
@@ -46,103 +38,64 @@ const options = [
     setShowUsers(!showUsers);    
  }
 
+
+
   return (
-      <div>
-      {/* //seccion de acciones */}
-      <h2>Comics</h2>
-        
-            {/*goes to form to create */}
-           <Button onClick={() => history("/admin/addComic")}>Add New Comic</Button>
-           <Button onClick={() => history("/admin/editComic")}>Edit Comic</Button>
-           <Button onClick={() => history("'Comic deleted")}>Delete Comic</Button>
-<br/>
-<br/>
-<br/>
-<br/>
-         {/* //seccion filtros */}
 
+<Table sortable celled fixed>  
+  <Table.Header>
+          <Table.Row>
 
+          <Table.HeaderCell
+              sorted={column === 'id' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >User_ID</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'username' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >Username</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'name' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >Lastname, Firstname</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'plan' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >Plan</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'startDate' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >Start</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'active' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >Active?</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === 'email' ? direction : null}
+              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
+            >email</Table.HeaderCell>
 
+             </Table.Row>
+      </Table.Header>
 
+      <Table.Body>
+{users?.map((user) => (
+  <Table.Row key={user.id}>
+    <Table.Cell>{user.id}</Table.Cell>
+    <Table.Cell>{user.userName}</Table.Cell>
+    <Table.Cell>`{user.lastName} {user.firstName}`</Table.Cell>
+    <Table.Cell>{user.plan_id}</Table.Cell>
+    <Table.Cell>{user.createdAt.substring(0,10)}</Table.Cell>
+    <Table.Cell>True</Table.Cell>
+    <Table.Cell>{user.email}</Table.Cell>
 
-         <div>
-             <div>
-                 <h2>Users</h2>
-                <select >
-                 <option value= ''>Filter by Plan</option>
-                    <option value='standar'>Monthly</option>
-                    <option value='premium'>Annual</option>
-                    <option value='inactive'>Canceled</option>
-                 </select>                
-                <button onClick={handleAll}>Show all users</button>
-             </div>
-                <div>
+  </Table.Row>)
 
-                <br/>
-<br/>
-<br/>
-<br/>
+)}
+      </Table.Body>
 
-                        <Table celled>
-    <Table.Header>
-    <Label ribbon>USERS</Label>
-      <Table.Row>
-        <Table.HeaderCell>Fullname</Table.HeaderCell>
-        <Table.HeaderCell>email</Table.HeaderCell>
-        <Table.HeaderCell>Username</Table.HeaderCell>
-        <Table.HeaderCell>Plan</Table.HeaderCell>
-        <Table.HeaderCell>Id</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+      </Table>      
 
-    {showUsers && users?.map((user) => {
-                    return (
-    
-                        <Table.Row>    
-        <Table.Cell>{user.firstName + user.lastName}</Table.Cell>
-        <Table.Cell>{user.email}</Table.Cell>
-        <Table.Cell>{user.userName}</Table.Cell>
-        <Table.Cell>{user.plan}</Table.Cell>
-        <Table.Cell>Edit:{user.id}</Table.Cell>
-      
-        </Table.Row>
-              
-              )
-                })}       
-                                         </Table>            
-         </div>
-         <Table.Footer>
-      <Table.Row>
-        <Table.HeaderCell colSpan='3'>
-          <Menu floated='right' pagination>
-            <Menu.Item as='a' icon>
-              <Icon name='chevron left' />
-            </Menu.Item>
-            <Menu.Item as='a'>1</Menu.Item>
-            <Menu.Item as='a'>2</Menu.Item>
-            <Menu.Item as='a'>3</Menu.Item>
-            <Menu.Item as='a'>4</Menu.Item>
-            <Menu.Item as='a' icon>
-              <Icon name='chevron' />
-            </Menu.Item>
-          </Menu>
-        </Table.HeaderCell>
-      </Table.Row>
-    </Table.Footer>
-    <br/>
-<br/>
-<br/>
-<br/>
-
-      </div>
-        {/* Seccion stats */}
-
-        <Button onClick={() => history("/nunca jamás")}>New users</Button>
-        <Button onClick={() => history("/nunca jamás")}>Lost users</Button>
-        <Button onClick={() => history("'nunca jamás")}>Billing</Button>
-
-
-      </div>
   )
 }
 
