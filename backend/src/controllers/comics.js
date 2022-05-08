@@ -35,8 +35,8 @@ const getComics = async (req, res, next) => {
         creators: e.creators.items?.map((a) => a.name),
       }));
       console.log("entre al if");
-      comics.forEach(
-        async (e) =>{if(!e.img.includes("image_not_available")&&e.title.length>4){
+      comics.forEach(async (e) => {
+        if (!e.img.includes("image_not_available") && e.title.length > 4) {
           await Comics.findOrCreate({
             where: {
               id: e.id,
@@ -45,8 +45,9 @@ const getComics = async (req, res, next) => {
               pages: e.pages,
               creators: e.creators,
             },
-          })}}
-      );
+          });
+        }
+      });
       comics = [...comics, ...comicsDb];
       return res.status(201).send(comics);
     } catch (err) {
@@ -155,44 +156,49 @@ const getSerieById = async (req, res, next) => {
   }
 };
 //=====Crear Comic=====//
-const createComic = async (req,res,next)=>{
+const createComic = async (req, res, next) => {
   try {
-    const {title,img,description,pages,creators} = req.body
-    if (title && img && description){
+    const { title, img, description, pages, creators } = req.body;
+    if (title && img && description) {
       const createComic = await Comics.create({
         title,
         img,
         description,
         pages,
         creators,
-      })
-      res.status(200).send(  {message: "Comic successfully created"})
-    }else{
-
-      res.status(404).send({ "Missing data": [title,img,description,pages,creators]})
+      });
+      res.status(200).send({ message: "Comic successfully created" });
+    } else {
+      res
+        .status(404)
+        .send({ "Missing data": [title, img, description, pages, creators] });
     }
+  } catch (err) {
+    console.log(err);
+    next(err);
   }
-  catch (err) {
-    console.log(err)
-    next(err)
-  }
-}
-
-
+};
 
 const updateComic = async (req, res, next) => {
-  const {id} = req.params;
-  const {info} = req.body;
-  try{
+  const { id } = req.params;
+  const { info } = req.body;
+  try {
     const comic = await Comics.findByIdAndUpdate(id, {
       $set: {
-        info
-    }
-  });
-  res.status(200).send('Comic succesfully updated');
-  }catch(error){
+        info,
+      },
+    });
+    res.status(200).send("Comic succesfully updated");
+  } catch (error) {
     next(error);
-  } 
-}
+  }
+};
 
-module.exports = { getComics, getById, getByTitle, getSerieById, createComic, updateComic };
+module.exports = {
+  getComics,
+  getById,
+  getByTitle,
+  getSerieById,
+  createComic,
+  updateComic,
+};

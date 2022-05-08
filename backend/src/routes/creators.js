@@ -69,28 +69,11 @@ while(i < 5595){
 });
 
 router.get("/:id/:comics", async (req, res) => {
+	//comics stories series events
 	let { id, comics } = req.params;
 	console.log(API_KEY, HASH_KEY);
 	let character = await axios.get(
 		`https://gateway.marvel.com/v1/public/creators/${id}/${comics}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
-	);
-	character = character.data.data.results;
-	character = character.map((e) => ({
-		id: e.id,
-		title: e.title,
-		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
-		images: e.images,
-		creators: e.creators,
-		characters: e.characters.items,
-	}));
-	res.status(200).json(character);
-});
-
-router.get("/:id/:extra", async (req, res) => {
-	let { id, extra } = req.params;
-	console.log(API_KEY, HASH_KEY);
-	let character = await axios.get(
-		`https://gateway.marvel.com/v1/public/creators/${id}/${extra}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
 	);
 	character = character.data.data.results;
 
