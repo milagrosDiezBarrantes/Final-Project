@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-const { Users , Plans } = require(`../db`);
+const { Users , Plans,Favorites } = require(`../db`);
 
 const router = Router();
 
@@ -87,6 +87,24 @@ console.log(user)
 			return res.status(201).json({ user });
 		} catch (error) {
 			console.log(error, "error en la ruta put user");
+		}
+	});
+	router.post("/favorites", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id,idComic } = req.body;
+
+		try {
+			console.log(id);
+			const user = await Users.findOne({
+				where: {
+					id: id,
+				},
+			});
+			user.setComics(idComic)
+
+			return res.status(201).json({ user });
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
 		}
 	});
 
