@@ -16,38 +16,32 @@ import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
-import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic";
+import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic.jsx";
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <div className="app">
-          <Container>
-            <Routes>
-              <Route path="/favorite" element={<Favorite />} />
-              <Route exact path="/" element={<Banner />} />
-              <Route path="/homeCharacter" element={<HomeCharacter />} />
-              <Route path="/homeComics/" element={<HomeComics />} />
-              <Route
-                path="/homeComics/DetailComic/:id"
-                element={<DetailComic />}
-              />
-              <Route
-                path="/homeCharacter/DetailCharacter/:id"
-                element={<DetailCharacter />}
-              />
-              <Route path="/formAdmin" element={<FormAdmin />} />
-              <Route exact path="/lecture" element={<Lecture />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/editProfile" element={<FormEditUser />} />
-              <Route path="/admin/xomic" element={<FormUpdateComic />} />
-            </Routes>
-          </Container>
-        </div>
+      <div className="app">
+        <Container>
+        <Routes>
+          <Route path="/favorite" element={<Favorite />} />
+          <Route exact path='/' element={<Banner />} />
+          <Route path='/homeCharacter' element={<HomeCharacter />} />
+          <Route path='/homeComics' element={<HomeComics />} />
+          <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
+          <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
+          <Route path='/formAdmin' element={<FormAdmin />} />
+          <Route exact path='/lecture' element={<Lecture />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/admin' element={<Admin/>} />
+          <Route path='/editProfile' element={<FormEditUser/>} />
+          <Route path='/admin/comic' element={<FormUpdateComic/>} />
+      </Routes>
+      </Container>
+    </div>
       </BrowserRouter>
     </ThemeProvider>
   );
