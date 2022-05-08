@@ -7,6 +7,8 @@ import {
   AUTHENTICATED,
   UPDATE_COMIC,
   DELETE_COMIC,
+  CLEAR_COMICS,
+  CLEAR_DETAIL,
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -104,6 +106,19 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         authenticated: payload,
       };
+
+      case CLEAR_COMICS:
+        return{
+          ...state,
+          copyComics: [],
+
+        }
+    case CLEAR_DETAIL:
+        return{
+          ...state,
+          selectedComic: [],
+        }
+        
     default:
       return { ...state };
   }

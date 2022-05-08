@@ -13,7 +13,8 @@ export const GET_USERS = "GET_USERS"
 export const FILT_BY_PLAN = "FILT_BY_PLAN"
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED"
-
+export const CLEAR_COMICS = "CLEAR_COMICS"
+export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -216,3 +217,22 @@ export function authenticateUser(){
     }
 }
 
+
+//=================CLEAN=================//
+export const clearComics =() => {
+    return async function (dispatch) {
+        return dispatch({
+            type: CLEAR_COMICS,
+            payload: []
+        })
+    }
+}
+
+export const clearComicDetail =() => {
+    return async function (dispatch) {
+        return dispatch({
+            type: CLEAR_DETAIL,
+            payload: []
+        })
+    }
+}
