@@ -99,17 +99,20 @@ const DetailComic = () => {
           </p>
 
           {/* <p class="bodytext" style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}}>{detail[0].description}</p> */}
-          {detail[0].creators?.map((creator) => (
-            <div class="role" key={creator.creatorId}>
-              <strong>{creator.creatorRole}</strong>
-              <br />
-              <button value={creator.creatorId} onClick={handleClick}>
-                {creator.creatorName}
-              </button>
-            </div>
-          ))}
+          <center className="GridCreators">
+            {detail[0].creators?.map((creator) => (
+              <div class="role" key={creator.creatorId}>
+                <strong>{creator.creatorRole}</strong>
+                <br />
+                <button value={creator.creatorId} onClick={handleClick}>
+                  {creator.creatorName}
+                </button>
+              </div>
+            ))}
+
+          </center>
           <div class="options">
-            <MyButton href="/lecture" style={{ color: "white" }}>
+            <MyButton href="/lecture/a" style={{ color: "white" }}>
               Read
             </MyButton>
             <MyButton style={{ color: "white" }}>Serie</MyButton>

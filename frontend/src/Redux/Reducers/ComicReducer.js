@@ -9,6 +9,7 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
+  GET_PLANS,
 
 } from "../Actions/actions";
 import {
@@ -24,6 +25,7 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
+  plans: []
 
 };
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
@@ -76,6 +78,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: payload,
         
       };
+    case GET_PLANS:
+      return {
+        ...state,
+        plans :payload
+      };
 
       // case SORT:
       //   let data = state.users;
@@ -104,7 +111,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
-  
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;
@@ -131,7 +137,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         return{
           ...state,
           copyComics: [],
-
         }
     case CLEAR_DETAIL:
         return{

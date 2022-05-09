@@ -186,7 +186,7 @@ router.get("/validates", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-	const{userName,password} = req.body
+	const{userName,password} = req.query
 	if(userName&&password){
 		let user = await Users.findOne({
 			where: {

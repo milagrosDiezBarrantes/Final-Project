@@ -20,6 +20,7 @@ import FormSubscribeUser from "./Components/FormSubscribeUser/FormSubscribeUser.
 
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 import FormLoginUser from "./Components/FormLoginUser/FormLoginUser";
+import PostAdmin from "./Components/PostAdmin/PostAdmin";
 
 
 function App() {
@@ -47,20 +48,21 @@ function App() {
 
         {/* Rutas Admin */}
         <Route path='/admin' element={<Admin/>} />
-        <Route path='/formAdmin' element={<FormAdmin />} />
-        <Route path='/admin/comic' element={<FormUpdateComic/>} />
         <Route path='/updateComic' element={<FormUpdateComic/>} />
-
-          <Route path='/formAdmin' element={<FormAdmin />} />
+        <Route path='/formAdmin' element={<FormAdmin />} />
+        <Route path='/admin/comic' element={<FormUpdateComic/>} />  
+        <Route exact path='/lecture' element={<Lecture />} />
+        <Route path='/postAdmin' element={<PostAdmin/>} />  
+        
+          {/* <Route path='/login' element={<Login />} /> */}
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/editProfile' element={<FormEditUser/>} />
+          
+   
 
           <Route exact path='/lecture/:comic' element={<Lecture />} />
-          {/* //<Route path='/login' element={<Login />} /> */}
 
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/admin' element={<Admin/>} />
-          <Route path='/editProfile' element={<FormEditUser/>} />
-          <Route path='/admin/comic' element={<FormUpdateComic/>} />
-
+      
       </Routes>
       </Container>
     </div>
