@@ -52,8 +52,10 @@ function App() {
         <Route path='/updateComic' element={<FormUpdateComic/>} />
 
           <Route path='/formAdmin' element={<FormAdmin />} />
+
           <Route exact path='/lecture/:comic' element={<Lecture />} />
-          {/* <Route path='/login' element={<Login />} /> */}
+          {/* //<Route path='/login' element={<Login />} /> */}
+
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<Admin/>} />
           <Route path='/editProfile' element={<FormEditUser/>} />
