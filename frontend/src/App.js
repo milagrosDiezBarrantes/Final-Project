@@ -4,23 +4,25 @@ import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacte
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import DetailComic from "./Components/Details/DetailComic/DetailComic";
 import DetailCharacter from "./Components/Details/DetailCharacter/DetailCharacter";
+//CSS
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Styles/Styles";
 import "./index.css";
-import Admin from "./Components/Admin/Admin";
-import Profile from "./Components/Login/Profile";
 import "./App.css";
 import { Container } from "@material-ui/core";
-import FormAdmin from "./Components/Form/FormAdmin";
-import Lecture from "./Components/Lecture/Lecture";
-import FormEditUser from "./Components/FormEditUser/FormEditUser";
-
+//ADMIN
+import Admin from "./Components/Admin/Admin";
+import PostAdmin from "./Components/PostAdmin/PostAdmin";
 import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic";
+import FormAdmin from "./Components/Form/FormAdmin";
+import FormEditUser from "./Components/FormEditUser/FormEditUser";
+//USER
+import Profile from "./Components/Login/Profile";
 import FormSubscribeUser from "./Components/FormSubscribeUser/FormSubscribeUser.jsx";
 
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 import FormLoginUser from "./Components/FormLoginUser/FormLoginUser";
-import PostAdmin from "./Components/PostAdmin/PostAdmin";
+
 
 
 function App() {
@@ -36,15 +38,14 @@ function App() {
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
-
           <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route exact path='/lecture' element={<Lecture />} />
-          
-          {/* Rutas usuario */}
+          <Route exact path='/lecture/:comic' element={<Lecture />} />
+         
+        {/* Rutas usuario */}
         <Route path='/formSubscribe' element={<FormSubscribeUser/>} />
         <Route path='/formLoginUser' element={<FormLoginUser />} /> 
-        <Route path='/editProfile' element={<FormEditUser/>} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/editProfile' element={<FormEditUser/>} />
 
         {/* Rutas Admin */}
         <Route path='/admin' element={<Admin/>} />
@@ -54,13 +55,9 @@ function App() {
         <Route exact path='/lecture' element={<Lecture />} />
         <Route path='/postAdmin' element={<PostAdmin/>} />  
         
-          {/* <Route path='/login' element={<Login />} /> */}
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/editProfile' element={<FormEditUser/>} />
-          
-   
 
-          <Route exact path='/lecture/:comic' element={<Lecture />} />
+
+         
 
       
       </Routes>
