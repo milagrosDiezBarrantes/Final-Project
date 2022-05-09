@@ -38,7 +38,8 @@ router.post("/", async (req, res) => {
 
 		return res.status(201).json({ user, created });
 	} catch (error) {
-		console.log(error, "algo pasó con el post del user");
+		console.log(error, "algo pasó con el post del user chequea los campos");
+		return res.status(200).json({ mensaje:"algo pasó con el post del user chequea los campos" });
 	}
 });
 router.put("/db", async (req, res) => {
@@ -166,26 +167,40 @@ router.get("/favoritesCharacters", async (req, res) => {
 		}
 	});
 
-router.get("/", async (req, res) => {
-	let users = await Users.findAll();
-	
-	if (users.length === 0) {
-		return res.send("tabla vacía");
-	}
-	return res.send(users || "tabla vacía");
-});
-router.get("/favorites", async (req, res) => {
-	const { id } = req.body;
-
-	let user = await Users.findOne({
-		include: Characters,Comics,
-		include: Comics,
-		where: {
-			id: id
-		},
+	router.get("/", async (req, res) => {
+		let users = await Users.findAll();
+		
+		if (users.length === 0) {
+			return res.send("tabla vacía");
+		}
+		return res.send(users || "tabla vacía");
 	});
+router.get("/validates", async (req, res) => {
+	
+
+	let user = await Users.findAll();
+	user= user.map((e)=>({email:e.email,
+		userName:e.userName}))
 
 	return res.send(user);
 });
 
+router.get("/login", async (req, res) => {
+	const{userName,password} = req.body
+	if(userName&&password){
+		let user = await Users.findOne({
+			where: {
+				userName: userName,
+				password:password
+			},
+		});
+		if(!user){
+
+		return res.send("password y/o userName incorrecto/s");
+		}
+		return res.send(user);
+	}else{
+		return res.send("password y/o userName incompletos")
+	}
+});
 module.exports = router;
