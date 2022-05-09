@@ -3,8 +3,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {Button} from "semantic-ui-react";
-
-
 import './style.css';
 
 
@@ -38,9 +36,9 @@ export const Profile = () => {
         </div>
         </div>
       
-    )
-  );
-};
+    ))}
+  
+
 
 const ProfileImage = styled.img` 
 position: relative;

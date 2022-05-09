@@ -71,7 +71,7 @@ const FormSubscribeUser = () => {
                 height:"100vh",
             }}
         >
-            <h1>SUBSCRIBE</h1>
+            <h1>Sign Up</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>First name:</label>
@@ -155,6 +155,13 @@ const FormSubscribeUser = () => {
                         onChange={handleChange}
                     />
                     {error.picture && <p style={{ color:"red"}} > {error.picture} </p>}
+                </div>
+                <div>
+                    <label>Select your plan</label>
+                    <select>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
                 </div>
                 {/* agrego salto página para presentar */}
                 <br/>

@@ -105,9 +105,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
-    case UPDATE_PERMISSION:
-
-
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;
@@ -129,15 +126,10 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyUsers: filtered,
       };
-
-
-    
-
     case CLEAR_COMICS:
         return{
           ...state,
           copyComics: [],
-
         }
     case CLEAR_DETAIL:
         return{
