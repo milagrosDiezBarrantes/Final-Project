@@ -8,7 +8,9 @@ import { validate } from '../../Functions/validacionesForm/validationForm';
 
 const FormUpdateComic = ({handleClose, id}) => {
     const dispatch = useDispatch();
-    const comic = useState(state => state.ComicReducer.copyComics);
+    const comic = useState(state => state);
+    console.log(comic)
+
     const [comicDetail, setcomicDetail] = useState({
         title: '',
         description: '',
@@ -20,12 +22,12 @@ const FormUpdateComic = ({handleClose, id}) => {
 
     useEffect(()=> {
         dispatch(getById(id))
-    }, [dispatch, id]);
+    }, [ id]);
 
-    useEffect(()=> {
-        setcomicDetail(comic)
+    // useEffect(()=> {
+    //     setcomicDetail(comic)
 
-    }, [comic]);
+    // }, [comic]);
 
     const handleChange = (e) => {
         let {name, value} = e.target;
