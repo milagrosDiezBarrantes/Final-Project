@@ -52,9 +52,9 @@ const options = [
       <h2>Comics</h2>
         
             {/*goes to form to create */}
-           <Button onClick={() => history("/admin/addComic")}>Add New Comic</Button>
+           <Button onClick={() => history("/admin/comic")}>Add New Comic</Button>
            <Button onClick={() => history("/admin/editComic")}>Edit Comic</Button>
-           <Button onClick={() => history("'Comic deleted")}>Delete Comic</Button>
+           <Button onClick={() => history('/admin')}>Delete Comic</Button>
 <br/>
 <br/>
 <br/>

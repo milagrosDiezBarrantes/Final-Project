@@ -1,3 +1,4 @@
+import { Table } from "semantic-ui-react";
 import {
   GET_TITLE,
   GET_BY_ID,
@@ -7,7 +8,9 @@ import {
   AUTHENTICATED,
   UPDATE_COMIC,
   DELETE_COMIC,
-  UPDATE_PERMISSION,
+  CLEAR_COMICS,
+  CLEAR_DETAIL,
+
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -22,10 +25,7 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
-  google: {},
-  rememberMe: !!window.localStorage.getItem('loggedInUser'),
-  loggedInUser: JSON.parse(window.localStorage.getItem('loggedInUser')) || {},
-  loggedInAdmin: JSON.parse(window.localStorage.getItem('loggedInAdmin')) || {},
+
 };
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -77,6 +77,28 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: payload,
         
       };
+
+      // case SORT:
+      //   let data = state.users;
+      //   if (state.column === payload) {          
+      //     return {
+      //       ...state,
+      //       data: data.slice().reverse(),
+      //       direction: state.sort.direction === 'ascending' ? 'descending' : 'ascending',
+      //     }
+      //   } else {  
+      //   return {
+      //     column: state.column,
+      //     data: sortBy(state.data, state.users),
+      //     direction: 'ascending',
+      //   }
+      // };
+    
+      case AUTHENTICATED:
+      return {
+        ...state,
+        authenticated: payload,
+      };
     case GET_USERS:
       return {
         ...state,
@@ -107,11 +129,22 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyUsers: filtered,
       };
-    case AUTHENTICATED:
-      return {
-        ...state,
-        authenticated: payload,
-      };
+
+
+    
+
+    case CLEAR_COMICS:
+        return{
+          ...state,
+          copyComics: [],
+
+        }
+    case CLEAR_DETAIL:
+        return{
+          ...state,
+          selectedComic: [],
+        }
+        
     default:
       return { ...state };
   }

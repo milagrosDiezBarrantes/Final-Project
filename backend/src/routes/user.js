@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-const { Users , Plans,Favorites } = require(`../db`);
+const { Users , Plans,Favorites_comics,Favorites_characters,Characters,Comics } = require(`../db`);
 
 const router = Router();
 
@@ -38,10 +38,11 @@ router.post("/", async (req, res) => {
 
 		return res.status(201).json({ user, created });
 	} catch (error) {
-		console.log(error, "algo pasó con el post del user");
+		console.log(error, "algo pasó con el post del user chequea los campos");
+		return res.status(200).json({ mensaje:"algo pasó con el post del user chequea los campos" });
 	}
 });
-	router.put("/db", async (req, res) => {
+router.put("/db", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id } = req.body;
 
@@ -72,7 +73,7 @@ console.log(user)
 		}
 	});
 	
-	router.get("/byid", async (req, res) => {
+router.get("/byid", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id } = req.body;
 
@@ -89,9 +90,10 @@ console.log(user)
 			console.log(error, "error en la ruta put user");
 		}
 	});
-	router.post("/favorites", async (req, res) => {
+
+router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://3000/user/favoritesComics,{id:iduser,idcomics:favorites})
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id,idComic } = req.body;
+		const { id,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
 			console.log(id);
@@ -100,7 +102,44 @@ console.log(user)
 					id: id,
 				},
 			});
-			user.setComics(idComic)
+			user.setComics(idComics)
+
+			return res.status(200).send( user );
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
+		}
+	});
+
+router.get("/favoritesComics", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+
+		try {
+			console.log(id);
+			const favorites = await  Users.findOne({
+				include:Comics,
+				where: {
+					id: id,
+				},
+			});
+
+			return res.status(200).send( favorites.Comics );
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
+		}
+	});
+router.post("/favoritesCharacters", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id,idCharacters } = req.body;
+
+		try {
+			console.log(id);
+			const user = await Users.findOne({
+				where: {
+					id: id,
+				},
+			});
+			user.setCharacters(idCharacters)
 
 			return res.status(201).json({ user });
 		} catch (error) {
@@ -108,13 +147,60 @@ console.log(user)
 		}
 	});
 
-router.get("/", async (req, res) => {
-	let users = await Users.findAll();
+router.get("/favoritesCharacters", async (req, res) => {
+		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
-	if (users.length === 0) {
-		return res.send("tabla vacía");
-	}
-	return res.send(users || "tabla vacía");
+		try {
+			console.log(id);
+			const characters = await Users.findOne({
+				include: Characters,
+				where: {
+					id: id
+				},
+			});
+			
+
+			return res.status(200).send( characters.Characters);
+		} catch (error) {
+			console.log(error, "error en la ruta post/favorites");
+		}
+	});
+
+	router.get("/", async (req, res) => {
+		let users = await Users.findAll();
+		
+		if (users.length === 0) {
+			return res.send("tabla vacía");
+		}
+		return res.send(users || "tabla vacía");
+	});
+router.get("/validates", async (req, res) => {
+	
+
+	let user = await Users.findAll();
+	user= user.map((e)=>({email:e.email,
+		userName:e.userName}))
+
+	return res.send(user);
 });
 
+router.get("/login", async (req, res) => {
+	const{userName,password} = req.body
+	if(userName&&password){
+		let user = await Users.findOne({
+			where: {
+				userName: userName,
+				password:password
+			},
+		});
+		if(!user){
+
+		return res.send("password y/o userName incorrecto/s");
+		}
+		return res.send(user);
+	}else{
+		return res.send("password y/o userName incompletos")
+	}
+});
 module.exports = router;

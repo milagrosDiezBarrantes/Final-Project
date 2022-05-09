@@ -8,6 +8,7 @@ export const USER_EDIT = "USER_EDIT";
 export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
+
 export const GET_NAME = "GET_NAME"; // buscar character por nombre
 export const GET_USERS = "GET_USERS";
 export const FILT_BY_PLAN = "FILT_BY_PLAN";
@@ -16,6 +17,15 @@ export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";
 export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 export const LOGIN_USER = 'LOGIN_USER;'
+
+export const GET_NAME = "GET_NAME" // buscar character por nombre
+export const GET_USERS = "GET_USERS" 
+export const FILT_BY_PLAN = "FILT_BY_PLAN"
+export const SORT = "SORT"
+//Autentication
+export const AUTHENTICATED = "AUTHENTICATED"
+export const CLEAR_COMICS = "CLEAR_COMICS"
+export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -232,6 +242,15 @@ export const filterByPlan = (plan) =>{
         payload: plan
     }
 }
+
+export const sortBy = (payload) =>{
+    return{
+        type: SORT,
+        payload: payload
+    }
+
+
+}
 //================AUTHENTICATED=================//
 export function authenticateUser(){
     return{
@@ -240,3 +259,22 @@ export function authenticateUser(){
     }
 }
 
+
+//=================CLEAN=================//
+export const clearComics =() => {
+    return async function (dispatch) {
+        return dispatch({
+            type: CLEAR_COMICS,
+            payload: []
+        })
+    }
+}
+
+export const clearComicDetail =() => {
+    return async function (dispatch) {
+        return dispatch({
+            type: CLEAR_DETAIL,
+            payload: []
+        })
+    }
+}

@@ -33,6 +33,7 @@ function App() {
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
+
           <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
           <Route exact path='/lecture' element={<Lecture />} />
           
@@ -47,6 +48,15 @@ function App() {
         <Route path='/formAdmin' element={<FormAdmin />} />
         <Route path='/admin/comic' element={<FormUpdateComic/>} />
         <Route path='/updateComic' element={<FormUpdateComic/>} />
+
+          <Route path='/formAdmin' element={<FormAdmin />} />
+          <Route exact path='/lecture' element={<Lecture />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/admin' element={<Admin/>} />
+          <Route path='/editProfile' element={<FormEditUser/>} />
+          <Route path='/admin/comic' element={<FormUpdateComic/>} />
+
       </Routes>
       </Container>
     </div>
