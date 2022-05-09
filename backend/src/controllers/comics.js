@@ -167,7 +167,7 @@ const createComic = async (req, res, next) => {
         pages,
         creators,
       });
-      res.status(200).send({ message: "Comic successfully created" });
+    return  res.status(200).json({ message: "Comic successfully created" });
     } else {
       res
         .status(404)
@@ -202,3 +202,4 @@ module.exports = {
   createComic,
   updateComic,
 };
+
