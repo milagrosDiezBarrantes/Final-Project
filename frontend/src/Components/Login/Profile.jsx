@@ -24,7 +24,11 @@ export const Profile = () => {
             <span>Edit Profile</span>
           </Link>
         </Button>
-        
+        <Button className="button">
+          <Link to="/homeComics">
+            <span>HOME</span>
+          </Link>
+        </Button>
         {/*<h3 className="">Name:</h3>
 
         comentado para muestra viernes <h4 className="">{profileUser.name}</h4>
