@@ -41,7 +41,7 @@ const Login = (props) => {
           <Logo src={logo} alt="Marvel" />
         </a>
 
-        <a href="/login" onClick={() => loginWithRedirect()}>
+        <a href="/formLoginUser">
           <LogIn>LOG IN</LogIn>
         </a>
 

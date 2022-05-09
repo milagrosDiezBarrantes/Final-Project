@@ -2,18 +2,30 @@ import axios from 'axios';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
-export const POST_USER = "POST_USER";
+export const CREATE_USER = "CREATE_USER";
 export const GET_COMICS = "GET_COMICS"
 export const USER_EDIT = "USER_EDIT"; 
 export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
+
+export const GET_NAME = "GET_NAME"; // buscar character por nombre
+export const GET_USERS = "GET_USERS";
+export const FILT_BY_PLAN = "FILT_BY_PLAN";
+//Autentication
+export const AUTHENTICATED = "AUTHENTICATED";
+export const REMEMBER_ME = "REMEMBER_ME";
+export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
+export const LOGIN_USER = 'LOGIN_USER;'
+
 export const GET_NAME = "GET_NAME" // buscar character por nombre
 export const GET_USERS = "GET_USERS" 
 export const FILT_BY_PLAN = "FILT_BY_PLAN"
+export const SORT = "SORT"
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED"
-
+export const CLEAR_COMICS = "CLEAR_COMICS"
+export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -112,30 +124,46 @@ export const getById = (id) => async dispatch => {
     
 }
 
-//================USER=================//
-export function postUser(payload) {
-    return async function(dispatch) {
-        try {
-            const urlPost = await axios.post('http://localhost:3001/user', payload);
-            return dispatch ({
-                type: POST_USER,
-                payload: urlPost.data
-            })
+//======================USER  ===============
+export const createUser= (user) => {
+        return async (dispatch) => {
+            try {
+                const userCreate = await axios.post(`http://localhost:3001/user`, user);
+                console.log(userCreate, 'se crea usuario?');
+                return dispatch({
+                    type: CREATE_USER,
+                    payload: userCreate.data
+                })
+            }
+            catch(err) {
+                console.log(err, 'userCreate || Error');
+            }
         }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
 }
 
+//LOGIN
 
-//======================USER EDIT ===============
+export const loginUser= (userName, password) => {
+        return async (dispatch) => {
+            try {
+                const userLogin = await axios.get(`http://localhost:3001/user/login`, {userName, password});
+                console.log(userLogin, 'se logeo el user?');
+                return dispatch({
+                    type: LOGIN_USER,
+                    payload: userLogin.data
+                })
+            }
+            catch(err) {
+                console.log(err, 'userCreate || Error');
+            }
+        }
+}
+
 export const userEdit = (user) => {
     return async (dispatch) => {
         try {
             console.log(user);
-            const editUser = await axios.put(`http://localhost:3001/user/${user._id}`, user);
+            const editUser = await axios.put(`http://localhost:3001/user/${user.id}`, user);
             console.log(editUser, 'se edita?');
             return dispatch({
                 type: USER_EDIT,
@@ -162,6 +190,12 @@ export function getAllUsers (){
         console.log(error)
     }
 }
+}
+
+export function setRememberMe() {
+	return {
+        type: 'REMEMBER_ME' 
+    }
 }
 
 // ==================ADMIN POST============================
@@ -208,6 +242,15 @@ export const filterByPlan = (plan) =>{
         payload: plan
     }
 }
+
+export const sortBy = (payload) =>{
+    return{
+        type: SORT,
+        payload: payload
+    }
+
+
+}
 //================AUTHENTICATED=================//
 export function authenticateUser(){
     return{
@@ -216,3 +259,22 @@ export function authenticateUser(){
     }
 }
 
+
+//=================CLEAN=================//
+export const clearComics =() => {
+    return async function (dispatch) {
+        return dispatch({
+            type: CLEAR_COMICS,
+            payload: []
+        })
+    }
+}
+
+export const clearComicDetail =() => {
+    return async function (dispatch) {
+        return dispatch({
+            type: CLEAR_DETAIL,
+            payload: []
+        })
+    }
+}
