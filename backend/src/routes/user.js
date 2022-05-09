@@ -203,4 +203,25 @@ router.get("/login", async (req, res) => {
 		return res.send("password y/o userName incompletos")
 	}
 });
+
+
 module.exports = router;
+
+
+
+
+
+// <div>
+
+// <div></div>
+// <Link className='link_card' to={`/homeComics/DetailComic/${id}`}>
+//            <div className='container_card'>
+//                 <div className='img_card_container'>
+//                 <img className='img_card' src={image} alt={title} />
+//                 </div>
+//                 <div className='detail_card_container'>
+//                    <p className='name_comic_card'>{title}</p>
+//                 </div>
+//             </div>
+//         </Link>
+// </div>

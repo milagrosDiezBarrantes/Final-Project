@@ -64,7 +64,7 @@ const HomeComics = () => {
       <div className="grid">
         {currentPage &&
           currentPage.map(({ id, title, img }) => {
-            return <ComicCard id={id} title={title} image={img} />;
+            return <ComicCard key={id} id={id} title={title} image={img} />;
           })}
       </div>
       <br />
