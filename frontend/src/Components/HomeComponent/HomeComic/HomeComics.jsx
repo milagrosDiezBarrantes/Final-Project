@@ -5,7 +5,7 @@ import NavBar from "../../Navbar/Navbar.jsx";
 import ComicCard from "../../Cards/ComicCard/ComicCard";
 import { getAllComics } from "../../../Redux/Actions/actions";
 import CustomPagination from "../../Pagination/Pagination.jsx";
-import AppBanner from "../../Publicidad/Publicidad";
+// import AppBanner from "../../Publicidad/Publicidad";
 import "../../Publicidad/Publicidad";
 
 import avengers from "../../Publicidad/imag/Avengers_logo.png";
@@ -29,7 +29,7 @@ const HomeComics = () => {
   const start = (page - 1) * 12;
   const end = page * PER_PAGE;
   useEffect(() => {
-    if(userLogin === noRegister) {
+    if(userLogin === noRegister || userLogin === undefined) {
       navigate('/formLoginUser')
     }
     console.log(userLogin)
@@ -39,7 +39,7 @@ const HomeComics = () => {
 
 
   useEffect(() => {
-    if(userLogin === noRegister) {
+    if(userLogin === noRegister || userLogin === undefined) {
       navigate('/formLoginUser')
     }
     console.log(userLogin)

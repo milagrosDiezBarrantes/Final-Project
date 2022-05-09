@@ -37,10 +37,12 @@ function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
                     creators:payload
                 }
             case LOGIN_USER:
+                console.log('LOGIINNNN', payload)
                 return {
                     ...state,
                     loginUser: payload
                 }
+                 
             case CREATE_USER:
                     return {
                         ...state,
