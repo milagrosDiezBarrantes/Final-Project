@@ -10,10 +10,16 @@ import "../../Publicidad/Publicidad";
 
 import avengers from "../../Publicidad/imag/Avengers_logo.png";
 import avengersLogo from "../../Publicidad/imag/Avengers.png";
+import { useNavigate } from "react-router-dom";
 
 const HomeComics = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const allComics = useSelector((state) => state.ComicsReducer.copyComics);
+  const userLogin = useSelector((state) => state.CharactersReducer.loginUser);
+  const noRegister = 'password y/o userName incorrecto/s'
+
+  console.log('USERLOGIN',userLogin)
   const [page, setPage] = useState(1);
   const [numOfPages] = useState(10);
   const [, setData] = useState([]);
@@ -23,14 +29,23 @@ const HomeComics = () => {
   const start = (page - 1) * 12;
   const end = page * PER_PAGE;
   useEffect(() => {
+    if(userLogin === noRegister) {
+      navigate('/formLoginUser')
+    }
+    console.log(userLogin)
     dispatch(getAllComics());
     setPage(1);
-  }, [dispatch]);
+  }, [dispatch, navigate, userLogin]);
+
 
   useEffect(() => {
+    if(userLogin === noRegister) {
+      navigate('/formLoginUser')
+    }
+    console.log(userLogin)
     setData(allComics);
     setCopyComics(allComics);
-  }, [allComics]);
+  }, [navigate, userLogin, allComics]);
   useEffect(() => {
     window.scroll(0, 0);
 

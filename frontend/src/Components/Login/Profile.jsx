@@ -1,28 +1,23 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {Button} from "semantic-ui-react";
-
-
 import './style.css';
-
+import { useSelector } from "react-redux";
 
 export const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user)
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const profileUser = useSelector(state => state.CharactersReducer.loginUser);
+  console.log(profileUser);
+
+
   return (
-    isAuthenticated && (
       
       <div className="container">
          <div className="details_container">
          <h1 className="">User Name:</h1>
-        <h2 className="">{user.userName}</h2>
+        <h2 className="">{profileUser.userName}</h2>
          <div className="header">
-         <ProfileImage src={user.picture} alt={user.fistName}  />
+         <ProfileImage src={profileUser.picture} alt={profileUser.fistName}  />
         <div className=""></div>
         <Button className="button">
           <Link to="/editProfile">
@@ -32,15 +27,15 @@ export const Profile = () => {
         
         {/*<h3 className="">Name:</h3>
 
-        comentado para muestra viernes <h4 className="">{user.name}</h4>
-        <p className="">Email: {user.email}</p> */}
+        comentado para muestra viernes <h4 className="">{profileUser.name}</h4>
+        <p className="">Email: {profileUser.email}</p> */}
         </div>
         </div>
         </div>
       
-    )
-  );
-};
+    )}
+  
+
 
 const ProfileImage = styled.img` 
 position: relative;
