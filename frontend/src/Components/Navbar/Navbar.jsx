@@ -69,7 +69,7 @@ export default function Navbar() {
               value={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
-                <Tab label="Comics" href="/homeComics" />
+             { /*   <Tab label="Comics" href="/homeComics" />*/  }
                 {/* <Tab label="About Us" href="/AboutUs" />
                 <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
