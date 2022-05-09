@@ -49,12 +49,12 @@ export default function SimpleBottomNavigation() {
         href="/Favorite"
         icon={<FavoriteIcon />}
       />
-      <BottomNavigationAction
+     { /* <BottomNavigationAction
         style={{ color: "white" }}
         label="Search"
         href="/searchPrueba"
         icon={<SearchIcon />}
-      />
+    /> */}
     </BottomNavigation>
   );
 }

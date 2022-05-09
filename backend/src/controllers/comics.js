@@ -91,6 +91,15 @@ const getById = async (req, res, next) => {
         return e.date; //en [0] viene la fecha de fin publicacion, en [1] la fecha de primer publicacion
       }),
     }));
+
+    
+      let comicid = await Comics.findOne({
+        where: {
+          id:req.params.id
+        },
+      });
+    
+      toRender[0]={...toRender[0],idPrincipal:comicid.idPrincipal}
     res.status(200).json(toRender);
   } catch (error) {
     next(error);
