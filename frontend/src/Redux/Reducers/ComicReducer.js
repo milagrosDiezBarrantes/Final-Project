@@ -10,6 +10,9 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
+  ADD_FAVORITE,
+  POST_FAVORITE_COMICS,
+  POST_FAVORITE_CHARACTERS
 
 } from "../Actions/actions";
 import {
@@ -25,15 +28,10 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
-
+  favoritesComics: [],
+  favoritesCharacters: []
 };
-/* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
-    let newA = []
-    for(let i = 0; i<Array.length; i++){
-        newA.push(Array[i].toString().toLowerCase())
-    }
-    return newA
-} */
+
 function ComicsReducer(state = initialState, { type, payload }) {
   // eslint-disable-next-line default-case
   switch (type) {
@@ -67,10 +65,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
       };
     case FILT_BY_CREATOR:
       console.log(payload)
-      // let comi = [...state.Comics];
-      // let filtComics = comi?.filter((a) =>
-      //   a.creators === [] ? false : a.creators.includes(payload)
-      // );
+     
       return {
         ...state,
         filter :true,
@@ -78,22 +73,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
         
       };
 
-      // case SORT:
-      //   let data = state.users;
-      //   if (state.column === payload) {          
-      //     return {
-      //       ...state,
-      //       data: data.slice().reverse(),
-      //       direction: state.sort.direction === 'ascending' ? 'descending' : 'ascending',
-      //     }
-      //   } else {  
-      //   return {
-      //     column: state.column,
-      //     data: sortBy(state.data, state.users),
-      //     direction: 'ascending',
-      //   }
-      // };
-    
+   
       case AUTHENTICATED:
       return {
         ...state,
@@ -105,9 +85,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
-    case UPDATE_PERMISSION:
-
-
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;
@@ -141,7 +118,30 @@ function ComicsReducer(state = initialState, { type, payload }) {
           ...state,
           selectedComic: [],
         }
-        
+        case POST_FAVORITE_COMICS:
+            console.log(state.favorites)
+            if(state.favorites?.find(e => e.id === payload.id)){
+                alert("Already exists in favorites")
+                return{
+                    ...state
+                }
+            } else {
+                alert("Add to favourites succesfully")
+                return{
+                ...state,
+                favorites: [...state.favorites, payload]
+            }
+            } 
+            case POST_FAVORITE_CHARACTERS:
+              return{...state
+              }
+
+       /* case REMOVE_FAVORITE:
+            var remove = state.favorites.filter(e => e.id !== payload)
+            return{
+                ...state,
+                favorites: remove
+            } */
     default:
       return { ...state };
   }

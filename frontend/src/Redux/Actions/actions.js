@@ -9,9 +9,6 @@ export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 
-export const GET_NAME = "GET_NAME"; // buscar character por nombre
-export const GET_USERS = "GET_USERS";
-export const FILT_BY_PLAN = "FILT_BY_PLAN";
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";
@@ -23,9 +20,12 @@ export const GET_USERS = "GET_USERS"
 export const FILT_BY_PLAN = "FILT_BY_PLAN"
 export const SORT = "SORT"
 //Autentication
-export const AUTHENTICATED = "AUTHENTICATED"
 export const CLEAR_COMICS = "CLEAR_COMICS"
 export const CLEAR_DETAIL = 'CLEAR_DETAIL'
+
+//Favorite
+export const POST_FAVORITE_COMICS = "POST_FAVORITE_COMICS"
+export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -141,7 +141,7 @@ export const createUser= (user) => {
         }
 }
 
-//LOGIN
+//====================== LOGIN ===============
 
 export const loginUser= (userName, password) => {
         return async (dispatch) => {
@@ -278,3 +278,66 @@ export const clearComicDetail =() => {
         })
     }
 }
+
+
+//=================FAVORITE COMICS=================//
+
+export function postFavoriteComics(idComics, id) {          
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, id});
+            return dispatch({
+                type: "POST_FAVORITE_COMICS",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}
+
+/*export function removeFavoriteComics() {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/user/favoritesComics`)
+            return dispatch({
+                type: "REMOVE_FAVORITE",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}*/
+//=================FAVORITE CHARACTERS=================//
+export function postFavoriteCharacters(idCharacters, id) {          
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/user/favoritesCharactersc`, idCharacters, id)
+            return dispatch({
+                type: "POST_FAVORITE_CHARACTERS",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}
+
+/*export function removeFavoriteCharacters() {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/user/favoritesCharacters`)
+            return dispatch({
+                type: "REMOVE_FAVORITE",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}*/

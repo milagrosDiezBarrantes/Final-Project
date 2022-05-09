@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getById } from "../../../Redux/Actions/actions";
+import { getById, postFavoriteComics } from "../../../Redux/Actions/actions";
 import { getByCreators } from "../../../Redux/Actions/FilterOrderActions";
 import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
@@ -24,6 +24,28 @@ const DetailComic = () => {
 
   const [show, setShow] = React.useState(true);
 
+//////////////////FAVORITE//////////
+const postFavorite = useSelector((state) => state)
+console.log(postFavoriteComics);
+
+
+const [input, setInput] = React.useState({})
+
+function handleChange(event){
+  setInput({
+      ...input, [event.target.id]:event.target.id 
+  })
+}
+function handleSubmit(event){
+  event.preventDefault()
+    dispatch(postFavoriteComics(input))
+    alert('Guardado con exito')
+    setInput({idComics:''})
+  }
+      
+////////////////FAVORITE//////////////      
+
+
 
   useEffect(() => {
     dispatch(getById(id));
@@ -36,6 +58,8 @@ const DetailComic = () => {
     dispatch(getByCreators(e.target.value));
     setShow(false);
     console.log(detail[0])
+    dispatch(postFavoriteComics({id})) 
+
   };
 
   const img = (comic)=>{
@@ -49,10 +73,7 @@ const DetailComic = () => {
     }
   }
   return detail.length === 0 ? (
-   
     <Loading/>
-   
-
   ) : (
     <>
       <div className="container">
@@ -133,28 +154,13 @@ const DetailComic = () => {
 
         </div>
 
-
-
-        {/* <div hide={show} style={{ display: "grid" }}>
-          {creators &&
-            creators?.map((comic) => (
-              <Link
-                className="link_card"
-                to={`/homeComics/DetailComic/${comic.id}`}
-              >
-
-                <img
-                  src={comic.profilePic}
-                  alt={comic.title}
-                  style={{ width: "100px", height: "100px" }}
-                />
-                <h3>{comic.title}</h3>
-              </Link>
-            ))}
-        </div> */}
       </div>
       <Navbar />
+      <div>
+        <button className="favoritesComics" type="submit"  onClick={(event) => handleClick(event)} onSubmit={event=>handleSubmit(event)} onChange={handleChange}>⭐</button>
+        </div>
     </>
   );
 };
+
 export default DetailComic;
