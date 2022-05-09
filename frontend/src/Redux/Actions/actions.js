@@ -170,7 +170,7 @@ export const getFavorites= (id) => {
                     params: {
                         id
                     }});
-                console.log(favorites, 'se favoriteo el user?');
+                console.log(favorites.data, 'se favoriteo el user?');
                 return dispatch({
                     type: GET_FAVORITES,
                     payload: favorites.data
@@ -309,9 +309,16 @@ export function postFavoriteComics(idComics, id) {
     return async function (dispatch) {
         try {
             const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, id});
+            const nuevos = await axios.get(`http://localhost:3001/user/favoritesComics`,{
+                params: {
+                    id
+                }});
+            
+           console.log("action",idComics)
+           console.log("nuevos",nuevos)
             return dispatch({
                 type: "POST_FAVORITE_COMICS",
-                payload: idComics
+                payload: nuevos.data
             })
         }
         catch (err) {

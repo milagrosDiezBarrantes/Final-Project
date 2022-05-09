@@ -133,19 +133,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
           favoritesComics:payload ,
         }
         case POST_FAVORITE_COMICS:
-            console.log(state.favorites)
-            if(state.favorites?.find(e => e.id === payload.id)){
-                alert("Already exists in favorites")
-                return{
-                    ...state
-                }
-            } else {
-                alert("Add to favourites succesfully")
-                return{
-                ...state,
-                favorites: [...state.favorites, payload]
-            }
-            } 
+          console.log("reducer",payload)
+          return{
+            ...state,
+            favoritesComics:payload ,
+          } 
             case POST_FAVORITE_CHARACTERS:
               return{...state
               }

@@ -32,17 +32,9 @@ const postFavorite = useSelector((state) => state.ComicsReducer)
 
 const [input, setInput] = React.useState({})
 
-function handleChange(event){
-  setInput({
-      ...input, [event.target.id]:event.target.id 
-  })
-}
-function handleSubmit(event){
-  event.preventDefault()
-    dispatch(postFavoriteComics(input))
-    alert('Guardado con exito')
-    setInput({idComics:''})
-  }
+
+
+
       
 ////////////////FAVORITE//////////////      
 
@@ -56,11 +48,12 @@ function handleSubmit(event){
       "password":"1235sdf4"
       }));
     setShow(true);
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   useEffect(() => {
-    
+    if(postFavorite.loginUser.id){
       dispatch(getFavorites(postFavorite.loginUser.id))
+    }
   }, [ postFavorite.loginUser.id]);
 
   // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
@@ -73,7 +66,29 @@ function handleSubmit(event){
     
 console.log("estrellita")
 
-dispatch(postFavoriteComics(postFavorite.loginUser.id,[...postFavorite.favoritesComics,])
+let arrayIds = [...postFavorite.favoritesComics]
+arrayIds=arrayIds.map(e=>e.idPrincipal)
+console.log("arrayIds")
+console.log(arrayIds)
+if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
+  // setSelect([...select, event.target.value]);
+  
+  console.log("entre al if not find")
+  console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+  arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
+console.log("arrayIds")
+console.log(arrayIds)
+  dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
+  
+} else {
+  let fil= arrayIds.filter((e) => e !== postFavorite.selectedComic[0].idPrincipal)
+  // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+ console.log("fil")
+ console.log(fil)
+ dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
+  }
+
+// dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
 
   };
 
@@ -172,7 +187,7 @@ dispatch(postFavoriteComics(postFavorite.loginUser.id,[...postFavorite.favorites
       </div>
       <Navbar />
       <div>
-        <button className="favoritesComics" type="button"  onClick={(event) => handleClick(event)}>⭐</button>
+        <button className="favoritesComics" type="button"  onClick={() => handleClick()}>⭐</button>
         </div>
     </>
   );
