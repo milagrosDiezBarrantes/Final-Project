@@ -1,33 +1,37 @@
 import axios from 'axios';
+import { PlaceholderLine } from 'semantic-ui-react';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
 export const CREATE_USER = "CREATE_USER";
 export const GET_COMICS = "GET_COMICS"
 export const USER_EDIT = "USER_EDIT"; 
-//ADMIN ACTIONS
-export const POST_COMIC = 'POST_COMIC';
 export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
-
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
-export const GET_NAME = "GET_NAME"; // buscar character por nombre
-export const GET_USERS = "GET_USERS";
-export const FILT_BY_PLAN = "FILT_BY_PLAN";
+
+export const FILT_BY_PLAN = "FILT_BY_PLAN"
+export const GET_NAME = "GET_NAME"
+export const GET_USERS = "GET_USERS"
 
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";
+export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 export const LOGIN_USER = 'LOGIN_USER;'
-export const CLEAR_COMICS = "CLEAR_COMICS";
-export const CLEAR_DETAIL = 'CLEAR_DETAIL';
 
-//Planes
-export const GET_PLANS = 'GET_PLANS';
-
+ // buscar character por nombre
+ 
 
 export const SORT = "SORT"
+//Autentication
+export const CLEAR_COMICS = "CLEAR_COMICS"
+export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 
+//Favorite
+export const POST_FAVORITE_COMICS = "POST_FAVORITE_COMICS"
+export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
+export const GET_FAVORITES = "GET_FAVORITES"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -113,8 +117,8 @@ export function getComicsByTitle(title) {
 export const getById = (id) => async dispatch => {
     try{
         const res= await axios(`http://localhost:3001/comics/${id}`);
-        console.log('llega id?', id)
-        console.log('llega comic al payoad?', res)
+        // console.log('llega id?', id)
+        // console.log('llega comic al payoad?', res)
         return dispatch({
             type: GET_BY_ID,
             payload: res.data            
@@ -134,7 +138,7 @@ export const createUser= (user) => {
                 console.log(userCreate, 'se crea usuario?');
                 return dispatch({
                     type: CREATE_USER,
-                    payload: userCreate.data.user
+                    payload: userCreate.data
                 })
             }
             catch(err) {
@@ -143,21 +147,38 @@ export const createUser= (user) => {
         }
 }
 
-//LOGIN
+//====================== LOGIN ===============
 
-export const loginUser= ({userName, password}) => {
+export const loginUser= ({userName,password}) => {
         return async (dispatch) => {
             try {
                 const userLogin = await axios.get("http://localhost:3001/user/login",{
                     params: {
-                        userName, password
-                    }})
-                    console.log('ACAAAA USER LOGIN',userLogin)
-                    console.log(userName)
-                    console.log(userName)
+                        userName,password
+                    }});
+                // console.log("de la action");
+                // console.log(userName,password);
                 return dispatch({
                     type: LOGIN_USER,
                     payload: userLogin.data
+                })
+            }
+            catch(err) {
+                console.log(err, 'userCreate || Error');
+            }
+        }
+}
+export const getFavorites= (id) => {
+        return async (dispatch) => {
+            try {
+                const favorites = await axios.get(`http://localhost:3001/user/favoritesComics`, {
+                    params: {
+                        id
+                    }});
+                console.log(favorites.data, 'se favoriteo el user?');
+                return dispatch({
+                    type: GET_FAVORITES,
+                    payload: favorites.data
                 })
             }
             catch(err) {
@@ -199,54 +220,23 @@ export function getAllUsers (){
 }
 }
 
-export function setRememberMe(paylaoad) {
+export function setRememberMe() {
 	return {
-        type: 'REMEMBER_ME',
-        paylaoad
+        type: 'REMEMBER_ME' 
     }
 }
 
-export function getPlans() {
-    return async function(dispatch) {
-        try {
-            const plansUser = await axios.get('http://localhost:3001/plans')
-            const plan = plansUser.data.filter(e=>e.name !=="admin")
-            console.log(plan)
-            return dispatch({
-                type:GET_PLANS,
-                payload: plan
-            })
-        } 
-        catch (error) {
-            console.log(error)
-        }
-    }
-}
 // ==================ADMIN POST============================
-export function postComic(payload) {
-    return async function(dispatch) {
-        try {
-            const comicPost = await axios.post('http://localhost:3001/create', payload)
-            return dispatch({
-                type:POST_COMIC,
-                payload: comicPost.data
-            })
-        } 
-        catch (error) {
-            console.log(error)
-        }
-    }
-}
 
-export function updateComic(id) {
+export function updateComic(comic) {
     return async function(dispatch) {
         try {
             const comicE = {
-                title: id.title,
-                description: id.description,
-                image: id.image,
+                title: comic.title,
+                description: comic.description,
+                image: comic.image,
             };
-            const editComic = await axios.put(`http://localhost:3001/comics/${id}`, comicE);
+            const editComic = await axios.put(`http://localhost:3001/comics/${comic.id}`, comicE);
             return dispatch ({
                 type: UPDATE_COMIC,
                 payload: editComic.data
@@ -283,14 +273,14 @@ export const filterByPlan = (plan) =>{
     }
 }
 
-// export const sortBy = (payload) =>{
-//     return{
-//         type: SORT,
-//         payload: payload
-//     }
+export const sortBy = (payload) =>{
+    return{
+        type: SORT,
+        payload: payload
+    }
 
 
-// }
+}
 //================AUTHENTICATED=================//
 export function authenticateUser(){
     return{
@@ -318,3 +308,73 @@ export const clearComicDetail =() => {
         })
     }
 }
+
+
+//=================FAVORITE COMICS=================//
+
+export function postFavoriteComics(idComics, id) {          
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, id});
+            const nuevos = await axios.get(`http://localhost:3001/user/favoritesComics`,{
+                params: {
+                    id
+                }});
+            
+           console.log("action",idComics)
+           console.log("nuevos",nuevos)
+            return dispatch({
+                type: "POST_FAVORITE_COMICS",
+                payload: nuevos.data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}
+
+/*export function removeFavoriteComics() {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/user/favoritesComics`)
+            return dispatch({
+                type: "REMOVE_FAVORITE",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}*/
+//=================FAVORITE CHARACTERS=================//
+export function postFavoriteCharacters(idCharacters, id) {          
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/user/favoritesCharactersc`, idCharacters, id)
+            return dispatch({
+                type: "POST_FAVORITE_CHARACTERS",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}
+
+/*export function removeFavoriteCharacters() {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/user/favoritesCharacters`)
+            return dispatch({
+                type: "REMOVE_FAVORITE",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error get comics(se rompio)", err)
+        }
+    }
+}*/
