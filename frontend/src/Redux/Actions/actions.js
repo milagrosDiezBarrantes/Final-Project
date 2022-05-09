@@ -15,7 +15,7 @@ export const FILT_BY_PLAN = "FILT_BY_PLAN";
 export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";
 export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
-
+export const LOGIN_USER = 'LOGIN_USER;'
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -114,54 +114,46 @@ export const getById = (id) => async dispatch => {
     
 }
 
-//================USER=================//
-export function createUser(payload, setLoading) {
-    return async function() {
-        try {
-            const urlPost = await axios.post('http://localhost:3001/user', payload), {
-            headers: {
-                'content-type': 'application/json',
-                Authorization: `Bearer ${window.localStorage.getItem(
-                    'token'
-                )}`,
-            },
-        });
-        setLoading(false);
-        return urlPost
-        catch (error) {
-            console.log(error)
+//======================USER  ===============
+export const createUser= (user) => {
+        return async (dispatch) => {
+            try {
+                const userCreate = await axios.post(`http://localhost:3001/user`, user);
+                console.log(userCreate, 'se crea usuario?');
+                return dispatch({
+                    type: CREATE_USER,
+                    payload: userCreate.data
+                })
+            }
+            catch(err) {
+                console.log(err, 'userCreate || Error');
+            }
         }
-    }
-
-export const updatePermission(payload) {
-    return async function (dispatch) {
-        try {
-            const update = await axios.put('http://localhost:3001/user', payload), {
-            headers: {
-                'content-type': 'application/json',
-                Authorization: `Bearer ${window.localStorage.getItem(
-                    'token'
-                )}`,
-            },
-        })
-        return dispatch({
-            type: 'UPDATE_PERMISSION',
-            payload: update.data
-        })
-        catch (error) {
-            console.log(error)
-        }
-    }
 }
 
+//LOGIN
 
+export const loginUser= (userName, password) => {
+        return async (dispatch) => {
+            try {
+                const userLogin = await axios.get(`http://localhost:3001/user/login`, {userName, password});
+                console.log(userLogin, 'se logeo el user?');
+                return dispatch({
+                    type: LOGIN_USER,
+                    payload: userLogin.data
+                })
+            }
+            catch(err) {
+                console.log(err, 'userCreate || Error');
+            }
+        }
+}
 
-//======================USER EDIT ===============
 export const userEdit = (user) => {
     return async (dispatch) => {
         try {
             console.log(user);
-            const editUser = await axios.put(`http://localhost:3001/user/${user._id}`, user);
+            const editUser = await axios.put(`http://localhost:3001/user/${user.id}`, user);
             console.log(editUser, 'se edita?');
             return dispatch({
                 type: USER_EDIT,

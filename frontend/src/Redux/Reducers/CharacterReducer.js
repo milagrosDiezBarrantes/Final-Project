@@ -1,5 +1,5 @@
 
-import { GET_CHARACTER_ID, GET_CHARACTERS,GET_NAME } from '../Actions/actions'
+import { GET_CHARACTER_ID, GET_CHARACTERS,GET_NAME, LOGIN_USER } from '../Actions/actions'
 import {GET_CREATORS} from "../Actions/FilterOrderActions"
 
 
@@ -8,7 +8,8 @@ const initialStateOfCharacter = {
     copyCharacters: [],
     detailCharacter: [],
     creators:[],
-    copyCreators:[]
+    copyCreators:[],
+    loginUser: {}
 }
 
 function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
@@ -34,6 +35,11 @@ function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
                 return {
                     ...state,
                     creators:payload
+                }
+            case LOGIN_USER:
+                return {
+                    ...state,
+                    loginUser: payload
                 }
             /* case GET_BY_CREATOR:
                     const data = payload === ''? copyCharacters:state.copyCharacters.filter(character => {

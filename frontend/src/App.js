@@ -18,11 +18,9 @@ import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic";
 import FormSubscribeUser from "./Components/FormSubscribeUser/FormSubscribeUser.jsx";
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 import FormLoginUser from "./Components/FormLoginUser/FormLoginUser";
-import { useSelector } from "react-redux";
+
 
 function App() {
-  const location = useLocation();
-  const user = useSelector((state) => )
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -35,18 +33,20 @@ function App() {
           <Route path='/homeComics' element={<HomeComics />} />
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route path='/formAdmin' element={<FormAdmin />} />
-          <Route exact path='/lecture' element={<Lecture />} />
-          <Route path='/formLoginUser' element={<FormLoginUser />} /> 
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/admin' element={<Admin/>} />
-          <Route path='/editProfile' element={<FormEditUser/>} />
-          <Route path='/admin/comic' element={<FormUpdateComic/>} />
-          <Route path='/formSubscribe' element={<FormSubscribeUser/>} />
           <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
-          <Route path='/form' element={<Form />} />
-          <Route path='/formDos' element={<FormMaterialUI />} />
-          <Route path='/' element={<NavBar />} />
+          <Route exact path='/lecture' element={<Lecture />} />
+          
+          {/* Rutas usuario */}
+        <Route path='/formSubscribe' element={<FormSubscribeUser/>} />
+        <Route path='/formLoginUser' element={<FormLoginUser />} /> 
+        <Route path='/editProfile' element={<FormEditUser/>} />
+        <Route path='/profile' element={<Profile />} />
+
+        {/* Rutas Admin */}
+        <Route path='/admin' element={<Admin/>} />
+        <Route path='/formAdmin' element={<FormAdmin />} />
+        <Route path='/admin/comic' element={<FormUpdateComic/>} />
+        <Route path='/updateComic' element={<FormUpdateComic/>} />
       </Routes>
       </Container>
     </div>
