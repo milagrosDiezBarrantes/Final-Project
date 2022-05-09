@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Sequelize, Model } = require("sequelize");
 const axios = require("axios");
 let { API_KEY, HASH_KEY } = process.env;
-const { Users , Plans,Favorites_comics,Favorites_characters } = require(`../db`);
+const { Users , Plans,Favorites_comics,Favorites_characters,Characters,Comics } = require(`../db`);
 
 const router = Router();
 
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
 		console.log(error, "algo pasó con el post del user");
 	}
 });
-	router.put("/db", async (req, res) => {
+router.put("/db", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id } = req.body;
 
@@ -72,7 +72,7 @@ console.log(user)
 		}
 	});
 	
-	router.get("/byid", async (req, res) => {
+router.get("/byid", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id } = req.body;
 
@@ -89,7 +89,8 @@ console.log(user)
 			console.log(error, "error en la ruta put user");
 		}
 	});
-	router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://3000/user/favoritesComics,{id:iduser,idcomics:arraydeids})
+
+router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://3000/user/favoritesComics,{id:iduser,idcomics:favorites})
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
@@ -102,62 +103,64 @@ console.log(user)
 			});
 			user.setComics(idComics)
 
-			return res.status(201).json({ user });
+			return res.status(200).send( user );
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
 		}
 	});
-	router.get("/favoritesComics", async (req, res) => {
+
+router.get("/favoritesComics", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
 			console.log(id);
-			const favorites = await Favorites_comics.findAll({
+			const favorites = await  Users.findOne({
+				include:Comics,
 				where: {
-					UserId: id,
+					id: id,
 				},
 			});
-			
 
-			return res.status(201).json({ favorites });
+			return res.status(200).send( favorites.Comics );
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
 		}
 	});
-	router.post("/favoritesCharacters", async (req, res) => {
+router.post("/favoritesCharacters", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id,idCharacters } = req.body;
 
 		try {
 			console.log(id);
-			const characters = await Users.findOne({
+			const user = await Users.findOne({
 				where: {
 					id: id,
 				},
 			});
 			user.setCharacters(idCharacters)
 
-			return res.status(201).json({ characters });
+			return res.status(201).json({ user });
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
 		}
 	});
 
-	router.get("/favoritesCharacters", async (req, res) => {
+router.get("/favoritesCharacters", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
 			console.log(id);
-			const characters = await Favorites_characters.findAll({
+			const characters = await Users.findOne({
+				include: Characters,
 				where: {
-					UserId: id,
+					id: id
 				},
 			});
 			
 
-			return res.status(201).json({ characters });
+			return res.status(200).send( characters.Characters);
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
 		}
@@ -165,11 +168,24 @@ console.log(user)
 
 router.get("/", async (req, res) => {
 	let users = await Users.findAll();
-
+	
 	if (users.length === 0) {
 		return res.send("tabla vacía");
 	}
 	return res.send(users || "tabla vacía");
+});
+router.get("/favorites", async (req, res) => {
+	const { id } = req.body;
+
+	let user = await Users.findOne({
+		include: Characters,Comics,
+		include: Comics,
+		where: {
+			id: id
+		},
+	});
+
+	return res.send(user);
 });
 
 module.exports = router;
