@@ -30,9 +30,9 @@ export default function Navbar() {
 
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
-  console.log(theme);
+  // console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
+  // console.log(isMatch);
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
