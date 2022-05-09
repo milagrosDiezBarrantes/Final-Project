@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { getAllUsers, filterByPlan } from "../../Redux/Actions/actions";
-
+import { Link } from "react-router-dom";
 import { Table, Button } from "semantic-ui-react";
 
 const Admin = () => {
@@ -45,6 +45,13 @@ const Admin = () => {
   return (
     
     <div>
+      
+      <Button className="button">
+          <Link to="/">
+            <span>HOME</span>
+          </Link>
+        </Button>
+
       <h1>Welcome to your dashboard</h1>
 
       
