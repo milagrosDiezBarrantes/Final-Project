@@ -19,7 +19,8 @@ export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 export const LOGIN_USER = 'LOGIN_USER;'
 
  // buscar character por nombre
- 
+ //Plans//
+ export const GET_PLANS = "GET_PLANS"
 
 export const SORT = "SORT"
 //Autentication
