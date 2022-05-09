@@ -126,10 +126,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         copyUsers: filtered,
-      };
-
-
-    
+      };  
 
     case CLEAR_COMICS:
         return{

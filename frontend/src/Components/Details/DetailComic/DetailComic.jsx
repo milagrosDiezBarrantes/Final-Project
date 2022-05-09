@@ -48,19 +48,14 @@ const DetailComic = () => {
       return comic.img
     }
   }
-
   return detail.length === 0 ? (
    
     <Loading/>
-    // <Typography component="h3" variant="h3" align="center" color="text.primary">
-    //   Loading...
-    // </Typography>
+   
 
   ) : (
     <>
       <div className="container">
-        {/* <h4 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h4>    */}
-
         <img
           src={detail[0].img}
           class="featured"
@@ -75,12 +70,7 @@ const DetailComic = () => {
           }}
         />
 
-        {/* <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>  
-          <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}
-          </h3>
-              <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h3>
-            <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>
-            <p  style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}} >{detail[0].description}</p> */}
+      
         <div style={{ marginLeft: "auto", marginRight: "auto" }}>
           <h1>
             <strong>{detail[0].title}</strong>

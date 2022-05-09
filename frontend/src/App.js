@@ -17,8 +17,11 @@ import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
+import FormUpdateComic from './Components/FormUpdateComic/FormUpdateComic'
+
 
 function App() {
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
