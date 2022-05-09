@@ -1,3 +1,4 @@
+
 import {
   GET_TITLE,
   GET_BY_ID,
@@ -104,7 +105,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
-  
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;

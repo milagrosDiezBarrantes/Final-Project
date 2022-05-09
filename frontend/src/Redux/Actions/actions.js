@@ -16,9 +16,9 @@ export const REMEMBER_ME = "REMEMBER_ME";
 export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 export const LOGIN_USER = 'LOGIN_USER;'
 
-export const GET_NAME = "GET_NAME" // buscar character por nombre
-export const GET_USERS = "GET_USERS" 
-export const FILT_BY_PLAN = "FILT_BY_PLAN"
+ // buscar character por nombre
+ 
+
 export const SORT = "SORT"
 //Autentication
 export const CLEAR_COMICS = "CLEAR_COMICS"
