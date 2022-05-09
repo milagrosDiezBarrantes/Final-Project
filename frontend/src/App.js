@@ -16,6 +16,7 @@ import { Container } from "@material-ui/core";
 import FormAdmin from "./Components/Form/FormAdmin";
 import Lecture from "./Components/Lecture/Lecture";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
+import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic"
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
           <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
           <Route path='/formAdmin' element={<FormAdmin />} />
-          <Route exact path='/lecture' element={<Lecture />} />
+          <Route exact path='/lecture/:comic' element={<Lecture />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<Admin/>} />
