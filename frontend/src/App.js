@@ -23,7 +23,7 @@ import FormSubscribeUser from "./Components/FormSubscribeUser/FormSubscribeUser.
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 import FormLoginUser from "./Components/FormLoginUser/FormLoginUser";
 
-
+import Lecture from './Components/Lecture'
 
 function App() {
   return (
