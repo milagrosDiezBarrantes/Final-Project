@@ -4,15 +4,12 @@ import { postUser } from "../../Redux/Actions/actions";
 import { validate } from "../../Functions/validacionesForm/validacionFormLog";
 import { Container, Form, Button} from 'semantic-ui-react';
 import { useNavigate} from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-
 import '../Form/Form.css';
 
 const FormUser = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const navigate= useNavigate(); 
-    const {user, isAuthenticated} = useAuth0();
 
 
     // const disable = useMemo(() => {

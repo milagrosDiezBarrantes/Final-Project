@@ -1,4 +1,3 @@
-import { Table } from "semantic-ui-react";
 import {
   GET_TITLE,
   GET_BY_ID,
@@ -14,7 +13,8 @@ import {
   POST_FAVORITE_COMICS,
   POST_FAVORITE_CHARACTERS,
   GET_FAVORITES,
-  LOGIN_USER
+  LOGIN_USER,
+  GET_PLANS,
 
 } from "../Actions/actions";
 import {
@@ -32,7 +32,8 @@ const initialState = {
   authenticated: false,
   filter:false,
   favoritesComics: [],
-  favoritesCharacters: []
+  favoritesCharacters: [],
+  plans: []
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {
@@ -75,6 +76,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: payload,
         
       };
+    case GET_PLANS:
+      return {
+        ...state,
+        plans :payload
+      };
 
    
       case AUTHENTICATED:
@@ -110,17 +116,17 @@ function ComicsReducer(state = initialState, { type, payload }) {
       };
     case FILT_BY_PLAN:
       const backUp = [...state.users];
-      const filtered = backUp.filter((user) => user.plan === payload);
+      const filtered = backUp.filter((user) => Number(user.plan_id )=== payload);
       return {
         ...state,
         copyUsers: filtered,
       };  
 
+
     case CLEAR_COMICS:
         return{
           ...state,
           copyComics: [],
-
         }
     case CLEAR_DETAIL:
         return{

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import DrawerComp from "../Navbar/Drawer";
+// import DrawerComp from "../Navbar/Drawer";
 import { Link } from 'react-router-dom'
 import logo from "../Banner/img/marvel.jpg";
+import userIcon from "../Navbar/userIcon.jpg";
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
 import styled from "styled-components";
 import {
   AppBar,
@@ -14,9 +15,19 @@ import {
   useTheme,
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { loginUser } from "../../Redux/Actions/actions";
+
 export default function Navbar() {
-  const { logout } = useAuth0();
+  // const dispatch = useDispatch();
+  // const user = useSelector(state => state.copyUsers);
+  // console.log(user)
+
+  //   useEffect(() => {
+  //     dispatch(loginUser(picture))
+  //   }, [dispatch, picture]);
+
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
   // console.log(theme);
@@ -58,16 +69,16 @@ export default function Navbar() {
               value={clicked}
               onChange={(e, clicked) => setClicked(clicked)}
             >
-                <Tab label="Comics" href="/homeComics" />
+             { /*   <Tab label="Comics" href="/homeComics" />*/  }
                 {/* <Tab label="About Us" href="/AboutUs" />
                 <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
             <Link to= '/profile'>
-              <Avatar alt="A" src="/static/images/avatar/1.jpg" />
+              <Avatar alt="A" src={userIcon} />
             </Link>
-            <a href='/'  onClick={() => logout({ returnTo: window.location.origin })} >
-            <LogIn>LOG OUT</LogIn>
-          </a>
+            <Link to='/' >
+              <LogIn>LOG OUT</LogIn>
+            </Link>
       </Toolbar>
       <SimpleBottomNavigation />
     

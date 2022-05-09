@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { userEdit } from "../../Redux/Actions/actions";
 import { Container, Form, Button} from 'semantic-ui-react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { validate } from "../../Functions/validacionesForm/validationForm";
 
 const FormEditUser = ({ handleClose}) => {
@@ -55,7 +55,7 @@ const FormEditUser = ({ handleClose}) => {
                 height:"100vh",
             }}
         >
-            <h1>EDITAR DATOS</h1>
+            <h1>Edit Data</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>Email:</label>
@@ -94,7 +94,9 @@ const FormEditUser = ({ handleClose}) => {
                 <br/>
                 <br/>
                 <div>
-                    <Button onClick={handleClose}> Back </Button>
+                    <Link to="/profile">
+                        <Button> Back </Button>
+                    </Link>
                     <Button type="submit"> Confirm </Button>
                 </div>
             </Form>

@@ -36,7 +36,7 @@ export function validate(input) {
     if(input.picture && !validPicture.test(input.picture)) {
         error.picture = 'This is not a valid URL'
     }
-    if (!input.validTitle) {
+    if (!input.title) {
         error.title = 'This field cannot be empty';
     }
     if (!validTitle.test(input.title)) {
