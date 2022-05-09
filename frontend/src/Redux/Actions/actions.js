@@ -11,6 +11,7 @@ export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const GET_NAME = "GET_NAME" // buscar character por nombre
 export const GET_USERS = "GET_USERS" 
 export const FILT_BY_PLAN = "FILT_BY_PLAN"
+export const SORT = "SORT"
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED"
 export const CLEAR_COMICS = "CLEAR_COMICS"
@@ -208,6 +209,15 @@ export const filterByPlan = (plan) =>{
         type: FILT_BY_PLAN,
         payload: plan
     }
+}
+
+export const sortBy = (payload) =>{
+    return{
+        type: SORT,
+        payload: payload
+    }
+
+
 }
 //================AUTHENTICATED=================//
 export function authenticateUser(){

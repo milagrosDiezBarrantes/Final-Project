@@ -27,14 +27,27 @@ const DetailComic = () => {
 
   useEffect(() => {
     dispatch(getById(id));
-    setShow(false);
+    setShow(true);
   }, [dispatch, id]);
 
   const handleClick = (e) => {
     e.preventDefault();
+    setShow(true);
     dispatch(getByCreators(e.target.value));
-    setShow(!show);
+    setShow(false);
+    console.log(detail[0])
   };
+
+  const img = (comic)=>{
+    let img = null
+    if(comic.images){
+      img =`${comic.images[0]?.path}.${comic.images[0]?.extension}`
+      return img
+    }
+    if(comic.img){
+      return comic.img
+    }
+  }
 
   return detail.length === 0 ? (
    
@@ -105,13 +118,41 @@ const DetailComic = () => {
             <ReactStars></ReactStars>
           </div>
         </div>
-        <div hide={show} style={{ display: "grid" }}>
+        <div style={{overflow:'hidden', height:'700px'}}>
+        <div style={{overflow:'hidden', height:'700px'}}>
+        <div style={{overflow:'scroll-behavior: smooth' }}>
+        {show? 
+        null 
+        : creators &&
+            creators?.map((comic) => (
+        <Link
+
+               className="link_card"
+                to={`/homeComics/DetailComic/${comic.id}`}
+              >
+              <img
+                  src= {img(comic) }
+                  alt= 'Not available'
+                  style={{ width: "100px", height: "100px" }}
+                />
+                <h3>{comic.title}</h3>
+              </Link>
+            ))}
+            </div>
+            </div>
+
+        </div>
+
+
+
+        {/* <div hide={show} style={{ display: "grid" }}>
           {creators &&
             creators?.map((comic) => (
               <Link
                 className="link_card"
                 to={`/homeComics/DetailComic/${comic.id}`}
               >
+
                 <img
                   src={comic.profilePic}
                   alt={comic.title}
@@ -120,7 +161,7 @@ const DetailComic = () => {
                 <h3>{comic.title}</h3>
               </Link>
             ))}
-        </div>
+        </div> */}
       </div>
       <Navbar />
     </>

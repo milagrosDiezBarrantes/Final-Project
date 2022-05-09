@@ -1,3 +1,4 @@
+import { Table } from "semantic-ui-react";
 import {
   GET_TITLE,
   GET_BY_ID,
@@ -9,6 +10,7 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
+  SORT,
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -23,6 +25,8 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
+  column:[],
+  direction:null,
 };
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -74,6 +78,28 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: payload,
         
       };
+
+      // case SORT:
+      //   let data = state.users;
+      //   if (state.column === payload) {          
+      //     return {
+      //       ...state,
+      //       data: data.slice().reverse(),
+      //       direction: state.sort.direction === 'ascending' ? 'descending' : 'ascending',
+      //     }
+      //   } else {  
+      //   return {
+      //     column: state.column,
+      //     data: sortBy(state.data, state.users),
+      //     direction: 'ascending',
+      //   }
+      // };
+    
+      case AUTHENTICATED:
+      return {
+        ...state,
+        authenticated: payload,
+      };
     case GET_USERS:
       return {
         ...state,
@@ -101,13 +127,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyUsers: filtered,
       };
-    case AUTHENTICATED:
-      return {
-        ...state,
-        authenticated: payload,
-      };
 
-      case CLEAR_COMICS:
+
+    
+
+    case CLEAR_COMICS:
         return{
           ...state,
           copyComics: [],
