@@ -9,7 +9,8 @@ module.exports = (sequelize) => {
     },
     email: { 
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     firstName: {
       type: DataTypes.TEXT,
@@ -21,7 +22,9 @@ module.exports = (sequelize) => {
     },
     userName: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      unique: true
+
     },
     age: {
       type: DataTypes.INTEGER,
