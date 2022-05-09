@@ -1,4 +1,3 @@
-import { Table } from "semantic-ui-react";
 import {
   GET_TITLE,
   GET_BY_ID,
@@ -10,6 +9,7 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
+  GET_PLANS,
 
 } from "../Actions/actions";
 import {
@@ -25,6 +25,7 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
+  plans: []
 
 };
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
@@ -76,6 +77,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         filter :true,
         copyComics: payload,
         
+      };
+    case GET_PLANS:
+      return {
+        ...state,
+        plans :payload
       };
 
       // case SORT:

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +11,12 @@ const PostAdmin = () => {
     const [error, setError] = useState({});
     const navigate = useNavigate();
 
-    const disable = useMemo(() => {
-        if(error.title || error.img ) {
-            return true;
-        }
-        return false;
-    }, [error])
+    // const disable = useMemo(() => {
+    //     if(error.title || error.img ) {
+    //         return true;
+    //     }
+    //     return false;
+    // }, [error])
 
     const [input, setInput] = useState({
         title: '',
@@ -44,6 +44,7 @@ const PostAdmin = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log('ACA HANDLESUBMIT DEL POST ADMIN', input)
             dispatch(postComic(input))
             alert('Post created successfully!')
             setInput({
@@ -99,12 +100,12 @@ const PostAdmin = () => {
                         onChange={handleChange}
                         placeholder='Image Comic'
                     />
-                    {error.picure && <p style={{ color:"red"}}> {error.picture}</p>}
+                    {error.picture && <p style={{ color:"red"}}> {error.picture}</p>}
                 </div>
                 <div>
                     <Button 
                         onChange={handleChange} 
-                        disabled={disable} 
+                        // disabled={disable} 
                         type='submit'
                     >
                         Create Post

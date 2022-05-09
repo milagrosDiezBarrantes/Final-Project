@@ -10,7 +10,7 @@ const FormLoginUser = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [input, setInput] = useState({
-        user: '',
+        userName: '',
         password: '',
     })
 
@@ -26,21 +26,33 @@ const FormLoginUser = () => {
         }
     }
 
+    // function handleChange(e) {
+    //     const {name} = e.target;
+    //     if(name === "user") {
+    //         validateEmail(input.user)
+    //     }
+    //     setInput({
+    //         ...input,
+    //         [name]: e.target.value
+    //     })
+    // }
     function handleChange(e) {
-        const {value, name} = e.target;
-        if(name === "user") {
-            validateEmail(input.user)
-        }
+        e.preventDefault();
         setInput({
             ...input,
-            [name]: value
-        })
+            [e.target.name]: e.target.value
+        });
+        setError(validateEmail({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
     }
 
     function handleSubmit(e) {
+        e.preventDefault();
         dispatch(loginUser(input))
             setInput({
-                name: '',
+                userName: '',
                 passsword:'',
             })
             navigate('/homeComics');
@@ -61,12 +73,12 @@ const FormLoginUser = () => {
             <Form style={{ width:"30%"}} onSubmit={handleSubmit}>
                 <div>
                     <FaUserCircle />
-                    <label style={{marginLeft: '3px'}}>Email*:</label>
+                    <label style={{marginLeft: '3px'}}>User Name*:</label>
                     <input
                         type="text"
-                        placeholder="Email"
-                        name="user"
-                        value={input.user}
+                        placeholder="User Name"
+                        name="userName"
+                        value={input.userName}
                         onChange={handleChange}
                     />
                     {!error? null : <p style={{ color:"red"}} >{error}</p>}
@@ -93,7 +105,7 @@ const FormLoginUser = () => {
 					<label style={{color:'grey'}}>Remember me?</label>
 				</div>
                 <div>
-                    <Button type="submit"> Login</Button>
+                    <Button type="submit" > Login</Button>
                 </div>
                 <div>
                     <span style={{color:'grey'}}> Not an account?

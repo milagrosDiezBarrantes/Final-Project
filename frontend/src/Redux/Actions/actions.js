@@ -128,7 +128,7 @@ export const createUser= (user) => {
                 console.log(userCreate, 'se crea usuario?');
                 return dispatch({
                     type: CREATE_USER,
-                    payload: userCreate.data
+                    payload: userCreate.data.user
                 })
             }
             catch(err) {
@@ -139,11 +139,16 @@ export const createUser= (user) => {
 
 //LOGIN
 
-export const loginUser= (userName, password) => {
+export const loginUser= ({userName, password}) => {
         return async (dispatch) => {
             try {
-                const userLogin = await axios.get(`http://localhost:3001/user/login`, {userName, password});
-                console.log(userLogin, 'se logeo el user?');
+                const userLogin = await axios.get("http://localhost:3001/user/login",{
+                    params: {
+                        userName, password
+                    }})
+                    console.log('ACAAAA USER LOGIN',userLogin)
+                    console.log(userName)
+                    console.log(userName)
                 return dispatch({
                     type: LOGIN_USER,
                     payload: userLogin.data
@@ -188,15 +193,27 @@ export function getAllUsers (){
 }
 }
 
-export function setRememberMe() {
+export function setRememberMe(paylaoad) {
 	return {
-        type: 'REMEMBER_ME' 
+        type: 'REMEMBER_ME',
+        paylaoad
     }
 }
 
 export function getPlans() {
-    return {
-        type: 'GET_PLANS'
+    return async function(dispatch) {
+        try {
+            const plansUser = await axios.get('http://localhost:3001/plans')
+            const plan = plansUser.data.filter(e=>e.name !=="admin")
+            console.log(plan)
+            return dispatch({
+                type:GET_PLANS,
+                payload: plan
+            })
+        } 
+        catch (error) {
+            console.log(error)
+        }
     }
 }
 // ==================ADMIN POST============================
