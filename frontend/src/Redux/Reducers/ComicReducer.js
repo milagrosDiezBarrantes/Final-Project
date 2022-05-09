@@ -10,7 +10,7 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
-  SORT,
+
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -25,8 +25,7 @@ const initialState = {
   copyUsers: [],
   authenticated: false,
   filter:false,
-  column:[],
-  direction:null,
+
 };
 /* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
     let newA = []
@@ -106,6 +105,9 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
+    case UPDATE_PERMISSION:
+
+
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;
