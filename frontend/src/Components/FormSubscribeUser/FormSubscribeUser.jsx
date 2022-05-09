@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'semantic-ui-react';
 import { validate } from '../../Functions/validacionesForm/validationForm';
-import { postUser } from '../../Redux/Actions/actions';
+import { createUser } from '../../Redux/Actions/actions';
 
-export const FormSubscribeUser = () => {
+const FormSubscribeUser = () => {
 
     const dispatch = useDispatch();
     const [error, setError] = useState({});
@@ -47,7 +47,7 @@ export const FormSubscribeUser = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(postUser(input));
+        dispatch(createUser(input));
         setInput({
             firstName: '',
             lastName: '',
@@ -71,7 +71,7 @@ export const FormSubscribeUser = () => {
                 height:"100vh",
             }}
         >
-            <h1>Subscribe</h1>
+            <h1>SUBSCRIBE</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>First name:</label>
@@ -96,7 +96,7 @@ export const FormSubscribeUser = () => {
                 <div>
                     <label>Age:</label>
                     <input
-                        type="text"
+                        type="number"
                         placeholder="Age"
                         name="age"
                         onChange={handleChange}
@@ -167,3 +167,5 @@ export const FormSubscribeUser = () => {
         </Container>
     )
 }
+
+export default FormSubscribeUser

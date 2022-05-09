@@ -6,7 +6,6 @@ export function validate(input) {
     const validPassword = /^.{4,12}$/; // 4 a 12 digitos.
     const validPicture= /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/ ;
     const validTitle = /^[a-zA-Z\s]+$/
-    const validAge = /^[1-9][0-9]*$/
     
     let error = {};
     
@@ -19,7 +18,7 @@ export function validate(input) {
     if (input.userName && !validUser.test(input.userName)) {
         error.userName = 'The user must have 4 to 10 digits';
     }
-    if(input.age <= 16 && !validAge.test(input.age)) {
+    if(input.age  && (input.age <= 16 || input.age >= 99) ) {
         error.age = 'Must be 16 years';
     }
     if (input.description) {
