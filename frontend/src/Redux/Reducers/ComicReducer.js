@@ -121,14 +121,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
       };
     case FILT_BY_PLAN:
       const backUp = [...state.users];
-      const filtered = backUp.filter((user) => user.plan === payload);
+      const filtered = backUp.filter((user) => Number(user.plan_id )=== payload);
       return {
         ...state,
         copyUsers: filtered,
       };
-
-
-    
 
     case CLEAR_COMICS:
         return{

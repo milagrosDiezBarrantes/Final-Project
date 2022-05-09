@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PlaceholderLine } from 'semantic-ui-react';
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
@@ -9,9 +10,6 @@ export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 
-export const GET_NAME = "GET_NAME"; // buscar character por nombre
-export const GET_USERS = "GET_USERS";
-export const FILT_BY_PLAN = "FILT_BY_PLAN";
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";
@@ -23,7 +21,6 @@ export const LOGIN_USER = 'LOGIN_USER;'
 
 export const SORT = "SORT"
 //Autentication
-
 export const CLEAR_COMICS = "CLEAR_COMICS"
 export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 
@@ -237,9 +234,11 @@ export const deleteComic = (id) => {
 
 
 export const filterByPlan = (plan) =>{
+    console.log(plan)
+    console.log('llega plan?', Number(plan))
     return{
         type: FILT_BY_PLAN,
-        payload: plan
+        payload: Number(plan)
     }
 }
 
