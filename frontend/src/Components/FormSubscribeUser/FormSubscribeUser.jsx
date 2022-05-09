@@ -1,14 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'semantic-ui-react';
 import { validate } from '../../Functions/validacionesForm/validationForm';
-import { createUser } from '../../Redux/Actions/actions';
+import { createUser, getPlans } from '../../Redux/Actions/actions';
 
 const FormSubscribeUser = () => {
 
     const dispatch = useDispatch();
     const [error, setError] = useState({});
+    const comicsReducer = useSelector((state) => state.ComicsReducer.plans);
+    console.log(comicsReducer)
     const navigate= useNavigate(); 
 
     const disable = useMemo(() => {
@@ -27,11 +29,16 @@ const FormSubscribeUser = () => {
         password: '',
         password2: '',
         picture:'',
+        plan_id:'',
     })
 
     useEffect(() => {
         setError(validate(input))
     }, [input])
+
+    useEffect(() => {
+        dispatch(getPlans())
+    }, [dispatch])
 
     function handleChange(e) {
         e.preventDefault();
@@ -47,6 +54,7 @@ const FormSubscribeUser = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log(input)
         dispatch(createUser(input));
         setInput({
             firstName: '',
@@ -57,6 +65,7 @@ const FormSubscribeUser = () => {
             password: '',
             password2: '',
             picture:'',
+            plan_id:'',
         })
         navigate('/profile');
     }
@@ -71,7 +80,7 @@ const FormSubscribeUser = () => {
                 height:"100vh",
             }}
         >
-            <h1>SUBSCRIBE</h1>
+            <h1>Sign Up</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
                     <label>First name:</label>
@@ -79,6 +88,7 @@ const FormSubscribeUser = () => {
                         type="text"
                         placeholder="First name"
                         name="firstName"
+                        value={input.firstName}
                         onChange={handleChange}
                     />
                     {error.firstName && <p style={{ color:"red"}} >{error.firstName}</p>}
@@ -89,6 +99,7 @@ const FormSubscribeUser = () => {
                         type="text"
                         placeholder="Last name"
                         name="lastName"
+                        value={input.lastName}
                         onChange={handleChange}
                     />
                     {error.lastName && <p style={{ color:"red"}} >{error.lastName}</p>}
@@ -99,6 +110,7 @@ const FormSubscribeUser = () => {
                         type="number"
                         placeholder="Age"
                         name="age"
+                        value={input.age}
                         onChange={handleChange}
                     />
                     {error.age && <p style={{ color:"red"}} >{error.age}</p>}
@@ -109,6 +121,7 @@ const FormSubscribeUser = () => {
                         type="text"
                         placeholder="User name"
                         name="userName"
+                        value={input.userName}
                         onChange={handleChange}
                     />
                     {error.userName && <p style={{ color:"red"}} >{error.userName}</p>}
@@ -119,6 +132,7 @@ const FormSubscribeUser = () => {
                         type="email"
                         placeholder="Email"
                         name="email"
+                        value={input.email}
                         onChange={handleChange}
                         autoComplete="username"
                     />
@@ -130,6 +144,7 @@ const FormSubscribeUser = () => {
                         type="password"
                         placeholder="Password"
                         name="password"
+                        value={input.password}
                         onChange={handleChange}
                         autoComplete="current-password"
                     />
@@ -141,6 +156,7 @@ const FormSubscribeUser = () => {
                         type="password"
                         placeholder="Repeat password"
                         name="password2"
+                        value={input.password2}
                         onChange={handleChange}
                         autoComplete="new-password"
                     />
@@ -152,14 +168,19 @@ const FormSubscribeUser = () => {
                         type="URL"
                         placeholder="Your image"
                         name="picture"
+                        value={input.picture}
                         onChange={handleChange}
                     />
                     {error.picture && <p style={{ color:"red"}} > {error.picture} </p>}
                 </div>
-                {/* agrego salto página para presentar */}
-                <br/>
-                <br/>
-                <br/>
+                <div>
+                    <label>Select your plan</label>
+                    <select key='plan_id' id='plan_id' name='plan_id'defaultValue='All' onChange={handleChange}> 
+                        <option value='All'>Plans</option>
+                            {comicsReducer && comicsReducer.map(e => ( 
+                        <option key={e.name} value={e.id} name='plan_id'>{e.name}</option>))} 
+                    </select>
+                </div>
                 <div>
                     <Button onChange={handleChange} type='submit' disabled={disable}> Sign up </Button>
                 </div>
