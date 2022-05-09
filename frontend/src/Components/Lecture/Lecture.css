@@ -1,0 +1,40 @@
+.containedSecundari{
+ 
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.Publiciti{
+    background-color: white;
+    opacity: 90%;
+    width: 25%;
+    color:black
+}
+.comic{
+    width:50%;
+}
+
+.btn {
+    margin: 10px;
+    min-width: 130px;
+    height: 40px;
+    /* color: #3c77b2; *//*este es el color de letras del logout*/
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid white;
+    background: #212529;
+  }
+  .btn:hover {
+    /* background: #fff; */
+    color:red;
+    border-color:red ;
+  } 
