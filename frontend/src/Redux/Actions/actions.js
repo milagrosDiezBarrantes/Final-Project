@@ -9,7 +9,9 @@ export const USER_EDIT = "USER_EDIT";
 export const UPDATE_COMIC = "UPDATE_COMIC";
 export const DELETE_COMIC = "DELETE_COMIC";
 export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
-
+export const FILT_BY_PLAN = "FILT_BY_PLAN"
+export const GET_NAME = "GET_NAME"
+export const GET_USERS = "GET_USERS"
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";

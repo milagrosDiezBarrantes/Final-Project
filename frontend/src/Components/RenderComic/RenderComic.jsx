@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import LazyTrending from "../Lazytrending/LazyTrending";
 import {Document,Page} from "react-pdf/dist/esm/entry.webpack"
 
 const RenderComic = ({comic})=>{
@@ -20,11 +21,13 @@ const RenderComic = ({comic})=>{
                         {Array.from(
                             new Array(numPages),
                             (el,index) => (
-                                <Page 
-                                    height="1000"
-                                    key={`page_${index+1}`}
-                                    pageNumber={index+1}
-                                />
+                                <LazyTrending component={
+                                    <Page 
+                                        height="1000"
+                                        key={`page_${index+1}`}
+                                        pageNumber={index+1}
+                                    />
+                                }/>
                         )
                         )}
                     </Document>
