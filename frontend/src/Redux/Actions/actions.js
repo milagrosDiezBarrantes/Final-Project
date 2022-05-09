@@ -26,6 +26,7 @@ export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 //Favorite
 export const POST_FAVORITE_COMICS = "POST_FAVORITE_COMICS"
 export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
+export const GET_FAVORITES = "GET_FAVORITES"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -111,8 +112,8 @@ export function getComicsByTitle(title) {
 export const getById = (id) => async dispatch => {
     try{
         const res= await axios(`http://localhost:3001/comics/${id}`);
-        console.log('llega id?', id)
-        console.log('llega comic al payoad?', res)
+        // console.log('llega id?', id)
+        // console.log('llega comic al payoad?', res)
         return dispatch({
             type: GET_BY_ID,
             payload: res.data            
@@ -143,14 +144,36 @@ export const createUser= (user) => {
 
 //====================== LOGIN ===============
 
-export const loginUser= (userName, password) => {
+export const loginUser= ({userName,password}) => {
         return async (dispatch) => {
             try {
-                const userLogin = await axios.get(`http://localhost:3001/user/login`, {userName, password});
-                console.log(userLogin, 'se logeo el user?');
+                const userLogin = await axios.get("http://localhost:3001/user/login",{
+                    params: {
+                        userName,password
+                    }});
+                // console.log("de la action");
+                // console.log(userName,password);
                 return dispatch({
                     type: LOGIN_USER,
                     payload: userLogin.data
+                })
+            }
+            catch(err) {
+                console.log(err, 'userCreate || Error');
+            }
+        }
+}
+export const getFavorites= (id) => {
+        return async (dispatch) => {
+            try {
+                const favorites = await axios.get(`http://localhost:3001/user/favoritesComics`, {
+                    params: {
+                        id
+                    }});
+                console.log(favorites, 'se favoriteo el user?');
+                return dispatch({
+                    type: GET_FAVORITES,
+                    payload: favorites.data
                 })
             }
             catch(err) {
@@ -288,7 +311,7 @@ export function postFavoriteComics(idComics, id) {
             const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, id});
             return dispatch({
                 type: "POST_FAVORITE_COMICS",
-                payload: data
+                payload: idComics
             })
         }
         catch (err) {

@@ -12,7 +12,9 @@ import {
   CLEAR_DETAIL,
   ADD_FAVORITE,
   POST_FAVORITE_COMICS,
-  POST_FAVORITE_CHARACTERS
+  POST_FAVORITE_CHARACTERS,
+  GET_FAVORITES,
+  LOGIN_USER
 
 } from "../Actions/actions";
 import {
@@ -25,6 +27,7 @@ const initialState = {
   copyComics: [],
   selectedComic: [],
   users: [],
+  loginUser: {},
   copyUsers: [],
   authenticated: false,
   filter:false,
@@ -99,6 +102,12 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyComics: [...deletedComic],
       };
+    case LOGIN_USER:
+      
+      return {
+        ...state,
+        loginUser: payload,
+      };
     case FILT_BY_PLAN:
       const backUp = [...state.users];
       const filtered = backUp.filter((user) => user.plan === payload);
@@ -117,6 +126,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         return{
           ...state,
           selectedComic: [],
+        }
+    case GET_FAVORITES:
+        return{
+          ...state,
+          favoritesComics:payload ,
         }
         case POST_FAVORITE_COMICS:
             console.log(state.favorites)

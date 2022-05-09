@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getById, postFavoriteComics } from "../../../Redux/Actions/actions";
+import { getById, postFavoriteComics,loginUser,getFavorites } from "../../../Redux/Actions/actions";
 import { getByCreators } from "../../../Redux/Actions/FilterOrderActions";
 import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
@@ -25,8 +25,9 @@ const DetailComic = () => {
   const [show, setShow] = React.useState(true);
 
 //////////////////FAVORITE//////////
-const postFavorite = useSelector((state) => state)
-console.log(postFavoriteComics);
+const postFavorite = useSelector((state) => state.ComicsReducer)
+// console.log(postFavorite);
+// console.log(postFavorite.loginUser.id);
 
 
 const [input, setInput] = React.useState({})
@@ -49,16 +50,30 @@ function handleSubmit(event){
 
   useEffect(() => {
     dispatch(getById(id));
+    dispatch(loginUser({
+      "userName":"lamilirodriguez",
+      
+      "password":"1235sdf4"
+      }));
     setShow(true);
   }, [dispatch, id]);
 
+  useEffect(() => {
+    
+      dispatch(getFavorites(postFavorite.loginUser.id))
+  }, [ postFavorite.loginUser.id]);
+
+  // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
+  //   dispatch(getFavorites(postFavorite.loginUser.id));
+  // }
+  
+  
+
   const handleClick = (e) => {
-    e.preventDefault();
-    setShow(true);
-    dispatch(getByCreators(e.target.value));
-    setShow(false);
-    console.log(detail[0])
-    dispatch(postFavoriteComics({id})) 
+    
+console.log("estrellita")
+
+dispatch(postFavoriteComics(postFavorite.loginUser.id,[...postFavorite.favoritesComics,])
 
   };
 
@@ -157,7 +172,7 @@ function handleSubmit(event){
       </div>
       <Navbar />
       <div>
-        <button className="favoritesComics" type="submit"  onClick={(event) => handleClick(event)} onSubmit={event=>handleSubmit(event)} onChange={handleChange}>⭐</button>
+        <button className="favoritesComics" type="button"  onClick={(event) => handleClick(event)}>⭐</button>
         </div>
     </>
   );
