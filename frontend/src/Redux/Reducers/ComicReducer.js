@@ -1,4 +1,3 @@
-import { Table } from "semantic-ui-react";
 import {
   GET_TITLE,
   GET_BY_ID,
@@ -105,9 +104,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
         users: payload,
         copyUsers: payload,
       };
-    case UPDATE_PERMISSION:
-
-
+  
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);
       state.Comics[comicEdit] = type.payload;
@@ -124,14 +121,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
       };
     case FILT_BY_PLAN:
       const backUp = [...state.users];
-      const filtered = backUp.filter((user) => user.plan === payload);
+      const filtered = backUp.filter((user) => Number(user.plan_id )=== payload);
       return {
         ...state,
         copyUsers: filtered,
       };
-
-
-    
 
     case CLEAR_COMICS:
         return{

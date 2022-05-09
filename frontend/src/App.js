@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Banner from "./Components/Banner/Banner";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
@@ -52,8 +52,10 @@ function App() {
         <Route path='/updateComic' element={<FormUpdateComic/>} />
 
           <Route path='/formAdmin' element={<FormAdmin />} />
+
           <Route exact path='/lecture/:comic' element={<Lecture />} />
           <Route path='/login' element={<Login />} />
+
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<Admin/>} />
           <Route path='/editProfile' element={<FormEditUser/>} />
