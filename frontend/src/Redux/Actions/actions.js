@@ -21,7 +21,7 @@ export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 export const LOGIN_USER = 'LOGIN_USER;'
 
  // buscar character por nombre
- 
+export const GET_PLANS = 'GET_PLANS';
 
 export const SORT = "SORT"
 //Autentication
@@ -186,6 +186,24 @@ export const getFavorites= (id) => {
             }
         }
 }
+
+export function getPlans() {
+    return async function(dispatch) {
+        try {
+            const plansUser = await axios.get('http://localhost:3001/plans')
+            const plan = plansUser.data.filter(e=>e.name !=="admin")
+            console.log(plan)
+            return dispatch({
+                type:GET_PLANS,
+                payload: plan
+            })
+        } 
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 
 export const userEdit = (user) => {
     return async (dispatch) => {
