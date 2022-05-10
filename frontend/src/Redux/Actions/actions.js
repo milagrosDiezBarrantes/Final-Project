@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { PlaceholderLine } from 'semantic-ui-react';
+
 export const GET_CHARACTERS = "GET_CHARACTERS";
 export const GET_TITLE = "GET_TITLE";
 export const GET_BY_ID = "GET_BY_ID";
