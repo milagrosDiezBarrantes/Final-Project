@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 export const Profile = () => {
   const profileUser = useSelector(state => state.CharactersReducer.loginUser);
   console.log(profileUser);
-
+////holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
   return (
       
