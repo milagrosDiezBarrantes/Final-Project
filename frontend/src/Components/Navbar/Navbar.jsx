@@ -15,15 +15,17 @@ import {
   useTheme,
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { loginUser } from "../../Redux/Actions/actions";
 
 export default function Navbar() {
   // const dispatch = useDispatch();
-  // const user = useSelector(state => state.copyUsers);
-  // console.log(user)
-
+   const user = useSelector(state => state.CharactersReducer.loginUser)
+  
+   console.log(user.picture)
+  //StateCharactersReducerloginUser
+ 
   //   useEffect(() => {
   //     dispatch(loginUser(picture))
   //   }, [dispatch, picture]);
@@ -74,7 +76,7 @@ export default function Navbar() {
                 <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
             <Link to= '/profile'>
-              <Avatar alt="A" src={userIcon} />
+              <Avatar alt="A" src={user.picture} />
             </Link>
             <Link to='/' >
               <LogIn>LOG OUT</LogIn>
