@@ -102,6 +102,7 @@ router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://30
 					id: id,
 				},
 			});
+			console.log("soy idComics",idComics)
 			user.setComics(idComics)
 
 			return res.status(200).send( user );
@@ -112,7 +113,7 @@ router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://30
 
 router.get("/favoritesComics", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+		const { id } = req.query; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
 			console.log(id);

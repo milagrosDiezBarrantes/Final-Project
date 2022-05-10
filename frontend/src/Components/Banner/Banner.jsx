@@ -4,21 +4,43 @@ import logo from "../Banner/img/marvel.jpg";
 import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import FloatingActionButtons from "../../Components/Admin/Admin";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { authenticateUser } from "../../Redux/Actions/actions";
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import NavigationIcon from '@material-ui/icons/Navigation';
+
+
 
 const Login = (props) => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const authorized = useSelector((state) => state.ComicsReducer.authenticated);
 
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1),
+    },
+  }));
+
+
   useEffect(() => {
     dispatch(authenticateUser());
     
   },[]);
-  
+  const classes = useStyles();
+
   return (
     isAuthenticated && authorized ? (
       <>
@@ -40,11 +62,9 @@ const Login = (props) => {
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-
         <a href="/formLoginUser">
           <LogIn>LOG IN</LogIn>
         </a>
-
         <a href="/formSubscribe">
           <LogIn>SUSCRIBE NOW</LogIn>
         </a>
@@ -99,10 +119,21 @@ const Login = (props) => {
             <BackgroundImg />
           </Content>
         </Container>
+       
+        <a href="/">
+          <Logo src={logo} alt="Marvel" />
+        </a>
+        
+        <a href="/admin">
+          <LogIn>ACCESS ADMIN</LogIn>
+        </a>
+      
       </div>
     </>
   ));
 };
+
+
 
 const Cont = styled.div`
   display: block;
