@@ -5,7 +5,7 @@ import NavBar from '../../Navbar/Navbar.jsx';
 import CharacterCard from "../../Cards/CharacterCard/CharacterCard"
 import CustomPagination from '../../Pagination/Pagination.jsx'
 import AppBanner from "../../Publicidad/Publicidad";
-
+import Footer from "../Footer/Footer";
 import "./HomeCharacter.css"
 
 const HomeCharacter = () => {
@@ -55,9 +55,6 @@ console.log(data)
             <AppBanner/>
             <div>
                 <NavBar />
-                {/* comentado previo a presentación porque los paginados superiro e inferior no se coordinan <div className='Paginado'>
-                    <CustomPagination setPage = {setCurrentPage} numOfPages={numOfPages}/>
-                </div> */}
                 <div>
                     {currentPageData}
                 </div>
@@ -66,6 +63,7 @@ console.log(data)
                 </div>
                
             </div>
+            <Footer />
         </div>
     )
 }

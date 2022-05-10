@@ -34,7 +34,6 @@ export default function CustomPagination({ setPage, numOfPages = 10 }) {
   );
 }
 
-
 const Container = styled.div`
 display: block;
 color: #000000;
