@@ -15,32 +15,24 @@ import {
   useTheme,
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
-
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 // import { loginUser } from "../../Redux/Actions/actions";
 
 export default function Navbar() {
   // const dispatch = useDispatch();
-   const user = useSelector(state => state.CharactersReducer.loginUser)
-  
-   console.log(user.picture)
-  //StateCharactersReducerloginUser
- 
+  // const user = useSelector(state => state.copyUsers);
+  // console.log(user)
+
   //   useEffect(() => {
   //     dispatch(loginUser(picture))
   //   }, [dispatch, picture]);
 
-
-
-export default function Navbar() {
-
-
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
-  // console.log(theme);
+  console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  // console.log(isMatch);
+  console.log(isMatch);
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
@@ -82,7 +74,7 @@ export default function Navbar() {
                 <Tab label="Contact" href="/Contact"  /> */}
             </Tabs>
             <Link to= '/profile'>
-              <Avatar alt="A" src={user.picture} />
+              <Avatar alt="A" src={userIcon} />
             </Link>
             <Link to='/' >
               <LogIn>LOG OUT</LogIn>
@@ -109,4 +101,4 @@ const LogIn = styled.a`
     background-color: #f9f9f9;
     color: #000;
   }
-`;
+`
