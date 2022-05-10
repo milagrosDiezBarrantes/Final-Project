@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+	--bg-dark: rgb(37, 37, 37);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	font-family: "Oswald", sans-serif;
+}
+
+body::-webkit-scrollbar {
+	width: 0;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	max-width: 100vw;
+	min-height: 100vh;
+	overflow: hidden;
+    background-image: url("https://cutewallpaper.org/22/captain-marvel-logo-wallpapers/2185211551.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+.container header.main-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--bg-dark);
+	min-height: 80px;
+    background-image: url("https://cutewallpaper.org/22/captain-marvel-logo-wallpapers/2185211551.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+.container header.main-header .bg-title {
+	background-color: red;
+	padding: 5px;
+	height: 65px;
+	width: 140px;
+    background-image: url("https://cutewallpaper.org/22/captain-marvel-logo-wallpapers/2185211551.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+header.main-header .bg-title a {
+	text-decoration: none;
+}
+
+.container header.main-header h1 {
+	display: flex;
+	font-size: 2rem;
+	justify-content: center;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: -3px;
+	font-weight: 700;
+	text-shadow: 0px 0px 10px rgb(0, 0, 0);
+	transform: scale(1.5, 2) translateX(-2.5px);
+    background-image: url("https://cutewallpaper.org/22/captain-marvel-logo-wallpapers/2185211551.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+nav.navigation {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	width: 100%;
+	border-top: 0.5px solid rgba(255, 255, 255, 0.349);
+	flex-wrap: wrap;
+	box-shadow: 0px 10px 10px 0px grey;
+    background-image: url("https://cutewallpaper.org/22/captain-marvel-logo-wallpapers/2185211551.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+nav address {
+	margin: 0 10px;
+}
+
+nav address a {
+	color: rgb(182, 182, 182);
+	text-transform: capitalize;
+	text-decoration: none;
+	font-weight: 300;
+	font-style: normal;
+	padding-bottom: 8px;
+	font-size: 1rem;
+}
+
+nav address a:hover {
+	color: rgb(255, 255, 255);
+	border-bottom: 2px solid red;
+}
+.section-active {
+	color: rgb(255, 255, 255);
+	border-bottom: 2px solid red;
+}
+
+main.main-content {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	justify-content: center;
+	flex: 1;
+}
+
+main .background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("https://cutewallpaper.org/22/captain-marvel-logo-wallpapers/2185211551.jpg");
+	background-position: center;
+	background-size: cover;
+	opacity: 0.3;
+	z-index: -1;
+	max-width: 100vw;
+}
+
+main.main-content > section {
+	display: flex;
+	position: relative;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+main.section-single-item {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+main.section-single-item > section {
+	width: 85%;
+	margin: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+footer {
+	position: relative;
+	display: flex;
+	background-color: var(--bg-dark);
+	color: white;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 0;
+    background-image: url("https://cdn.wallpapersafari.com/19/76/gqTd06.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+footer .logo-container {
+	display: flex;
+	justify-content: center;
+	width: 100px;
+	margin-bottom: 50px;
+}
+
+footer .logo-container .logo {
+	position: relative;
+	background-color: red;
+	height: 50px;
+	width: 36px;
+	transform: scale(3, 2);
+}
+
+footer .logo-container .logo span {
+	position: absolute;
+	font-size: 50px;
+	text-transform: uppercase;
+	font-weight: 900;
+	transform: translateY(-15px);
+}
+
+footer .information-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+footer .information-container h1 {
+	text-transform: uppercase;
+}
+
+footer .information-container ul {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px 0;
+	width: 150px;
+	list-style: none;
+}
+
+footer .information-container li {
+	margin-top: 10px;
+}
+
+footer .information-container a {
+	text-transform: capitalize;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.678);
+	margin-left: 10px;
+}
+
+footer .information-container a:hover {
+	color: white;
+	cursor: pointer;
+}
+
+footer span.reserverd-rights {
+	position: absolute;
+	bottom: 10px;
+}
+
+@media screen and (min-width: 650px) {
+	nav address a {
+		font-size: 1.3rem;
+	}
+	main.main-content .background {
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+	footer {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+}
+
+@media screen and (min-width: 1250px) {
+	main.section-single-item {
+		display: flex;
+		width: 100%;
+		flex-direction: row;
+	}
+	main.section-single-item > section {
+		width: 50%;
+	}
+}
+
+@media screen and (min-width: 1450px) {
+	main.main-content > section {
+		display: flex;
+		width: 80vw;
+		flex-direction: row;
+		justify-content: center;
+	}
+}
