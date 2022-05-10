@@ -9,13 +9,13 @@ export const Profile = () => {
   const profileUser = useSelector(state => state.CharactersReducer.loginUser);
   console.log(profileUser);
 
-
   return (
-      
       <div className="container">
-         <div className="details_container">
-         <h1 className="">User Name:</h1>
-        <h2 className="">{profileUser.userName}</h2>
+        <div className="details_container">
+        <h1 className="">Personal :</h1>
+        <h2 className="">{profileUser.firstName}</h2> <br/>
+        <h2 className="">{profileUser.lastName}</h2> <br/>
+        <h2 className="">{profileUser.userName}</h2> <br/>
          <div className="header">
          <ProfileImage src={profileUser.picture} alt={profileUser.fistName}  />
         <div className=""></div>
@@ -24,7 +24,11 @@ export const Profile = () => {
             <span>Edit Profile</span>
           </Link>
         </Button>
-        
+        <Button className="button">
+          <Link to="/homeComics">
+            <span>HOME</span>
+          </Link>
+        </Button>
         {/*<h3 className="">Name:</h3>
 
         comentado para muestra viernes <h4 className="">{profileUser.name}</h4>

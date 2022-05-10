@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getById } from "../../../Redux/Actions/actions";
+import { getById, postFavoriteComics,loginUser,getFavorites } from "../../../Redux/Actions/actions";
 import { getByCreators } from "../../../Redux/Actions/FilterOrderActions";
 import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
@@ -24,18 +24,72 @@ const DetailComic = () => {
 
   const [show, setShow] = React.useState(true);
 
+//////////////////FAVORITE//////////
+const postFavorite = useSelector((state) => state.ComicsReducer)
+// console.log(postFavorite);
+// console.log(postFavorite.loginUser.id);
+
+
+const [input, setInput] = React.useState({})
+
+
+
+
+      
+////////////////FAVORITE//////////////      
+
+
 
   useEffect(() => {
     dispatch(getById(id));
+    dispatch(loginUser({
+      "userName":"lamilirodriguez",
+      
+      "password":"1235sdf4"
+      }));
     setShow(true);
-  }, [dispatch, id]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if(postFavorite.loginUser.id){
+      dispatch(getFavorites(postFavorite.loginUser.id))
+    }
+  }, [ postFavorite.loginUser.id]);
+
+  // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
+  //   dispatch(getFavorites(postFavorite.loginUser.id));
+  // }
+  
+  
 
   const handleClick = (e) => {
-    e.preventDefault();
-    setShow(true);
-    dispatch(getByCreators(e.target.value));
-    setShow(false);
-    console.log(detail[0])
+    
+console.log("estrellita")
+
+let arrayIds = [...postFavorite.favoritesComics]
+arrayIds=arrayIds.map(e=>e.idPrincipal)
+console.log("arrayIds")
+console.log(arrayIds)
+if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
+  // setSelect([...select, event.target.value]);
+  
+  console.log("entre al if not find")
+  console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+  arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
+console.log("arrayIds")
+console.log(arrayIds)
+  dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
+  
+} else {
+  let fil= arrayIds.filter((e) => e !== postFavorite.selectedComic[0].idPrincipal)
+  // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+ console.log("fil")
+ console.log(fil)
+ dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
+  }
+
+// dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
+
   };
 
   const img = (comic)=>{
@@ -48,19 +102,11 @@ const DetailComic = () => {
       return comic.img
     }
   }
-
   return detail.length === 0 ? (
-   
     <Loading/>
-    // <Typography component="h3" variant="h3" align="center" color="text.primary">
-    //   Loading...
-    // </Typography>
-
   ) : (
     <>
       <div className="container">
-        {/* <h4 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h4>    */}
-
         <img
           src={detail[0].img}
           class="featured"
@@ -75,12 +121,7 @@ const DetailComic = () => {
           }}
         />
 
-        {/* <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>  
-          <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}
-          </h3>
-              <h3 style={{fontFamily:'Abril Fatface' , textAlign:'center',color:"white"}}>{detail[0].description}</h3>
-            <p style={{marginLeft:"auto", marginRight:"auto" , fontFamily:"fantasy" ,color:"white"}}>{detail[0].description} </p>
-            <p  style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}} >{detail[0].description}</p> */}
+      
         <div style={{ marginLeft: "auto", marginRight: "auto" }}>
           <h1>
             <strong>{detail[0].title}</strong>
@@ -146,28 +187,13 @@ const DetailComic = () => {
 
         </div>
 
-
-
-        {/* <div hide={show} style={{ display: "grid" }}>
-          {creators &&
-            creators?.map((comic) => (
-              <Link
-                className="link_card"
-                to={`/homeComics/DetailComic/${comic.id}`}
-              >
-
-                <img
-                  src={comic.profilePic}
-                  alt={comic.title}
-                  style={{ width: "100px", height: "100px" }}
-                />
-                <h3>{comic.title}</h3>
-              </Link>
-            ))}
-        </div> */}
       </div>
       <Navbar />
+      <div>
+        <button className="favoritesComics" type="button"  onClick={() => handleClick()}>⭐</button>
+        </div>
     </>
   );
 };
+
 export default DetailComic;
