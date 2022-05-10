@@ -1,54 +1,22 @@
 import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import {Button} from "semantic-ui-react";
-import './style.css';
-import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export const Profile = () => {
-  const profileUser = useSelector(state => state.CharactersReducer.loginUser);
-  console.log(profileUser);
+const Profile = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
-      <div className="container">
-        <div className="details_container">
-        <h1 className="">Personal :</h1>
-        <h2 className="">{profileUser.firstName}</h2> <br/>
-        <h2 className="">{profileUser.lastName}</h2> <br/>
-        <h2 className="">{profileUser.userName}</h2> <br/>
-         <div className="header">
-         <ProfileImage src={profileUser.picture} alt={profileUser.fistName}  />
-        <div className=""></div>
-        <Button className="button">
-          <Link to="/editProfile">
-            <span>Edit Profile</span>
-          </Link>
-        </Button>
-        <Button className="button">
-          <Link to="/homeComics">
-            <span>HOME</span>
-          </Link>
-        </Button>
-        {/*<h3 className="">Name:</h3>
-
-        comentado para muestra viernes <h4 className="">{profileUser.name}</h4>
-        <p className="">Email: {profileUser.email}</p> */}
-        </div>
-        </div>
-        </div>
-      
-    )}
-  
-
-
-const ProfileImage = styled.img` 
-position: relative;
-height: 80%;
-margin: 0 auto;
-border-radius: 50%;
--moz-border-radius: 50%;
--webkit-border-radius: 50%;
-border: 3px solid #81adf8;
-`;
+    isAuthenticated && (
+      <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div>
+    )
+  );
+};
 
 export default Profile;

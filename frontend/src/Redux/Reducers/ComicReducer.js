@@ -15,6 +15,7 @@ import {
   GET_FAVORITES,
   LOGIN_USER,
   GET_PLANS,
+  PRUEBA
 
 } from "../Actions/actions";
 import {
@@ -33,7 +34,8 @@ const initialState = {
   filter:false,
   favoritesComics: [],
   favoritesCharacters: [],
-  plans: []
+  plans: [],
+  prueba:{},
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {
@@ -147,6 +149,13 @@ function ComicsReducer(state = initialState, { type, payload }) {
             case POST_FAVORITE_CHARACTERS:
               return{...state
               }
+
+              case PRUEBA:
+                return {
+                  ...state,
+                  prueba: payload,
+                }
+
 
        /* case REMOVE_FAVORITE:
             var remove = state.favorites.filter(e => e.id !== payload)

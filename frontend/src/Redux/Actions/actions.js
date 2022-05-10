@@ -32,6 +32,7 @@ export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 export const POST_FAVORITE_COMICS = "POST_FAVORITE_COMICS"
 export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
 export const GET_FAVORITES = "GET_FAVORITES"
+export const PRUEBA = "PRUEBA"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -167,6 +168,14 @@ export const loginUser= ({userName,password}) => {
                 console.log(err, 'userCreate || Error');
             }
         }
+}
+export const prueba =(user)=>{
+    return async (dispatch) => {
+    return await dispatch({
+        type: PRUEBA,
+        payload: user.nickname
+    })
+}
 }
 export const getFavorites= (id) => {
         return async (dispatch) => {

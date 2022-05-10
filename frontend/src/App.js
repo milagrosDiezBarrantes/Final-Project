@@ -26,7 +26,8 @@ import FormLoginUser from "./Components/FormLoginUser/FormLoginUser";
 
 import Lecture from './Components/Lecture/Lecture.jsx'
 
-// import Login from "./Components/Login/Login";
+import Login from "./Components/Login/Login";
+import  Prueba from "./Components/Login/Prueba";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
 
         <Route path='/admin/comic' element={<FormUpdateComic/>} />
         <Route path='/updateComic' element={<FormUpdateComic/>} />
+        <Route path='/prueba' element={<Prueba />} />
 
 
 
