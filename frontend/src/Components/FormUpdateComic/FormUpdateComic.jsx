@@ -24,7 +24,7 @@ console.log(comic)
 
     useEffect(()=> {
         dispatch(getById(id))
-    }, [ id]);
+    }, [ dispatch, id]);
 
     // useEffect(()=> {
     //     setcomicDetail(comic)
@@ -125,7 +125,7 @@ console.log(comic)
                         onChange={handleChange}
                         placeholder='Image comic'
                     />
-                    {error.image && <p style={{ color:"red"}}> {error.image}</p>}
+                    {error.picture && <p style={{ color:"red"}}> {error.picture}</p>}
                 </div>
             </Form>
             <AlertPopUp

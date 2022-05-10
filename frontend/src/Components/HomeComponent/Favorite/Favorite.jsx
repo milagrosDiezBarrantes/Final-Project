@@ -5,11 +5,14 @@ import NavBar from '../../Navbar/Navbar.jsx';
 
 
 const Favorite = () => {
+  
+
   return(
     <>
      <NavBar/>
     <ImgSlider /> 
       <Viewer />
+      <h1>HERE ARE YOUR FAVOURITES </h1>
     </> 
 
   )

@@ -9,6 +9,11 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
+  ADD_FAVORITE,
+  POST_FAVORITE_COMICS,
+  POST_FAVORITE_CHARACTERS,
+  GET_FAVORITES,
+  LOGIN_USER,
   GET_PLANS,
 
 } from "../Actions/actions";
@@ -22,19 +27,15 @@ const initialState = {
   copyComics: [],
   selectedComic: [],
   users: [],
+  loginUser: {},
   copyUsers: [],
   authenticated: false,
   filter:false,
+  favoritesComics: [],
+  favoritesCharacters: [],
   plans: []
-
 };
-/* Array.prototype.lowerCase= function(){      //prototipo para mejorar la busqueda por creador 
-    let newA = []
-    for(let i = 0; i<Array.length; i++){
-        newA.push(Array[i].toString().toLowerCase())
-    }
-    return newA
-} */
+
 function ComicsReducer(state = initialState, { type, payload }) {
   // eslint-disable-next-line default-case
   switch (type) {
@@ -68,10 +69,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
       };
     case FILT_BY_CREATOR:
       console.log(payload)
-      // let comi = [...state.Comics];
-      // let filtComics = comi?.filter((a) =>
-      //   a.creators === [] ? false : a.creators.includes(payload)
-      // );
+     
       return {
         ...state,
         filter :true,
@@ -84,22 +82,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
         plans :payload
       };
 
-      // case SORT:
-      //   let data = state.users;
-      //   if (state.column === payload) {          
-      //     return {
-      //       ...state,
-      //       data: data.slice().reverse(),
-      //       direction: state.sort.direction === 'ascending' ? 'descending' : 'ascending',
-      //     }
-      //   } else {  
-      //   return {
-      //     column: state.column,
-      //     data: sortBy(state.data, state.users),
-      //     direction: 'ascending',
-      //   }
-      // };
-    
+   
       case AUTHENTICATED:
       return {
         ...state,
@@ -125,13 +108,20 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyComics: [...deletedComic],
       };
+    case LOGIN_USER:
+      
+      return {
+        ...state,
+        loginUser: payload,
+      };
     case FILT_BY_PLAN:
       const backUp = [...state.users];
       const filtered = backUp.filter((user) => Number(user.plan_id )=== payload);
       return {
         ...state,
         copyUsers: filtered,
-      };
+      };  
+
 
     case CLEAR_COMICS:
         return{
@@ -143,7 +133,27 @@ function ComicsReducer(state = initialState, { type, payload }) {
           ...state,
           selectedComic: [],
         }
-        
+    case GET_FAVORITES:
+        return{
+          ...state,
+          favoritesComics:payload ,
+        }
+        case POST_FAVORITE_COMICS:
+          console.log("reducer",payload)
+          return{
+            ...state,
+            favoritesComics:payload ,
+          } 
+            case POST_FAVORITE_CHARACTERS:
+              return{...state
+              }
+
+       /* case REMOVE_FAVORITE:
+            var remove = state.favorites.filter(e => e.id !== payload)
+            return{
+                ...state,
+                favorites: remove
+            } */
     default:
       return { ...state };
   }
