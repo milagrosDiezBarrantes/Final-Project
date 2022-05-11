@@ -133,10 +133,12 @@ export const getById = (id) => async dispatch => {
 
 //======================USER  ===============
 export const createUser= (user) => {
+    console.log('llega user?', user)    
         return async (dispatch) => {
             try {
                 const userCreate = await axios.post(`http://localhost:3001/user`, user);
                 console.log(userCreate, 'se crea usuario?');
+                console.log(user, 'este es el user')
                 return dispatch({
                     type: CREATE_USER,
                     payload: userCreate.data
@@ -149,6 +151,16 @@ export const createUser= (user) => {
 }
 
 //====================== LOGIN ===============
+export const login = (payload)=>{
+    console.log('llega user?', payload)
+    return {
+        type: LOGIN_USER,
+        payload: payload.email
+    }
+        
+
+}
+
 
 export const loginUser= (email) => {
         return async (dispatch) => {

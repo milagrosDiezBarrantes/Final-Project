@@ -13,7 +13,7 @@ const {user} = useAuth0();
           <AuthNav />
 {           console.log(user)
 }        
-
+<a href='/admin'>Acceso admin</a>
 <h1>{user?.nickname}</h1>
 </div>
       </nav>

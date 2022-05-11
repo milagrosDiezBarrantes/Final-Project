@@ -8,7 +8,6 @@ const LoginButton = () => {
 const dispatch = useDispatch();
   const handleLogin = () => {
     loginWithPopup();
-    dispatch(prueba());
   }
   return (
     <button

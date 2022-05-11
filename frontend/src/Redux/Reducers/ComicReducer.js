@@ -110,8 +110,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyComics: [...deletedComic],
       };
-    case LOGIN_USER:
-      
+    case LOGIN_USER:      
       return {
         ...state,
         loginUser: payload,

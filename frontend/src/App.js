@@ -30,41 +30,64 @@ import Lecture from './Components/Lecture/Lecture.jsx'
 // import Login from "./Components/Login/Login";
 import  Prueba from "./Components/Login/Prueba";
 import CommonRoute from "./Components/PermissionRoute/CommonRoute";
-import PrivateRoute from "./Components/PermissionRoute/PrivateRoute";
+import ProtectedRoute from "./Components/PermissionRoute/CommonRoute";
+import { useAuth0 } from "@auth0/auth0-react";  
+import Loading from "./Components/Loading/Loading";
+
 function App() {
+
+  const {user, isLoading} = useAuth0();
+  console.log(user, 'EN TODA LA APP TENGO EL AUTH0?')
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
       <div className="app">
-        <Container>
-        <Route>  
-
-         
+        {/* <Container> */}
+        <Routes>  
+        
+           {/* <Route path='/formSubscribe' element={<FormSubscribeUser/>} /> */}
           {/* Rutas usuario */}
-          <CommonRoute exact path='/' element={<Banner />} />
-          <CommonRoute path='/prueba' element={<Prueba />} />
-          <CommonRoute path='/profile' element={<Profile />} />
+          <Route exact path='/' element={<Banner />} />
+          <Route path='/prueba' element={<Prueba />} />
+          <Route path='/profile' element={<Profile />} />
+          {/* <Route path='/admin' element={<Admin/>} /> */}
+          <Route
+           element={
+            <ProtectedRoute user={user}  />}>
+              <Route path='/admin'element ={<Admin />} /> 
+              <Route path='/postAdmin' element={<PostAdmin/>} /> 
+              <Route path='/formAdmin' element={<FormAdmin />} />
+              <Route path='/admin/comic' element={<FormUpdateComic/>} />
+              </Route>
+         
+    
+
+        
+
+            
+         
+        {/*  
+        <Route path='/updateComic' element={<FormUpdateComic/>} />
           <CommonRoute path='/editProfile' element={<FormEditUser/>} />
           <CommonRoute path="/favorite" element={<Favorite />} />
           <CommonRoute path='/homeCharacter' element={<HomeCharacter />} />
-          <CommonRoute path='/homeComics' element={<HomeComics />} />
+          <Route path='/homeComics' element={<HomeComics />} />
           <CommonRoute path='/homeComics/DetailComic/:id' element={<DetailComic />} />
           <CommonRoute path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
           <CommonRoute path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
           <CommonRoute exact path='/lecture/:comic' element={<Lecture />} />
-        {/* <Route path='/formSubscribe' element={<FormSubscribeUser/>} />
+       
         <Route path='/formLoginUser' element={<FormLoginUser />} />  */}
          
-      
-        {/* Rutas Admin */}
-        <PrivateRoute path='/admin' element={<Admin/>} />
-        <PrivateRoute path='/formAdmin' element={<FormAdmin />} />
-        <PrivateRoute path='/postAdmin' element={<PostAdmin/>} />  
-        <PrivateRoute path='/admin/comic' element={<FormUpdateComic/>} />
-        <PrivateRoute path='/updateComic' element={<FormUpdateComic/>} />
-      </Route>
-      </Container>
+       
+       
+      </Routes>
+      {/* </Container> */}
     </div>
       </BrowserRouter>
     </ThemeProvider>

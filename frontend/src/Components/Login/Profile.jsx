@@ -25,13 +25,23 @@ import React from 'react';
 
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import Loading from '../Loading/Loading';
-
+import { useDispatch, useSelector } from 'react-redux';
 const Profile = () => {
   const { user } = useAuth0();
   const { name, picture, email } = user;
+  const dispatch = useDispatch();
+  const login = useSelector((state) => state);
+  const logged = login.ComicsReducer.loginUser;
+
+  const handleUser = () => {
+    console.log(user);
+    dispatch(user ? login(user) : null);
+    console.log('estás ', logged);
+  }
 
   return (
     <div>
+      
       <div className="row align-items-center profile-header">
         <div className="col-md-2 mb-3">
           <img
@@ -50,6 +60,7 @@ const Profile = () => {
           {JSON.stringify(user, null, 2)}
         </pre>
       </div>
+      <button onClick={handleUser}>Done</button>
     </div>
   );
 };
