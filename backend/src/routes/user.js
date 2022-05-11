@@ -187,24 +187,23 @@ router.get("/validates", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-	const{userName,password} = req.query
-	if(userName&&password){
+	const{email} = req.query
+	if(email){
 		let user = await Users.findOne({
 			where: {
-				userName: userName,
-				password:password
+				email: email
+		
 			},
 		});
 		if(!user){
 
-		return res.send("password y/o userName incorrecto/s");
+		return res.send("pibe registrate");
 		}
 		return res.send(user);
 	}else{
 		return res.send("password y/o userName incompletos")
 	}
 });
-
 
 module.exports = router;
 

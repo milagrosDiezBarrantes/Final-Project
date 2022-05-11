@@ -42,5 +42,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    role: {
+      type: DataTypes.STRING,
+      default: 'ROLE_USER',
+      enum: ['ROLE_USER', 'ROLE_ADMIN', 'SUPER_ADMIN', 'ROLE_BANNED']
+    }
   });
 };

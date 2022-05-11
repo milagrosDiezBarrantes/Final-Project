@@ -150,12 +150,12 @@ export const createUser= (user) => {
 
 //====================== LOGIN ===============
 
-export const loginUser= ({userName,password}) => {
+export const loginUser= (email) => {
         return async (dispatch) => {
             try {
                 const userLogin = await axios.get("http://localhost:3001/user/login",{
                     params: {
-                        userName,password
+                        email
                     }});
                 // console.log("de la action");
                 // console.log(userName,password);
@@ -367,8 +367,8 @@ export function postFavoriteComics(idComics, id) {
                     id
                 }});
             
-           console.log("action",idComics)
-           console.log("nuevos",nuevos)
+            console.log("action",idComics)
+            console.log("nuevos",nuevos)
             return dispatch({
                 type: "POST_FAVORITE_COMICS",
                 payload: nuevos.data
