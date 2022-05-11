@@ -37,11 +37,6 @@ const [input, setInput] = React.useState({})
 
   useEffect(() => {
     dispatch(getById(id));
-    dispatch(loginUser({
-      "userName":"lamilirodriguez",
-      
-      "password":"1235sdf4"
-      }));
     setShow(true);
   }, [dispatch]);
 
