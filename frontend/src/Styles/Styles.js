@@ -32,10 +32,10 @@ const theme = createTheme({
             contrastText: '#fff',
         },
         secondary: {
-            light: '#f05545',  //Secundario
-            main: '#b71c1c',
-            dark: '#7f0000',
-            contrastText: '#A90000',
+            light: '#ba000d',  //Secundario
+            main:  '#ba000d',
+            dark: '#ba000d',
+            contrastText: '#ba000d',
         },
     },
 });

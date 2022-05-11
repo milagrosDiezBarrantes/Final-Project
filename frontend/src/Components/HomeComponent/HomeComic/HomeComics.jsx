@@ -16,7 +16,7 @@ const HomeComics = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allComics = useSelector((state) => state.ComicsReducer.copyComics);
-  const userLogin = useSelector((state) => state.CharactersReducer.loginUser);
+  const userLogin = useSelector((state) => state.ComicsReducer.loginUser);
   const noRegister = 'password y/o userName incorrecto/s'
 
   console.log('USERLOGIN',userLogin)

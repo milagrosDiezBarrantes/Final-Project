@@ -1,44 +1,56 @@
-
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
 
 conn.sync({ force: false }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); 
-  });
+	server.listen(3001, () => {
+		console.log("%s listening at 3001");
+	});
 });
 
-
-const { Plans } = require('../backend/src/db');
-var plan1 =  Plans.findOrCreate({
-  where:{
-    name:"monthly",
-    amount:7
-},
-
+const { Plans, Users } = require("../backend/src/db");
+var superAdmin = Users.findOrCreate({
+	where: {
+		email: "soyadmin@henry.com",
+		firstName: "Henry",
+		lastName: "Hero",
+		userName: "Henry-Hero",
+		age: 99,
+		password: "1234",
+		role: "ROLE_SUPER_ADMIN",
+	},
+});
+var plan1 = Plans.findOrCreate({
+	where: {
+		name: "monthly",
+		amount: 7,
+	},
 });
 
-var plan2 =  Plans.findOrCreate({
-  where:{
-    name:"annual",
-    amount:70
-  },
-
+var plan2 = Plans.findOrCreate({
+	where: {
+		name: "annual",
+		amount: 70,
+	},
 });
-var plan3 =  Plans.findOrCreate({
-  where:{
-    name:"admin",
-    amount:0
-  },
-
+var plan3 = Plans.findOrCreate({
+	where: {
+		name: "admin",
+		amount: 0,
+	},
+});
+var plan4 = Plans.findOrCreate({
+	where: {
+		name: "superAdmin",
+		amount: 0,
+	},
 });
 
+let planes = Plans.findAll();
 
-let planes= Plans.findAll()
-
-Promise.all([plan1,plan2,planes,plan3])
-  .then(res => {
-    console.log([plan1,plan2]);
-  }).then(res => {
-    console.log(planes.Promise);
-  });
+Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
+	.then((res) => {
+		console.log([plan1, superAdmin]);
+	})
+	.then((res) => {
+		console.log(planes.Promise);
+	});

@@ -76,7 +76,7 @@ export default function Navbar() {
                   <Tab label="Contact" href="/Contact"  /> */}
               </Tabs>
               <Link to= '/profile'>
-                <Avatar alt="A" src={user.picture} />
+                <Avatar alt="A" />
               </Link>
               <Link to='/' >
                 <LogIn>LOG OUT</LogIn>
