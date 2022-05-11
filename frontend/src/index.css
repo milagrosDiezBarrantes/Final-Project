@@ -1,14 +1,22 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
- }
+/* Document
+   ========================================================================== */
 
-html {
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  background-color: #000;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 16px;
 }
+
+
 
 /* Sections
    ========================================================================== */
@@ -17,19 +25,16 @@ html {
  * Remove the margin in all browsers.
  */
 
+
 body {
   margin: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 16px;
 }
+
 /**
  * Render the `main` element consistently in IE.
  */
-
 
 main {
   display: block;
@@ -349,27 +354,4 @@ template {
 
 [hidden] {
   display: none;
-}
-
-.fiacaClass{
-  display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    align-content: space-between;
-}
-
-.card{
-  display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    align-content: space-between;
-    width: 50%;
-    height: 10%;
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    padding: 20px;
-    margin: 10px;
 }

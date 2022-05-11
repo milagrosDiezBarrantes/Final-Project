@@ -29,8 +29,18 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { Users } = sequelize.models;
+const { Users,Comics,Payments,Plans,Characters } = sequelize.models;
+Users.belongsToMany(Comics,{through:"Favorites_comics" })
+Comics.belongsToMany(Users,{through: "Favorites_comics"})
 
+Users.belongsToMany(Characters,{through:"Favorites_characters" })
+Characters.belongsToMany(Users,{through: "Favorites_characters"})
+
+Payments.belongsTo(Users,{foreingKey:"client_id"})
+Users.hasOne(Payments,{foreingKey:"client_id"})
+
+Users.belongsTo(Plans, {foreignKey:"plan_id"})
+Plans.hasMany(Users, {foreignKey:"plan_id"})
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 

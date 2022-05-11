@@ -1,0 +1,45 @@
+.characterCard {
+    list-style: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.container_card{
+   box-shadow: 5px 10px 5px rgb(23, 23, 23);   
+}
+.link_card{
+text-decoration: none;
+}
+
+.img_card{
+    object-fit: cover;
+    width: 246px;
+    height: 370px;
+}
+.detail_card_container{
+    font-size: 20px;
+    position:relative;
+    padding:10px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column ;
+    z-index:1 ;
+	color: whitesmoke;
+}
+.CharacterDescription{
+    position: absolute;
+    padding: 25px;
+    margin: 15px;
+    display: flex;
+    font-size: 1.2em;
+    color: white;
+    background-color: rgba(46, 49, 49, 0.7);
+    width: 206px;
+    height: 25px;
+}
+.container_card:hover{
+    background: #0302151d;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2625251f, #1a1a1a28, #302f3246);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #201c1c2c, #28232347, #302f2f46); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow: 5px 4px 20px rgba(25, 24, 24, 0.12);
+}
