@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { userEdit } from "../../Redux/Actions/actions";
 import { Container, Form, Button} from 'semantic-ui-react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router';
 import { validate } from "../../Functions/validacionesForm/validationForm";
 
 const FormEditUser = ({ handleClose}) => {

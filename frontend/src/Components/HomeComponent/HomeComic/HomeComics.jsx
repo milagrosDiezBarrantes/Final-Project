@@ -10,7 +10,7 @@ import "../../Publicidad/Publicidad";
 
 import avengers from "../../Publicidad/imag/Avengers_logo.png";
 import avengersLogo from "../../Publicidad/imag/Avengers.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const HomeComics = () => {
   const dispatch = useDispatch();

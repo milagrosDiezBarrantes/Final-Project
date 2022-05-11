@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { getAllUsers, filterByPlan } from "../../Redux/Actions/actions";
 import { Link } from "react-router-dom";

@@ -4,7 +4,7 @@ import {
     Link,
     Navigate,
     Outlet,
-  } from 'react-router-dom';
+  } from 'react-router';
 import { useEffect } from 'react'
 import { useAuth0, useAuthContext } from '@auth0/auth0-react'
 import { useSelector, useDispatch } from 'react-redux';

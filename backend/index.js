@@ -45,12 +45,12 @@ var plan4 = Plans.findOrCreate({
 	},
 });
 
-let planes = Plans.findAll();
+// let planes = Plans.findAll();
 
-Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
-	.then((res) => {
-		console.log([plan1, superAdmin]);
-	})
-	.then((res) => {
-		console.log(planes.Promise);
-	});
+// Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
+// 	.then((res) => {
+// 		console.log([plan1, superAdmin]);
+// 	})
+// 	.then((res) => {
+// 		console.log(planes.Promise);
+// 	});
