@@ -28,46 +28,25 @@ export default function Navbar() {
   //     dispatch(loginUser(picture))
   //   }, [dispatch, picture]);
 
+
+
+
+  
+
+
+
+    const handleClick = () => {
+      //cuando esta true lo pasa a false y vice versa
+      setClicked(!clicked)
+    }
+    
+
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
-  const handleClick = () => {
-    //cuando esta true lo pasa a false y vice versa
-    setClicked(!clicked)
-  }
-  
-            <a href="/">
-              <img 
-                src={logo} 
-                alt="Marvel" 
-                style={{ maxHeight: '100%',
-                width: '80px',
-                marginLeft: '30px',
-                display: 'inline-block'}} />
-            </a>
-            <Tabs
-              sx={{ marginLeft: "auto" }}
-              indicatorColor="secondary"
-              textColor="inherit"
-              value={clicked}
-              onChange={(e, clicked) => setClicked(clicked)}
-            >
-             { /*   <Tab label="Comics" href="/homeComics" />*/  }
-                {/* <Tab label="About Us" href="/AboutUs" />
-                <Tab label="Contact" href="/Contact"  /> */}
-            </Tabs>
-            <Link to= '/profile'>
-              <Avatar alt="A" src={userIcon} />
-            </Link>
-            <Link to='/' >
-              <LogIn>LOG OUT</LogIn>
-            </Link>
-      </Toolbar>
-      <SimpleBottomNavigation />
-    
 
     return (
       <>
@@ -103,7 +82,7 @@ export default function Navbar() {
                   <Tab label="Contact" href="/Contact"  /> */}
               </Tabs>
               <Link to= '/profile'>
-                <Avatar alt="A" src={user.picture} />
+                <Avatar alt="A" />
               </Link>
               <Link to='/' >
                 <LogIn>LOG OUT</LogIn>
@@ -115,7 +94,6 @@ export default function Navbar() {
     </>
     )
   }
-
 
 
 const LogIn = styled.a`

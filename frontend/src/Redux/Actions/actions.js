@@ -357,7 +357,6 @@ export function postFavoriteComics(idComics, id) {
                 params: {
                     id
                 }});
-            
            console.log("action",idComics)
            console.log("nuevos",nuevos)
             return dispatch({
@@ -386,7 +385,7 @@ export function postFavoriteComics(idComics, id) {
     }
 }*/
 //=================FAVORITE CHARACTERS=================//
-export function postFavoriteCharacters(idCharacters, id) {          
+/*export function postFavoriteCharacters(idCharacters, id) {          
     return async function (dispatch) {
         try {
             const { data } = await axios.get(`http://localhost:3001/user/favoritesCharactersc`, idCharacters, id)
@@ -400,7 +399,26 @@ export function postFavoriteCharacters(idCharacters, id) {
         }
     }
 }
+*/
 
+export function postFavoriteCharacters(idCharacters, id) {          
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.post(`http://localhost:3001/user/favoritesCharactersc`,{idCharacters, id});
+            const nuevos = await axios.get(`http://localhost:3001/user/favoritesCharactersc`,{
+                params: {
+                    id
+                }});
+            return dispatch({
+                type: "POST_FAVORITE_CHARACTERS",
+                payload: nuevos.data
+            })
+        }
+        catch (err) {
+            alert("error get Characters(se rompio)", err)
+        }
+    }
+}
 /*export function removeFavoriteCharacters() {
     return async function (dispatch) {
         try {

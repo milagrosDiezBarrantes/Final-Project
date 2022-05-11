@@ -10,7 +10,7 @@ import MyButton from "../../../Styles/MyButton";
 import Navbar from "../../Navbar/Navbar";
 import { Link } from "react-router-dom";
 
-import "./DetailComic.css";
+import "./DetailComic.scss";
 import Loading from "../../Loading/Loading";
 
 
@@ -32,13 +32,8 @@ const postFavorite = useSelector((state) => state.ComicsReducer)
 
 const [input, setInput] = React.useState({})
 
-
-
-
-      
+    
 ////////////////FAVORITE//////////////      
-
-
 
   useEffect(() => {
     dispatch(getById(id));
@@ -59,10 +54,8 @@ const [input, setInput] = React.useState({})
   // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
   //   dispatch(getFavorites(postFavorite.loginUser.id));
   // }
-  
-  
 
-  const handleClick = (e) => {
+ const handleClick = (e) => {
     
 console.log("estrellita")
 
@@ -76,8 +69,8 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   console.log("entre al if not find")
   console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
   arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
-console.log("arrayIds")
-console.log(arrayIds)
+  console.log("arrayIds")
+  console.log(arrayIds)
   dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
   
 } else {
@@ -106,92 +99,61 @@ console.log(arrayIds)
     <Loading/>
   ) : (
     <>
-      <div className="container">
-        <img
-          src={detail[0].img}
-          class="featured"
-          alt={detail[0].title}
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            height: "35rem",
-            width: "30rem",
-            borderRadius: "10px",
-            textAlign: "center",
-          }}
-        />
-
-      
-        <div style={{ marginLeft: "auto", marginRight: "auto" }}>
-          <h1>
-            <strong>{detail[0].title}</strong>
-          </h1>
-          <p
+  <div className="randomchar__block">
+  <img className="randomchar__img"
+            src={detail[0].img}
+            alt={detail[0].title}
             style={{
-              fontFamily: "Abril Fatface",
-              textAlign: "center",
-              color: "white",
               marginLeft: "auto",
               marginRight: "auto",
-            }}
-            class="bodytext"
-          >
-            {detail[0].description}
-          </p>
-
-          {/* <p class="bodytext" style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}}>{detail[0].description}</p> */}
-          <center className="GridCreators">
-            {detail[0].creators?.map((creator) => (
-              <div class="role" key={creator.creatorId}>
-                <strong>{creator.creatorRole}</strong>
-                <br />
-                <button value={creator.creatorId} onClick={handleClick}>
-                  {creator.creatorName}
-                </button>
+              height: "35rem",
+              width: "30rem",
+              borderRadius: "10px"}}
+          />
+          <div className="randomchar">
+  <div className="randomchar__block">
+       <br></br>
+        <div className="randomchar__name" class="options">
+           <p className="randomchar__name" >{detail[0].title}</p>
+            <p className="randomchar__descr" class="bodytext">
+              {detail[0].description}
+            </p>
+            <MyButton className="randomchar__name" variant="contained" href="/lecture/a" style={{ color: "red" }}>
+                Read
+              </MyButton> <br></br><br></br> 
+              <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}>Serie</MyButton><br></br><br></br>
+              <ReactStars></ReactStars>
+              <div> <br></br><br></br>
+              <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}  onClick={() => handleClick()}> Agregar a Favorito ⭐</MyButton>
               </div>
-            ))}
-
-          </center>
-          <div class="options">
-            <MyButton href="/lecture/a" style={{ color: "white" }}>
-              Read
-            </MyButton>
-            <MyButton style={{ color: "white" }}>Serie</MyButton>
-          </div>
-          <div style={{ marginLeft: "auto", marginRight: "auto" }}>
-            <ReactStars></ReactStars>
-          </div>
         </div>
-        <div style={{overflow:'hidden', height:'700px'}}>
-        <div style={{overflow:'hidden', height:'700px'}}>
-        <div style={{overflow:'scroll-behavior: smooth' }}>
-        {show? 
-        null 
-        : creators &&
-            creators?.map((comic) => (
-        <Link
-
-               className="link_card"
-                to={`/homeComics/DetailComic/${comic.id}`}
-              >
-              <img
-                  src= {img(comic) }
-                  alt= 'Not available'
-                  style={{ width: "100px", height: "100px" }}
-                />
+    </div>
+    <div className="randomchar__block">
+     
+            <div className="randomchar__block">
+              {detail[0].creators?.map((creator) => (
+                <div key={creator.creatorId}>
+                  <p className="randomchar__descr">{creator.creatorRole}</p>
+                  <button className="button button__main" value={creator.creatorId} onClick={handleClick}>
+                    {creator.creatorName}
+                  </button>
+                </div>
+              ))}
+           
+              {show? null : creators && creators?.map((comic) => (
+              <Link className="link_card" to={`/homeComics/DetailComic/${comic.id}`}>
+                <img src= {img(comic) } alt= 'Not available' style={{ width: "100px", height: "100px" }}/>
                 <h3>{comic.title}</h3>
               </Link>
-            ))}
-            </div>
-            </div>
-
-        </div>
-
+              ))}
+            </div> 
+          
       </div>
-      <Navbar />
-      <div>
-        <button className="favoritesComics" type="button"  onClick={() => handleClick()}>⭐</button>
-        </div>
+        
+          {/* <p class="bodytext" style={{fontFamily:' Helvetica' , textAlign:'center',color:"white"}}>{detail[0].description}</p> */}  
+  </div>  
+  </div>
+    <Navbar />
     </>
   );
 };

@@ -56,18 +56,12 @@ function App() {
         <Route path='/admin' element={<Admin/>} />
         <Route path='/formAdmin' element={<FormAdmin />} />
 
-        
         <Route exact path='/lecture' element={<Lecture />} />
         <Route path='/postAdmin' element={<PostAdmin/>} />  
-        
-
+  
         <Route path='/admin/comic' element={<FormUpdateComic/>} />
         <Route path='/updateComic' element={<FormUpdateComic/>} />
 
-
-
-
-         
 
          {/*  <Route path='/login' element={<Login />} /> */}
           <Route path='/profile' element={<Profile />} />
