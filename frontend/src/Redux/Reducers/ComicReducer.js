@@ -16,8 +16,9 @@ import {
   LOGIN_USER,
   GET_PLANS,
   PRUEBA,
-  CREATE_USER
-
+  CREATE_USER,
+  POST_COMICS,
+  GET_CREATORS
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -37,6 +38,7 @@ const initialState = {
   favoritesCharacters: [],
   plans: [],
   prueba:{},
+  creators:[]
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {
@@ -164,6 +166,16 @@ function ComicsReducer(state = initialState, { type, payload }) {
                 return {
                   ...state,
                   prueba: payload,
+                }
+              case POST_COMICS:
+                return {
+                  ...state,
+                  selectedComic: payload,
+                }
+              case GET_CREATORS:
+                return {
+                  ...state,
+                  creators: payload,
                 }
 
 

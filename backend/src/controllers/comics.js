@@ -174,9 +174,9 @@ const createComic = async (req, res, next) => {
         img,
         description,
         pages,
-        
+        creators
       });
-      createComic.setCreators(creators)
+     
 
     return  res.status(200).json({ message: "Comic successfully created" });
     } else {

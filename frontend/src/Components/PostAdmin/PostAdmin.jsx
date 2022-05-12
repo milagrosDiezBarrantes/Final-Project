@@ -4,11 +4,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Container, Form, Button } from 'semantic-ui-react';
 import { validate } from '../../Functions/validacionesForm/validationForm';
-import { postComic } from '../../Redux/Actions/actions';
+import { getCreators, postComic } from '../../Redux/Actions/actions';
 
 const PostAdmin = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
+    const creators = useSelector(state => state.ComicsReducer.creators) ;
     const navigate = useNavigate();
 
     // const disable = useMemo(() => {
@@ -29,6 +30,9 @@ const PostAdmin = () => {
     useEffect(() => {
         setError(validate(input))
     },[input])
+    useEffect(() => {
+        dispatch(getCreators())
+    },[dispatch])
 
     function handleChange(e) {
         e.preventDefault();
@@ -41,6 +45,17 @@ const PostAdmin = () => {
             [e.target.name]: e.target.value
         }))
     }
+
+    const handleOnPlatforms = function (event) {
+        if (!input.creators.find((e) => e.fullName === event.target.value)) {
+          setInput({...input, creators:[...input.creators, event.target.value]});
+          
+        } else {
+            setInput({...input, creators:input.creators.filter((e) => e.fullName !== event.target.value)});
+          
+        }
+      };
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -101,6 +116,56 @@ const PostAdmin = () => {
                         placeholder='Image Comic'
                     />
                     {error.picture && <p style={{ color:"red"}}> {error.picture}</p>}
+                </div>
+                <div>
+                    <label>Pages</label>
+                    <input
+                        type="number"
+                        name='pages'
+                        value={input.pages}
+                        onChange={handleChange}
+                        placeholder='Number Pages'
+                    />
+                    
+                </div>
+                <div>
+                    <label>Creators</label>
+                    
+                    <select onChange={handleOnPlatforms} >
+              {creators &&
+                creators.map((e) => (
+                  <option
+                    key={e}
+                    value={e}
+                    name={e.fullName}
+                    onChange={handleOnPlatforms}
+                    
+                  >
+                    {e.fullName}
+                  </option>
+                ))}
+            </select>
+
+            {input.creators.length>0 &&
+              input.creators.map((e) => (
+                <div key={e.id} >
+                  <li name={e.fullName} value={e} >
+                    {e.fullName}
+                  </li>
+                  <button
+                    type="button"
+                    onClick={handleOnPlatforms}
+                    value={e.fullName}
+                    
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+
+
+
+
                 </div>
                 <div>
                     <Button 
