@@ -9,7 +9,7 @@ const Favorite = () => {
   
   const dispatch = useDispatch()
   const favoritesComics = useSelector((state) => state.ComicsReducer.favoritesComics)
-   
+   console.log(favoritesComics)
   return(
     <>
    { /* dataUser.role === "USER"?{  */ }

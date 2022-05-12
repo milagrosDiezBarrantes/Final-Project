@@ -138,6 +138,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
           ...state,
           favoritesComics:payload ,
         }
+       case GET_FAVORITES:
+        return{
+          ...state,
+          favoritesComics:payload ,
+        }
         case POST_FAVORITE_COMICS:
           console.log("reducer",payload)
           return{

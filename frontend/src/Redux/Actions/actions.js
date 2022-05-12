@@ -419,6 +419,8 @@ export function postFavoriteCharacters(idCharacters, id) {
         }
     }
 }
+
+
 /*export function removeFavoriteCharacters() {
     return async function (dispatch) {
         try {
