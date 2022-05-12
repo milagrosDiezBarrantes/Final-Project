@@ -203,6 +203,19 @@ const updateComic = async (req, res, next) => {
   }
 };
 
+const getRender = async (req, res, next)=>{
+  try{
+    const {id} = req.params
+    const data = await Comics.findOne({where:{idPrincipal:id}})
+    
+    res.send(data).status(200)
+  }
+  catch(err){
+    console.log(err)
+    next(err)
+  }
+}
+
 module.exports = {
   getComics,
   getById,
@@ -210,5 +223,6 @@ module.exports = {
   getSerieById,
   createComic,
   updateComic,
+  getRender
 };
 
