@@ -7,6 +7,7 @@ import { getAllComics } from "../../../Redux/Actions/actions";
 import CustomPagination from "../../Pagination/Pagination.jsx";
 // import AppBanner from "../../Publicidad/Publicidad";
 import "../../Publicidad/Publicidad";
+import Footer from "../Footer/Footer";
 
 import avengers from "../../Publicidad/imag/Avengers_logo.png";
 import avengersLogo from "../../Publicidad/imag/Avengers.png";
@@ -85,6 +86,7 @@ const HomeComics = () => {
         </div>
         <img src={avengersLogo} alt="Avengers logo" />
       </div>
+      <Footer />
     </div>
   );
 };

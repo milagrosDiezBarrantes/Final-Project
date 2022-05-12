@@ -161,10 +161,7 @@ export const login = (payload)=>{
         type: LOGIN_USER,
         payload: payload.email
     }
-        
-
 }
-
 
 export const loginUser= (email) => {
         return async (dispatch) => {
@@ -193,6 +190,7 @@ export const prueba =(user)=>{
     })
 }
 }
+
 export const getFavorites= (id) => {
         return async (dispatch) => {
             try {

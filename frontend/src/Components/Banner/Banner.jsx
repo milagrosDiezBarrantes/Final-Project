@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import NavigationIcon from '@material-ui/icons/Navigation';
 
-
 const Login = (props) => {
   const { loginWithPopup } = useAuth0();
   const dispatch = useDispatch();
@@ -31,19 +30,14 @@ const Login = (props) => {
   //     marginRight: theme.spacing(1),
   //   },
   // }));
-
-
   useEffect(() => {
     dispatch(authenticateUser());
     
   },[dispatch]);
 
-  
   const handleLogin = () => {
     loginWithPopup();
   }
-
-
   return (
     <>
       {/* <Nav>
@@ -58,8 +52,6 @@ const Login = (props) => {
       <HeaderBanner />
     </>
   ) : ( */}
-    
-      
       <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
@@ -93,10 +85,11 @@ const Login = (props) => {
                   series.{" "}
                 </Caption>
                 <Caption>Save money with this bundle.</Caption>
-                <PriceValue>ARS 995/month (final)* </PriceValue>
-                <SignUp target="_blank" href="/formUser">
+                <PriceValue> USD $7/month (final)* </PriceValue>
+                <br></br>
+                <p target="_blank" href="/formUser">
                   <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-                </SignUp>
+                </p>
               </Pricing>
             </div>{" "}
             <div></div>
@@ -106,10 +99,11 @@ const Login = (props) => {
               <Caption>
                 Access endless Marvel Comics World for a new price!{" "}
               </Caption>
-              <PriceValue>ARS 3.850/year (final)*</PriceValue>
-              <SignUp target="_blank" href="/formUser">
+              <PriceValue>USD $70/year (final)*</PriceValue>
+              <br></br>
+              <p target="_blank" href="/formUser">
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-              </SignUp>
+              </p>
             </Pricing>
           </ContainerPlan>
         </div>
@@ -371,7 +365,6 @@ const Description = styled.p`
   line-height: 1.5;
   border-radius: 10px;
   display: inline-block;
-
   position: relative;
   width: 500px;
   height: 65px;
