@@ -4,7 +4,7 @@ import { LoginButton } from "./LoginButton.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { LogoutButton } from "./LogoutButton.jsx";
 import { Profile } from "./Profile.jsx";
-import styled from "styled-components";
+// import styled from "styled-components";
 import {authenticateUser} from '../../Redux/Actions/actions';
 
 

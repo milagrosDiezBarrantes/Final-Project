@@ -5,13 +5,13 @@ import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
 // import FloatingActionButtons from "../../Components/Admin/Admin";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { authenticateUser } from "../../Redux/Actions/actions";
-import { makeStyles } from '@material-ui/core/styles';
-import { useNavigate } from "react-router-dom";
-import SignupButton from "../Login/SigUp";
-import {userCreate} from "../../Redux/Actions/actions";
+// import { makeStyles } from '@material-ui/core/styles';
+// import { useNavigate } from "react-router-dom";
+// import SignupButton from "../Login/SigUp";
+// import {userCreate} from "../../Redux/Actions/actions";
 import LoginButton from "../Login/LoginButton";
 // import Fab from '@material-ui/core/Fab';
 // import AddIcon from '@material-ui/icons/Add';
@@ -22,7 +22,7 @@ import AuthNav from "../Login/auth-nav";
 
 
 const Login = (props) => {
-  const { loginWithPopup, isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
   // const useStyles = makeStyles((theme) => ({
@@ -43,9 +43,9 @@ const Login = (props) => {
   },[dispatch]);
 
   
-  const handleLogin = () => {
-    loginWithPopup();
-  }
+  // const handleLogin = () => {
+  //   loginWithPopup();
+  // }
 
 
   return (

@@ -7,6 +7,7 @@ import { getAllComics } from "../../../Redux/Actions/actions";
 import CustomPagination from "../../Pagination/Pagination.jsx";
 // import AppBanner from "../../Publicidad/Publicidad";
 import "../../Publicidad/Publicidad";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import avengers from "../../Publicidad/imag/Avengers_logo.png";
 import avengersLogo from "../../Publicidad/imag/Avengers.png";
@@ -18,7 +19,11 @@ const HomeComics = () => {
   const allComics = useSelector((state) => state.ComicsReducer.copyComics);
   const userLogin = useSelector((state) => state.ComicsReducer.loginUser);
   const noRegister = 'password y/o userName incorrecto/s'
+  const {user} = useAuth0();
 
+
+
+console.log('AUTH0', user)
   console.log('USERLOGIN',userLogin)
   const [page, setPage] = useState(1);
   const [numOfPages] = useState(10);
@@ -28,6 +33,7 @@ const HomeComics = () => {
   const PER_PAGE = 12;
   const start = (page - 1) * 12;
   const end = page * PER_PAGE;
+
   useEffect(() => {
     if(userLogin === noRegister || userLogin === undefined) {
       navigate('/formLoginUser')
