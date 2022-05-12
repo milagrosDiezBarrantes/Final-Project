@@ -24,6 +24,7 @@ module.exports = (sequelize) => {
     pages: { 
       type: DataTypes.INTEGER,
       allowNull: true,
+      default:0
     },
     banner: { 
       type: DataTypes.BOOLEAN,
@@ -34,6 +35,11 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       defaultValue: [],
       allowNull: true,
+    },
+    url:{
+      type:DataTypes.TEXT,
+      defaultValue:"Not Have PDF",
+      allowNull:true
     }
   });
 };
