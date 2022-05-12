@@ -60,12 +60,12 @@ console.log("arrayIds")
 console.log(arrayIds)
 if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   // setSelect([...select, event.target.value]);
-  
   console.log("entre al if not find")
   console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
   arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
   console.log("arrayIds")
   console.log(arrayIds)
+  
   dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
   
 } else {
@@ -129,6 +129,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
               {detail[0].creators?.map((creator) => (
                 <div key={creator.creatorId}>
                   <p className="randomchar__descr">{creator.creatorRole}</p>
+                  
                   <button className="button button__main" value={creator.creatorId} onClick={handleClick}>
                     {creator.creatorName}
                   </button>

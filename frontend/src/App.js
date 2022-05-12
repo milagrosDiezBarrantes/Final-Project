@@ -21,7 +21,8 @@ import FormAdmin from "./Components/Form/FormAdmin";
 //USER
 import Profile from "./Components/Login/Profile";
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
-import Lecture from './Components/Lecture/Lecture.jsx'
+import Lecture from './Components/Lecture/Lecture.jsx';
+import Playlist from "./Components/HomeComponent/Play/List.jsx";
 
 // RUTAS PRIVADAS
 import CommonRoute from "./Components/PermissionRoute/CommonRoute";
@@ -59,6 +60,7 @@ function App() {
             <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
             <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
             <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
+            <Route path='/Playlist' element={<Playlist />} />
             <Route exact path='/lecture/:comic' element={<Lecture />} />
           </Route>
           
