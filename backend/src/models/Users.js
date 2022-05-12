@@ -12,27 +12,14 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    firstName: {
+    name: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    lastName: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    userName: {
+    nickname: {
       type: DataTypes.TEXT,
       allowNull: false,
       unique: true
-
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.TEXT,
-      allowNull: false
     },
     picture: {
       type: DataTypes.TEXT,
@@ -48,3 +35,4 @@ module.exports = (sequelize) => {
   },
   });
 };
+

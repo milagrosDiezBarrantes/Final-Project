@@ -132,13 +132,17 @@ export const getById = (id) => async dispatch => {
 }
 
 //======================USER  ===============
+// function createUser() {
+//     axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
+//     console.log("SE CREA EL USER?")
+//   }
 export const createUser= (user) => {
     console.log('llega user?', user)    
         return async (dispatch) => {
             try {
-                const userCreate = await axios.post(`http://localhost:3001/user`, user);
+                console.log("email", user.email, "nickname", user.nickname, "name", user.name)
+                const userCreate = await axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
                 console.log(userCreate, 'se crea usuario?');
-                console.log(user, 'este es el user')
                 return dispatch({
                     type: CREATE_USER,
                     payload: userCreate.data

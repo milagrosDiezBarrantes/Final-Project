@@ -9,13 +9,14 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
-  ADD_FAVORITE,
+  // ADD_FAVORITE,
   POST_FAVORITE_COMICS,
   POST_FAVORITE_CHARACTERS,
   GET_FAVORITES,
   LOGIN_USER,
   GET_PLANS,
-  PRUEBA
+  PRUEBA,
+  CREATE_USER
 
 } from "../Actions/actions";
 import {
@@ -111,6 +112,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: [...deletedComic],
       };
     case LOGIN_USER:      
+      return {
+        ...state,
+        loginUser: payload,
+      };
+      case CREATE_USER:      
       return {
         ...state,
         loginUser: payload,

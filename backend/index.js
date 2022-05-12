@@ -1,7 +1,7 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
 	server.listen(3001, () => {
 		console.log("%s listening at 3001");
 	});
@@ -11,11 +11,8 @@ const { Plans, Users } = require("../backend/src/db");
 var superAdmin = Users.findOrCreate({
 	where: {
 		email: "soyadmin@henry.com",
-		firstName: "Henry",
-		lastName: "Hero",
-		userName: "Henry-Hero",
-		age: 99,
-		password: "1234",
+		name: "Henry Hero",
+		nickname: "Henry-Hero",
 		role: "ROLE_SUPER_ADMIN",
 	},
 });
@@ -45,12 +42,12 @@ var plan4 = Plans.findOrCreate({
 	},
 });
 
-// let planes = Plans.findAll();
+let planes = Plans.findAll();
 
-// Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
-// 	.then((res) => {
-// 		console.log([plan1, superAdmin]);
-// 	})
-// 	.then((res) => {
-// 		console.log(planes.Promise);
-// 	});
+Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
+	.then((res) => {
+		console.log([plan1, superAdmin]);
+	})
+	.then((res) => {
+		console.log(planes.Promise);
+	});
