@@ -32,6 +32,7 @@ export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 export const POST_FAVORITE_COMICS = "POST_FAVORITE_COMICS"
 export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
 export const GET_FAVORITES = "GET_FAVORITES"
+export const PRUEBA = "PRUEBA"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -131,10 +132,16 @@ export const getById = (id) => async dispatch => {
 }
 
 //======================USER  ===============
+// function createUser() {
+//     axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
+//     console.log("SE CREA EL USER?")
+//   }
 export const createUser= (user) => {
+    console.log('llega user?', user)    
         return async (dispatch) => {
             try {
-                const userCreate = await axios.post(`http://localhost:3001/user`, user);
+                console.log("email", user.email, "nickname", user.nickname, "name", user.name)
+                const userCreate = await axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
                 console.log(userCreate, 'se crea usuario?');
                 return dispatch({
                     type: CREATE_USER,
@@ -148,13 +155,23 @@ export const createUser= (user) => {
 }
 
 //====================== LOGIN ===============
+export const login = (payload)=>{
+    console.log('llega user?', payload)
+    return {
+        type: LOGIN_USER,
+        payload: payload.email
+    }
+        
 
-export const loginUser= ({userName,password}) => {
+}
+
+
+export const loginUser= (email) => {
         return async (dispatch) => {
             try {
                 const userLogin = await axios.get("http://localhost:3001/user/login",{
                     params: {
-                        userName,password
+                        email
                     }});
                 // console.log("de la action");
                 // console.log(userName,password);
@@ -167,6 +184,14 @@ export const loginUser= ({userName,password}) => {
                 console.log(err, 'userCreate || Error');
             }
         }
+}
+export const prueba =(user)=>{
+    return async (dispatch) => {
+    return await dispatch({
+        type: PRUEBA,
+        payload: user.nickname
+    })
+}
 }
 export const getFavorites= (id) => {
         return async (dispatch) => {
@@ -357,8 +382,9 @@ export function postFavoriteComics(idComics, id) {
                 params: {
                     id
                 }});
-           console.log("action",idComics)
-           console.log("nuevos",nuevos)
+            
+            console.log("action",idComics)
+            console.log("nuevos",nuevos)
             return dispatch({
                 type: "POST_FAVORITE_COMICS",
                 payload: nuevos.data

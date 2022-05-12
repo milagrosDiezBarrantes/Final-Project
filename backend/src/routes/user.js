@@ -7,7 +7,7 @@ const { Users , Plans,Favorites_comics,Favorites_characters,Characters,Comics } 
 const router = Router();
 
 router.post("/", async (req, res) => {
-	const { email, firstName, lastName, userName, age, password, picture,plan_id } =
+	const { email, name, nickname, picture,plan_id } =
 		req.body;
 // id
 // email
@@ -21,13 +21,8 @@ router.post("/", async (req, res) => {
 		const [user, created] = await Users.findOrCreate({
 			where: {
 				email,
-				firstName,
-				lastName,
-				userName,
-				age,
-				password,
-				picture,
-				plan_id
+				name,
+				nickname,
 			},
 		});
 		// let ElPlan = await Plans.findAll({
@@ -58,10 +53,8 @@ console.log(user)
 
 			await user.update({
 				email: req.body.email,
-				firstName: req.body.firstName,
-				lastName: req.body.lastName,
-				userName: req.body.userName,
-				age: req.body.age,
+				name: req.body.name,
+				nickname: req.body.userName,
 				password: req.body.password,
 				picture: req.body.picture,
 				plan_id: req.body.plan_id,
@@ -181,29 +174,29 @@ router.get("/validates", async (req, res) => {
 
 	let user = await Users.findAll();
 	user= user.map((e)=>({email:e.email,
-		userName:e.userName}))
+		nickname:e.nickname}))
 
 	return res.send(user);
 });
 
 router.get("/login", async (req, res) => {
-	const{userName,} = req.query
-	if(userName){
+	const{email} = req.query
+	if(email){
 		let user = await Users.findOne({
 			where: {
-				userName: userName
+				email: email
+		
 			},
 		});
 		if(!user){
 
-		return res.send("password y/o userName incorrecto/s");
+		return res.send("pibe registrate");
 		}
 		return res.send(user);
 	}else{
 		return res.send("password y/o userName incompletos")
 	}
 });
-
 
 module.exports = router;
 
