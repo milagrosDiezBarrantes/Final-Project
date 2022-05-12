@@ -37,9 +37,9 @@ function App() {
   const {user, isLoading} = useAuth0();
   console.log(user, 'EN TODA LA APP TENGO EL AUTH0?')
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,7 +49,7 @@ function App() {
         <Routes>  
         
           <Route exact path='/' element={<Banner />} />
-          <Route path='/login' element={<LoginButton />} />  
+          {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
           <Route element ={ <CommonRoute user={ user } /> } > 
             <Route path='/profile' element={<Profile />} />

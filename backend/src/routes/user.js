@@ -91,6 +91,7 @@ router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://30
 		try {
 			console.log(id);
 			const user = await Users.findOne({
+				include:Comics,
 				where: {
 					id: id,
 				},
