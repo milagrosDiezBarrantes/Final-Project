@@ -10,15 +10,19 @@ import { useEffect } from "react";
 import { authenticateUser } from "../../Redux/Actions/actions";
 import { makeStyles } from '@material-ui/core/styles';
 import { useNavigate } from "react-router-dom";
+import SignupButton from "../Login/SigUp";
+import {userCreate} from "../../Redux/Actions/actions";
+import LoginButton from "../Login/LoginButton";
 // import Fab from '@material-ui/core/Fab';
 // import AddIcon from '@material-ui/icons/Add';
 // import EditIcon from '@material-ui/icons/Edit';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import NavigationIcon from '@material-ui/icons/Navigation';
+import AuthNav from "../Login/auth-nav";
 
 
 const Login = (props) => {
-  const { loginWithPopup } = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
   // const useStyles = makeStyles((theme) => ({
@@ -61,15 +65,19 @@ const Login = (props) => {
     
       
       <Nav>
-        <a href="/">
+
+      
+       <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <button
+
+        <AuthNav/>
+      {/*    <button
           className="btn btn-primary btn-block"
           onClick={ handleLogin }
         >
           LOG IN
-        </button>
+        </button> */}
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
         </a> */}
@@ -94,9 +102,13 @@ const Login = (props) => {
                 </Caption>
                 <Caption>Save money with this bundle.</Caption>
                 <PriceValue>ARS 995/month (final)* </PriceValue>
-                <SignUp target="_blank" href="/formUser">
-                  <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-                </SignUp>
+                <Caption> CONTRACT NOW!</Caption>
+                { isAuthenticated? (
+                <SignUp hidden={!isAuthenticated}  target="_blank"  href="/formUser" >
+                <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+              </SignUp>
+              ) : (<LoginButton/>)
+             }
               </Pricing>
             </div>{" "}
             <div></div>
@@ -106,10 +118,14 @@ const Login = (props) => {
               <Caption>
                 Access endless Marvel Comics World for a new price!{" "}
               </Caption>
-              <PriceValue>ARS 3.850/year (final)*</PriceValue>
-              <SignUp target="_blank" href="/formUser">
+              <PriceValue>ARS 3.850/year (final)* </PriceValue>
+              <Caption> CONTRACT NOW!</Caption>
+              { isAuthenticated? (
+                <SignUp hidden={!isAuthenticated}  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
               </SignUp>
+              ) : (<LoginButton/>)
+             }
             </Pricing>
           </ContainerPlan>
         </div>
@@ -135,10 +151,10 @@ const Login = (props) => {
           <Logo src={logo} alt="Marvel" />
         </a>
         
-        <a href="/admin">
+        {/* <a href="/admin">
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
-      
+       */}
       </div>
     </>
   );
