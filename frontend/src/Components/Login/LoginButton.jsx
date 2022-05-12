@@ -1,11 +1,20 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { createUser } from '../../Redux/Actions/actions';
+import { useDispatch } from 'react-redux';
 
 const LoginButton = () => {
-  const { loginWithPopup } = useAuth0();
+
+  const dispatch = useDispatch();
+  const { loginWithPopup, user} = useAuth0();
+
+
+
   const handleLogin = () => {
     loginWithPopup();
+
   }
+
   return (
     <button
       className="btn btn-primary btn-block"

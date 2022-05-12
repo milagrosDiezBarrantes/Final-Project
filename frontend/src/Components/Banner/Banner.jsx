@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 // import FloatingActionButtons from "../../Components/Admin/Admin";
 import {  useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { authenticateUser } from "../../Redux/Actions/actions";
+import { authenticateUser, loginWithPopup } from "../../Redux/Actions/actions";
 // import { makeStyles } from '@material-ui/core/styles';
 // import { useNavigate } from "react-router-dom";
 // import SignupButton from "../Login/SigUp";
@@ -22,9 +22,9 @@ import AuthNav from "../Login/auth-nav";
 
 
 const Login = (props) => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
-
+console.log('está authenticado?', isAuthenticated)
   // const useStyles = makeStyles((theme) => ({
   //   root: {
   //     '& > *': {
@@ -37,15 +37,10 @@ const Login = (props) => {
   // }));
 
 
-  useEffect(() => {
-    dispatch(authenticateUser());
+  // useEffect(() => {
+  //   dispatch(authenticateUser());
     
-  },[dispatch]);
-
-  
-  // const handleLogin = () => {
-  //   loginWithPopup();
-  // }
+  // },[dispatch]);
 
 
   return (
@@ -64,13 +59,10 @@ const Login = (props) => {
   ) : ( */}
     
       
-      <Nav>
-
-      
+      <Nav>      
        <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-
         <AuthNav/>
       {/*    <button
           className="btn btn-primary btn-block"

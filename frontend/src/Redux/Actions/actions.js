@@ -137,7 +137,7 @@ export const getById = (id) => async dispatch => {
 //     console.log("SE CREA EL USER?")
 //   }
 export const createUser= (user) => {
-    console.log('llega user?', user)    
+    console.log('llega a user?', user)    
         return async (dispatch) => {
             try {
                 console.log("email", user.email, "nickname", user.nickname, "name", user.name)
@@ -159,7 +159,7 @@ export const login = (payload)=>{
     console.log('llega user?', payload)
     return {
         type: LOGIN_USER,
-        payload: payload.email
+        payload: payload
     }
         
 

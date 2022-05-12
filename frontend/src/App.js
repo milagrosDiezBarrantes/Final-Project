@@ -35,7 +35,8 @@ import LoginButton from "./Components/Login/LoginButton";
 
 function App() {
   const {user, isLoading} = useAuth0();
-
+  console.log('USUARIO LOGUEADO ', user)
+ 
   if (isLoading) {
     return <div className='app'><Loading /></div> ;
   }

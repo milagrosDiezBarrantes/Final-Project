@@ -29,8 +29,13 @@ const initialState = {
   copyComics: [],
   selectedComic: [],
   users: [],
-  loginUser: {},
   copyUsers: [],
+  loginUser: {
+    name:null,
+    nickname:null,
+    email: null,
+ 
+  },
   authenticated: false,
   filter:false,
   favoritesComics: [],
@@ -84,9 +89,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         plans :payload
       };
-
-   
-      case AUTHENTICATED:
+    case AUTHENTICATED:
       return {
         ...state,
         authenticated: payload,
@@ -128,8 +131,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyUsers: filtered,
       };  
-
-
     case CLEAR_COMICS:
         return{
           ...state,
