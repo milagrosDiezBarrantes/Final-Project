@@ -2,12 +2,16 @@ import React from 'react';
 import NavBar from '../../Navbar/Navbar.jsx';
 import Preguntas from "./Preguntas";
 import { useState, useEffect } from "react";
+import "./Preguntas.css";
+import "./images/captain.jpg"
+import backgroundImageList from "./backgroundImageList";
+
 
 function List() {
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [puntuación, setPuntuación] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
-  const [tiempoRestante, setTiempoRestante] = useState(10);
+  const [tiempoRestante, setTiempoRestante] = useState(15);
   const [areDisabled, setAreDisabled] = useState(false);
   const [answersShown, setAnswersShown] = useState(false);
 
@@ -19,13 +23,21 @@ function List() {
     // cambiar a la siguiente pregunta
 
     setTimeout(() => {
+      backgroundImage();
       if (preguntaActual === Preguntas.length - 1) {
         setIsFinished(true);
       } else {
         setPreguntaActual(preguntaActual + 1);
-        setTiempoRestante(10);
+        setTiempoRestante(15);
       }
     }, 1500);
+
+  }
+   //setting the background image
+   function backgroundImage() {
+    document.querySelector(
+      "body"
+    ).style.backgroundImage = `url(${backgroundImageList[List]})`;
   }
 
   useEffect(() => {
@@ -33,23 +45,25 @@ function List() {
       if (tiempoRestante > 0) setTiempoRestante((prev) => prev - 1);
       if (tiempoRestante === 0) setAreDisabled(true);
     }, 1000);
-
     return () => clearInterval(intervalo);
   }, [tiempoRestante]);
 
+
   if (isFinished)
     return (
-      <main className="app">
+      
+     <div className="List">
+       <div className="preguntas">
         <div className="juego-terminado">
           <span>
             {" "}
             Obtuviste {puntuación} de {Preguntas.length}{" "}
           </span>
-          <button onClick={() => (window.location.href = "/")}>
+          <button className="buttonList" onClick={() => (window.location.href = "/")}>
             {" "}
             Volver a jugar
           </button>
-          <button
+          <button className="buttonList"
             onClick={() => {
               setIsFinished(false);
               setAnswersShown(true);
@@ -59,12 +73,14 @@ function List() {
             Ver respuestas
           </button>
         </div>
-      </main>
+      </div>
+      </div>
     );
 
   if (answersShown)
     return (
-      <main className="app">
+      <div className="List">
+      <div className="preguntas">
         <div className="lado-izquierdo">
           <div className="numero-pregunta">
             <span> Pregunta {preguntaActual + 1} de</span> {Preguntas.length}
@@ -79,7 +95,7 @@ function List() {
               )[0].textoRespuesta
             }
           </div>
-          <button
+          <button className="buttonList"
             onClick={() => {
               if (preguntaActual === Preguntas.length - 1) {
                 window.location.href = "/";
@@ -93,11 +109,15 @@ function List() {
               : "Siguiente"}
           </button>
         </div>
-      </main>
+      </div>
+      </div>
+     
     );
 
   return (
-    <main className="app">
+    <div className="List">
+     <NavBar />
+    <div className="preguntas">
       <div className="lado-izquierdo">
         <div className="numero-pregunta">
           <span> Pregunta {preguntaActual + 1} de</span> {Preguntas.length}
@@ -111,9 +131,9 @@ function List() {
               Tiempo restante: {tiempoRestante}{" "}
             </span>
           ) : (
-            <button
+            <button className="buttonList"
               onClick={() => {
-                setTiempoRestante(10);
+                setTiempoRestante(15);
                 setAreDisabled(false);
                 if (preguntaActual === Preguntas.length - 1) {
                   setIsFinished(true);
@@ -129,7 +149,7 @@ function List() {
       </div>
       <div className="lado-derecho">
         {Preguntas[preguntaActual].opciones.map((respuesta) => (
-          <button
+          <button className="buttonList"
             disabled={areDisabled}
             key={respuesta.textoRespuesta}
             onClick={(e) => handleAnswerSubmit(respuesta.isCorrect, e)}
@@ -138,7 +158,9 @@ function List() {
           </button>
         ))}
       </div>
-    </main>
+    </div>
+    </div>
+     
   );
 }
 

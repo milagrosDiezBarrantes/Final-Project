@@ -38,13 +38,13 @@ const Favorite = () => {
    console.log(Object.keys(Object).length)
 */
 
-  return(
-    <>
+return(
+ <>
    { /* dataUser.role === "USER"?{  */ }
     <>
      <NavBar/>
      <ImgSlider /> 
-      <Viewer />
+     
       <h1>HERE ARE YOUR FAVOURITES </h1>
       <div className="grid">
         {favoritesComics &&
@@ -52,8 +52,69 @@ const Favorite = () => {
             return <ComicCard key={id} id={id} title={title} image={img} />;
           })}
       </div>
+      <div className="App">
+        <Carousel breakPoints={breakPoints}>
+          <div class="cards"><div class="item">
+            
+            <div class="item-img">
+                <img src={"https://www.bigbasket.com/media/uploads/p/xxl/40033819-2_6-fresho-apple-shimla.jpg"} /> 
+            </div>
+            <div class="details">
+                <div class="type">
+                    <b>
+                        fdgdfgdkg<br/>
+                        dfgdgf<br/>
+                        dfgdfg<br/><br/>
+                    </b>
+                </div>
+                <div class="price">
+                    <b>₹220</b>
+                </div>
+            </div>
 
-      <>
+        </div></div>   
+          <div class="cards"><div class="item">
+            <div class="item-img">
+                <img src={"https://produits.bienmanger.com/36700-0w0h0_Organic_Red_Onion_From_Italy.jpg"} />
+            </div>
+            <div class="details">
+                <div class="type">
+                    <b>
+                    nombre<br/>
+                    nombre:XYZ<br/>
+                    nombre:ABC<br/><br/>
+                    </b>
+                </div>
+                <div class="price">
+                    <b>nombre</b>
+                </div>
+            </div>
+        </div></div> 
+          <div class="cards"><div class="item">
+            <div class="item-img">
+                <img src={" "} />  
+            </div>
+            <div class="details">
+                <div class="type">
+                    <b>
+                    nombre-2kg<br/>
+                    nombre<br/>
+                    nombre<br/><br/>
+                    </b>
+                </div>
+                <div class="price">
+                    <b>nombre</b>
+                </div>
+            </div>
+        </div></div> 
+          <div class="cards"><div class="item">
+            <div class="item-img">
+                <img src={"g"} />
+            </div>
+        </div></div> 
+        </Carousel>
+      </div>
+    <>
       <h1>RECOMMENDED FOR YOU </h1>
      <div className="App">
         <Carousel breakPoints={breakPoints}>
@@ -130,96 +191,15 @@ const Favorite = () => {
         </div></div> 
           <div class="cards"><div class="item">
             <div class="item-img">
-                <img src={" "} />
-            </div>
-            <div class="details">
-                <div class="type">
-                    <b>
-                    nombreg<br/>
-                        SnombreZ<br/>
-                        LnombreC<br/><br/>
-                    </b>
-                </div>
-                <div class="price">
-                    <b>nombre</b>
-                </div>
-            </div>
-        </div></div> 
-          <div class="cards"><div class="item">
-            <div class="item-img">
-                <img src={"https://www.bigbasket.com/media/uploads/p/xxl/40033819-2_6-fresho-apple-shimla.jpg"} />
-                <div class="overlay">
-                    <a href="#" class="buy-btn"></a>
-                </div>
-            </div>
-            <div class="details">
-                <div class="type">
-                    <b>
-                        gdfgdfg<br/>
-                        dfgdfg:XYZ<br/>
-                        fghfgh:ABC<br/><br/>
-                    </b>
-                </div>
-                <div class="price">
-                    <b>fghgh</b>
-                </div>
-            </div>
-        </div></div> 
-          <div class="cards"><div class="item">
-            <div class="item-img">
-                <img src={"https://www.bigbasket.com/media/uploads/p/xxl/40033819-2_6-fresho-apple-shimla.jpg"} />
-                
-            </div>
-            <div class="details">
-                <div class="type">
-                    <b>
-                        Afghfghf<br/>
-                        SenbnvbnZ<br/>
-                        vbnvnC<br/><br/>
-                    </b>
-                </div>
-                <div class="price">
-                    <b>vbnvbn</b>
-                </div>
-            </div>
-        </div></div> 
-          <div class="cards"><div class="item">   
-            <div class="item-img">
-                <img src={"https://www.bigbasket.com/media/uploads/p/xxl/40033819-2_6-fresho-apple-shimla.jpg"} />    
-            </div>
-            <div class="details">
-                <div class="type">
-                    <b>
-                        ghfghg<br/>
-                        fghfgh<br/>
-                        Lfghfgh<br/><br/>
-                    </b>
-                </div>
-                <div class="price">
-                    <b>fghgfh</b>
-                </div>
-            </div>
-        </div></div> 
-          <div class="cards"><div class="item">
-            <div class="item-img">
-                <img src={"https://www.bigbasket.com/media/uploads/p/xxl/40033819-2_6-fresho-apple-shimla.jpg"} /> 
-            </div>
-            
-        </div></div> 
-          <div class="cards"><div class="item">
-            <div class="item-img">
                 <img src={"g"} />
             </div>
-            
-
         </div></div> 
         </Carousel>
       </div>
-    </>
-
-    </> 
-   { /* }: { } */  }
-    </> 
+     </>
+   </> 
+    { /* }: { } */  }
+  </> 
   )
 }
 
