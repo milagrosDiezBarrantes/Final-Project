@@ -35,10 +35,9 @@ import LoginButton from "./Components/Login/LoginButton";
 
 function App() {
   const {user, isLoading} = useAuth0();
-  console.log(user, 'EN TODA LA APP TENGO EL AUTH0?')
 
   if (isLoading) {
-    return <Loading />;
+    return <div className='app'><Loading /></div> ;
   }
 
   return (
@@ -64,7 +63,7 @@ function App() {
           
           {/* ADMIN */}
           <Route element={ <PrivateRoute user={ user }  />}>
-            <Route path='/admin'element ={<Admin />} /> 
+            <Route path='/admin' element ={<Admin />} /> 
             <Route path='/postAdmin' element={<PostAdmin/>} /> 
             <Route path='/formAdmin' element={<FormAdmin />} />
             <Route path='/admin/comic' element={<FormUpdateComic/>} />
