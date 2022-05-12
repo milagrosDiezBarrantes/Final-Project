@@ -187,12 +187,11 @@ router.get("/validates", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-	const{userName,password} = req.query
-	if(userName&&password){
+	const{userName,} = req.query
+	if(userName){
 		let user = await Users.findOne({
 			where: {
-				userName: userName,
-				password:password
+				userName: userName
 			},
 		});
 		if(!user){

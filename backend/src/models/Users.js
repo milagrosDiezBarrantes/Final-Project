@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     password: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true
     },
     picture: {
       type: DataTypes.TEXT,

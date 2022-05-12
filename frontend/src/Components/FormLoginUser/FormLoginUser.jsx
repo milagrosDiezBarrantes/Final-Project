@@ -5,8 +5,11 @@ import { FaUserCircle } from 'react-icons/fa';
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { loginUser, setRememberMe } from '../../Redux/Actions/actions';
 import { useDispatch } from 'react-redux';
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 const FormLoginUser = () => {
+    const { loginWithRedirect } = useAuth0();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [input, setInput] = useState({
@@ -59,6 +62,7 @@ const FormLoginUser = () => {
         }
 
     return (
+        <>
         <Container
             style={{
                 textAlign: "center",
@@ -116,7 +120,12 @@ const FormLoginUser = () => {
                 </div>
             </Form>
         </Container>
-    )
+        <div>
+                <button onClick={() => loginWithRedirect()}>Login with google</button>
+
+        </div>
+   </>
+                )
 }
 
 export default FormLoginUser
