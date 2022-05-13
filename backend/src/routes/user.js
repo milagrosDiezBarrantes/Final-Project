@@ -180,7 +180,7 @@ router.get("/validates", async (req, res) => {
 	return res.send(user);
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
 
 	let { email, name, nickname } = req.body;
     console.log(req.body)
