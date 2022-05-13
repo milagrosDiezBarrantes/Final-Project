@@ -6,14 +6,8 @@ import marvel from './img/viewers-marvel.png';
 const Viewer = () =>{
   return (
     <> 
-     <h4> YOUR FAVORITE</h4>
+    
      <Container>
-       <Wrap>
-           <img src="/images/viewers-disney.png" alt="viewer"/>
-           <video autoPlay={true} playsInline={true} loop={true}>
-             <source src="/videos/1564674844-disney.mp4"></source>
-           </video>
-       </Wrap>
        <Wrap>
            <img className="uno" src={marvel} alt="viewer"/>
            <video autoPlay={true} playsInline={true} loop={true}>
@@ -27,18 +21,25 @@ const Viewer = () =>{
            </video>
        </Wrap>
        <Wrap>
-           <img src="/images/viewers-pixar.png" alt="viewer"/>
+           <img src="/images/viewers-national.png" alt="viewer"/>
            <video autoPlay={true} playsInline={true} loop={true}>
-             <source src="/videos/1564676714-pixar.mp4"></source>
+             <source src="/videos/1564676296-national-geographic.mp4"></source>
            </video>
        </Wrap>
        <Wrap>
-           <img src="/images/viewers-starwars.png" alt="viewer"/>
+           <img src="/images/viewers-national.png" alt="viewer"/>
            <video autoPlay={true} playsInline={true} loop={true}>
-             <source src="/videos/1608229455-star-wars.mp4"></source>
+             <source src="/videos/1564676296-national-geographic.mp4"></source>
+           </video>
+       </Wrap>
+       <Wrap>
+           <img src="/images/viewers-national.png" alt="viewer"/>
+           <video autoPlay={true} playsInline={true} loop={true}>
+             <source src="/videos/1564676296-national-geographic.mp4"></source>
            </video>
        </Wrap>
      </Container>
+     
      </>
   )
 }
@@ -48,9 +49,8 @@ const Container = styled.div`
   padding: 30px 0 26px;
   display: grid;
   grid-gap: 20px;
+  background-color: #000;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-
-
   @media screen and (max-width: 768px){
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }

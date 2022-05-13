@@ -9,14 +9,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { authenticateUser } from "../../Redux/Actions/actions";
 import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import NavigationIcon from '@material-ui/icons/Navigation';
-
-
-
+import Landing from './Accordion/Accordion';
+import Viewer from '../../../src/Components/HomeComponent/Favorite/Viwers' 
+import Accordion from '../Banner/Accordion/Accordion'
 const Login = (props) => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
@@ -57,7 +52,6 @@ const Login = (props) => {
     </>
   ) : (
     <>
-      
       <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
@@ -69,7 +63,6 @@ const Login = (props) => {
           <LogIn>SUSCRIBE NOW</LogIn>
         </a>
       </Nav>
-      
       <HeaderBanner />
       <Cont>
         <div class="overlay">
@@ -103,36 +96,53 @@ const Login = (props) => {
           </ContainerPlan>
         </div>
       </Cont>
+      
       <div>
         <Container>
           <Content>
             <CTA>
               <SignUp target="_blank" href="/AboutUs">
-                Tell me more
+                <h3>More Information </h3>
               </SignUp>
               <Description>
-                Get Primer Access to Raya and the last Dragon for an additional
+              <h1> Get Primer Access to Raya and the last Dragon for an additional
                 fee with a Marvel + Subscription. As of 04/05/2022, the price of
-                Marvel + and The Marvel Bundle will increase by $1.
-              </Description>
+                Marvel + and The Marvel Bundle will increase by $1.</h1>
+                  </Description>
             </CTA>
             <BackgroundImg />
           </Content>
         </Container>
-       
+         <Viewer />
+         <Accordion />
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        
         <a href="/admin">
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
-      
       </div>
     </>
   ));
 };
 
+const First = styled.div`
+display: flex;
+align-items: center;
+border-bottom: 8px solid #222;
+width: 100vw;
+height: 30rem;
+`;
+const Const = styled.div`
+  display: block;
+  color: #f8f8f8;
+  position: relative;
+  top: 40px;
+  min-height: 95vh;
+  padding: 5px calc(3.5vw + 5px);
+  overflow-x: hidden;
+  background-size: cover;
+`;
 
 
 const Cont = styled.div`
@@ -358,16 +368,14 @@ const Description = styled.p`
   font-weight: 1000;
   letter-spacing: 1.3px;
   line-height: 1.5;
-  border-radius: 10px;
   display: inline-block;
 
   position: relative;
   width: 500px;
   height: 65px;
   background: #;
-  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0px 10px 10px;
-`;
+
+  `;
 
 export default Login;
