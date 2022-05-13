@@ -66,7 +66,7 @@ function App() {
           
           {/* ADMIN */}
           <Route element={ <PrivateRoute user={ user }  />}>
-            <Route path='/admin'element ={<Admin />} /> 
+            <Route path='/admin' element ={<Admin />} /> 
             <Route path='/postAdmin' element={<PostAdmin/>} /> 
             <Route path='/formAdmin' element={<FormAdmin />} />
             <Route path='/admin/comic' element={<FormUpdateComic/>} />

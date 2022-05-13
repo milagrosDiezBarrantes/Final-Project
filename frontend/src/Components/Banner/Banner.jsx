@@ -138,8 +138,6 @@ const Login = (props) => {
   );
 };
 
-
-
 const Cont = styled.div`
   display: block;
   color: #f8f8f8;
