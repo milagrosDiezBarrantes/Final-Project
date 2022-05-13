@@ -6,7 +6,7 @@ conn.sync({ force: false }).then(() => {
 		console.log("%s listening at 3001");
 	});
 });
-
+/*hola que hace */
 // const { Plans, Users } = require("../backend/src/db");
 // var superAdmin = Users.findOrCreate({
 // 	where: {
