@@ -180,24 +180,37 @@ router.get("/validates", async (req, res) => {
 	return res.send(user);
 });
 
-router.get("/login", async (req, res) => {
-	const{email} = req.query
-	if(email){
-		let user = await Users.findOne({
-			where: {
-				email: email
-		
-			},
-		});
-		if(!user){
+router.post("/login", async (req, res) => {
 
-		return res.send("pibe registrate");
+	let { email, name, nickname } = req.body;
+    console.log(req.body)
+
+    let userOld = await Users.findOne({
+		where:{
+			email: email
 		}
-		return res.send(user);
-	}else{
-		return res.send("password y/o userName incompletos")
-	}
-});
+	})
+    if (userOld) {
+        return res.status(400).json({
+            Msg: 'User already exists',
+            userOld
+        })
+    }
+    try {
+        let user = await Users.create({
+			email:email,
+			firstname:nickname,
+			nickname:nickname,
+			name: name
+		});
+        res.status(200).json({Msg: "User created", user})
+
+		}catch(error){
+			console.log(error);
+			next(error)
+		}
+		});
+
 
 module.exports = router;
 
