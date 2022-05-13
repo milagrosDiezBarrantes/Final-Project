@@ -50,4 +50,4 @@ conn.sync({ force: false }).then(() => {
 // 	})
 // 	.then((res) => {
 // 		console.log(planes.Promise);
-// 	});
+// 	});//54465
