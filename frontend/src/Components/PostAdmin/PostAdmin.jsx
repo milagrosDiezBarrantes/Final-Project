@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Container, Form, Button } from 'semantic-ui-react';
 import { validate } from '../../Functions/validacionesForm/validationForm';
-import { postComic } from '../../Redux/Actions/actions';
+import { getCreators, postComic } from '../../Redux/Actions/actions';
 
 const PostAdmin = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
+    const creators = useSelector(state => state.ComicsReducer.creators) ;
+    const idPrincipal = useSelector(state => state.ComicsReducer.selectedComic) ;
     const navigate = useNavigate();
 
     // const disable = useMemo(() => {
@@ -29,6 +31,9 @@ const PostAdmin = () => {
     useEffect(() => {
         setError(validate(input))
     },[input])
+    useEffect(() => {
+        dispatch(getCreators())
+    },[dispatch])
 
     function handleChange(e) {
         e.preventDefault();
@@ -42,6 +47,22 @@ const PostAdmin = () => {
         }))
     }
 
+    const handleOnPlatforms = function (event) {
+        if (!input.creators.find((e) => e === event.target.value)) {
+            console.log("if")
+            setInput({...input, creators:[...input.creators, event.target.value]});
+            console.log(input.creators)
+            console.log(input.creators[0])
+            
+        } else {
+            console.log("else")
+            setInput({...input, creators:input.creators.filter((e) => e !== event.target.value)});
+            
+            console.log(input)
+        }
+      };
+
+
     function handleSubmit(e) {
         e.preventDefault();
         console.log('ACA HANDLESUBMIT DEL POST ADMIN', input)
@@ -54,7 +75,10 @@ const PostAdmin = () => {
                 pages:'',
                 creators:[],
             })
-            navigate('/homeComics');
+            setTimeout(() => {
+                
+                navigate(`/homeComics`);
+              }, 1500);
         }
 
     return (
@@ -101,6 +125,56 @@ const PostAdmin = () => {
                         placeholder='Image Comic'
                     />
                     {error.picture && <p style={{ color:"red"}}> {error.picture}</p>}
+                </div>
+                <div>
+                    <label>Pages</label>
+                    <input
+                        type="number"
+                        name='pages'
+                        value={input.pages}
+                        onChange={handleChange}
+                        placeholder='Number Pages'
+                    />
+                    
+                </div>
+                <div>
+                    <label>Creators</label>
+                    
+                    <select onChange={handleOnPlatforms} >
+              {creators &&
+                creators.map((e) => (
+                  <option
+                    key={e.id}
+                    value={e.fullName}
+                    name={e.fullName}
+                    onChange={handleOnPlatforms}
+                    
+                  >
+                    {e.fullName}
+                  </option>
+                ))}
+            </select>
+
+            {input.creators.length>0 &&
+              input.creators.map((e) => (
+                <div key={e}>
+                  <label name={e} value={e} >
+                    {e}{" "}
+                  </label>
+                  <button
+                    type="button"
+                    onClick={handleOnPlatforms}
+                    value={e}
+                    
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+
+
+
+
                 </div>
                 <div>
                     <Button 

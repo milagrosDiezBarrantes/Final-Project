@@ -57,9 +57,9 @@ function App() {
         <Routes>  
         
           <Route exact path='/' element={<Banner />} />
-          <Route path='/login' element={<LoginButton />} />  
+          {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
-          <Route element ={ <CommonRoute user={ user } /> } > 
+          {/* <Route element ={ <CommonRoute user={ user } /> } >  */}
             <Route path='/profile' element={<Profile />} />
             <Route path="/favorite" element={<Favorite />} />
             <Route path='/homeCharacter' element={<HomeCharacter />} />
@@ -70,16 +70,18 @@ function App() {
             <Route path='/profile/edit' element={<FormEditUser/>} />
             <Route path='/Playlist' element={<Playlist />} />
             <Route exact path='/lecture/:comic' element={<Lecture />} />
-          </Route>
+          {/* </Route> */}
           
           {/* ADMIN */}
-          <Route element={ <PrivateRoute user={ user }  />}>
+          {/* <Route element={ <PrivateRoute user={ user }  />}> */}
             <Route path='/admin' element ={<Admin />} /> 
+   
+            <Route path='/admin'element ={<Admin />} /> 
             <Route path='/postAdmin' element={<PostAdmin/>} /> 
             <Route path='/formAdmin' element={<FormAdmin />} />
             <Route path='/admin/comic' element={<FormUpdateComic/>} />
             <Route path='/updateComic' element={<FormUpdateComic/>} />
-          </Route> 
+          {/* </Route>  */}
       </Routes>
       {/* </Container> */}
     </div>

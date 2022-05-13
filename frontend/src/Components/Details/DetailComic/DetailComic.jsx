@@ -111,6 +111,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
         <div className="randomchar__name" class="options">
            <p className="randomchar__name" >{detail[0].title}</p>
             <p className="randomchar__descr" class="bodytext">
+           
               {detail[0].description}
             </p>
             <MyButton className="randomchar__name" variant="contained" href="/lecture/a" style={{ color: "red" }}>
@@ -126,7 +127,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
     <div className="randomchar__block">
      
             <div className="randomchar__block">
-              {detail[0].creators?.map((creator) => (
+              {!id.includes("-") && detail[0].creators?.map((creator) => (
                 <div key={creator.creatorId}>
                   <p className="randomchar__descr">{creator.creatorRole}</p>
                   
@@ -135,9 +136,17 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
                   </button>
                 </div>
               ))}
+              {id.includes("-") && (<h3 className="randomchar__descr">Creators</h3>)}
+              {id.includes("-") && detail[0].creators?.map((creator) => (
+                <div key={creator}>
+                  <button className="button button__main" value={creator} onClick={handleClick}>
+                    {creator}
+                  </button>
+                </div>
+              ))}
            
               {show? null : creators && creators?.map((comic) => (
-              <Link className="link_card" to={`/homeComics/DetailComic/${comic.id}`}>
+              <Link className="link_card" to={`/homeComics/DetailComic/${comic.id||comic.idPrincipal}`}>
                 <img src= {img(comic) } alt= 'Not available' style={{ width: "100px", height: "100px" }}/>
                 <h3>{comic.title}</h3>
               </Link>

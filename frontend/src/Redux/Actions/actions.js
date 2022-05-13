@@ -34,6 +34,11 @@ export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
 export const GET_FAVORITES = "GET_FAVORITES"
 export const PRUEBA = "PRUEBA"
 
+//Admin post
+
+export const POST_COMICS = "POST_COMICS"
+export const GET_CREATORS = "GET_CREATORS"
+
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
     return async function (dispatch) {
@@ -294,11 +299,13 @@ export function postComic(comic) {
             const comicE = {
                 title: comic.title,
                 description: comic.description,
-                image: comic.image,
+                img: comic.img,
+                pages: comic.pages,
+                creators:comic.creators
             };
-            const editComic = await axios.post(`http://localhost:3001/comics/${comic.id}`, comicE);
+            const editComic = await axios.post("http://localhost:3001/comics/create", comicE);
             return dispatch ({
-                type: UPDATE_COMIC,
+                type: POST_COMICS,
                 payload: editComic.data
             })
         }
@@ -341,6 +348,21 @@ export const sortBy = (payload) =>{
 
 
 }
+export const getCreators = () =>{
+    return async (dispatch) => {
+        try {
+            const {data}= await axios.get(`http://localhost:3001/creators/all`);
+            return dispatch({
+                type: GET_CREATORS,
+        payload: data
+            })
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 //================AUTHENTICATED=================//
 export function authenticateUser(){
     return{
