@@ -1,0 +1,43 @@
+.cons{
+  display: block;
+  color: #f8f8f8;
+  position: relative;
+  top: 40px;
+  min-height: 95vh;
+  padding: 5px calc(3.5vw + 5px);
+  overflow-x: hidden;
+  background: url(' ')
+    no-repeat center center fixed;
+  background-size: cover;
+
+}
+.first {
+  display: flex;
+  align-items: center;
+  border-bottom: 8px solid #222;
+  width: 100vw;
+  height: 30rem;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+
+.first-text {
+  width: 40%;
+  margin-left: 2rem;
+}
+
+.first-text > h3 {
+  margin-top: 1.5rem;
+}
+
+.first-animation {
+  position: relative;
+}
+
+
+.get-started {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  width: 45rem;
+}
