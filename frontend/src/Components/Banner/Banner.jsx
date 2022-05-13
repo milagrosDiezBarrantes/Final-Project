@@ -5,21 +5,27 @@ import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
 // import FloatingActionButtons from "../../Components/Admin/Admin";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { authenticateUser } from "../../Redux/Actions/actions";
-import { makeStyles } from '@material-ui/core/styles';
-import { useNavigate } from "react-router-dom";
+import { authenticateUser, loginWithPopup } from "../../Redux/Actions/actions";
+// import { makeStyles } from '@material-ui/core/styles';
+// import { useNavigate } from "react-router-dom";
+// import SignupButton from "../Login/SigUp";
+// import {userCreate} from "../../Redux/Actions/actions";
+import LoginButton from "../Login/LoginButton";
 // import Fab from '@material-ui/core/Fab';
 // import AddIcon from '@material-ui/icons/Add';
 // import EditIcon from '@material-ui/icons/Edit';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import NavigationIcon from '@material-ui/icons/Navigation';
+import AuthNav from "../Login/auth-nav";
+import Navbar from "../Navbar/Navbar";
+
 
 const Login = (props) => {
-  const { loginWithPopup } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
-
+console.log('está authenticado?', isAuthenticated)
   // const useStyles = makeStyles((theme) => ({
   //   root: {
   //     '& > *': {
@@ -30,14 +36,14 @@ const Login = (props) => {
   //     marginRight: theme.spacing(1),
   //   },
   // }));
-  useEffect(() => {
-    dispatch(authenticateUser());
-    
-  },[dispatch]);
 
-  const handleLogin = () => {
-    loginWithPopup();
-  }
+
+  // useEffect(() => {
+  //   dispatch(authenticateUser());
+    
+  // },[dispatch]);
+
+
   return (
     <>
       {/* <Nav>
@@ -52,16 +58,23 @@ const Login = (props) => {
       <HeaderBanner />
     </>
   ) : ( */}
-      <Nav>
-        <a href="/">
+    
+      
+      <Nav>      
+       <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <button
+        <AuthNav/>
+
+        {isAuthenticated ? (
+        <Navbar/>
+): (null)}
+      {/*    <button
           className="btn btn-primary btn-block"
           onClick={ handleLogin }
         >
           LOG IN
-        </button>
+        </button> */}
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
         </a> */}
@@ -85,11 +98,14 @@ const Login = (props) => {
                   series.{" "}
                 </Caption>
                 <Caption>Save money with this bundle.</Caption>
-                <PriceValue> USD $7/month (final)* </PriceValue>
-                <br></br>
-                <p target="_blank" href="/formUser">
-                  <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-                </p>
+                <PriceValue>ARS 995/month (final)* </PriceValue>
+                <Caption> CONTRACT NOW!</Caption>
+                { isAuthenticated? (
+                <SignUp hidden={isAuthenticated}  target="_blank"  href="/formUser" >
+                <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+              </SignUp>
+              ) : (<LoginButton/>)
+             }
               </Pricing>
             </div>{" "}
             <div></div>
@@ -99,11 +115,14 @@ const Login = (props) => {
               <Caption>
                 Access endless Marvel Comics World for a new price!{" "}
               </Caption>
-              <PriceValue>USD $70/year (final)*</PriceValue>
-              <br></br>
-              <p target="_blank" href="/formUser">
+              <PriceValue>ARS 3.850/year (final)* </PriceValue>
+              <Caption> CONTRACT NOW!</Caption>
+              { isAuthenticated? (
+                <SignUp hidden={isAuthenticated}  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-              </p>
+              </SignUp>
+              ) : (<LoginButton/>)
+             }
             </Pricing>
           </ContainerPlan>
         </div>
@@ -129,10 +148,10 @@ const Login = (props) => {
           <Logo src={logo} alt="Marvel" />
         </a>
         
-        <a href="/admin">
+        {/* <a href="/admin">
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
-      
+       */}
       </div>
     </>
   );
@@ -365,6 +384,7 @@ const Description = styled.p`
   line-height: 1.5;
   border-radius: 10px;
   display: inline-block;
+
   position: relative;
   width: 500px;
   height: 65px;

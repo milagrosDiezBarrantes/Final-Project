@@ -36,7 +36,7 @@ const Profile = () => {
   const handleUser = () => {
     console.log(user);
     dispatch(user ? login(user) : null);
-    console.log('estás ', logged);
+    console.log('estás logueado', logged);
   }
 
   return (
