@@ -39,7 +39,7 @@ function App() {
   console.log(user, 'EN TODA LA APP TENGO EL AUTH0?')
 
   if (isLoading) {
-    return <Loading />;
+    return <div className='app'><Loading /></div> ;
   }
 
   return (
