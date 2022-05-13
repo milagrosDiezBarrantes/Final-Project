@@ -11,6 +11,7 @@ const { Plans, Users } = require("../backend/src/db");
 var superAdmin = Users.findOrCreate({
 	where: {
 		email: "soyadmin@henry.com",
+		password: "Admin123",
 		name: "Henry Hero",
 		nickname: "Henry-Hero",
 		role: "ROLE_SUPER_ADMIN",
