@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ComicCard.css';
-export default function ComicCard({ image, title, id }) {
-
+export default function ComicCard({ image, title, id ,idPrincipal}) {
+if(id===null){
+    id= idPrincipal
+}
     return (
         <Link className='link_card' to={`/homeComics/DetailComic/${id}`}>
            <div className='container_card'>

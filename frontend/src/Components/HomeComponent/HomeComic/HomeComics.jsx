@@ -64,8 +64,8 @@ const HomeComics = () => {
       <SearchBarComics />
       <div className="grid">
         {currentPage &&
-          currentPage.map(({ id, title, img }) => {
-            return <ComicCard key={id} id={id} title={title} image={img} />;
+          currentPage.map(({ id, title,  idPrincipal, img }) => {
+            return <ComicCard key={id} id={id} idPrincipal={idPrincipal} title={title} image={img} />;
           })}
       </div>
       <br />

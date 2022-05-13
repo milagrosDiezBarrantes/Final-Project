@@ -299,14 +299,14 @@ export function postComic(comic) {
             const comicE = {
                 title: comic.title,
                 description: comic.description,
-                img: comic.image,
-                pages: comic.page,
+                img: comic.img,
+                pages: comic.pages,
                 creators:comic.creators
             };
             const editComic = await axios.post("http://localhost:3001/comics/create", comicE);
             return dispatch ({
                 type: POST_COMICS,
-                payload: {msg:editComic.data, comic:comicE}
+                payload: editComic.data
             })
         }
         catch(error) {

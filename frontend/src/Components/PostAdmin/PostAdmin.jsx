@@ -10,6 +10,7 @@ const PostAdmin = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const creators = useSelector(state => state.ComicsReducer.creators) ;
+    const idPrincipal = useSelector(state => state.ComicsReducer.selectedComic) ;
     const navigate = useNavigate();
 
     // const disable = useMemo(() => {
@@ -74,7 +75,10 @@ const PostAdmin = () => {
                 pages:'',
                 creators:[],
             })
-            navigate('/homeComics');
+            setTimeout(() => {
+                
+                navigate(`/homeComics`);
+              }, 1500);
         }
 
     return (
