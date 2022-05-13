@@ -14,7 +14,9 @@ ReactDOM.render(
 			<Auth0Provider
 				domain="dev-8dlcilpo.us.auth0.com"
 				clientId="dNHRYGKTvuFiLFozoy5y7vUawIXvbpZc"
-				redirectUri={window.location.origin}
+				//redirectUri={window.location.origin}
+				redirectUri="http://localhost:3000/homeComics"
+				redirect_uri="http://localhost:3000/homeComics"
 			>
 				<App />
 			</Auth0Provider>
