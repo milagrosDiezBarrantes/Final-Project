@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { validate } from "../../Functions/validacionesForm/validationForm";
 import { Container, Form, Button} from 'semantic-ui-react';
-import { useNavigate} from 'react-router-dom'; 
+import { useNavigate} from 'react-router'; 
 import '../Form/Form.css';
 
 const FormAdmin = () => {

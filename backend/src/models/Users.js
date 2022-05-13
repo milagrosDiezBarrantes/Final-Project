@@ -12,27 +12,14 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    firstName: {
+    name: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    lastName: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    userName: {
+    nickname: {
       type: DataTypes.TEXT,
       allowNull: false,
       unique: true
-
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.TEXT,
-      allowNull: false
     },
     picture: {
       type: DataTypes.TEXT,
@@ -40,7 +27,12 @@ module.exports = (sequelize) => {
     },
     plan_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
+    role: {
+      type: DataTypes.ENUM('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPER_ADMIN', 'ROLE_BANNED'),
+      default: 'ROLE_USER'
+  },
   });
 };
+

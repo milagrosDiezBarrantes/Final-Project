@@ -8,6 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import CharactersIcon from "@material-ui/icons/Whatshot";
 import { useHistory } from "react-router-dom";
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -49,12 +50,12 @@ export default function SimpleBottomNavigation() {
         href="/Favorite"
         icon={<FavoriteIcon />}
       />
-     { /* <BottomNavigationAction
+      <BottomNavigationAction
         style={{ color: "white" }}
-        label="Search"
-        href="/searchPrueba"
-        icon={<SearchIcon />}
-    /> */}
+        label="Play"
+        href="/Playlist"
+        icon={<PlaylistAddCheckIcon />}
+    /> 
     </BottomNavigation>
   );
 }

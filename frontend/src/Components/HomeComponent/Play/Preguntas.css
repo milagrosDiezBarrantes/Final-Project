@@ -1,0 +1,112 @@
+/* PREGUNTAS */
+.List {
+    margin: 0;
+    color: rgb(247, 244, 244);
+    background-color: #181717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/997070/6704338131eac5f8ab62a23153e5d5c8712393b1.jpg');
+   
+    
+  } 
+.preguntas {
+    
+    background-color: #1e0202ae;
+    background-image: url(../../HomeComponent/Play/images/captain.jpg);
+    max-width: 650px;
+    min-width: 450px;
+    height: min-content;
+    min-height: 200px;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 10px 10px 42px 0px rgba(33, 1, 1, 0.605);
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+.lado-izquierdo {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+ 
+.pregunta-numero {
+    margin-bottom: 20px;
+  }
+.pregunta-numero span {
+    font-size: 28px;
+  }
+  
+.pregunta-titulo {
+    margin-bottom: 12px;
+  }
+  
+.lado-derecho {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+/* FINALIZADO */
+.juego-terminado {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 24px;
+    align-items: center;
+  }
+  
+  /* GRAL */
+.buttonList {
+    width: 100%;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #c60303;
+    border-radius: 15px;
+    display: flex;
+    padding: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid #423b3b7a;
+    cursor: pointer;
+  }
+  
+  .tiempo-restante {
+    font-size: 14px;
+    color: #fcbf3d;
+    margin-bottom: 20px;
+  }
+  
+  .correct,
+  .correct:hover {
+    background-color: #289c28;
+  }
+  
+  .incorrect,
+  .incorrect:hover {
+    background-color: #300303;
+  }
+  
+  .btns-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+
+  button[disabled] {
+    background-color: #cd050557;
+    color: #ffffff;
+    cursor: not-allowed;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button svg {
+    margin-right: 5px;
+  }   

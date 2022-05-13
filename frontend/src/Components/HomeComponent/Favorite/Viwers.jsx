@@ -6,7 +6,7 @@ import marvel from './img/viewers-marvel.png';
 const Viewer = () =>{
   return (
     <> 
-     <h4> YOUR FAVORITE</h4>
+     
      <Container>
        <Wrap>
            <img src="/images/viewers-disney.png" alt="viewer"/>
