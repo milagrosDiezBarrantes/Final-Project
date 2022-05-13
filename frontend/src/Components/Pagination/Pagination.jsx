@@ -23,11 +23,13 @@ export default function CustomPagination({ setPage, numOfPages = 10 }) {
         <Pagination
           onChange={(e) => handlePageChange(e.target.textContent)}
           count={numOfPages}
+          shape="rounded"
           color="secondary"
           hideNextButton
           hidePrevButton
           size="large"
           text="000000"
+          style={{ color: "red" }}
         />
         </Container>
     </div>
@@ -39,5 +41,4 @@ display: block;
 color: #000000;
 position: relative;
 overflow-x: hidden;
-background: url("https://itsalwaysgameseven.files.wordpress.com/2012/04/gradient.png")
 `; 

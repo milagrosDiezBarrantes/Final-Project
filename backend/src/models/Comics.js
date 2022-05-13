@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
     img: {
       type: DataTypes.TEXT,
     },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     pages: { 
       type: DataTypes.INTEGER,
       allowNull: true,

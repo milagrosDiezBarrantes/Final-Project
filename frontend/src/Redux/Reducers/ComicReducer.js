@@ -9,13 +9,16 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
-  ADD_FAVORITE,
+  // ADD_FAVORITE,
   POST_FAVORITE_COMICS,
   POST_FAVORITE_CHARACTERS,
   GET_FAVORITES,
   LOGIN_USER,
   GET_PLANS,
-
+  PRUEBA,
+  CREATE_USER,
+  POST_COMICS,
+  GET_CREATORS
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -33,7 +36,9 @@ const initialState = {
   filter:false,
   favoritesComics: [],
   favoritesCharacters: [],
-  plans: []
+  plans: [],
+  prueba:{},
+  creators:[]
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {
@@ -108,8 +113,12 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyComics: [...deletedComic],
       };
-    case LOGIN_USER:
-      
+    case LOGIN_USER:      
+      return {
+        ...state,
+        loginUser: payload,
+      };
+      case CREATE_USER:      
       return {
         ...state,
         loginUser: payload,
@@ -138,6 +147,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
           ...state,
           favoritesComics:payload ,
         }
+       case GET_FAVORITES:
+        return{
+          ...state,
+          favoritesComics:payload ,
+        }
         case POST_FAVORITE_COMICS:
           console.log("reducer",payload)
           return{
@@ -147,6 +161,23 @@ function ComicsReducer(state = initialState, { type, payload }) {
             case POST_FAVORITE_CHARACTERS:
               return{...state
               }
+
+              case PRUEBA:
+                return {
+                  ...state,
+                  prueba: payload,
+                }
+              case POST_COMICS:
+                return {
+                  ...state,
+                  selectedComic: payload,
+                }
+              case GET_CREATORS:
+                return {
+                  ...state,
+                  creators: payload,
+                }
+
 
        /* case REMOVE_FAVORITE:
             var remove = state.favorites.filter(e => e.id !== payload)

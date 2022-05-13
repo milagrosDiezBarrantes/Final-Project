@@ -4,7 +4,7 @@ import logo from "../Banner/img/marvel.jpg";
 import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
-import FloatingActionButtons from "../../Components/Admin/Admin";
+// import FloatingActionButtons from "../../Components/Admin/Admin";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { authenticateUser } from "../../Redux/Actions/actions";
@@ -13,33 +13,30 @@ import Landing from './Accordion/Accordion';
 import Viewer from '../../../src/Components/HomeComponent/Favorite/Viwers' 
 import Accordion from '../Banner/Accordion/Accordion'
 const Login = (props) => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loginWithPopup } = useAuth0();
   const dispatch = useDispatch();
-  const authorized = useSelector((state) => state.ComicsReducer.authenticated);
 
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    extendedIcon: {
-      marginRight: theme.spacing(1),
-    },
-  }));
-
-
+  // const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     '& > *': {
+  //       margin: theme.spacing(1),
+  //     },
+  //   },
+  //   extendedIcon: {
+  //     marginRight: theme.spacing(1),
+  //   },
+  // }));
   useEffect(() => {
     dispatch(authenticateUser());
     
-  },[]);
-  const classes = useStyles();
+  },[dispatch]);
 
+  const handleLogin = () => {
+    loginWithPopup();
+  }
   return (
-    isAuthenticated && authorized ? (
-      <>
-      <Nav>
+    <>
+      {/* <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
@@ -50,18 +47,26 @@ const Login = (props) => {
       </Nav>
       <HeaderBanner />
     </>
-  ) : (
-    <>
+  ) : ( */}
       <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <a href="/formLoginUser">
+        <button
+          className="btn btn-primary btn-block"
+          onClick={ handleLogin }
+        >
+          LOG IN
+        </button>
+        {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
-        </a>
-        <a href="/formSubscribe">
-          <LogIn>SUSCRIBE NOW</LogIn>
-        </a>
+        </a> */}
+        {/* <button
+          className="btn btn-primary btn-block"
+          onClick={ handleSignUp }
+    >
+      SIGN UP
+    </button> */}
       </Nav>
       <HeaderBanner />
       <Cont>
@@ -75,10 +80,11 @@ const Login = (props) => {
                   series.{" "}
                 </Caption>
                 <Caption>Save money with this bundle.</Caption>
-                <PriceValue>ARS 995/month (final)* </PriceValue>
-                <SignUp target="_blank" href="/formUser">
+                <PriceValue> USD $7/month (final)* </PriceValue>
+                <br></br>
+                <p target="_blank" href="/formUser">
                   <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-                </SignUp>
+                </p>
               </Pricing>
             </div>{" "}
             <div></div>
@@ -88,10 +94,11 @@ const Login = (props) => {
               <Caption>
                 Access endless Marvel Comics World for a new price!{" "}
               </Caption>
-              <PriceValue>ARS 3.850/year (final)*</PriceValue>
-              <SignUp target="_blank" href="/formUser">
+              <PriceValue>USD $70/year (final)*</PriceValue>
+              <br></br>
+              <p target="_blank" href="/formUser">
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-              </SignUp>
+              </p>
             </Pricing>
           </ContainerPlan>
         </div>
@@ -123,7 +130,7 @@ const Login = (props) => {
         </a>
       </div>
     </>
-  ));
+  );
 };
 
 const First = styled.div`
@@ -369,7 +376,6 @@ const Description = styled.p`
   letter-spacing: 1.3px;
   line-height: 1.5;
   display: inline-block;
-
   position: relative;
   width: 500px;
   height: 65px;

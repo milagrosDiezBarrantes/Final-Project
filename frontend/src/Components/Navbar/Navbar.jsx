@@ -20,20 +20,14 @@ import SimpleBottomNavigation from "../Navbar/MainNav";
 // import { loginUser } from "../../Redux/Actions/actions";
 
 export default function Navbar() {
-   const dispatch = useDispatch();
-   const user = useSelector(state => state.copyUsers);
+  // const dispatch = useDispatch();
+  const user = useSelector(state => state.CharactersReducer.loginUser)
+
   // console.log(user)
 
   //   useEffect(() => {
   //     dispatch(loginUser(picture))
   //   }, [dispatch, picture]);
-
-
-
-
-  
-
-
 
     const handleClick = () => {
       //cuando esta true lo pasa a false y vice versa
@@ -82,7 +76,7 @@ export default function Navbar() {
                   <Tab label="Contact" href="/Contact"  /> */}
               </Tabs>
               <Link to= '/profile'>
-                <Avatar alt="A" src={user.picture} />
+                <Avatar alt="A" />
               </Link>
               <Link to='/' >
                 <LogIn>LOG OUT</LogIn>
@@ -95,6 +89,41 @@ export default function Navbar() {
     )
   }
 
+
+
+//             <a href="/">
+//               <img 
+//                 src={logo} 
+//                 alt="Marvel" 
+//                 style={{ maxHeight: '100%',
+//                 width: '80px',
+//                 marginLeft: '30px',
+//                 display: 'inline-block'}} />
+//             </a>
+//             <Tabs
+//               sx={{ marginLeft: "auto" }}
+//               indicatorColor="secondary"
+//               textColor="inherit"
+//               value={clicked}
+//               onChange={(e, clicked) => setClicked(clicked)}
+//             >
+//              { /*   <Tab label="Comics" href="/homeComics" />*/  }
+//                 {/* <Tab label="About Us" href="/AboutUs" />
+//                 <Tab label="Contact" href="/Contact"  /> */}
+//             </Tabs>
+//             <Link to= '/profile'>
+//               <Avatar alt="A" src={userIcon} />
+//             </Link>
+//             <Link to='/' >
+//               <LogIn>LOG OUT</LogIn>
+//             </Link>
+//       </Toolbar>
+//       <SimpleBottomNavigation />
+    
+//     </AppBar>
+//   </>
+//   )
+// }
 
 
 const LogIn = styled.a`

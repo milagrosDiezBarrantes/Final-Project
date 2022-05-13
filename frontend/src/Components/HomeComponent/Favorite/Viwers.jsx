@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import marvel from './img/viewers-marvel.png';
-//import marvelVideo from "../Home/img/1564676115-marvel.mp4";
 
 const Viewer = () =>{
   return (
     <> 
-    
+     
      <Container>
        <Wrap>
        <img src="https://c.tenor.com/y63lhTUEIOsAAAAC/captain-marvel.gif" alt="viewer"/>

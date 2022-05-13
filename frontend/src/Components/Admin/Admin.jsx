@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import { getAllUsers, filterByPlan } from "../../Redux/Actions/actions";
 import { Link } from "react-router-dom";
 import { Table, Button } from "semantic-ui-react";
-
+import { useAuth0 } from "@auth0/auth0-react";
 const Admin = () => {
   //CRUD COMICS
+const user = useAuth0()
+  console.log(user)
 
   const history = useNavigate();
   const dispatch = useDispatch();

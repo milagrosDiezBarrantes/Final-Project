@@ -6,7 +6,7 @@ const { API_KEY, HASH_KEY } = process.env;
 //search characters whose names start with the given string
 
 const getComics = async (req, res, next) => {
-  let comicsDb = await Comics.findAll();
+  let comicsDb = await Comics.findAll({order: [['updatedAt', 'DESC']]});
   console.log("soy el comics", comicsDb.length);
   let comics = [];
   if (comicsDb.length < 6) {
@@ -33,6 +33,7 @@ const getComics = async (req, res, next) => {
         img: e.thumbnail.path + "." + e.thumbnail.extension,
         pages: e.pageCount,
         creators: e.creators.items?.map((a) => a.name),
+        description:e.description
       }));
       console.log("entre al if");
       comics.forEach(async (e) => {
@@ -44,6 +45,7 @@ const getComics = async (req, res, next) => {
               img: e.img,
               pages: e.pages,
               creators: e.creators,
+              description:e.description
             },
           });
         }
@@ -60,11 +62,20 @@ const getComics = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
+    if(req.params.id.includes("-")){
+      console.log(req.params.id.includes("-"))
+      const comic = await Comics.findOne({
+				where: {
+					idPrincipal: req.params.id,
+				},
+			});
+      return res.status(200).json([comic])
+    }
     let comic = await axios.get(
       `https://gateway.marvel.com/v1/public/comics/${req.params.id}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
     );
     comic = comic.data.data.results;
-
+      console.log(comic)
     let toRender = comic.map((comic) => ({
       id: comic.id,
       title: comic.title,
@@ -174,9 +185,11 @@ const createComic = async (req, res, next) => {
         img,
         description,
         pages,
-        creators,
+        creators
       });
-    return  res.status(200).json({ message: "Comic successfully created" });
+     
+
+    return  res.status(200).json(createComic.idPrincipal);
     } else {
       res
         .status(404)
