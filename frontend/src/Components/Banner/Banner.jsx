@@ -7,7 +7,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 // import FloatingActionButtons from "../../Components/Admin/Admin";
 import {  useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { authenticateUser, loginWithPopup } from "../../Redux/Actions/actions";
 // import { makeStyles } from '@material-ui/core/styles';
 // import { useNavigate } from "react-router-dom";
 // import SignupButton from "../Login/SigUp";
@@ -19,6 +18,7 @@ import LoginButton from "../Login/LoginButton";
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import NavigationIcon from '@material-ui/icons/Navigation';
 import AuthNav from "../Login/auth-nav";
+import Navbar from "../Navbar/Navbar";
 
 
 const Login = (props) => {
@@ -64,6 +64,10 @@ console.log('está authenticado?', isAuthenticated)
           <Logo src={logo} alt="Marvel" />
         </a>
         <AuthNav/>
+
+{isAuthenticated ? (
+        <Navbar/>
+): (null)}
       {/*    <button
           className="btn btn-primary btn-block"
           onClick={ handleLogin }
@@ -147,6 +151,10 @@ console.log('está authenticado?', isAuthenticated)
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
        */}
+
+        <a href="/admin">
+            <LogIn>ACCESS ADMIN</LogIn>
+        </a>
       </div>
     </>
   );

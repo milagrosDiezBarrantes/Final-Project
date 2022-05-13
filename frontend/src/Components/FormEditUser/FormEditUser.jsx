@@ -7,14 +7,11 @@ import { validate } from "../../Functions/validacionesForm/validationForm";
 import { useSelector } from "react-redux";
 
 
-const FormEditUser = ({ handleClose}) => {
+const FormEditUser = ({handleClose}) => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const navigate= useNavigate(); 
     const log = useSelector((state) => state.ComicsReducer.prueba);
-
-    console.log(log.prueba)
-    console.log('log', log)
 
     const [input, setInput] = useState({
         name: log.name, 
@@ -66,7 +63,7 @@ const FormEditUser = ({ handleClose}) => {
                 <div>
                     <label>Name:</label>
                     <input
-                        type="email"
+                        type="textx"
                         placeholder="Name"
                         name="name"
                         onChange={handleChange}
@@ -76,22 +73,21 @@ const FormEditUser = ({ handleClose}) => {
                 <div>
                     <label>NickName*:</label>
                     <input
-                        type="NickName"
+                        type="text"
                         placeholder="NickName"
                         name="nickname"
                         onChange={handleChange}
-                        autocomplete="current-password"
+                       
                     />
                     {error.password && <p style={{ color:"red"}} > {error.password} </p>}
                 </div>
                 <div>
                     <label>Picture*:</label>
                     <input
-                        type="picture"
+                        type="url"
                         placeholder="picture"
                         name="picture"
                         onChange={handleChange}
-                        autocomplete="new-password"
                     />
                     {error.password2 && <p style={{ color:"red"}} > {error.password2} </p>}
                 </div>
@@ -103,7 +99,10 @@ const FormEditUser = ({ handleClose}) => {
                     <Link to="/profile">
                         <Button> Back </Button>
                     </Link>
-                    <Button type="submit"> Confirm </Button>
+                    <Link to="/profile">
+                        <Button type="submit"> Confirm </Button>
+                    </Link>
+                    
                 </div>
             </Form>
         </Container>

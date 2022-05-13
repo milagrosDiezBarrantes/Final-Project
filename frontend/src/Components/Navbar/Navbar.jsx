@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
  import { useDispatch, useSelector } from "react-redux";
+import AuthNav from "../Login/auth-nav";
 // import { useEffect } from "react";
 // import { loginUser } from "../../Redux/Actions/actions";
 
@@ -78,9 +79,7 @@ export default function Navbar() {
               <Link to= '/profile'>
                 <Avatar alt="A" />
               </Link>
-              <Link to='/' >
-                <LogIn>LOG OUT</LogIn>
-              </Link>
+              <AuthNav/>
         </Toolbar>
         <SimpleBottomNavigation />
       
