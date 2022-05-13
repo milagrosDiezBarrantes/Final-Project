@@ -17,7 +17,9 @@ import { useNavigate } from "react-router-dom";
 // import NavigationIcon from '@material-ui/icons/Navigation';
 
 const Login = (props) => {
-  const { loginWithPopup } = useAuth0();
+  const { loginWithPopup, loginWithRedirect, user , logout,isAuthenticated  } = useAuth0();
+
+  
   const dispatch = useDispatch();
 
   // const useStyles = makeStyles((theme) => ({
@@ -35,8 +37,14 @@ const Login = (props) => {
     
   },[dispatch]);
 
-  const handleLogin = () => {
-    loginWithPopup();
+  const handleLogin =async () => {
+  let response= await  loginWithPopup();
+  console.log(user)
+  console.log(isAuthenticated)
+  }
+  const handleLogout =async () => {
+  let response= await  logout();
+  console.log(user)
   }
   return (
     <>
@@ -59,6 +67,12 @@ const Login = (props) => {
         <button
           className="btn btn-primary btn-block"
           onClick={ handleLogin }
+        >
+          LOG IN
+        </button>
+        <button
+          className="btn btn-primary btn-block"
+          onClick={ handleLogout }
         >
           LOG IN
         </button>
