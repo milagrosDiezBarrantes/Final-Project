@@ -47,12 +47,17 @@ const PostAdmin = () => {
     }
 
     const handleOnPlatforms = function (event) {
-        if (!input.creators.find((e) => e.fullName === event.target.value)) {
-          setInput({...input, creators:[...input.creators, event.target.value]});
-          
+        if (!input.creators.find((e) => e === event.target.value)) {
+            console.log("if")
+            setInput({...input, creators:[...input.creators, event.target.value]});
+            console.log(input.creators)
+            console.log(input.creators[0])
+            
         } else {
-            setInput({...input, creators:input.creators.filter((e) => e.fullName !== event.target.value)});
-          
+            console.log("else")
+            setInput({...input, creators:input.creators.filter((e) => e !== event.target.value)});
+            
+            console.log(input)
         }
       };
 
@@ -135,8 +140,8 @@ const PostAdmin = () => {
               {creators &&
                 creators.map((e) => (
                   <option
-                    key={e}
-                    value={e}
+                    key={e.id}
+                    value={e.fullName}
                     name={e.fullName}
                     onChange={handleOnPlatforms}
                     
@@ -148,14 +153,14 @@ const PostAdmin = () => {
 
             {input.creators.length>0 &&
               input.creators.map((e) => (
-                <div key={e.id} >
-                  <li name={e.fullName} value={e} >
-                    {e.fullName}
-                  </li>
+                <div key={e}>
+                  <label name={e} value={e} >
+                    {e}{" "}
+                  </label>
                   <button
                     type="button"
                     onClick={handleOnPlatforms}
-                    value={e.fullName}
+                    value={e}
                     
                   >
                     X
