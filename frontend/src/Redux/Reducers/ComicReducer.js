@@ -36,7 +36,19 @@ const initialState = {
   favoritesComics: [],
   favoritesCharacters: [],
   plans: [],
-  prueba:{},
+  prueba:{
+    nickname: null,
+    name: null,
+    picture: null,
+    updated_at: null,
+    email: null, 
+    email_verified: null,
+    sub:null,
+    plan_id:null,
+    payment:false,
+    role: null,
+  
+  }
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {

@@ -4,16 +4,22 @@ import { userEdit } from "../../Redux/Actions/actions";
 import { Container, Form, Button} from 'semantic-ui-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { validate } from "../../Functions/validacionesForm/validationForm";
+import { useSelector } from "react-redux";
+
 
 const FormEditUser = ({ handleClose}) => {
     const dispatch = useDispatch();
     const [error, setError] = useState({});
     const navigate= useNavigate(); 
+    const log = useSelector((state) => state.ComicsReducer.prueba);
+
+    console.log(log.prueba)
+    console.log('log', log)
 
     const [input, setInput] = useState({
-        email: "",
-        password: "", 
-        password2: "", 
+        name: log.name, 
+        picture: log.picture,
+        nickname: log.nickname, 
     })
 
     useEffect(() => {
@@ -32,12 +38,12 @@ const FormEditUser = ({ handleClose}) => {
         }))
     }
 
-    function handleSubmit(e, email, password, password2) {
+    function handleSubmit(e, name, picture, nickname) {
         e.preventDefault();
         setInput ({
-            email,
-            password,
-            password2,
+            name,
+            picture,
+            nickname,
         })
         dispatch(userEdit()).then(handleClose());
         navigate('/profile');
@@ -58,32 +64,32 @@ const FormEditUser = ({ handleClose}) => {
             <h1>Edit Data</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
-                    <label>Email:</label>
+                    <label>Name:</label>
                     <input
                         type="email"
-                        placeholder="Email"
-                        name="email"
+                        placeholder="Name"
+                        name="name"
                         onChange={handleChange}
                     />
                     {error.email && <p style={{ color:"red"}} >{error.email}</p>}
                 </div>
                 <div>
-                    <label>Password*:</label>
+                    <label>NickName*:</label>
                     <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
+                        type="NickName"
+                        placeholder="NickName"
+                        name="nickname"
                         onChange={handleChange}
                         autocomplete="current-password"
                     />
                     {error.password && <p style={{ color:"red"}} > {error.password} </p>}
                 </div>
                 <div>
-                    <label>Repeat password*:</label>
+                    <label>Picture*:</label>
                     <input
-                        type="new-password"
-                        placeholder="Repeat password"
-                        name="password2"
+                        type="picture"
+                        placeholder="picture"
+                        name="picture"
                         onChange={handleChange}
                         autocomplete="new-password"
                     />

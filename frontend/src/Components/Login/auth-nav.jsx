@@ -18,8 +18,8 @@ const AuthNav = () => {
 
   useEffect(()=>{
     setTimeout(() => {
-      user ? createUser() : alert('subscribe!!!') 
-    }, 5000)
+      user ? createUser() : console.log('subscribe!!!') 
+    }, 10)
     
   }, []);
   

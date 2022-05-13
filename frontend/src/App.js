@@ -23,24 +23,31 @@ import Profile from "./Components/Login/Profile";
 import Favorite from "./Components/HomeComponent/Favorite/Favorite";
 import Lecture from './Components/Lecture/Lecture.jsx';
 import Playlist from "./Components/HomeComponent/Play/List.jsx";
-
+import FormEditUser from "./Components/FormEditUser/FormEditUser";
 // RUTAS PRIVADAS
 import CommonRoute from "./Components/PermissionRoute/CommonRoute";
 import PrivateRoute from "./Components/PermissionRoute/PrivateRoute";
 
 import { useAuth0 } from "@auth0/auth0-react";  
 import Loading from "./Components/Loading/Loading";
+import {useDispatch} from 'react-redux';
 
 // LOGIN
 import LoginButton from "./Components/Login/LoginButton";
+import { pruebaStatusLog } from "./Redux/Actions/actions";
+
 
 function App() {
   const {user, isLoading} = useAuth0();
+  const dispatch = useDispatch();
+
+  
   console.log(user, 'EN TODA LA APP TENGO EL AUTH0?')
 
   if (isLoading) {
     return <div className='app'><Loading /></div> ;
   }
+  if(user) {dispatch(pruebaStatusLog(user))}
 
   return (
     <ThemeProvider theme={theme}>
@@ -60,6 +67,7 @@ function App() {
             <Route path='/homeComics/DetailComic/:id' element={<DetailComic />} />
             <Route path='/homeCharacter/DetailCharacter/:id' element={<DetailCharacter />} />
             <Route path='/homeComics/DetailCharacter/:id' element={<DetailCharacter />} />
+            <Route path='/profile/edit' element={<FormEditUser/>} />
             <Route path='/Playlist' element={<Playlist />} />
             <Route exact path='/lecture/:comic' element={<Lecture />} />
           </Route>

@@ -182,11 +182,11 @@ export const loginUser= (email) => {
             }
         }
 }
-export const prueba =(user)=>{
+export const pruebaStatusLog =(user)=>{
     return async (dispatch) => {
     return await dispatch({
         type: PRUEBA,
-        payload: user.nickname
+        payload: user
     })
 }
 }
