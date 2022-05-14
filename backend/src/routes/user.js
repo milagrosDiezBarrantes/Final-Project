@@ -66,21 +66,20 @@ console.log(user)
 		}
 	});
 	
-router.get("/byid", async (req, res) => {
+router.get("/:email", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.body;
+		const { email } = req.params;
 
 		try {
-			console.log(id);
+			console.log(email);
 			const user = await Users.findOne({
 				where: {
-					id: id,
+					email: email,
 				},
 			});
-
 			return res.status(201).json({ user });
 		} catch (error) {
-			console.log(error, "error en la ruta put user");
+			console.log(error);
 		}
 	});
 
@@ -182,7 +181,7 @@ router.get("/validates", async (req, res) => {
 
 router.post("/login", async (req, res, next) => {
 
-	let { email, name, nickname } = req.body;
+	let { email, name, nickname} = req.body;
     console.log(req.body)
 
     let userOld = await Users.findOne({
@@ -191,8 +190,7 @@ router.post("/login", async (req, res, next) => {
 		}
 	})
     if (userOld) {
-         res.status(200).json({
-            Msg: 'User already exists',
+        return res.status(200).json({
             userOld
         })
     }
@@ -201,7 +199,8 @@ router.post("/login", async (req, res, next) => {
 			email:email,
 			firstname:nickname,
 			nickname:nickname,
-			name: name
+			name: name,
+			
 		});
         res.status(201).json({Msg: "User created", user})
 
@@ -213,33 +212,37 @@ router.post("/login", async (req, res, next) => {
 
 router.put("/:email", async (req, res, next) => {
 	let { email } = req.params;
-	let {firstName,lastName,nickname,age,picture} = req.body;
+	console.log('recibo email en ruta put', email)
+	let {nickname,name, picture} = req.body;
+	console.log('recibo input x body en ruta put', req.body)
 
 	try{
 		
-		let user = await Users.findOne({
+		const user = await Users.findOne({
 			where:{
-				email: email
+				email: email		
 			}
 		})
-	if (user) {
+	// if (user) {
+	// 	console.log('entra al if porque email existe t', email)
 		await user.update({
-			firstName:req.body.firstname,
-			lastName:req.body.lastname,
-			age:req.body.age,
-			nickname: req.body.nickname,
+			email:email,
+			nickname: nickname,
     		name: req.body.name,
     		picture: req.body.picture,
+
     		// updated_at: req.body.name,
     		// email_verified: req.body.email_verified,
     		// sub: req.body.sub,   		
 
 		});
+
+		// await user.save();
 		console.log('USER UPDATED EN EL BACKEND', user);
-		return res.status(204).json({ Msg: "User updated", user }); 
-	}else{
-		return res.status(404).json({Msg: "User not found"})
-	}
+		return res.status(200).json({ user }); 
+	// }else{
+	// 	return res.status(404).json({Msg: "User not found"})
+	// }
 }catch(error){
 		next(error);
 	}
