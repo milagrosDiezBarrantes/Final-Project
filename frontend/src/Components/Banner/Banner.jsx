@@ -103,12 +103,11 @@ console.log('está authenticado?', isAuthenticated)
                 <Caption>Save money with this bundle.</Caption>
                 <PriceValue>ARS 995/month (final)* </PriceValue>
                 <Caption> CONTRACT NOW!</Caption>
-                { isAuthenticated? (
-                <SignUp hidden={isAuthenticated}  target="_blank"  href="/formUser" >
+                
+                <SignUp  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
               </SignUp>
-              ) : (<LoginButton/>)
-             }
+             
               </Pricing>
             </div>{" "}
             <div></div>
@@ -120,12 +119,11 @@ console.log('está authenticado?', isAuthenticated)
               </Caption>
               <PriceValue>ARS 3.850/year (final)* </PriceValue>
               <Caption> CONTRACT NOW!</Caption>
-              { isAuthenticated? (
-                <SignUp hidden={isAuthenticated}  target="_blank"  href="/formUser" >
+              
+                <SignUp  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
               </SignUp>
-              ) : (<LoginButton/>)
-             }
+             
             </Pricing>
           </ContainerPlan>
         </div>

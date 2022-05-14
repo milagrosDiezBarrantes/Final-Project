@@ -33,20 +33,20 @@ import Loading from "./Components/Loading/Loading";
 
 // LOGIN
 import { useDispatch } from "react-redux";
-import { pruebaStatusLog } from "./Redux/Actions/actions";
+import { pruebaStatusLog, getUserByEmail } from "./Redux/Actions/actions";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
 
 function App() {
-  const {user, isLoading} = useAuth0();
-  const dispatch = useDispatch();
+  const {user, isLoading, isAuthenticated} = useAuth0();
 
-  
-  console.log(user, 'EN TODA LA APP TENGO EL AUTH0?')
+  console.log(user, isAuthenticated, 'EN TODA LA APP TENGO EL AUTH0?')
 
   if (isLoading) {
     return <div className='app'><Loading /></div> ;
   }
-  if(user) {dispatch(pruebaStatusLog(user))}
+  
+
+  // if(user) {dispatch(pruebaStatusLog(user))}
 
   return (
     <ThemeProvider theme={theme}>
@@ -73,7 +73,7 @@ function App() {
           
           {/* ADMIN */}
           {/* <Route element={ <PrivateRoute user={ user }  />}> */}
-            <Route path='/admin'element ={<Admin />} /> 
+            <Route path='/admin' element ={<Admin />} /> 
             <Route path='/postAdmin' element={<PostAdmin/>} /> 
             <Route path='/formAdmin' element={<FormAdmin />} />
             <Route path='/admin/comic' element={<FormUpdateComic/>} />
