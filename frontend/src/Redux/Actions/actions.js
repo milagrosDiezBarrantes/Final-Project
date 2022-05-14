@@ -21,6 +21,7 @@ export const AUTHENTICATED = "AUTHENTICATED";
 export const REMEMBER_ME = "REMEMBER_ME";
 export const UPDATE_PERMISSION= 'UPDATE_PERMISSION';
 export const LOGIN_USER = 'LOGIN_USER;'
+export const GET_ADMIN = 'GET_ADMIN;'
 
  // buscar character por nombre
 export const GET_PLANS = 'GET_PLANS';
@@ -303,6 +304,20 @@ export function setRememberMe() {
 }
 
 // ==================ADMIN POST============================
+export function getAdmin(email) {
+    return async function(dispatch) {
+        try {
+            const adminLogin = await axios.get(`http://localhost:3001/user/admin/${email}`)
+            return dispatch({
+                type: 'GET_ADMIN',
+                payload : adminLogin.data
+            })
+        } 
+        catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 export function updateComic(comic) {
     return async function(dispatch) {

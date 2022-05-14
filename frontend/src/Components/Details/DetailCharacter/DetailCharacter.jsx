@@ -60,7 +60,7 @@ const DetailCharacter = () => {
 
 
 return character.length === 0 ? (
-     <Loading/>
+    <Loading/>
         ) : (
               <>
                 <div>

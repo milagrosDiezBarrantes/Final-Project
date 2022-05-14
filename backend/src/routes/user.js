@@ -247,6 +247,38 @@ router.put("/:email", async (req, res, next) => {
 		next(error);
 	}
 });
+
+
+// ADMIN
+
+router.get('/admin/:email', async (req, res, next) => {
+	const { email } = req.params;
+	try {
+		const userAdmin = await Users.findOne({
+			where:{
+				email: email,
+				role: 'ROLE_SUPER_ADMIN', 
+			}})
+			if(userAdmin) {
+				return res.status(200).json({
+					message: 'User admin is correct',
+					userAdmin
+				})
+			}
+			else {
+				return res.status(404).json({
+					message: 'User not found',
+					error
+				})
+			}
+		}
+	catch(error) {
+		res.status(404).json({
+			message: 'User not found',
+			error
+		})
+	}
+})
 	
 		// router.get("/byid", async (req, res) => {
 		// 	// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;

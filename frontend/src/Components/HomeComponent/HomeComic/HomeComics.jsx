@@ -77,6 +77,7 @@ const HomeComics = () => {
           <CustomPagination setPage={setPage} numOfPages={numOfPages} />
         )}
       </div>
+      <br/>
       <div className="app__banner">
         <img src={avengers} alt="Avengers" />
         <div className="app__banner-text">

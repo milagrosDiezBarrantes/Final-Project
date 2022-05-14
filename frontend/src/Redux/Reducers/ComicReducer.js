@@ -19,6 +19,7 @@ import {
   POST_COMICS,
   GET_CREATORS,
   GET_USER_DATA,
+  GET_ADMIN,
   SET_USER_DATA,
 } from "../Actions/actions";
 import {
@@ -127,6 +128,11 @@ function ComicsReducer(state = initialState, { type, payload }) {
         user: payload,
         
       };
+    case GET_ADMIN:
+      return {
+        ...state,
+        loginUser: payload,
+    };
     case CREATE_USER:
       return {
         ...state,

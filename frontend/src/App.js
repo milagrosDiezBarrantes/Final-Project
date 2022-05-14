@@ -35,6 +35,7 @@ import Loading from "./Components/Loading/Loading";
 import { useDispatch } from "react-redux";
 import { pruebaStatusLog, getUserByEmail } from "./Redux/Actions/actions";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
+import PrivateRoute from "./Components/PermissionRoute/PrivateRoute";
 
 function App() {
   const {user, isLoading, isAuthenticated} = useAuth0();
@@ -75,10 +76,9 @@ function App() {
           {/* <Route element={ <PrivateRoute user={ user }  />}> */}
             <Route path='/admin' element ={<Admin />} /> 
             <Route path='/postAdmin' element={<PostAdmin/>} /> 
-            <Route path='/formAdmin' element={<FormAdmin />} />
             <Route path='/admin/comic' element={<FormUpdateComic/>} />
             <Route path='/updateComic' element={<FormUpdateComic/>} />
-          {/* </Route>  */}
+          {/* </Route>   */}
       </Routes>
       {/* </Container> */}
     </div>
