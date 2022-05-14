@@ -6,6 +6,7 @@ import userIcon from "../Navbar/userIcon.jpg";
 import Avatar from '@mui/material/Avatar';
 // import Stack from '@mui/material/Stack';
 import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   AppBar,
   Tab,
@@ -16,12 +17,13 @@ import {
 } from "@mui/material";
 import SimpleBottomNavigation from "../Navbar/MainNav";
  import { useDispatch, useSelector } from "react-redux";
+import AuthNav from "../Login/auth-nav";
 // import { useEffect } from "react";
 // import { loginUser } from "../../Redux/Actions/actions";
 
 export default function Navbar() {
   // const dispatch = useDispatch();
-  const user = useSelector(state => state.CharactersReducer.loginUser)
+  const { isAuthenticated, user } = useAuth0();
 
   // console.log(user)
 
@@ -30,7 +32,6 @@ export default function Navbar() {
   //   }, [dispatch, picture]);
 
     const handleClick = () => {
-      //cuando esta true lo pasa a false y vice versa
       setClicked(!clicked)
     }
     
@@ -76,11 +77,11 @@ export default function Navbar() {
                   <Tab label="Contact" href="/Contact"  /> */}
               </Tabs>
               <Link to= '/profile'>
-                <Avatar alt="A" />
+                <Avatar 
+                src={user.picture}
+                alt="A" />
               </Link>
-              <Link to='/' >
-                <LogIn>LOG OUT</LogIn>
-              </Link>
+              <AuthNav/>
         </Toolbar>
         <SimpleBottomNavigation />
       
