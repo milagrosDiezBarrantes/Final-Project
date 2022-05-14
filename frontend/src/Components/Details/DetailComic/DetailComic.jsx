@@ -28,8 +28,6 @@ const DetailComic = () => {
 const postFavorite = useSelector((state) => state.ComicsReducer)
 // console.log(postFavorite);
 // console.log(postFavorite.loginUser.id);
-
-
 const [input, setInput] = React.useState({})
 
     
@@ -45,39 +43,34 @@ const [input, setInput] = React.useState({})
       dispatch(getFavorites(postFavorite.loginUser.id))
     }
   }, [ postFavorite.loginUser.id]);
-
+  
   // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
   //   dispatch(getFavorites(postFavorite.loginUser.id));
   // }
-
  const handleClick = (e) => {
-    
-console.log("estrellita")
-
-let arrayIds = [...postFavorite.favoritesComics]
-arrayIds=arrayIds.map(e=>e.idPrincipal)
-console.log("arrayIds")
-console.log(arrayIds)
-if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
+   // console.log("estrellita")
+//let arrayIds = [...postFavorite.favoritesComics]
+//arrayIds=arrayIds.map(e=>e.idPrincipal)
+//console.log("arrayIds")
+//console.log(arrayIds)
+//if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   // setSelect([...select, event.target.value]);
-  console.log("entre al if not find")
-  console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
-  arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
-  console.log("arrayIds")
-  console.log(arrayIds)
+ // console.log("entre al if not find")
+ // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+//  arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
+ // console.log("arrayIds")
+// console.log(arrayIds)
+//   dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
   
-  dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
-  
-} else {
-  let fil= arrayIds.filter((e) => e !== postFavorite.selectedComic[0].idPrincipal)
+//} else {
+ // let fil= arrayIds.filter((e) => e !== postFavorite.selectedComic[0].idPrincipal)
   // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
- console.log("fil")
- console.log(fil)
- dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
-  }
+ //console.log("fil")
+ //console.log(fil)
+ //dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
+  //}
 
 // dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
-
   };
 
   const img = (comic)=>{
@@ -120,7 +113,14 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
               <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}>Serie</MyButton><br></br><br></br>
               <ReactStars></ReactStars>
               <div> <br></br><br></br>
+              
+
+           {/* FAVORITOSSSS BOTONN */}  
+            
               <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}  onClick={() => handleClick()}> Agregar a Favorito ⭐</MyButton>
+             
+             
+             
               </div>
         </div>
     </div>

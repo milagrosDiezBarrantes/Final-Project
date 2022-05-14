@@ -11,7 +11,7 @@ const AccordionSection = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 100vh;
+  height: 50vh;
   background: #000000;
   box-sizing: border-box;
 `;
@@ -33,7 +33,7 @@ const Wrap = styled.div`
   cursor: pointer;
 
   h3 {
-    padding: 25px;
+    padding: 20px;
   }
 
   span {
@@ -54,7 +54,7 @@ const Dropdown = styled.div`
   border-top: 1px solid #7b0606;
 
   p {
-    font-size: 35px;
+    font-size: 25px;
   }
 `;
 

@@ -26,6 +26,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Landing from './Accordion/Accordion';
 import Viewer from '../../../src/Components/HomeComponent/Favorite/Viwers' 
 import Accordion from '../Banner/Accordion/Accordion'
+
 const Login = (props) => {
   const { isAuthenticated, user } = useAuth0();
   const dispatch = useDispatch();
@@ -111,26 +112,25 @@ console.log('está authenticado?', isAuthenticated)
              }
               </Pricing>
             </div>{" "}
-            <div></div>
-            <Pricing>
-              <Title> GET MARVEL COMIC</Title>
-              <Caption>Year subscription MARVEL PLUS</Caption>
-              <Caption>
-                Access endless Marvel Comics World for a new price!{" "}
-              </Caption>
-              <PriceValue>ARS 3.850/year (final)* </PriceValue>
-              <Caption> CONTRACT NOW!</Caption>
-              { isAuthenticated? (
-                <SignUp hidden={isAuthenticated}  target="_blank"  href="/formUser" >
-                <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-              </SignUp>
-              ) : (<LoginButton/>)
-             }
-            </Pricing>
+            <div><br></br></div>
+              <Pricing>
+                <Title> GET MARVEL COMIC</Title>
+                <Caption>Year subscription MARVEL PLUS</Caption>
+                <Caption>
+                  Access endless Marvel Comics World for a new price!{" "}
+                </Caption>
+                <PriceValue>ARS 3.850/year (final)* </PriceValue>
+                <Caption> CONTRACT NOW!</Caption>
+                { isAuthenticated? (
+                  <SignUp hidden={isAuthenticated}  target="_blank"  href="/formUser" >
+                  <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+                </SignUp>
+                ) : (<LoginButton/>)
+              }
+              </Pricing>
           </ContainerPlan>
         </div>
       </Cont>
-      
       <div>
         <Container>
           <Content>
@@ -139,16 +139,18 @@ console.log('está authenticado?', isAuthenticated)
                 <h3>More Information </h3>
               </SignUp>
               <Description>
-              <h1> Get Primer Access to Raya and the last Dragon for an additional
+              <h5> Get Primer Access to Raya and the last Dragon for an additional
                 fee with a Marvel + Subscription. As of 04/05/2022, the price of
-                Marvel + and The Marvel Bundle will increase by $1.</h1>
-                  </Description>
+                Marvel + and The Marvel Bundle will increase by $1.</h5>
+              </Description>
             </CTA>
             <BackgroundImg />
           </Content>
         </Container>
+       <Cot> 
          <Viewer />
-         <Accordion />
+          <Accordion />
+       </Cot>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
@@ -159,6 +161,19 @@ console.log('está authenticado?', isAuthenticated)
     </>
   );
 };
+
+const Cot = styled.section`
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+  background-image: url("");
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+`;
 
 const First = styled.div`
 display: flex;
@@ -177,8 +192,6 @@ const Const = styled.div`
   overflow-x: hidden;
   background-size: cover;
 `;
-
-
 const Cont = styled.div`
   display: block;
   color: #f8f8f8;
@@ -191,7 +204,6 @@ const Cont = styled.div`
     no-repeat center center fixed;
   background-size: cover;
 `;
-
 const Caption = styled.div`
   display: flex;
   height: 40px;
