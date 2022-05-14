@@ -1,4 +1,4 @@
-const preguntas = [
+const preguntas =[
     {
       titulo: "¿En qué año se estrenó la primera película de Iron Man, que lanzó el Marvel Cinematic Universe?",
       opciones: [
@@ -33,6 +33,33 @@ const preguntas = [
         { textoRespuesta: "Enrique", isCorrect: false },
         { textoRespuesta: "Harley", isCorrect: true },
         { textoRespuesta: "Holden", isCorrect: false },
+      ],
+    },
+    {
+      titulo: "¿¿Quién es asesinado por Loki en los Vengadores?",
+      opciones: [
+        { textoRespuesta: "Maria Hill", isCorrect: false },
+        { textoRespuesta: "Nick Fury", isCorrect: false },
+        { textoRespuesta: "Agente Coulson", isCorrect: true },
+        { textoRespuesta: "Doctor Erik Selvig", isCorrect: false },
+      ],
+    },
+    {
+      titulo: "¿Quién mató a los padres de Tony Stark??",
+      opciones: [
+        { textoRespuesta: "The Winter Soldier", isCorrect: true },
+        { textoRespuesta: "Obadiah Stane", isCorrect: false },
+        { textoRespuesta: "Loki", isCorrect: false },
+        { textoRespuesta: "Thanos", isCorrect: false },
+      ],
+    },
+    {
+      titulo: "¿Cuál es la especialidad de Doctor Strange en el campo médico?",
+      opciones: [
+        { textoRespuesta: "Cirugía Ortopédica", isCorrect: false },
+        { textoRespuesta: "Cirugía neurológica", isCorrect: true },
+        { textoRespuesta: "Cirugía Cardiovascular", isCorrect: false },
+        { textoRespuesta: "Cirugía General", isCorrect: false },
       ],
     },
   ];

@@ -162,7 +162,7 @@ router.get("/favoritesCharacters", async (req, res) => {
 		}
 	});
 
-	router.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
 		let users = await Users.findAll();
 		
 		if (users.length === 0) {
@@ -191,7 +191,7 @@ router.post("/login", async (req, res, next) => {
 		}
 	})
     if (userOld) {
-        return res.status(400).json({
+         res.status(200).json({
             Msg: 'User already exists',
             userOld
         })
@@ -203,7 +203,7 @@ router.post("/login", async (req, res, next) => {
 			nickname:nickname,
 			name: name
 		});
-        res.status(200).json({Msg: "User created", user})
+        res.status(201).json({Msg: "User created", user})
 
 		}catch(error){
 			console.log(error);
@@ -211,6 +211,57 @@ router.post("/login", async (req, res, next) => {
 		}
 		});
 
+router.put("/:email", async (req, res, next) => {
+	let { email } = req.params;
+	let {firstName,lastName,nickname,age,picture} = req.body;
+
+	try{
+		
+		let user = await Users.findOne({
+			where:{
+				email: email
+			}
+		})
+	if (user) {
+		await user.update({
+			firstName:req.body.firstname,
+			lastName:req.body.lastname,
+			age:req.body.age,
+			nickname: req.body.nickname,
+    		name: req.body.name,
+    		picture: req.body.picture,
+    		// updated_at: req.body.name,
+    		// email_verified: req.body.email_verified,
+    		// sub: req.body.sub,   		
+
+		});
+		console.log('USER UPDATED EN EL BACKEND', user);
+		return res.status(204).json({ Msg: "User updated", user }); 
+	}else{
+		return res.status(404).json({Msg: "User not found"})
+	}
+}catch(error){
+		next(error);
+	}
+});
+	
+		// router.get("/byid", async (req, res) => {
+		// 	// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		// 	const { id } = req.body;
+	
+		// 	try {
+		// 		console.log(id);
+		// 		const user = await Users.findOne({
+		// 			where: {
+		// 				id: id,
+		// 			},
+		// 		});
+	
+		// 		return res.status(201).json({ user });
+		// 	} catch (error) {
+		// 		console.log(error, "error en la ruta put user");
+		// 	}
+		// });
 
 module.exports = router;
 

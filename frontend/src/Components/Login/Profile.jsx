@@ -13,7 +13,7 @@ const Profile = () => {
   const { name, picture, email } = user;
   const dispatch = useDispatch();
   const login = useSelector((state) => state);
-  const logged = login.ComicsReducer.prueba;
+  const logged = login.ComicsReducer.user;
 
   // const handleUser = () => {
   //   console.log(user);
@@ -35,8 +35,9 @@ const Profile = () => {
           <Image src={logged.picture} size='medium' circular />
             </div>
             <div className="col-md text-center text-md-left">
-              <h2>Name: {logged.name}</h2>
-              <p className="lead text-muted">Email:{logged.email}</p>
+            <h1>{logged.firstName} {logged.lastName}</h1>
+              <h2>{logged.name}</h2>
+              <p className="lead text-muted">{logged.email}</p>
               <h2>Plan:{logged.plan_id}</h2>
               <h2>Billing: {logged.payment}</h2>
             </div>

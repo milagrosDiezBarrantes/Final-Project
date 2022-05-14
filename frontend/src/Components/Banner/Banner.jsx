@@ -91,7 +91,7 @@ console.log('está authenticado?', isAuthenticated)
       </Nav>
       <HeaderBanner />
       <Cont>
-        <div class="overlay">
+        <div class="">
           <ContainerPlan>
             <div className="">
               <Pricing>

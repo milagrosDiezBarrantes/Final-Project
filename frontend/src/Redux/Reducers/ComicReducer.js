@@ -15,10 +15,11 @@ import {
   GET_FAVORITES,
   LOGIN_USER,
   GET_PLANS,
-  PRUEBA,
+  USER_STATUS,
   CREATE_USER,
   POST_COMICS,
   GET_CREATORS,
+  GET_USER_DATA,
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -37,7 +38,10 @@ const initialState = {
   favoritesComics: [],
   favoritesCharacters: [],
   plans: [],
-  prueba: {
+  user: {
+    firstName:'',
+    lastName:'',
+    age:null,
     nickname: null,
     name: null,
     picture: null,
@@ -95,7 +99,6 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         plans: payload,
       };
-
     case AUTHENTICATED:
       return {
         ...state,
@@ -165,11 +168,16 @@ function ComicsReducer(state = initialState, { type, payload }) {
     case POST_FAVORITE_CHARACTERS:
       return { ...state };
 
-    case PRUEBA:
+    case USER_STATUS:
       return {
         ...state,
-        prueba: payload,
+        user: payload,
       };
+      case GET_USER_DATA:
+      return {
+        ...state,
+        user: [...state, ...payload],
+      }
     case POST_COMICS:
       return {
         ...state,
