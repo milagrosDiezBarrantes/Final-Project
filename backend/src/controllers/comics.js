@@ -5,10 +5,11 @@ const { API_KEY, HASH_KEY } = process.env;
 
 //search characters whose names start with the given string
 
-const getComics = async (req, res, next) => {
+
+const getComics = async (req, res) => {
+  let comics = [];
   let comicsDb = await Comics.findAll({order: [['updatedAt', 'DESC']]});
   console.log("soy el comics", comicsDb.length);
-  let comics = [];
   if (comicsDb.length < 6) {
     try {
       let i = 0;

@@ -38,7 +38,7 @@ console.log(data)
                         key={e.id}
                         id={e.id}
                         title={e.name}
-                        image={e.profilePic}
+                        image={e.img}
                         description={e.description}
                     />
                 )

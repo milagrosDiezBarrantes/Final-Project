@@ -85,14 +85,14 @@ router.get("/:email", async (req, res) => {
 
 router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://3000/user/favoritesComics,{id:iduser,idcomics:favorites})
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+		const { email,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
-			console.log(id);
+			console.log(email);
 			const user = await Users.findOne({
 				include:Comics,
 				where: {
-					id: id,
+					email: email,
 				},
 			});
 			console.log("soy idComics",idComics)
@@ -104,19 +104,19 @@ router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://30
 		}
 	});
 
-router.get("/favoritesComics", async (req, res) => {
+router.get("/favoritesComics/:email", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.query; //idComics = [idscomics1,idcomics2](UUID4)
+		const { email } = req.params; //emailComics = [emailscomics1,emailcomics2](UUemail4)
 
 		try {
-			console.log(id);
+			console.log(email);
 			const favorites = await  Users.findOne({
 				include:Comics,
 				where: {
-					id: id,
+					email: email,
 				},
 			});
-
+			console.log(favorites);
 			return res.status(200).send( favorites.Comics );
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
@@ -124,33 +124,33 @@ router.get("/favoritesComics", async (req, res) => {
 	});
 router.post("/favoritesCharacters", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id,idCharacters } = req.body;
+		const { email,idCharacters } = req.body;
 
 		try {
-			console.log(id);
+			console.log(email);
 			const user = await Users.findOne({
 				where: {
-					id: id,
+					email: email,
 				},
 			});
 			user.setCharacters(idCharacters)
 
-			return res.status(201).json({ user });
+			return res.status(201).json(user);
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
 		}
 	});
 
-router.get("/favoritesCharacters", async (req, res) => {
+router.get("/favoritesCharacters/:email", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+		const { email } = req.params; //emailComics = [emailscomics1,emailcomics2](UUemail4)
 
 		try {
-			console.log(id);
+			console.log(email);
 			const characters = await Users.findOne({
 				include: Characters,
 				where: {
-					id: id
+					email: email
 				},
 			});
 			
@@ -190,7 +190,8 @@ router.post("/login", async (req, res, next) => {
 		}
 	})
     if (userOld) {
-        return res.status(200).json({
+       return  res.status(200).json({
+            Msg: 'User already exists',
             userOld
         })
     }
@@ -202,7 +203,26 @@ router.post("/login", async (req, res, next) => {
 			name: name,
 			
 		});
-        res.status(201).json({Msg: "User created", user})
+    return    res.status(201).json({Msg: "User created", user})
+
+		}catch(error){
+			console.log(error);
+			next(error)
+		}
+		});
+router.get("/login", async (req, res) => {
+
+	let { email} = req.query;
+    
+
+	try {
+    let userOld = await Users.findOne({
+		where:{
+			email: email
+		}
+	})
+        
+    return    res.status(201).json(userOld)
 
 		}catch(error){
 			console.log(error);

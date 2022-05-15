@@ -1,5 +1,5 @@
 
-import { GET_CHARACTER_ID, GET_CHARACTERS,GET_NAME, LOGIN_USER } from '../Actions/actions'
+import { GET_CHARACTER_ID, GET_CHARACTERS,GET_NAME, LOGIN_USER,POST_FAVORITE_CHARACTERS,GET_FAVORITE_CHARACTERS } from '../Actions/actions'
 import {GET_CREATORS} from "../Actions/FilterOrderActions"
 
 
@@ -9,6 +9,7 @@ const initialStateOfCharacter = {
     detailCharacter: [],
     creators:[],
     copyCreators:[],
+    favoritesCharacters: []
 }
 
 function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
@@ -39,6 +40,16 @@ function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
                 return {
                     ...state,
                     loginUser: payload
+                }
+            case POST_FAVORITE_CHARACTERS:
+                return {
+                    ...state,
+                    favoritesCharacters: payload
+                }
+            case GET_FAVORITE_CHARACTERS:
+                return {
+                    ...state,
+                    favoritesCharacters: payload
                 }
             
             /* case GET_BY_CREATOR:
