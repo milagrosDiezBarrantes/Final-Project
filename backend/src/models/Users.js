@@ -18,8 +18,7 @@ module.exports = (sequelize) => {
     },
     nickname: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     picture: {
       type: DataTypes.TEXT,
@@ -31,7 +30,8 @@ module.exports = (sequelize) => {
     },
     role: {
       type: DataTypes.ENUM('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPER_ADMIN', 'ROLE_BANNED'),
-      default: 'ROLE_USER'
+      defaultValue: 'ROLE_USER',
+      allowNull: true
   },
   });
 };

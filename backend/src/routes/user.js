@@ -191,7 +191,7 @@ router.post("/login", async (req, res, next) => {
 		}
 	})
     if (userOld) {
-         res.status(200).json({
+       return  res.status(200).json({
             Msg: 'User already exists',
             userOld
         })
@@ -203,7 +203,7 @@ router.post("/login", async (req, res, next) => {
 			nickname:nickname,
 			name: name
 		});
-        res.status(201).json({Msg: "User created", user})
+    return    res.status(201).json({Msg: "User created", user})
 
 		}catch(error){
 			console.log(error);
