@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //RUTAS USER
 import Banner from "./Components/Banner/Banner";
+import AboutUs from "./Components/AboutUs/AboutUs";
 import HomeCharacter from "./Components/HomeComponent/HomeCharacter/HomeCharacter";
 import HomeComics from "./Components/HomeComponent/HomeComic/HomeComics";
 import DetailComic from "./Components/Details/DetailComic/DetailComic";
@@ -60,6 +61,7 @@ function App() {
             {/* USER */}
           {/* <Route element ={ <CommonRoute user={ user } /> } >  */}
             <Route path='/profile' element={<Profile />} /> 
+            <Route path='/AboutUs' element={<AboutUs />} /> 
             <Route path='/profile/edit' element={<FormEditUser />} />
             <Route path="/favorite" element={<Favorite />} />
             <Route path='/homeCharacter' element={<HomeCharacter />} />
