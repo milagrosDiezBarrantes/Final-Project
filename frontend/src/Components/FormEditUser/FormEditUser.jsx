@@ -43,9 +43,7 @@ const FormEditUser = () => {
 
     function handleSubmit(e, name, picture, nickname) {
         e.preventDefault();
-        console.log('LOG EN EN HANDLESUBMIT',log)
         dispatch(setUserByEmail(log.email, input));
-        console.log(input, 'EMAIL QUE VA A ACTION ', log.email);
         navigate('/profile');
     }
 

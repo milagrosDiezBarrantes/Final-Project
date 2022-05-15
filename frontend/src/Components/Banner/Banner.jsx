@@ -94,7 +94,7 @@ console.log('está authenticado?', isAuthenticated)
 
         </button> */}
 
-        </button>
+   
         <button
           className="btn btn-primary btn-block"
           onClick={ handleLogout }
