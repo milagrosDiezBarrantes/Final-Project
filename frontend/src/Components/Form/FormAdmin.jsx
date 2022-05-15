@@ -3,11 +3,14 @@ import { validate } from "../../Functions/validacionesForm/validationForm";
 import { Container, Form, Button} from 'semantic-ui-react';
 import '../Form/Form.css';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getAdmin } from "../../Redux/Actions/actions";
+import { ImportsNotUsedAsValues } from "typescript";
 
-const FormAdmin = () => {
+const FormAdmin = (email) => {
     const [error, setError] = useState({});
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [input, setInput] = useState({
         email: "",
         password: "", 
@@ -24,6 +27,22 @@ const FormAdmin = () => {
         
     // }, [dispatch, user]);
 
+    // const userAdmin = useSelector(state => state.ComicsReducer.loginUser)
+    // const role = userAdmin.user ? userAdmin.user[0]?.role : null
+
+    // useEffect(()=>{
+    //     setTimeout(() => {
+    //     
+    //     }, 5000)
+        
+    //   }, []);
+
+
+    // useEffect(() => {
+    //     console.log('dispatch action in formAdmin? ',email)
+       
+    // }, [dispatch, email]);
+
     function handleChange(e) {
         e.preventDefault();
         setInput({
@@ -34,14 +53,18 @@ const FormAdmin = () => {
             ...input,
             [e.target.name]: e.target.value
         }))
+        
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        setInput({
-            email: "",
-            password: "",
-        })
+        if(input.password === "admin1234") {
+            dispatch(getAdmin(input.email));
+        }
+        else {
+            navigate('/admin')
+        }
+        
         navigate('/admin')
     }
 
@@ -82,7 +105,7 @@ const FormAdmin = () => {
                 <div>
                     <Button
                         type="submit"
-                        onChange={handleChange}>
+                    >
                         Register
                     </Button>
                 </div>

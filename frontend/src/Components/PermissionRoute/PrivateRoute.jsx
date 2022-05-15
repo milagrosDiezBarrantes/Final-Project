@@ -1,35 +1,20 @@
-import { Navigate, Outlet } from 'react-router';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router';
 import { getAdmin } from '../../Redux/Actions/actions';
-import Loading  from '../Loading/Loading';
 
 const PrivateRoute = ({ redirectPath = '/' }) => {
-    const { user } = useAuth0();
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
+    const userAdmin = useSelector(state => state.ComicsReducer.admin)
 
-    const userAdmin = useSelector(state => state.CharactersReducer.loginUser)
-    const role = userAdmin.user ? userAdmin.user[0]?.role : null
+    // if(role) {
+    //     dispatch(getAdmin());
+    // }
+    // else {
+    //     console.log('You are not Admin')
+    //     return <Navigate to={redirectPath} replace />;
+    // }
 
-    // useEffect(()=>{
-    //     setTimeout(() => {
-    //     
-    //     }, 5000)
-        
-    //   }, []);
-
-
-    useEffect(() => {
-        dispatch(getAdmin(user?.email))
-    }, [dispatch, user]);
-    
-    if (!user) {
-        console.log('user not logged in')
-        return <Navigate to={redirectPath} replace />;
-    }
-    
-    console.log('user logged in')
         return (
             <>
                 {
@@ -37,10 +22,8 @@ const PrivateRoute = ({ redirectPath = '/' }) => {
     // (<img src={loading} alt='loading'/>) 
     // : typeof pageCurrent[0] === 'object' ? 
     // (
-                    userAdmin?.length <= 0 ?
-                    <Loading />
-                    :
-                    role === 'ROLE_SUPER_ADMIN'
+                
+                    userAdmin.role === 'ROLE_SUPER_ADMIN'
                     ? <Outlet/> : 
                     <p> You are not allowed to perform this action.</p>
                 } 

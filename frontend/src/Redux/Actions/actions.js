@@ -305,16 +305,18 @@ export function setRememberMe() {
 
 // ==================ADMIN POST============================
 export function getAdmin(email) {
+    console.log('llega este email??',email)
     return async function(dispatch) {
         try {
             const adminLogin = await axios.get(`http://localhost:3001/user/admin/${email}`)
+            console.log('actions get admin',adminLogin)
             return dispatch({
-                type: 'GET_ADMIN',
-                payload : adminLogin.data
+                type: GET_ADMIN,
+                payload : adminLogin
             })
         } 
         catch (error) {
-            console.log(error)
+            console.log('no es el email del admin',error)
         }
     }
 }

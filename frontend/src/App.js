@@ -73,12 +73,13 @@ function App() {
           {/* </Route> */}
           
           {/* ADMIN */}
-          {/* <Route element={ <PrivateRoute user={ user }  />}> */}
+          <Route path='/formAdmin' element ={<FormAdmin />} /> 
+          <Route element={ <PrivateRoute user={ user }  />}> 
             <Route path='/admin' element ={<Admin />} /> 
             <Route path='/postAdmin' element={<PostAdmin/>} /> 
             <Route path='/admin/comic' element={<FormUpdateComic/>} />
             <Route path='/updateComic' element={<FormUpdateComic/>} />
-          {/* </Route>   */}
+          </Route>  
       </Routes>
       {/* </Container> */}
     </div>

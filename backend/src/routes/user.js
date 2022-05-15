@@ -260,10 +260,9 @@ router.get('/admin/:email', async (req, res, next) => {
 				role: 'ROLE_SUPER_ADMIN', 
 			}})
 			if(userAdmin) {
-				return res.status(200).json({
-					message: 'User admin is correct',
+				return res.status(200).json(
 					userAdmin
-				})
+				)
 			}
 			else {
 				return res.status(404).json({

@@ -52,6 +52,7 @@ const initialState = {
     role: null,
   },
   creators: [],
+  admin: {}
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {
@@ -125,13 +126,13 @@ function ComicsReducer(state = initialState, { type, payload }) {
     case LOGIN_USER:
       return {
         ...state,
-        user: payload,
-        
+        user: payload, 
       };
     case GET_ADMIN:
+      console.log('admin reducer', payload)
       return {
         ...state,
-        loginUser: payload,
+        admin: payload.data.adminUser,
     };
     case CREATE_USER:
       return {
