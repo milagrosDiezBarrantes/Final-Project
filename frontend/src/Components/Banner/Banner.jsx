@@ -27,7 +27,8 @@ import Landing from './Accordion/Accordion';
 import Viewer from '../../../src/Components/HomeComponent/Favorite/Viwers' 
 import Accordion from '../Banner/Accordion/Accordion'
 const Login = (props) => {
-  const { isAuthenticated, user } = useAuth0();
+
+  const { loginWithPopup, loginWithRedirect, user , logout,isAuthenticated  } = useAuth0();
   const dispatch = useDispatch();
 console.log('está authenticado?', isAuthenticated)
   // const useStyles = makeStyles((theme) => ({
@@ -47,6 +48,17 @@ console.log('está authenticado?', isAuthenticated)
     
   // },[dispatch]);
 
+
+
+  const handleLogin =async () => {
+  let response= await  loginWithPopup();
+  console.log(user)
+  console.log(isAuthenticated)
+  }
+  const handleLogout =async () => {
+  let response= await  logout();
+  console.log(user)
+  }
 
   return (
     <>
@@ -78,7 +90,17 @@ console.log('está authenticado?', isAuthenticated)
           onClick={ handleLogin }
         >
           LOG IN
+
         </button> */}
+
+        </button>
+        <button
+          className="btn btn-primary btn-block"
+          onClick={ handleLogout }
+        >
+          LOG IN
+        </button>
+
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
         </a> */}
