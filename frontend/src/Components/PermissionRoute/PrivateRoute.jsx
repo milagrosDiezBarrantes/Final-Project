@@ -4,9 +4,13 @@ import { Navigate, Outlet } from 'react-router';
 import { getAdmin } from '../../Redux/Actions/actions';
 
 const PrivateRoute = ({ redirectPath = '/' }) => {
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const userAdmin = useSelector(state => state.ComicsReducer.admin)
+    const role = userAdmin.admin ? userAdmin.admin[0]?.role : null
 
+  useEffect(() => {
+    dispatch(getAdmin())
+  }, [dispatch])
     // if(role) {
     //     dispatch(getAdmin());
     // }
@@ -22,8 +26,7 @@ const PrivateRoute = ({ redirectPath = '/' }) => {
     // (<img src={loading} alt='loading'/>) 
     // : typeof pageCurrent[0] === 'object' ? 
     // (
-                
-                    userAdmin.role === 'ROLE_SUPER_ADMIN'
+                    role === "ROLE_SUPER_ADMIN"
                     ? <Outlet/> : 
                     <p> You are not allowed to perform this action.</p>
                 } 

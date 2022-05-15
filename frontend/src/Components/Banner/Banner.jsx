@@ -89,18 +89,18 @@ console.log('está authenticado?', isAuthenticated)
       {/*    <button
           className="btn btn-primary btn-block"
           onClick={ handleLogin }
-        >
+        >RS
           LOG IN
 
         </button> */}
 
-   
+{/*    
         <button
           className="btn btn-primary btn-block"
           onClick={ handleLogout }
         >
           LOG IN
-        </button>
+        </button> */}
 
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>

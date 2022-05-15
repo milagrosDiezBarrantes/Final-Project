@@ -5,12 +5,12 @@ import '../Form/Form.css';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAdmin } from "../../Redux/Actions/actions";
-import { ImportsNotUsedAsValues } from "typescript";
 
-const FormAdmin = (email) => {
+const FormAdmin = () => {
     const [error, setError] = useState({});
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const [input, setInput] = useState({
         email: "",
         password: "", 
@@ -19,29 +19,6 @@ const FormAdmin = (email) => {
     useEffect(() => {
         setError(validate(input))
     }, [input])
-
-    // useEffect(()=>{
-    //     setTimeout(() => {
-    //     dispatch(getAdmin(user?.email))
-    //     }, 5000)
-        
-    // }, [dispatch, user]);
-
-    // const userAdmin = useSelector(state => state.ComicsReducer.loginUser)
-    // const role = userAdmin.user ? userAdmin.user[0]?.role : null
-
-    // useEffect(()=>{
-    //     setTimeout(() => {
-    //     
-    //     }, 5000)
-        
-    //   }, []);
-
-
-    // useEffect(() => {
-    //     console.log('dispatch action in formAdmin? ',email)
-       
-    // }, [dispatch, email]);
 
     function handleChange(e) {
         e.preventDefault();
@@ -53,7 +30,6 @@ const FormAdmin = (email) => {
             ...input,
             [e.target.name]: e.target.value
         }))
-        
     }
 
     function handleSubmit(e) {
@@ -64,7 +40,6 @@ const FormAdmin = (email) => {
         else {
             navigate('/admin')
         }
-        
         navigate('/admin')
     }
 

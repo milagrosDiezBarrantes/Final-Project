@@ -132,7 +132,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
       console.log('admin reducer', payload)
       return {
         ...state,
-        admin: payload.data.adminUser,
+        admin: payload,
     };
     case CREATE_USER:
       return {
