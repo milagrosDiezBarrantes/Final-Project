@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getById, postFavoriteComics,user,getFavorites } from "../../../Redux/Actions/actions";
+import { getById, postFavoriteComics,getFavorites } from "../../../Redux/Actions/actions";
 import { getByCreators } from "../../../Redux/Actions/FilterOrderActions";
 import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
@@ -45,9 +45,6 @@ const [input, setInput] = React.useState({})
   useEffect(() => {
     if(user.email){
       dispatch(getFavorites(user.email))
-    }else{
-      dispatch(user(user.email))
-
     }
   }, [user]);
 

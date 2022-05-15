@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCharacterId, postFavoriteCharacters } from "../../../Redux/Actions/actions";
+import { getCharacterId, postFavoriteCharacters,getFavoritesCharacters } from "../../../Redux/Actions/actions";
 //import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
 import Loading from "../../Loading/Loading"
@@ -10,45 +10,61 @@ import Loading from "../../Loading/Loading"
 //import Typography from "@material-ui/core/Typography";
 import Navbar from "../../Navbar/Navbar";
 import "./DetailCharacter.css"
+import { useAuth0 } from "@auth0/auth0-react";  
 
 
 const DetailCharacter = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const {user, isLoading, isAuthenticated} = useAuth0();
+
   
-  
-   const postFavorite = useSelector((state) => state.CharactersReducer)
+   const favoritesCharacters = useSelector((state) => state.CharactersReducer.favoritesCharacters)
+   const detailCharacter = useSelector((state) => state.CharactersReducer.detailCharacter)
     const character = useSelector((state) => state.CharactersReducer.detailCharacter);
 
-    
+  //   {
+  //     Characters: [],
+  //     copyCharacters: [],
+  //     detailCharacter: [],
+  //     creators:[],
+  //     copyCreators:[],
+  //     favoritesCharacters: []
+  // }
     useEffect(() => {
       dispatch(getCharacterId(id));
     }, [dispatch, id]);
  
+    useEffect(() => {
+      if(user.email){
+        dispatch(getFavoritesCharacters(user.email))
+      }
+    }, [user]);
+
     const handleClick = (e) => {
     
       console.log("estrellita")
       
-      let arrayIds = [...postFavorite.favoritesComics]
+      let arrayIds = [...favoritesCharacters]
       arrayIds=arrayIds.map(e=>e.idPrincipal)
       console.log("arrayIds")
       console.log(arrayIds)
-      if (!arrayIds.includes(postFavorite.detailCharacter.idPrincipal)) {
+      if (!arrayIds.includes(detailCharacter.idPrincipal)) {
         // setSelect([...select, event.target.value]);
         
         console.log("entre al if not find")
-        console.log([...postFavorite.favoritesComics,postFavorite.detailCharacter])
-        arrayIds = [...arrayIds,postFavorite.detailCharacter.idPrincipal]
+        console.log([...favoritesCharacters,detailCharacter])
+        arrayIds = [...arrayIds,detailCharacter.idPrincipal]
         console.log("arrayIds")
         console.log(arrayIds)
-        dispatch(postFavoriteCharacters(arrayIds,postFavorite.loginUser.id))
+        dispatch(postFavoriteCharacters(arrayIds,user.email))
         
       } else {
-        let fil= arrayIds.filter((e) => e !== postFavorite.detailCharacter.idPrincipal)
+        let fil= arrayIds.filter((e) => e !== detailCharacter.idPrincipal)
         // console.log([...postFavorite.favoritesComics,postFavorite.detailCharacter])
        console.log("fil")
        console.log(fil)
-       dispatch(postFavoriteCharacters(fil,postFavorite.loginUser.id))
+       dispatch(postFavoriteCharacters(fil,user.email))
         }
       
       // dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
