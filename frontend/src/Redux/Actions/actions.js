@@ -14,6 +14,7 @@ export const FILT_BY_PLAN = "FILT_BY_PLAN"
 export const GET_NAME = "GET_NAME"
 export const GET_USERS = "GET_USERS"
 export const GET_USER_DATA = "GET_USER_DATA"
+export const SET_USER_DATA = "SET_USER_DATA"
 
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED";
@@ -149,13 +150,26 @@ export const setUserByEmail= (email, user) => {
             const res= await axios.put(`http://localhost:3001/user/${email}`, user);
             console.log('llega email.data?', res.data)
             return dispatch({
-                type: GET_USER_DATA,
+                type: SET_USER_DATA,
                 payload: res.data
             })
         }catch(err){
             console.log(err);
         }
     }
+    }
+
+    export const getUserByEmail = (email) => async dispatch => {
+        try{
+            const res= await axios(`http://localhost:3001/user/${email}`);
+            console.log('llega email.data?', res.data.userOld)
+            return dispatch({
+                type: GET_USER_DATA,
+                payload: res.user
+            })
+        }catch(err){
+            console.log(err);
+        }
     }
     
 
@@ -180,37 +194,37 @@ export const login = (payload)=>{
     console.log('llega user?', payload)
     return {
         type: LOGIN_USER,
-        payload: payload.email
+        payload: payload.userOld
     }
 }
 
-export const loginUser= (email) => {
-        return async (dispatch) => {
-            try {
-                const userLogin = await axios.get("http://localhost:3001/user/login",{
-                    params: {
-                        email
-                    }});
-                // console.log("de la action");
-                // console.log(userName,password);
-                return dispatch({
-                    type: LOGIN_USER,
-                    payload: userLogin.data
-                })
-            }
-            catch(err) {
-                console.log(err, 'userCreate || Error');
-            }
-        }
-}
-export const pruebaStatusLog =(user)=>{
-    return async (dispatch) => {
-    return await dispatch({
-        type: USER_STATUS,
-        payload: user
-    })
-}
-}
+// export const loginUser= (email) => {
+//         return async (dispatch) => {
+//             try {
+//                 const userLogin = await axios.get("http://localhost:3001/user/login",{
+//                     params: {
+//                         email
+//                     }});
+//                 // console.log("de la action");
+//                 // console.log(userName,password);
+//                 return dispatch({
+//                     type: LOGIN_USER,
+//                     payload: userLogin.data
+//                 })
+//             }
+//             catch(err) {
+//                 console.log(err, 'userCreate || Error');
+//             }
+//         }
+// }
+// export const pruebaStatusLog =(user)=>{
+//     return async (dispatch) => {
+//     return await dispatch({
+//         type: LOGIN_USER,
+//         payload: user
+//     })
+// }
+// }
 
 export const getFavorites= (id) => {
         return async (dispatch) => {

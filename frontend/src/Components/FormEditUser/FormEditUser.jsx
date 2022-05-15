@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 
 import Navbar from '../Navbar/Navbar';
 
-
 const FormEditUser = () => {
-
     const navigate= useNavigate(); 
     const dispatch = useDispatch();
     const [error, setError] = useState({});
@@ -19,10 +17,7 @@ const FormEditUser = () => {
     console.log(log)
 
     const [input, setInput] = useState({
-        firstname:log.firstname,
-		lastname:log.lastname,
-		age:log.age,
-		nickname: log.nickname,
+       	nickname: log.nickname,
     	name: log.name,
     	picture: log.picture,
     	updated_at: log.name,
@@ -49,9 +44,8 @@ const FormEditUser = () => {
     function handleSubmit(e, name, picture, nickname) {
         e.preventDefault();
         console.log('LOG EN EN HANDLESUBMIT',log)
-
         dispatch(setUserByEmail(log.email, input));
-        console.log(input, log.email);
+        console.log(input, 'EMAIL QUE VA A ACTION ', log.email);
         navigate('/profile');
     }
 
@@ -70,52 +64,20 @@ const FormEditUser = () => {
         <Navbar/>
             <h1>Edit Data</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
-            <div>
-                    <label>Firstname</label>
+           
+                <div>
+                    <label>Name</label>
                     <input
                         type="text"
-                        placeholder="firstName"
-                        name="firstname"
+                        placeholder="Your Name"
+                        name="name"
                         onChange={handleChange}
                     />
-                    {error.firstname && <p style={{ color:"red"}} >{error.firstname}</p>}
+                    {error.name && <p style={{ color:"red"}} >{error.name}</p>}
                 </div>
+  
                 <div>
-                    <label>Lastname</label>
-                    <input
-                        type="text"
-                        placeholder="lastName"
-                        name="lastname"
-                        onChange={handleChange}
-                    />
-                    {error.lasstname && <p style={{ color:"red"}} >{error.lastname}</p>}
-                </div>
-
-                <div>
-                    <label>Age</label>
-                    <input
-                        type="number"
-                        placeholder="age"
-                        name="age"
-                        onChange={handleChange}
-                    />
-                    {error.age && <p style={{ color:"red"}} >{error.age}</p>}
-                </div>           
-                
-                <div>
-                    <label>Nickname</label>
-                    <input
-                        type="text"
-                        placeholder="nickname"
-                        name="nickname"
-                        onChange={handleChange}
-                    />
-                    {error.nickname && <p style={{ color:"red"}} >{error.nickname}</p>}
-                </div>
-                  
-                
-                <div>
-                    <label>Picture:</label>
+                    <label>Picture</label>
                     <input
                         type="url"
                         placeholder="picture"
@@ -129,9 +91,7 @@ const FormEditUser = () => {
                 <br/>
                 <br/>
                 <div>
-                    <Link to="/profile">
-                        <Button> Back </Button>
-                    </Link>
+                   
                     <Link to="/profile">
                         <Button onClick={handleSubmit} type="submit"> Confirm </Button>
                     </Link>
