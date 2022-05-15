@@ -142,9 +142,9 @@ const Admin = () => {
           <br />
           <br />
 
-          <Button color='orange' onClick={() => history("/admin/comic")}>Add New Comic</Button>
-          <Button color='blue' onClick={() => history("/admin/comic")}>Edit Comic</Button>
-          <Button color='red'onClick={() => history('/admin')}>Delete Comic</Button>
+          <Button color='orange' onClick={() => history("postAdmin")}>Add New Comic</Button>
+          <Button color='blue' onClick={() => history("updateComic")}>Edit Comic</Button>
+          <Button color='red' onClick={() => history('admin')}>Delete Comic</Button>
          
           <br />
           <br />

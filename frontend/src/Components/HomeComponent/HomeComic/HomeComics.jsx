@@ -26,8 +26,8 @@ const HomeComics = () => {
   const [, setData] = useState([]);
   const [copyComics, setCopyComics] = useState([]);
   const [currentPage, setCurrentPage] = useState();
-  const PER_PAGE = 12;
-  const start = (page - 1) * 12;
+  const PER_PAGE = 15;
+  const start = (page - 1) * PER_PAGE;
   const end = page * PER_PAGE;
   useEffect(() => {
     if(userLogin === noRegister || userLogin === undefined) {

@@ -11,7 +11,7 @@ import "./HomeCharacter.css"
 const HomeCharacter = () => {
     const dispatch = useDispatch()
     const Characters = useSelector(state => state.CharactersReducer.copyCharacters)
-    const [numOfPages] = useState(12);
+    const [numOfPages] = useState(15);
     const [currentPage, setCurrentPage] = useState(1);
     const [data, setData] = useState([]);
     
@@ -38,7 +38,7 @@ console.log(data)
                         key={e.id}
                         id={e.id}
                         title={e.name}
-                        image={e.profilePic}
+                        image={e.img}
                         description={e.description}
                     />
                 )

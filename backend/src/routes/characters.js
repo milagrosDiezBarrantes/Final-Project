@@ -8,9 +8,9 @@ const router = Router();
 
 router.get("/all", async (req, res) => {
 	let characters =[]
-	 characters = await Characters.findAll()
-	 console.log("soy el characters", characters.length)
-	if(characters.length===0){
+	let charactersDb = await Characters.findAll({order: [['updatedAt', 'DESC']]})
+	 console.log("soy el characters", charactersDb.length)
+	if(charactersDb.length===0){
 
 		try {	
 
@@ -29,28 +29,45 @@ while(i < 1561){
 	characters=characters.flat()
 	console.log(characters.length)
 
-	characters = characters.map((e) => ({
+	characters =characters.map((e) => ({
 		id: e.id,
 		name: e.name,
 		description: e.description,
-		profilePic: e.thumbnail.path + "." + e.thumbnail.extension,
-	}));
+		img: e.thumbnail.path + "." + e.thumbnail.extension,
+  comics:e.comics.items.map((e) => ({name:e.name,id:e.resourceURI.split("/").splice(-1)[0]})),
+series:e.series.items.map((e) => ({name:e.name,id:e.resourceURI.split("/").splice(-1)[0]})),
+stories:e.stories.items.map((e) => ({name:e.name,id:e.resourceURI.split("/").splice(-1)[0]})),
+events:e.events.items.map((e) => ({name:e.name,id:e.resourceURI.split("/").splice(-1)[0]})),
+	}))
+
 	console.log("entre al if")
-	characters.forEach( async (e)=> await Characters.create(
-		{
-			id:e.id,
-			name: e.name,
-			profilePic: e.profilePic,
-			description: e.description,
-		}))
+	characters.forEach(async (e) => {
+        if (!e.img.includes("image_not_available") && e.name.length > 4) {
+          await Characters.findOrCreate({
+            where: {
+              id: e.id,
+              name: e.name,
+              img: e.img,
+              comics: e.comics,
+              series: e.series,
+              stories: e.stories,
+              events: e.events,
+              description:e.description
+            },
+          });
+        }
+      });
 		
-	return	res.status(201).json(characters);
+	
 	} catch (err) {
 		console.log(err);
 		// next(err)
 	}
+	charactersDb = await Characters.findAll({order: [['updatedAt', 'DESC']]})
+
+
 	}
-	return	res.status(200).json(characters);
+	return	res.status(200).json(charactersDb);
 
 });
 
@@ -86,24 +103,14 @@ router.get("/:id/:extra", async (req, res) => {
 router.get("/:id", async (req, res) => {
 	let { id } = req.params;
 	console.log(API_KEY, HASH_KEY);
-	let character = await axios.get(
-		`https://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
-	);
-	character = character.data.data.results[0];
-	//profilePic
-	character = {
-		id: character.id,
-		name: character.name,
-		description: character.description,
-		profilePic: character.thumbnail.path + "." + character.thumbnail.extension,
-		comics: character.comics.items,
-		series: character.series.items,
-		stories: character.stories.items,
-		events: character.events.items,
-		comics: character.comics.items,
-	};
+	let character = await Characters.findOne({
+		where:{
+			id
+		}
+	})
+	
 
-	res.status(200).json(character);
+return	res.status(200).json(character);
 });
 
 
