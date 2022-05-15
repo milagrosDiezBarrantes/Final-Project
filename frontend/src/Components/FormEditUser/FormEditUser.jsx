@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { userEdit } from "../../Redux/Actions/actions";
+import { setUserByEmail } from "../../Redux/Actions/actions";
 import { Container, Form, Button} from 'semantic-ui-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { validate } from "../../Functions/validacionesForm/validationForm";
+import { useSelector } from "react-redux";
 
-const FormEditUser = ({ handleClose}) => {
+import Navbar from '../Navbar/Navbar';
+
+const FormEditUser = () => {
+    const navigate= useNavigate(); 
     const dispatch = useDispatch();
     const [error, setError] = useState({});
-    const navigate= useNavigate(); 
+    
+    const log = useSelector((state) => state.ComicsReducer.user);
+    console.log(log)
 
     const [input, setInput] = useState({
-        email: "",
-        password: "", 
-        password2: "", 
+       	nickname: log.nickname,
+    	name: log.name,
+    	picture: log.picture,
+    	updated_at: log.name,
+    	email_verified: log.email_verified,
+    	sub: log.sub,   
     })
 
     useEffect(() => {
@@ -32,14 +41,11 @@ const FormEditUser = ({ handleClose}) => {
         }))
     }
 
-    function handleSubmit(e, email, password, password2) {
+    function handleSubmit(e, name, picture, nickname) {
         e.preventDefault();
-        setInput ({
-            email,
-            password,
-            password2,
-        })
-        dispatch(userEdit()).then(handleClose());
+        console.log('LOG EN EN HANDLESUBMIT',log)
+        dispatch(setUserByEmail(log.email, input));
+        console.log(input, 'EMAIL QUE VA A ACTION ', log.email);
         navigate('/profile');
     }
 
@@ -55,49 +61,41 @@ const FormEditUser = ({ handleClose}) => {
                 height:"100vh",
             }}
         >
+        <Navbar/>
             <h1>Edit Data</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
+           
                 <div>
-                    <label>Email:</label>
+                    <label>Name</label>
                     <input
-                        type="email"
-                        placeholder="Email"
-                        name="email"
+                        type="text"
+                        placeholder="Your Name"
+                        name="name"
                         onChange={handleChange}
                     />
-                    {error.email && <p style={{ color:"red"}} >{error.email}</p>}
+                    {error.name && <p style={{ color:"red"}} >{error.name}</p>}
                 </div>
+  
                 <div>
-                    <label>Password*:</label>
+                    <label>Picture</label>
                     <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
+                        type="url"
+                        placeholder="picture"
+                        name="picture"
                         onChange={handleChange}
-                        autocomplete="current-password"
                     />
-                    {error.password && <p style={{ color:"red"}} > {error.password} </p>}
-                </div>
-                <div>
-                    <label>Repeat password*:</label>
-                    <input
-                        type="new-password"
-                        placeholder="Repeat password"
-                        name="password2"
-                        onChange={handleChange}
-                        autocomplete="new-password"
-                    />
-                    {error.password2 && <p style={{ color:"red"}} > {error.password2} </p>}
+                    {error.picture && <p style={{ color:"red"}} > {error.picture} </p>}
                 </div>
                 {/* agrego salto página para presentar */}
                 <br/>
                 <br/>
                 <br/>
                 <div>
+                   
                     <Link to="/profile">
-                        <Button> Back </Button>
+                        <Button onClick={handleSubmit} type="submit"> Confirm </Button>
                     </Link>
-                    <Button type="submit"> Confirm </Button>
+                    
                 </div>
             </Form>
         </Container>

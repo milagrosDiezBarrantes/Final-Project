@@ -5,19 +5,32 @@ import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
 // import FloatingActionButtons from "../../Components/Admin/Admin";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { authenticateUser } from "../../Redux/Actions/actions";
+import { authenticateUser, loginWithPopup } from "../../Redux/Actions/actions";
+// import { makeStyles } from '@material-ui/core/styles';
+// import { useNavigate } from "react-router-dom";
+// import SignupButton from "../Login/SigUp";
+// import {userCreate} from "../../Redux/Actions/actions";
+import LoginButton from "../Login/LoginButton";
+// import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
+// import EditIcon from '@material-ui/icons/Edit';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import NavigationIcon from '@material-ui/icons/Navigation';
+import AuthNav from "../Login/auth-nav";
+import Navbar from "../Navbar/Navbar";
+
+
 import { makeStyles } from '@material-ui/core/styles';
 import Landing from './Accordion/Accordion';
 import Viewer from '../../../src/Components/HomeComponent/Favorite/Viwers' 
 import Accordion from '../Banner/Accordion/Accordion'
 const Login = (props) => {
+
   const { loginWithPopup, loginWithRedirect, user , logout,isAuthenticated  } = useAuth0();
-
-  
   const dispatch = useDispatch();
-
+console.log('está authenticado?', isAuthenticated)
   // const useStyles = makeStyles((theme) => ({
   //   root: {
   //     '& > *': {
@@ -28,10 +41,14 @@ const Login = (props) => {
   //     marginRight: theme.spacing(1),
   //   },
   // }));
-  useEffect(() => {
-    dispatch(authenticateUser());
+
+
+  // useEffect(() => {
+  //   dispatch(authenticateUser());
     
-  },[dispatch]);
+  // },[dispatch]);
+
+
 
   const handleLogin =async () => {
   let response= await  loginWithPopup();
@@ -42,6 +59,7 @@ const Login = (props) => {
   let response= await  logout();
   console.log(user)
   }
+
   return (
     <>
       {/* <Nav>
@@ -56,15 +74,25 @@ const Login = (props) => {
       <HeaderBanner />
     </>
   ) : ( */}
-      <Nav>
-        <a href="/">
+    
+      
+      <Nav>      
+       <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <button
+        <AuthNav/>
+
+        {isAuthenticated ? (
+        <Navbar/>
+): (null)}
+      {/*    <button
           className="btn btn-primary btn-block"
           onClick={ handleLogin }
         >
           LOG IN
+
+        </button> */}
+
         </button>
         <button
           className="btn btn-primary btn-block"
@@ -72,6 +100,7 @@ const Login = (props) => {
         >
           LOG IN
         </button>
+
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
         </a> */}
@@ -84,7 +113,7 @@ const Login = (props) => {
       </Nav>
       <HeaderBanner />
       <Cont>
-        <div class="overlay">
+        <div class="">
           <ContainerPlan>
             <div className="">
               <Pricing>
@@ -94,11 +123,13 @@ const Login = (props) => {
                   series.{" "}
                 </Caption>
                 <Caption>Save money with this bundle.</Caption>
-                <PriceValue> USD $7/month (final)* </PriceValue>
-                <br></br>
-                <p target="_blank" href="/formUser">
-                  <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-                </p>
+                <PriceValue>ARS 995/month (final)* </PriceValue>
+                <Caption> CONTRACT NOW!</Caption>
+                
+                <SignUp  target="_blank"  href="/formUser" >
+                <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+              </SignUp>
+             
               </Pricing>
             </div>{" "}
             <div></div>
@@ -108,11 +139,13 @@ const Login = (props) => {
               <Caption>
                 Access endless Marvel Comics World for a new price!{" "}
               </Caption>
-              <PriceValue>USD $70/year (final)*</PriceValue>
-              <br></br>
-              <p target="_blank" href="/formUser">
+              <PriceValue>ARS 3.850/year (final)* </PriceValue>
+              <Caption> CONTRACT NOW!</Caption>
+              
+                <SignUp  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-              </p>
+              </SignUp>
+             
             </Pricing>
           </ContainerPlan>
         </div>
@@ -390,6 +423,7 @@ const Description = styled.p`
   letter-spacing: 1.3px;
   line-height: 1.5;
   display: inline-block;
+
   position: relative;
   width: 500px;
   height: 65px;

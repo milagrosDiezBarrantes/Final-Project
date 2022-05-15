@@ -66,34 +66,33 @@ console.log(user)
 		}
 	});
 	
-router.get("/byid", async (req, res) => {
+router.get("/:email", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.body;
+		const { email } = req.params;
 
 		try {
-			console.log(id);
+			console.log(email);
 			const user = await Users.findOne({
 				where: {
-					id: id,
+					email: email,
 				},
 			});
-
 			return res.status(201).json({ user });
 		} catch (error) {
-			console.log(error, "error en la ruta put user");
+			console.log(error);
 		}
 	});
 
 router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://3000/user/favoritesComics,{id:iduser,idcomics:favorites})
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
+		const { email,idComics } = req.body; //idComics = [idscomics1,idcomics2](UUID4)
 
 		try {
-			console.log(id);
+			console.log(email);
 			const user = await Users.findOne({
 				include:Comics,
 				where: {
-					id: id,
+					email: email,
 				},
 			});
 			console.log("soy idComics",idComics)
@@ -105,19 +104,19 @@ router.post("/favoritesComics", async (req, res) => {//axios.post(localhost://30
 		}
 	});
 
-router.get("/favoritesComics", async (req, res) => {
+router.get("/favoritesComics/:email", async (req, res) => {
 		// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
-		const { id } = req.query; //idComics = [idscomics1,idcomics2](UUID4)
+		const { email } = req.params; //emailComics = [emailscomics1,emailcomics2](UUemail4)
 
 		try {
-			console.log(id);
+			console.log(email);
 			const favorites = await  Users.findOne({
 				include:Comics,
 				where: {
-					id: id,
+					email: email,
 				},
 			});
-
+			console.log(favorites);
 			return res.status(200).send( favorites.Comics );
 		} catch (error) {
 			console.log(error, "error en la ruta post/favorites");
@@ -162,7 +161,7 @@ router.get("/favoritesCharacters", async (req, res) => {
 		}
 	});
 
-	router.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
 		let users = await Users.findAll();
 		
 		if (users.length === 0) {
@@ -180,24 +179,112 @@ router.get("/validates", async (req, res) => {
 	return res.send(user);
 });
 
-router.get("/login", async (req, res) => {
-	const{email} = req.query
-	if(email){
-		let user = await Users.findOne({
-			where: {
-				email: email
-		
-			},
-		});
-		if(!user){
+router.post("/login", async (req, res, next) => {
 
-		return res.send("pibe registrate");
+	let { email, name, nickname} = req.body;
+    console.log(req.body)
+
+    let userOld = await Users.findOne({
+		where:{
+			email: email
 		}
-		return res.send(user);
-	}else{
-		return res.send("password y/o userName incompletos")
+	})
+    if (userOld) {
+       return  res.status(200).json({
+            Msg: 'User already exists',
+            userOld
+        })
+    }
+    try {
+        let user = await Users.create({
+			email:email,
+			firstname:nickname,
+			nickname:nickname,
+			name: name,
+			
+		});
+    return    res.status(201).json({Msg: "User created", user})
+
+		}catch(error){
+			console.log(error);
+			next(error)
+		}
+		});
+router.get("/login", async (req, res) => {
+
+	let { email} = req.query;
+    
+
+	try {
+    let userOld = await Users.findOne({
+		where:{
+			email: email
+		}
+	})
+        
+    return    res.status(201).json(userOld)
+
+		}catch(error){
+			console.log(error);
+			next(error)
+		}
+		});
+
+router.put("/:email", async (req, res, next) => {
+	let { email } = req.params;
+	console.log('recibo email en ruta put', email)
+	let {nickname,name, picture} = req.body;
+	console.log('recibo input x body en ruta put', req.body)
+
+	try{
+		
+		const user = await Users.findOne({
+			where:{
+				email: email		
+			}
+		})
+	// if (user) {
+	// 	console.log('entra al if porque email existe t', email)
+		await user.update({
+			email:email,
+			nickname: nickname,
+    		name: req.body.name,
+    		picture: req.body.picture,
+
+    		// updated_at: req.body.name,
+    		// email_verified: req.body.email_verified,
+    		// sub: req.body.sub,   		
+
+		});
+
+		// await user.save();
+		console.log('USER UPDATED EN EL BACKEND', user);
+		return res.status(200).json({ user }); 
+	// }else{
+	// 	return res.status(404).json({Msg: "User not found"})
+	// }
+}catch(error){
+		next(error);
 	}
 });
+	
+		// router.get("/byid", async (req, res) => {
+		// 	// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
+		// 	const { id } = req.body;
+	
+		// 	try {
+		// 		console.log(id);
+		// 		const user = await Users.findOne({
+		// 			where: {
+		// 				id: id,
+		// 			},
+		// 		});
+	
+		// 		return res.status(201).json({ user });
+		// 	} catch (error) {
+		// 		console.log(error, "error en la ruta put user");
+		// 	}
+		// });
 
 module.exports = router;
 

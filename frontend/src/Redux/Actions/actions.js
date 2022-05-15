@@ -13,6 +13,8 @@ export const GET_CHARACTER_ID = "GET_CHARACTER_ID" // caso personaje por id
 export const FILT_BY_PLAN = "FILT_BY_PLAN"
 export const GET_NAME = "GET_NAME"
 export const GET_USERS = "GET_USERS"
+export const GET_USER_DATA = "GET_USER_DATA"
+export const SET_USER_DATA = "SET_USER_DATA"
 
 //Autentication
 export const AUTHENTICATED = "AUTHENTICATED";
@@ -32,7 +34,7 @@ export const CLEAR_DETAIL = 'CLEAR_DETAIL'
 export const POST_FAVORITE_COMICS = "POST_FAVORITE_COMICS"
 export const POST_FAVORITE_CHARACTERS = "POST_FAVORITE_CHARACTERS"
 export const GET_FAVORITES = "GET_FAVORITES"
-export const PRUEBA = "PRUEBA"
+export const USER_STATUS = "USER_STATUS"
 
 //Admin post
 
@@ -141,30 +143,58 @@ export const getById = (id) => async dispatch => {
 //     axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
 //     console.log("SE CREA EL USER?")
 //   }
-export const createUser= (user) => {
-    console.log('llega user?', user)    
-        return async (dispatch) => {
-            try {
-                console.log("email", user.email, "nickname", user.nickname, "name", user.name)
-                const userCreate = await axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
-                console.log(userCreate, 'se crea usuario?');
-                return dispatch({
-                    type: CREATE_USER,
-                    payload: userCreate.data
-                })
-            }
-            catch(err) {
-                console.log(err, 'userCreate || Error');
-            }
+export const setUserByEmail= (email, user) => {
+    (console.log("email en reducer", email))
+    return async function (dispatch) {
+        try{
+            const res= await axios.put(`http://localhost:3001/user/${email}`, user);
+            console.log('llega email.data?', res.data)
+            return dispatch({
+                type: SET_USER_DATA,
+                payload: res.data
+            })
+        }catch(err){
+            console.log(err);
         }
-}
+    }
+    }
+
+    export const getUserByEmail = (email) => async dispatch => {
+        try{
+            const res= await axios(`http://localhost:3001/user/${email}`);
+            console.log('llega email.data?', res.data.userOld)
+            return dispatch({
+                type: GET_USER_DATA,
+                payload: res.user
+            })
+        }catch(err){
+            console.log(err);
+        }
+    }
+    
+
+    // console.log('llega user?', user)    
+    //     return async (dispatch) => {
+    //         try {
+    //             console.log("email", user.email, "nickname", user.nickname, "name", user.name)
+    //             const userCreate = await axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
+    //             console.log(userCreate, 'se crea usuario?');
+    //             return dispatch({
+    //                 type: CREATE_USER,
+    //                 payload: userCreate.data
+    //             })
+    //         }
+    //         catch(err) {
+    //             console.log(err, 'userCreate || Error');
+    //         }
+    //     }
 
 //====================== LOGIN ===============
 export const login = (payload)=>{
     console.log('llega user?', payload)
     return {
         type: LOGIN_USER,
-        payload: payload.email
+        payload: payload.userOld
     }
 }
 
@@ -187,22 +217,19 @@ export const loginUser= (email) => {
             }
         }
 }
-export const prueba =(user)=>{
-    return async (dispatch) => {
-    return await dispatch({
-        type: PRUEBA,
-        payload: user.nickname
-    })
-}
-}
+// export const pruebaStatusLog =(user)=>{
+//     return async (dispatch) => {
+//     return await dispatch({
+//         type: LOGIN_USER,
+//         payload: user
+//     })
+// }
+// }
 
-export const getFavorites= (id) => {
+export const getFavorites= (email) => {
         return async (dispatch) => {
             try {
-                const favorites = await axios.get(`http://localhost:3001/user/favoritesComics`, {
-                    params: {
-                        id
-                    }});
+                const favorites = await axios.get(`http://localhost:3001/user/favoritesComics/${email}`);
                 console.log(favorites.data, 'se favoriteo el user?');
                 return dispatch({
                     type: GET_FAVORITES,
@@ -233,22 +260,22 @@ export function getPlans() {
 }
 
 
-export const userEdit = (user) => {
-    return async (dispatch) => {
-        try {
-            console.log(user);
-            const editUser = await axios.put(`http://localhost:3001/user/${user.id}`, user);
-            console.log(editUser, 'se edita?');
-            return dispatch({
-                type: USER_EDIT,
-                payload: editUser.data
-            })
-        }
-        catch(err) {
-            console.log(err, 'userEdit || Error');
-        }
-    }
-}
+// export const userEdit = (user) => {
+//     return async (dispatch) => {
+//         try {
+//             console.log(user);
+//             const editUser = await axios.put(`http://localhost:3001/user/${user.id}`, user);
+//             console.log(editUser, 'se edita?');
+//             return dispatch({
+//                 type: USER_EDIT,
+//                 payload: editUser.data
+//             })
+//         }
+//         catch(err) {
+//             console.log(err, 'userEdit || Error');
+//         }
+//     }
+// }
 
 export function getAllUsers (){    
     return async function(dispatch) {
@@ -394,14 +421,11 @@ export const clearComicDetail =() => {
 
 //=================FAVORITE COMICS=================//
 
-export function postFavoriteComics(idComics, id) {          
+export function postFavoriteComics(idComics, email) {          
     return async function (dispatch) {
         try {
-            const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, id});
-            const nuevos = await axios.get(`http://localhost:3001/user/favoritesComics`,{
-                params: {
-                    id
-                }});
+            const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, email});
+            const nuevos = await axios.get(`http://localhost:3001/user/favoritesComics/${email}`);
             
             console.log("action",idComics)
             console.log("nuevos",nuevos)

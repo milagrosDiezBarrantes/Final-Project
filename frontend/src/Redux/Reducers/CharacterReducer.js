@@ -40,6 +40,7 @@ function CharactersReducer(state = initialStateOfCharacter, { type, payload }) {
                     ...state,
                     loginUser: payload
                 }
+            
             /* case GET_BY_CREATOR:
                     const data = payload === ''? copyCharacters:state.copyCharacters.filter(character => {
                     let autors = character.Creators.map(d => d.name)

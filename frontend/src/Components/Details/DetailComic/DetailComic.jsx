@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getById, postFavoriteComics,loginUser,getFavorites } from "../../../Redux/Actions/actions";
+import { getById, postFavoriteComics,user,getFavorites } from "../../../Redux/Actions/actions";
 import { getByCreators } from "../../../Redux/Actions/FilterOrderActions";
 import ReactStars from "react-rating-stars-component";
 import MyButton from "../../../Styles/MyButton";
@@ -12,12 +12,14 @@ import { Link } from "react-router-dom";
 
 import "./DetailComic.scss";
 import Loading from "../../Loading/Loading";
+import { useAuth0 } from "@auth0/auth0-react";  
+
 
 
 const DetailComic = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  const {user, isLoading, isAuthenticated} = useAuth0();
   const comics = useSelector((state) => state.ComicsReducer);
   let detail = comics.selectedComic;
   const creators = useSelector((state) => state.ComicsReducer.copyComics);
@@ -27,7 +29,7 @@ const DetailComic = () => {
 //////////////////FAVORITE//////////
 const postFavorite = useSelector((state) => state.ComicsReducer)
 // console.log(postFavorite);
-// console.log(postFavorite.loginUser.id);
+// console.log(postFavorite.user.id);
 
 
 const [input, setInput] = React.useState({})
@@ -41,13 +43,16 @@ const [input, setInput] = React.useState({})
   }, [dispatch]);
 
   useEffect(() => {
-    if(postFavorite.loginUser.id){
-      dispatch(getFavorites(postFavorite.loginUser.id))
-    }
-  }, [ postFavorite.loginUser.id]);
+    if(user.email){
+      dispatch(getFavorites(user.email))
+    }else{
+      dispatch(user(user.email))
 
-  // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
-  //   dispatch(getFavorites(postFavorite.loginUser.id));
+    }
+  }, [user]);
+
+  // if(postFavorite.user.id&&!postFavorite.favoritesComics){
+  //   dispatch(getFavorites(postFavorite.user.id));
   // }
 
  const handleClick = (e) => {
@@ -66,17 +71,17 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   console.log("arrayIds")
   console.log(arrayIds)
   
-  dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
+  dispatch(postFavoriteComics(arrayIds,user.email))
   
 } else {
   let fil= arrayIds.filter((e) => e !== postFavorite.selectedComic[0].idPrincipal)
   // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
  console.log("fil")
  console.log(fil)
- dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
+ dispatch(postFavoriteComics(fil,user.email))
   }
 
-// dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
+// dispatch(postFavoriteComics(user.email,postFavorite.favoritesComics) )
 
   };
 
