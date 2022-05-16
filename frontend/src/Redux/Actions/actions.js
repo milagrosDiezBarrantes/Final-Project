@@ -42,6 +42,8 @@ export const GET_FAVORITE_CHARACTERS = "GET_FAVORITE_CHARACTERS"
 export const POST_COMICS = "POST_COMICS"
 export const GET_CREATORS = "GET_CREATORS"
 
+export const GET_ADMIN = "GET_ADMIN"
+
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
     return async function (dispatch) {
@@ -301,6 +303,22 @@ export function setRememberMe() {
 }
 
 // ==================ADMIN POST============================
+export function getAdmin(email) {
+    console.log('llega este email??',email)
+    return async function(dispatch) {
+        try {
+            const adminLogin = await axios.get(`http://localhost:3001/user/admin/${email}`)
+            console.log('actions get admin',adminLogin)
+            return dispatch({
+                type: GET_ADMIN,
+                payload : adminLogin.data
+            })
+        } 
+        catch (error) {
+            console.log('no es el email del admin',error)
+        }
+    }
+}
 
 export function updateComic(comic) {
     return async function(dispatch) {
