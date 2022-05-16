@@ -71,10 +71,6 @@ return(
      <ImgSlider /> 
      
       <h1>HERE ARE YOUR FAVOURITES </h1>
-            
-     
-       
-      
       <h1>COMICS</h1>
       <div className="App">
         <Carousel breakPoints={breakPoints}>

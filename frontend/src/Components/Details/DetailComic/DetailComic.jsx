@@ -30,11 +30,7 @@ const DetailComic = () => {
 const postFavorite = useSelector((state) => state.ComicsReducer)
 // console.log(postFavorite);
 // console.log(postFavorite.user.id);
-
-
-const [input, setInput] = React.useState({})
-
-    
+const [input, setInput] = React.useState({})  
 ////////////////FAVORITE//////////////      
 
   useEffect(() => {
@@ -52,10 +48,8 @@ const [input, setInput] = React.useState({})
   //   dispatch(getFavorites(postFavorite.user.id));
   // }
 
- const handleClick = (e) => {
-    
+const handleClick = (e) => {   
 console.log("estrellita")
-
 let arrayIds = [...postFavorite.favoritesComics]
 arrayIds=arrayIds.map(e=>e.idPrincipal)
 console.log("arrayIds")
@@ -79,9 +73,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   }
 
 // dispatch(postFavoriteComics(user.email,postFavorite.favoritesComics) )
-
   };
-
   const img = (comic)=>{
     let img = null
     if(comic.images){
@@ -107,28 +99,30 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
               width: "30rem",
               borderRadius: "10px"}}
           />
-          <div className="randomchar">
+<div className="randomchar">
   <div className="randomchar__block">
        <br></br>
         <div className="randomchar__name" class="options">
            <p className="randomchar__name" >{detail[0].title}</p>
             <p className="randomchar__descr" class="bodytext">
-           
               {detail[0].description}
             </p>
+           
             <MyButton className="randomchar__name" variant="contained" href="/lecture/a" style={{ color: "red" }}>
                 Read
               </MyButton> <br></br><br></br> 
+              
               <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}>Serie</MyButton><br></br><br></br>
+              
               <ReactStars></ReactStars>
               <div> <br></br><br></br>
-              <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}  onClick={() => handleClick()}> Agregar a Favorito ⭐</MyButton>
+              
+              <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}  onClick={() => handleClick()}> Agregar a Favoritos ⭐</MyButton>
               </div>
         </div>
     </div>
     <div className="randomchar__block">
-     
-            <div className="randomchar__block">
+        <div className="randomchar__block">
               {!id.includes("-") && detail[0].creators?.map((creator) => (
                 <div key={creator.creatorId}>
                   <p className="randomchar__descr">{creator.creatorRole}</p>
