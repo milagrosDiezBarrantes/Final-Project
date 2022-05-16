@@ -243,30 +243,6 @@ let deleted;
 
 const getRender = async (req, res, next)=>{
   try{
-    const UltimateSpiderman = Comics.findOrCreate({where:{
-      id:01010101,
-      title:"Ultimate Spiderman",
-      img:"https://2.bp.blogspot.com/vEjA_hhJuxt1mlpg-tMN7vzNz7xeWqdv8OKCJlPy5BofEyjMRajqtbqtADDaQpOcrw7TOfCqJmJaeRxz-b5HQRzKCBdjwQnhcQk-hHp_22wts0LgmX7CYtf1hxaa_rTQzyJ83466lw=s0",
-      pages:54,
-      description:"The Spiderman In Action"
-      
-    }})
-    const LosVengadoresAcosoNuncaMas = Comics.findOrCreate({where:{
-      id:012012012012,
-      title:"Los Vengadores Acoso Nunca Mas",
-      img:"https://d20ohkaloyme4g.cloudfront.net/img/document_thumbnails/eb92952db8a4f7c44fbee7d4abf960b6/thumb_1200_1719.png",
-      pages:54,
-      description:"The Avengers Adventures"
-      
-    }})
-    const BatmanSpiderman = Comics.findOrCreate({where:{
-      id:013013013013,
-      title:"Batman & Spiderman",
-      img:"https://online.anyflip.com/zyvcm/hgvz/files/mobile/1.jpg?1606828234",
-      pages:54,
-      description:"The CrosOver whit Batman and Spiderman"
-      
-    }})
     const id = req.params.id
     const data = await Comics.findOne({where:{idPrincipal:id}})
     
