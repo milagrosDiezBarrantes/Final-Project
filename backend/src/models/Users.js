@@ -5,34 +5,38 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      primaryKey: true,
     },
-    email: { 
+    email: {
       type: DataTypes.TEXT,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     name: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     nickname: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true,
     },
     picture: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: true,
     },
     plan_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     role: {
-      type: DataTypes.ENUM('ROLE_USER', 'ROLE_ADMIN','ROLE_SUPER_ADMIN', 'ROLE_BANNED'),
-      defaultValue: 'ROLE_USER',
-      allowNull: true
-  },
+      type: DataTypes.ENUM(
+        "ROLE_USER",
+        "ROLE_ADMIN",
+        "ROLE_SUPER_ADMIN",
+        "ROLE_BANNED"
+      ),
+      defaultValue: "ROLE_USER",
+      allowNull: true,
+    },
   });
 };
-

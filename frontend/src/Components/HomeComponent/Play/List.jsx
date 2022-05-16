@@ -59,7 +59,7 @@ function List() {
             {" "}
             Obtuviste {puntuación} de {Preguntas.length}{" "}
           </span>
-          <button className="buttonList" onClick={() => (window.location.href = "/")}>
+          <button className="buttonList" onClick={() => (window.location.href = "/Playlist")}>
             {" "}
             Volver a jugar
           </button>
