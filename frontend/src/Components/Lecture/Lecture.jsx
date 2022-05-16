@@ -4,19 +4,33 @@ import { Link, useParams } from 'react-router-dom';
 import'./Lecture.css'
 import axios from 'axios';
 
+import Ultimate from "../../Img/Ultimate.pdf"
+import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
+import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
+
 import Navbar from '../Navbar/Navbar';
 
 
+
 const Lecture =  () => {
-    const {comic} = useParams
+    const {comic} = useParams()
     const [info, setInfo] = useState({})
+    const [comicc,setComicc] = useState(["Alerta Roja "])
+
     useEffect(()=>{
         setInfo(data())
+        handle()
     },[comic])
-    
-    
+    const handle = ()=>{
+        setComicc(["Alerta Roja "])
+        if (info.name === "Ultimate Spiderman") setComicc([Ultimate])
+        if (info.name === "Los Vengadores Acoso Nunca Mas") setComicc([Vengadores ])
+        if (info.name === "Batman & Spiderman") setComicc([BatmanSpiderman])
+        console.log( "INFO",info)
+    }
     const data= async()=>{
         const a = await axios.get(`http://localhost:3001/comics/render/${comic}`) //url, nombre,paginas
+        console.log("A",a)
         return a
     }
 
@@ -38,7 +52,7 @@ const Lecture =  () => {
                     </center>
                 <center className="containedSecundari">
                     <div className='Publiciti'>Publicidad</div>
-                    <RenderComic className="comic" comic={info.url} pages={info.pages}/>
+                    <RenderComic className="comic" url={BatmanSpiderman} />
                     <div className='Publiciti'>Publicidad</div>
                 </center>
             </div>
@@ -46,3 +60,28 @@ const Lecture =  () => {
 }
 
 export default Lecture;
+
+/* const UltimateSpiderman = Comics.findOrCreate({where:{
+    id:01010101,
+    title:"Ultimate Spiderman",
+    img:"https://2.bp.blogspot.com/vEjA_hhJuxt1mlpg-tMN7vzNz7xeWqdv8OKCJlPy5BofEyjMRajqtbqtADDaQpOcrw7TOfCqJmJaeRxz-b5HQRzKCBdjwQnhcQk-hHp_22wts0LgmX7CYtf1hxaa_rTQzyJ83466lw=s0",
+    pages:54,
+    description:"The Spiderman In Action"
+    
+  }})
+  const LosVengadoresAcosoNuncaMas = Comics.findOrCreate({where:{
+    id:012012012012,
+    title:"Los Vengadores Acoso Nunca Mas",
+    img:"https://d20ohkaloyme4g.cloudfront.net/img/document_thumbnails/eb92952db8a4f7c44fbee7d4abf960b6/thumb_1200_1719.png",
+    pages:54,
+    description:"The Avengers Adventures"
+    
+  }})
+  const BatmanSpiderman = Comics.findOrCreate({where:{
+    id:013013013013,
+    title:"Batman & Spiderman",
+    img:"https://online.anyflip.com/zyvcm/hgvz/files/mobile/1.jpg?1606828234",
+    pages:54,
+    description:"The CrosOver whit Batman and Spiderman"
+    
+  }}) */
