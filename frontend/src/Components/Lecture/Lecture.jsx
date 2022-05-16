@@ -23,9 +23,9 @@ const Lecture =  () => {
     },[comic])
     const handle = ()=>{
         setComicc(["Alerta Roja "])
-        if (info.name === "Ultimate Spiderman") setComicc([Ultimate])
-        if (info.name === "Los Vengadores Acoso Nunca Mas") setComicc([Vengadores ])
-        if (info.name === "Batman & Spiderman") setComicc([BatmanSpiderman])
+        if (info.title === "Ultimate Spiderman") setComicc([Ultimate])
+        if (info.title === "Los Vengadores Acoso Nunca Mas") setComicc([Vengadores ])
+        if (info.title === "Batman & Spiderman") setComicc([BatmanSpiderman])
         console.log( "INFO",info)
     }
     const data= async()=>{
@@ -40,7 +40,7 @@ const Lecture =  () => {
                 <Navbar/>
                 
                     <center className="containedPrimari">
-                        <h1>{info.name}</h1>
+                        <h1>{info.title}</h1>
                     <br/>
                      <Link to= '/homeComics'>  
                         <button className='btn'>HomeComics</button>
@@ -52,7 +52,7 @@ const Lecture =  () => {
                     </center>
                 <center className="containedSecundari">
                     <div className='Publiciti'>Publicidad</div>
-                    <RenderComic className="comic" url={BatmanSpiderman} />
+                    <RenderComic className="comic" url={comicc[0]} />
                     <div className='Publiciti'>Publicidad</div>
                 </center>
             </div>
