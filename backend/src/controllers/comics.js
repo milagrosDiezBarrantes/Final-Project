@@ -217,6 +217,29 @@ const updateComic = async (req, res, next) => {
   }
 };
 
+// const getDbComic = async (req, res, next) => {
+// //solo comics con id= null
+//   try {
+//     const comic = await Comics.findAll({
+//       idPrincipal: null,
+//     });
+//     res.status(200).json(comic);
+//   } catch (error) {
+//     next(error);
+
+
+//   }
+// }
+const deleteComic = (req, res, next) => {
+let deleted;
+  deleted = Comics.destroy({
+    where: {
+      idPrincipal: req.params.id
+    }    
+  })
+  .then(deleted ? res.status(200).send("Comic succesfully deleted") : res.status(404).send("Comic not found"))    
+};
+
 const getRender = async (req, res, next)=>{
   try{
     const {id} = req.params
@@ -237,6 +260,7 @@ module.exports = {
   getSerieById,
   createComic,
   updateComic,
-  getRender
+  getRender,
+  deleteComic
 };
 
