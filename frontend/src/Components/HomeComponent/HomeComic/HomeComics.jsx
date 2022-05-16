@@ -7,16 +7,17 @@ import { getAllComics } from "../../../Redux/Actions/actions";
 import CustomPagination from "../../Pagination/Pagination.jsx";
 // import AppBanner from "../../Publicidad/Publicidad";
 import "../../Publicidad/Publicidad";
+import Footer from "../Footer/Footer";
 
 import avengers from "../../Publicidad/imag/Avengers_logo.png";
 import avengersLogo from "../../Publicidad/imag/Avengers.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const HomeComics = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allComics = useSelector((state) => state.ComicsReducer.copyComics);
-  const userLogin = useSelector((state) => state.CharactersReducer.loginUser);
+  const userLogin = useSelector((state) => state.ComicsReducer.loginUser);
   const noRegister = 'password y/o userName incorrecto/s'
 
   console.log('USERLOGIN',userLogin)
@@ -25,8 +26,8 @@ const HomeComics = () => {
   const [, setData] = useState([]);
   const [copyComics, setCopyComics] = useState([]);
   const [currentPage, setCurrentPage] = useState();
-  const PER_PAGE = 12;
-  const start = (page - 1) * 12;
+  const PER_PAGE = 15;
+  const start = (page - 1) * PER_PAGE;
   const end = page * PER_PAGE;
   useEffect(() => {
     if(userLogin === noRegister || userLogin === undefined) {
@@ -63,8 +64,8 @@ const HomeComics = () => {
       <SearchBarComics />
       <div className="grid">
         {currentPage &&
-          currentPage.map(({ id, title, img }) => {
-            return <ComicCard key={id} id={id} title={title} image={img} />;
+          currentPage.map(({ id, title,  idPrincipal, img }) => {
+            return <ComicCard key={id} id={id} idPrincipal={idPrincipal} title={title} image={img} />;
           })}
       </div>
       <br />
@@ -85,6 +86,7 @@ const HomeComics = () => {
         </div>
         <img src={avengersLogo} alt="Avengers logo" />
       </div>
+      <Footer />
     </div>
   );
 };

@@ -5,10 +5,11 @@ const { API_KEY, HASH_KEY } = process.env;
 
 //search characters whose names start with the given string
 
-const getComics = async (req, res, next) => {
-  let comicsDb = await Comics.findAll();
-  console.log("soy el comics", comicsDb.length);
+
+const getComics = async (req, res) => {
   let comics = [];
+  let comicsDb = await Comics.findAll({order: [['updatedAt', 'DESC']]});
+  console.log("soy el comics", comicsDb.length);
   if (comicsDb.length < 6) {
     try {
       let i = 0;
@@ -33,6 +34,7 @@ const getComics = async (req, res, next) => {
         img: e.thumbnail.path + "." + e.thumbnail.extension,
         pages: e.pageCount,
         creators: e.creators.items?.map((a) => a.name),
+        description:e.description
       }));
       console.log("entre al if");
       comics.forEach(async (e) => {
@@ -44,6 +46,7 @@ const getComics = async (req, res, next) => {
               img: e.img,
               pages: e.pages,
               creators: e.creators,
+              description:e.description
             },
           });
         }
@@ -60,11 +63,20 @@ const getComics = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
+    if(req.params.id.includes("-")){
+      console.log(req.params.id.includes("-"))
+      const comic = await Comics.findOne({
+				where: {
+					idPrincipal: req.params.id,
+				},
+			});
+      return res.status(200).json([comic])
+    }
     let comic = await axios.get(
       `https://gateway.marvel.com/v1/public/comics/${req.params.id}?ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`
     );
     comic = comic.data.data.results;
-
+      console.log(comic)
     let toRender = comic.map((comic) => ({
       id: comic.id,
       title: comic.title,
@@ -174,9 +186,11 @@ const createComic = async (req, res, next) => {
         img,
         description,
         pages,
-        creators,
+        creators
       });
-    return  res.status(200).json({ message: "Comic successfully created" });
+     
+
+    return  res.status(200).json(createComic.idPrincipal);
     } else {
       res
         .status(404)
@@ -191,6 +205,7 @@ const createComic = async (req, res, next) => {
 const updateComic = async (req, res, next) => {
   const { id } = req.params;
   const { info } = req.body;
+  console.log(info);
   try {
     const comic = await Comics.findByIdAndUpdate(id, {
       $set: {
@@ -203,6 +218,42 @@ const updateComic = async (req, res, next) => {
   }
 };
 
+// const getDbComic = async (req, res, next) => {
+// //solo comics con id= null
+//   try {
+//     const comic = await Comics.findAll({
+//       idPrincipal: null,
+//     });
+//     res.status(200).json(comic);
+//   } catch (error) {
+//     next(error);
+
+
+//   }
+// }
+const deleteComic = (req, res, next) => {
+let deleted;
+  deleted = Comics.destroy({
+    where: {
+      idPrincipal: req.params.id
+    }    
+  })
+  .then(deleted ? res.status(200).send("Comic succesfully deleted") : res.status(404).send("Comic not found"))    
+};
+
+const getRender = async (req, res, next)=>{
+  try{
+    const {id} = req.params
+    const data = await Comics.findOne({where:{idPrincipal:id}})
+    
+    res.send(data).status(200)
+  }
+  catch(err){
+    console.log(err)
+    next(err)
+  }
+}
+
 module.exports = {
   getComics,
   getById,
@@ -210,5 +261,7 @@ module.exports = {
   getSerieById,
   createComic,
   updateComic,
+  getRender,
+  deleteComic
 };
 

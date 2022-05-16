@@ -15,8 +15,8 @@ export function validate(input) {
     if (input.lastName && !validLastName.test(input.lastName)) {
         error.lastName = 'Special characters or numbers are not allowed';
     }
-    if (input.userName && !validUser.test(input.userName)) {
-        error.userName = 'The user must have 4 to 10 digits';
+    if (input.nickname && !validUser.test(input.userName)) {
+        error.nickname = 'The user must have 4 to 10 digits';
     }
     if(input.age  && (input.age <= 16 || input.age >= 99) ) {
         error.age = 'Must be 16 years';
@@ -36,11 +36,14 @@ export function validate(input) {
     if(input.picture && !validPicture.test(input.picture)) {
         error.picture = 'This is not a valid URL'
     }
-    if (!input.title) {
-        error.title = 'This field cannot be empty';
-    }
+    // if (!input.title) {
+    //     error.title = 'This field cannot be empty';
+    // }
     if (!validTitle.test(input.title)) {
         error.title = 'Special characters or numbers are not allowed';
+    }
+    if(input.img && !validPicture.test(input.img)) {
+        error.img = 'This is not a valid URL'
     }
     return error;
 }

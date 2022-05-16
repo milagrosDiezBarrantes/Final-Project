@@ -1,24 +1,28 @@
-import React from 'react';
+// import React from 'react';
+// import AuthNav from './auth-nav';
+// import { useAuth0 } from '@auth0/auth0-react';
+// import axios from 'axios';
+// import { Profile } from '../Login/Profile';
 
-import AuthNav from './auth-nav';
-import { useAuth0 } from '@auth0/auth0-react';
-const Prueba = () => {
+// const Prueba = () => {
+//   const { user, isAuthenticated } = useAuth0();
+  
+//   function createUser() {
+//     console.log("email", user.email, "nickname", user.nickname, "name", user.name)
+//     axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name})
+//   }
 
-const {user} = useAuth0();
-  return (
-    <div className="nav-container mb-3">
-      <nav className="navbar navbar-expand-md navbar-light bg-light">
-        <div className="container">
-          <div className="navbar-brand logo" />
-          <AuthNav />
-{           console.log(user)
-}        
-<a href='/admin'>Acceso admin</a>
-<h1>{user?.nickname}</h1>
-</div>
-      </nav>
-    </div>
-  );
-};
+//   setTimeout(() => {
+//     isAuthenticated ? createUser() : alert('subscribite!!!') 
+//   }, 5000)
+  
+  
+//   return (
+//     <>
+//       <AuthNav />       
+//       <Profile />
+//     </>
+//   );
+// };
 
-export default Prueba;
+// export default Prueba;

@@ -1,23 +1,10 @@
-import {
-    Routes,
-    Route,
-    Link,
-    Navigate,
-    Outlet,
-  } from 'react-router-dom';
-import { useEffect } from 'react'
-import { useAuth0, useAuthContext } from '@auth0/auth0-react'
-import { useSelector, useDispatch } from 'react-redux';
-import { UserBanned } from '../Banned/UserBanned';
-import { loginUser } from '../../Redux/Actions/actions'
+import { Navigate, Outlet } from 'react-router';
+import { useAuth0  } from '@auth0/auth0-react';
 
-// const CommonRoute = ({ component: Component, rest }) => {
+const CommonRoute = ({redirectPath = '/' }) => {
+  const { user } = useAuth0();
 
-const ProtectedRoute = ({redirectPath = '/' }) => {
-
- const { user, isAuthenticated } = useAuth0();
-
- if (!user) {
+  if (!user) {
     console.log('user not logged in')
     return <Navigate to={redirectPath} replace />;
   }
@@ -44,4 +31,4 @@ const ProtectedRoute = ({redirectPath = '/' }) => {
 //     )
 // };
 
-export default ProtectedRoute;
+export default CommonRoute;

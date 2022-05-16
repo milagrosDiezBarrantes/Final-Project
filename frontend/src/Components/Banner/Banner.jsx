@@ -4,47 +4,66 @@ import logo from "../Banner/img/marvel.jpg";
 import HeaderBanner from "../Banner/Header/Header";
 import CheckoutBut from "../PayPal/PayPal";
 import { useAuth0 } from "@auth0/auth0-react";
-import FloatingActionButtons from "../../Components/Admin/Admin";
-import { useSelector, useDispatch } from "react-redux";
+// import FloatingActionButtons from "../../Components/Admin/Admin";
+import {  useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { authenticateUser } from "../../Redux/Actions/actions";
+import { authenticateUser, loginWithPopup } from "../../Redux/Actions/actions";
+// import { makeStyles } from '@material-ui/core/styles';
+// import { useNavigate } from "react-router-dom";
+// import SignupButton from "../Login/SigUp";
+// import {userCreate} from "../../Redux/Actions/actions";
+import LoginButton from "../Login/LoginButton";
+// import Fab from '@material-ui/core/Fab';
+// import AddIcon from '@material-ui/icons/Add';
+// import EditIcon from '@material-ui/icons/Edit';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import NavigationIcon from '@material-ui/icons/Navigation';
+import AuthNav from "../Login/auth-nav";
+import Navbar from "../Navbar/Navbar";
+
+
 import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import NavigationIcon from '@material-ui/icons/Navigation';
-
-
+import Landing from './Accordion/Accordion';
+import Viewer from '../../../src/Components/HomeComponent/Favorite/Viwers' 
+import Accordion from '../Banner/Accordion/Accordion'
 
 const Login = (props) => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+  const { loginWithPopup, loginWithRedirect, user , logout,isAuthenticated  } = useAuth0();
   const dispatch = useDispatch();
-  const authorized = useSelector((state) => state.ComicsReducer.authenticated);
+console.log('está authenticado?', isAuthenticated)
+  // const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     '& > *': {
+  //       margin: theme.spacing(1),
+  //     },
+  //   },
+  //   extendedIcon: {
+  //     marginRight: theme.spacing(1),
+  //   },
+  // }));
 
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    extendedIcon: {
-      marginRight: theme.spacing(1),
-    },
-  }));
-
-
-  useEffect(() => {
-    dispatch(authenticateUser());
+  // useEffect(() => {
+  //   dispatch(authenticateUser());
     
-  },[]);
-  const classes = useStyles();
+  // },[dispatch]);
+
+
+
+  const handleLogin =async () => {
+  let response= await  loginWithPopup();
+  console.log(user)
+  console.log(isAuthenticated)
+  }
+  const handleLogout =async () => {
+  let response= await  logout();
+  console.log(user)
+  }
 
   return (
-    isAuthenticated && authorized ? (
-      <>
-      <Nav>
+    <>
+      {/* <Nav>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
@@ -55,24 +74,47 @@ const Login = (props) => {
       </Nav>
       <HeaderBanner />
     </>
-  ) : (
-    <>
+  ) : ( */}
+    
       
-      <Nav>
-        <a href="/">
+      <Nav>      
+       <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <a href="/formLoginUser">
+        <AuthNav/>
+
+        {isAuthenticated ? (
+        <Navbar/>
+): (null)}
+      {/*    <button
+          className="btn btn-primary btn-block"
+          onClick={ handleLogin }
+        >
+          LOG IN
+
+        </button> */}
+
+   
+        <button
+          className="btn btn-primary btn-block"
+          onClick={ handleLogout }
+        >
+          LOG IN
+        </button>
+
+        {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
-        </a>
-        <a href="/formSubscribe">
-          <LogIn>SUSCRIBE NOW</LogIn>
-        </a>
+        </a> */}
+        {/* <button
+          className="btn btn-primary btn-block"
+          onClick={ handleSignUp }
+    >
+      SIGN UP
+    </button> */}
       </Nav>
-      
       <HeaderBanner />
       <Cont>
-        <div class="overlay">
+        <div class="">
           <ContainerPlan>
             <div className="">
               <Pricing>
@@ -83,9 +125,12 @@ const Login = (props) => {
                 </Caption>
                 <Caption>Save money with this bundle.</Caption>
                 <PriceValue>ARS 995/month (final)* </PriceValue>
-                <SignUp target="_blank" href="/formUser">
-                  <CheckoutBut totalPrice={7} items={1} totalItems={1} />
-                </SignUp>
+                <Caption> CONTRACT NOW!</Caption>
+                
+                <SignUp  target="_blank"  href="/formUser" >
+                <CheckoutBut totalPrice={7} items={1} totalItems={1} />
+              </SignUp>
+             
               </Pricing>
             </div>{" "}
             <div></div>
@@ -95,10 +140,13 @@ const Login = (props) => {
               <Caption>
                 Access endless Marvel Comics World for a new price!{" "}
               </Caption>
-              <PriceValue>ARS 3.850/year (final)*</PriceValue>
-              <SignUp target="_blank" href="/formUser">
+              <PriceValue>ARS 3.850/year (final)* </PriceValue>
+              <Caption> CONTRACT NOW!</Caption>
+              
+                <SignUp  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
               </SignUp>
+             
             </Pricing>
           </ContainerPlan>
         </div>
@@ -108,33 +156,62 @@ const Login = (props) => {
           <Content>
             <CTA>
               <SignUp target="_blank" href="/AboutUs">
-                Tell me more
+                <h3>More Information </h3>
               </SignUp>
               <Description>
-                Get Primer Access to Raya and the last Dragon for an additional
+              <h5> Get Primer Access to Raya and the last Dragon for an additional
                 fee with a Marvel + Subscription. As of 04/05/2022, the price of
-                Marvel + and The Marvel Bundle will increase by $1.
+                Marvel + and The Marvel Bundle will increase by $1.</h5>
               </Description>
             </CTA>
             <BackgroundImg />
           </Content>
         </Container>
-       
+       <Cot> 
+         <Viewer />
+          <Accordion />
+       </Cot>
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        
         <a href="/admin">
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
-      
       </div>
     </>
-  ));
+  );
 };
 
+const Cot = styled.section`
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  text-align: center;
+  background-image: url("");
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+`;
 
-
+const First = styled.div`
+display: flex;
+align-items: center;
+border-bottom: 8px solid #222;
+width: 100vw;
+height: 30rem;
+`;
+const Const = styled.div`
+  display: block;
+  color: #f8f8f8;
+  position: relative;
+  top: 40px;
+  min-height: 95vh;
+  padding: 5px calc(3.5vw + 5px);
+  overflow-x: hidden;
+  background-size: cover;
+`;
 const Cont = styled.div`
   display: block;
   color: #f8f8f8;
@@ -147,7 +224,6 @@ const Cont = styled.div`
     no-repeat center center fixed;
   background-size: cover;
 `;
-
 const Caption = styled.div`
   display: flex;
   height: 40px;
@@ -358,16 +434,14 @@ const Description = styled.p`
   font-weight: 1000;
   letter-spacing: 1.3px;
   line-height: 1.5;
-  border-radius: 10px;
   display: inline-block;
 
   position: relative;
   width: 500px;
   height: 65px;
   background: #;
-  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0px 10px 10px;
-`;
+
+  `;
 
 export default Login;

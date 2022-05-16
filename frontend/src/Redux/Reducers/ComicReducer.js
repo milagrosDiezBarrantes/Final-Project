@@ -9,14 +9,18 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
-  ADD_FAVORITE,
+  // ADD_FAVORITE,
   POST_FAVORITE_COMICS,
   POST_FAVORITE_CHARACTERS,
   GET_FAVORITES,
   LOGIN_USER,
   GET_PLANS,
-  PRUEBA
-
+  CREATE_USER,
+  POST_COMICS,
+  GET_CREATORS,
+  GET_USER_DATA,
+  SET_USER_DATA,
+  
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -31,11 +35,23 @@ const initialState = {
   loginUser: {},
   copyUsers: [],
   authenticated: false,
-  filter:false,
+  filter: false,
   favoritesComics: [],
   favoritesCharacters: [],
   plans: [],
-  prueba:{},
+  user: {
+    nickname: null,
+    name: null,
+    picture: null,
+    updated_at: null,
+    email: null,
+    email_verified: null,
+    sub: null,
+    plan_id: null,
+    payment: false,
+    role: null,
+  },
+  creators: [],
 };
 
 function ComicsReducer(state = initialState, { type, payload }) {
@@ -64,28 +80,24 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: payload,
       };
     case FILT_BY_CHARACTER:
-      
       return {
         ...state,
         copyComics: [],
       };
     case FILT_BY_CREATOR:
-      console.log(payload)
-     
+      console.log(payload);
+
       return {
         ...state,
-        filter :true,
+        filter: true,
         copyComics: payload,
-        
       };
     case GET_PLANS:
       return {
         ...state,
-        plans :payload
+        plans: payload,
       };
-
-   
-      case AUTHENTICATED:
+    case AUTHENTICATED:
       return {
         ...state,
         authenticated: payload,
@@ -110,53 +122,71 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyComics: [...deletedComic],
       };
-    case LOGIN_USER:      
+    case LOGIN_USER:
       return {
         ...state,
-        loginUser: payload,
+        user: payload,
+        
+      };
+    case CREATE_USER:
+      return {
+        ...state,
+        user: payload,
       };
     case FILT_BY_PLAN:
       const backUp = [...state.users];
-      const filtered = backUp.filter((user) => Number(user.plan_id )=== payload);
+      const filtered = backUp.filter(
+        (user) => Number(user.plan_id) === payload
+      );
       return {
         ...state,
         copyUsers: filtered,
-      };  
-
-
+      };
     case CLEAR_COMICS:
-        return{
-          ...state,
-          copyComics: [],
-        }
+      return {
+        ...state,
+        copyComics: [],
+      };
     case CLEAR_DETAIL:
-        return{
-          ...state,
-          selectedComic: [],
-        }
+      return {
+        ...state,
+        selectedComic: [],
+      };
     case GET_FAVORITES:
-        return{
-          ...state,
-          favoritesComics:payload ,
-        }
-        case POST_FAVORITE_COMICS:
-          console.log("reducer",payload)
-          return{
-            ...state,
-            favoritesComics:payload ,
-          } 
-            case POST_FAVORITE_CHARACTERS:
-              return{...state
-              }
+      return {
+        ...state,
+        favoritesComics: payload,
+      };
+    case POST_FAVORITE_COMICS:
+      console.log("reducer", payload);
+      return {
+        ...state,
+        favoritesComics: payload,
+      };
+    case POST_FAVORITE_CHARACTERS:
+      return { ...state };
+    case GET_USER_DATA:
+        return {
+        ...state,
+        user:payload
+      }
+      case SET_USER_DATA:
+      return {
+        ...state,
+        user: payload.user,
+      }
+    case POST_COMICS:
+      return {
+        ...state,
+        selectedComic: payload,
+      };
+    case GET_CREATORS:
+      return {
+        ...state,
+        creators: payload,
+      };
 
-              case PRUEBA:
-                return {
-                  ...state,
-                  prueba: payload,
-                }
-
-
-       /* case REMOVE_FAVORITE:
+    /* case REMOVE_FAVORITE:
             var remove = state.favorites.filter(e => e.id !== payload)
             return{
                 ...state,

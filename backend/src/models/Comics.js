@@ -11,8 +11,7 @@ module.exports = (sequelize) => {
       type:DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
       primaryKey: true,
-      allowNull:false
-
+      unique: true
     },
     id: {
       type: DataTypes.INTEGER,
@@ -21,9 +20,14 @@ module.exports = (sequelize) => {
     img: {
       type: DataTypes.TEXT,
     },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     pages: { 
       type: DataTypes.INTEGER,
       allowNull: true,
+      default:0
     },
     banner: { 
       type: DataTypes.BOOLEAN,
@@ -34,6 +38,11 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       defaultValue: [],
       allowNull: true,
+    },
+    url:{
+      type:DataTypes.TEXT,
+      defaultValue:"Not Have PDF",
+      allowNull:true
     }
   });
 };
