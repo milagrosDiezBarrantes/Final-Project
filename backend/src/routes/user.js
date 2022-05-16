@@ -185,8 +185,7 @@ router.get("/validates", async (req, res) => {
 
   return res.send(user);
 });
-
-//NO CAMBIER NADA SIN PREGUNTAR PORQUE SE ROMPE EL LOGUEO _/\_
+//NO CAMBIAR NADA SIN PREGUNTAR PORQUE SE ROMPE EL LOGUEO _/\_
 router.post("/login", async (req, res, next) => {
   let { email, name, nickname } = req.body;
   console.log(req.body);

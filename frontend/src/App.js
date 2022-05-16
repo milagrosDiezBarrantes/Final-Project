@@ -86,8 +86,8 @@ function App() {
             <Route element={ <PrivateRoute /> }> 
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
-            <Route path="/admin/updateComic" element={<FormUpdateComic />} />
-            </Route> 
+            <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
+            </Route>  
           </Routes>
           {/* </Container> */}
         </div>
