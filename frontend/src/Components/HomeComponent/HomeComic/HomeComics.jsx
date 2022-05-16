@@ -30,9 +30,9 @@ const HomeComics = () => {
   const start = (page - 1) * PER_PAGE;
   const end = page * PER_PAGE;
   useEffect(() => {
-    if(userLogin === noRegister || userLogin === undefined) {
-      navigate('/formLoginUser')
-    }
+    // if(userLogin === noRegister || userLogin === undefined) {
+    //   navigate('/formLoginUser')
+    // }
     console.log(userLogin)
     dispatch(getAllComics());
     setPage(1);
@@ -40,9 +40,9 @@ const HomeComics = () => {
 
 
   useEffect(() => {
-    if(userLogin === noRegister || userLogin === undefined) {
-      navigate('/formLoginUser')
-    }
+    // if(userLogin === noRegister || userLogin === undefined) {
+    //   navigate('/formLoginUser')
+    // }
     console.log(userLogin)
     setData(allComics);
     setCopyComics(allComics);

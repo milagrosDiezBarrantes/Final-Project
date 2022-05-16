@@ -58,7 +58,7 @@ function App() {
             <Route exact path="/" element={<Banner />} />
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
-            <Route element ={ <CommonRoute /> } >
+            
               <Route path='/profile' element={<Profile />} /> 
               <Route path='/AboutUs' element={<AboutUs />} /> 
               <Route path='/profile/edit' element={<FormEditUser />} />
@@ -79,6 +79,8 @@ function App() {
                 element={<DetailCharacter />}
               />
               <Route path="/Playlist" element={<Playlist />} />
+
+            <Route element ={ <CommonRoute /> } >
               <Route exact path="/lecture/:comic" element={<Lecture />} />
             </Route>
 
@@ -98,6 +100,7 @@ function App() {
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
             <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
             <Route path="/admin/updateUser/:id" element={<FormEditUser />} />
+            <Route path="/homeComics" element={<HomeComics />} />
             </Route>  
           </Routes>
           {/* </Container> */}

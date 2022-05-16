@@ -91,7 +91,6 @@ console.log('está authenticado?', isAuthenticated)
           onClick={ handleLogin }
         >
           LOG IN
-
         </button> */}
 
 
@@ -119,7 +118,6 @@ console.log('está authenticado?', isAuthenticated)
                 <Caption>Save money with this bundle.</Caption>
                 <PriceValue>ARS 995/month (final)* </PriceValue>
                 <Caption> CONTRACT NOW!</Caption>
-                
                 <SignUp  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
               </SignUp>
@@ -135,11 +133,9 @@ console.log('está authenticado?', isAuthenticated)
               </Caption>
               <PriceValue>ARS 3.850/year (final)* </PriceValue>
               <Caption> CONTRACT NOW!</Caption>
-              
                 <SignUp  target="_blank"  href="/formUser" >
                 <CheckoutBut totalPrice={7} items={1} totalItems={1} />
               </SignUp>
-             
             </Pricing>
           </ContainerPlan>
         </div>

@@ -11,6 +11,7 @@ import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import { useAuth0 } from "@auth0/auth0-react";  
 import { useEffect } from 'react';
+import Footer from "../Footer/Footer";
 
 
 const breakPoints = [
@@ -19,7 +20,6 @@ const breakPoints = [
   { width: 768, itemsToShow: 3 },
   { width: 1200, itemsToShow: 4 },
 ];
-
 
 const Favorite = () => {
   
@@ -56,66 +56,57 @@ const Favorite = () => {
 let recomended = [];
 if(copyComics.length>0){
 
-  
   for (let i = 0; i < 10; i++) {
     recomended.push(copyComics[Math.floor(Math.random()*copyComics.length)])
-    
   }
   
 }
 return(
- <>
+  <>
+ 
    { /* dataUser.role === "USER"?{  */ }
-    <>
+  
      <NavBar/>
      <ImgSlider /> 
-     
       <h1>HERE ARE YOUR FAVOURITES </h1>
-            
-     
-       
-      
-      <h1>COMICS</h1>
+   <seccion>
+      <h2>COMICS</h2>
       <div className="App">
         <Carousel breakPoints={breakPoints}>
-        <div className="grid">
-        {favoritesComics.length>0 &&
+                  {favoritesComics.length>0 &&
           favoritesComics.map(({ id, title, img }) => {
-            return <ComicCard key={id} id={id} title={title} image={img} />;
-          })}
-      </div>
+            return <ComicCard key={id} id={id} title={title} image={img} />;  })}
         </Carousel>
       </div>
-      <h1>CHARACTERS</h1>
+    </seccion>
+
+     <seccion>
+      <h2>CHARACTERS</h2>
       <div className="App">
         <Carousel breakPoints={breakPoints}>
-        <div className="grid">
         {favoritesCharacters.length>0 &&
           favoritesCharacters.map(({ id, title,  idPrincipal, img }) => {
-            return <ComicCard key={id} id={id} idPrincipal={idPrincipal} title={title} image={img} />;
-          })}
-      </div>
+            return <ComicCard key={id} id={id} idPrincipal={idPrincipal} title={title} image={img} />;})}
         </Carousel>
       </div>
-    <>
-    <div>
+      </seccion>
 
-      <h1>RECOMENDED FOR U ❤  </h1>
-    </div>
-    <div className="App">
+      <seccion>
+      <h2>RECOMENDED FOR U ❤</h2>
+      <div className="App">
         <Carousel breakPoints={breakPoints}>
-        <div className="grid">
         {recomended && recomended.length>0 &&
           recomended.map(({ id, title,  idPrincipal, img }) => {
             return <ComicCard key={id} id={id} idPrincipal={idPrincipal} title={title} image={img} />;
           })}
-      </div>
         </Carousel>
       </div>
-     </>
-   </> 
+      </seccion>
+      <Footer />
+    
     { /* }: { } */  }
-  </> 
+
+  </>  
   )
 }
 
