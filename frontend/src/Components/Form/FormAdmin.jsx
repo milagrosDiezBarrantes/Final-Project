@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { validate } from "../../Functions/validacionesForm/validationForm";
 import { Container, Form, Button} from 'semantic-ui-react';
-import { useNavigate} from 'react-router'; 
 import '../Form/Form.css';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getAdmin } from "../../Redux/Actions/actions";
+import { useMemo } from "react";
 
 const FormAdmin = () => {
     const [error, setError] = useState({});
-    const navigate= useNavigate(); 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [input, setInput] = useState({
         email: "",
@@ -16,6 +20,13 @@ const FormAdmin = () => {
     useEffect(() => {
         setError(validate(input))
     }, [input])
+
+    const disable = useMemo(() => {
+        if(error.password) {
+            return true;
+        }
+        return false;
+    }, [error]);
 
     function handleChange(e) {
         e.preventDefault();
@@ -28,14 +39,16 @@ const FormAdmin = () => {
             [e.target.name]: e.target.value
         }))
     }
-
+    
     function handleSubmit(e) {
         e.preventDefault();
-        setInput({
-            email: "",
-            password: "",
-        })
-        navigate('/dashboardsAdmin');
+        if( input.password === "admin123" ) {
+            dispatch(getAdmin(input.email));
+        }
+        else {
+            navigate('/admin')
+        }
+        navigate('/admin')
     }
 
     return (
@@ -52,10 +65,10 @@ const FormAdmin = () => {
             <h1>LOGIN ADMIN</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
-                    <label>Usuario/ Email*:</label>
+                    <label>Email*:</label>
                     <input
                         type="email"
-                        placeholder="UserName or Email"
+                        placeholder="Email"
                         name="email"
                         onChange={handleChange}
                     />
@@ -71,11 +84,13 @@ const FormAdmin = () => {
                     />
                     {error.password && <p className='err-color'> {error.password} </p>}
                 </div>
+                <br/>
                 <div>
                     <Button
+                    disabled= {disable}
                         type="submit"
-                        onChange={handleChange}>
-                        CONECTAR
+                    >
+                        Register
                     </Button>
                 </div>
             </Form>

@@ -33,6 +33,9 @@ export function validate(input) {
     if (input.password !== input.password2) {
         error.password2 = 'Both passwords must be the same';
     }
+    if (input.password && input.password !== 'admin123') {
+        error.password = 'This password is wrong';
+    }
     if(input.picture && !validPicture.test(input.picture)) {
         error.picture = 'This is not a valid URL'
     }

@@ -20,7 +20,7 @@ import {
   GET_CREATORS,
   GET_USER_DATA,
   SET_USER_DATA,
-  
+  GET_ADMIN
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -107,6 +107,12 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         users: payload,
         copyUsers: payload,
+      };
+    case GET_ADMIN:
+        console.log('admin reducer', payload)
+        return {
+          ...state,
+          user: payload,
       };
     case UPDATE_COMIC:
       const comicEdit = state.Comics.findIndex((c) => c.id === type.payload.id);

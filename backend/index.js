@@ -2,7 +2,7 @@ const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
 conn.sync({ force: false }).then(() => {
-	server.listen(process.env.PORT, () => {
+	server.listen(3001, () => {
 		console.log("%s listening at 3001");
 	});
 });
@@ -11,6 +11,7 @@ const { Plans, Users } = require("../backend/src/db");
 var superAdmin = Users.findOrCreate({
 	where: {
 		email: "soyadmin@henry.com",
+		password: 'admin123',
 		name: "Henry Hero",
 		nickname: "Henry-Hero",
 		role: "ROLE_SUPER_ADMIN",

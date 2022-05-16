@@ -94,13 +94,6 @@ console.log('está authenticado?', isAuthenticated)
 
         </button> */}
 
-   
-        <button
-          className="btn btn-primary btn-block"
-          onClick={ handleLogout }
-        >
-          LOG IN
-        </button>
 
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
@@ -174,7 +167,7 @@ console.log('está authenticado?', isAuthenticated)
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <a href="/admin">
+        <a href="/formAdmin">
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
       </div>
