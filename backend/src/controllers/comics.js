@@ -205,6 +205,7 @@ const createComic = async (req, res, next) => {
 const updateComic = async (req, res, next) => {
   const { id } = req.params;
   const { info } = req.body;
+  console.log(info);
   try {
     const comic = await Comics.findByIdAndUpdate(id, {
       $set: {
