@@ -48,6 +48,7 @@ const Carousel = styled(Slider)`
   & > button{
     opacity: 0;
     transition: opacity .2s;
+    color: rgb(134, 4, 4);
 
     &:hover{
       opacity: 1;
@@ -57,12 +58,14 @@ const Carousel = styled(Slider)`
   ul li button{
     &::before{
       font-size: 1rem;
-      color: rgb(150, 158, 171);
+      color: rgb(134, 4, 4);
     }
   }
 
   li.slick-active button::before{
     color: white;
+    color: rgb(134, 4, 4);
+
   }
 
   .slick-list{
