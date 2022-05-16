@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
         name,
         nickname,
       },
+      
     });
     // let ElPlan = await Plans.findAll({
     // 	where: { name: plan },
@@ -184,8 +185,7 @@ router.get("/validates", async (req, res) => {
 
   return res.send(user);
 });
-
-//NO CAMBIER NADA SIN PREGUNTAR PORQUE SE ROMPE EL LOGUEO _/\_
+//NO CAMBIAR NADA SIN PREGUNTAR PORQUE SE ROMPE EL LOGUEO _/\_
 router.post("/login", async (req, res, next) => {
   let { email, name, nickname } = req.body;
   console.log(req.body);
@@ -264,6 +264,37 @@ router.put("/:email", async (req, res, next) => {
   }
 });
 
+
+
+// ADMIN
+
+router.get('/admin/:email', async (req, res, next) => {
+	const { email } = req.params;
+	try {
+		const userAdmin = await Users.findOne({
+			where:{
+				email: email,
+				role: 'ROLE_SUPER_ADMIN', 
+			}})
+			if(userAdmin) {
+				return res.status(200).json(
+					userAdmin
+				)
+			}
+			else {
+				return res.status(404).json({
+					message: 'User not found',
+					error
+				})
+			}
+		}
+	catch(error) {
+		res.status(404).json({
+			message: 'User not found',
+			error
+		})
+	}
+})
 // router.get("/byid", async (req, res) => {
 // 	// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 // 	const { id } = req.body;

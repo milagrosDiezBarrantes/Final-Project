@@ -92,6 +92,8 @@ console.log('está authenticado?', isAuthenticated)
         >
           LOG IN
         </button> */}
+
+
         {/* <a href="/login">
           <LogIn>LOG IN</LogIn>
         </a> */}
@@ -161,7 +163,7 @@ console.log('está authenticado?', isAuthenticated)
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <a href="/admin">
+        <a href="/formAdmin">
           <LogIn>ACCESS ADMIN</LogIn>
         </a>
       </div>

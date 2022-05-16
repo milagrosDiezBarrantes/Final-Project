@@ -1,34 +1,31 @@
-import { Navigate, Outlet } from 'react-router';
-import { useAuth0  } from '@auth0/auth0-react';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router';
 
-const CommonRoute = ({redirectPath = '/' }) => {
-  const { user } = useAuth0();
+import Loading from '../Loading/Loading';
 
-  if (!user) {
-    console.log('user not logged in')
-    return <Navigate to={redirectPath} replace />;
-  }
-  
-  console.log('user logged in')
-    return <Outlet/>;
-  };
+const CommonRoute = ({ redirectPath = '/' }) => {
+    //const dispatch = useDispatch();
+    
+    const userAdmin = useSelector(state => state.ComicsReducer.user)
+    console.log(userAdmin)
+    
+    setTimeout(() => {
+        <Loading />
+    }, 5000)
 
-    // const userRedux = useSelector(state => state.CharactersReducer.loginUser)
-    // const role = userRedux.user ? userRedux.user[0]?.role : null
+        return (
+            <>
+                {
+                    userAdmin?.role === "ROLE_PRIME"
+                    ? <Outlet/> : 
+                    <p> You are not allowed to perform this action.</p> 
+                    
+                } 
+                
+            </>
+            
+        ) 
+    };
 
-    // useEffect(() => {
-    //     if(user) {
-    //         dispatch(loginUser(user?.email))
-    //     }
-    // }, [dispatch, user])
-
-
-    // return (
-    // <Route {...rest}> {role !== "ROLE_BANNED"
-    //     ? <Component />
-    //     : <UserBanned/>} 
-    // </Route>
-//     )
-// };
 
 export default CommonRoute;

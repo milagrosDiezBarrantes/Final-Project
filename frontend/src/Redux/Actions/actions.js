@@ -41,6 +41,9 @@ export const GET_FAVORITE_CHARACTERS = "GET_FAVORITE_CHARACTERS"
 
 export const POST_COMICS = "POST_COMICS"
 export const GET_CREATORS = "GET_CREATORS"
+export const GET_CREATED_COMICS = " GET_CREATED_COMICS"
+
+export const GET_ADMIN = "GET_ADMIN"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -301,6 +304,22 @@ export function setRememberMe() {
 }
 
 // ==================ADMIN POST============================
+export function getAdmin(email) {
+    console.log('llega este email??',email)
+    return async function(dispatch) {
+        try {
+            const adminLogin = await axios.get(`http://localhost:3001/user/admin/${email}`)
+            console.log('actions get admin',adminLogin)
+            return dispatch({
+                type: GET_ADMIN,
+                payload : adminLogin.data
+            })
+        } 
+        catch (error) {
+            console.log('no es el email del admin',error)
+        }
+    }
+}
 
 export function updateComic(comic) {
     return async function(dispatch) {
@@ -310,7 +329,7 @@ export function updateComic(comic) {
                 description: comic.description,
                 image: comic.image,
             };
-            const editComic = await axios.put(`http://localhost:3001/comics/${comic.id}`, comicE);
+            const editComic = await axios.put(`http://localhost:3001/comics/update/${comic.id}`, comicE);
             return dispatch ({
                 type: UPDATE_COMIC,
                 payload: editComic.data
@@ -344,9 +363,11 @@ export function postComic(comic) {
 }
 
 export const deleteComic = (id) => {
+    console.log(id)
     return async (dispatch) => {
         try {
-            const comicDelete= await axios.delete(`http://localhost:3001/comics/${id}`);
+            const comicDelete= await axios.delete(`http://localhost:3001/comics/delete/${id}`);
+            
             return dispatch({
                 type: "DELETE_COMIC",
                 payload: comicDelete.data.remove,
@@ -358,10 +379,7 @@ export const deleteComic = (id) => {
     }
 };
 
-
 export const filterByPlan = (plan) =>{
-    console.log(plan)
-    console.log('llega plan?', Number(plan))
     return{
         type: FILT_BY_PLAN,
         payload: Number(plan)
@@ -373,8 +391,6 @@ export const sortBy = (payload) =>{
         type: SORT,
         payload: payload
     }
-
-
 }
 export const getCreators = () =>{
     return async (dispatch) => {

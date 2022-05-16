@@ -34,6 +34,8 @@ import Loading from "./Components/Loading/Loading";
 
 // LOGIN
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
+import PrivateRoute from "./Components/PermissionRoute/PrivateRoute";
+import CommonRoute from "./Components/PermissionRoute/CommonRoute";
 
 function App() {
   const { user, isLoading, isAuthenticated } = useAuth0();
@@ -55,36 +57,37 @@ function App() {
             <Route exact path="/" element={<Banner />} />
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
-          {/* <Route element ={ <CommonRoute user={ user } /> } >  */}
-            <Route path='/profile' element={<Profile />} /> 
-            <Route path='/AboutUs' element={<AboutUs />} /> 
-            <Route path='/profile/edit' element={<FormEditUser />} />
-            <Route path="/favorite" element={<Favorite />} />
-            <Route path="/homeCharacter" element={<HomeCharacter />} />
-            <Route path="/homeComics" element={<HomeComics />} />
-            <Route
-              path="/homeComics/DetailComic/:id"
-              element={<DetailComic />}
-            />
-            <Route
-              path="/homeCharacter/DetailCharacter/:id"
-              element={<DetailCharacter />}
-            />
-            <Route
-              path="/homeComics/DetailCharacter/:id"
-              element={<DetailCharacter />}
-            />
-            <Route path="/Playlist" element={<Playlist />} />
-            <Route exact path="/lecture/:comic" element={<Lecture />} />
-            {/* </Route> */}
+            <Route element ={ <CommonRoute /> } >
+              <Route path='/profile' element={<Profile />} /> 
+              <Route path='/AboutUs' element={<AboutUs />} /> 
+              <Route path='/profile/edit' element={<FormEditUser />} />
+              <Route path="/favorite" element={<Favorite />} />
+              <Route path="/homeCharacter" element={<HomeCharacter />} />
+              <Route path="/homeComics" element={<HomeComics />} />
+            
+              <Route
+                path="/homeComics/DetailComic/:id"
+                element={<DetailComic />}
+              />
+              <Route
+                path="/homeCharacter/DetailCharacter/:id"
+                element={<DetailCharacter />}
+              />
+              <Route
+                path="/homeComics/DetailCharacter/:id"
+                element={<DetailCharacter />}
+              />
+              <Route path="/Playlist" element={<Playlist />} />
+              <Route exact path="/lecture/:comic" element={<Lecture />} />
+            </Route>
 
-            {/* ADMIN */}
-            {/* <Route element={ <PrivateRoute user={ user }  />}> */}
+            {/* ADMIN */} 
             <Route path="/formAdmin" element={<FormAdmin />} />
+            <Route element={ <PrivateRoute /> }> 
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
-            <Route path="/admin/updateComic" element={<FormUpdateComic />} />
-            {/* </Route>  */}
+            <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
+            </Route>  
           </Routes>
           {/* </Container> */}
         </div>
