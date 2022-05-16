@@ -311,7 +311,7 @@ export function updateComic(comic) {
                 description: comic.description,
                 image: comic.image,
             };
-            const editComic = await axios.put(`http://localhost:3001/comics/${comic.id}`, comicE);
+            const editComic = await axios.put(`http://localhost:3001/comics/update/${comic.id}`, comicE);
             return dispatch ({
                 type: UPDATE_COMIC,
                 payload: editComic.data

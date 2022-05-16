@@ -62,7 +62,6 @@ const PostAdmin = () => {
         ...input,
         creators: input.creators.filter((e) => e !== event.target.value),
       });
-
       console.log(input);
     }
   };
@@ -181,7 +180,7 @@ const PostAdmin = () => {
             // disabled={disable}
             type="submit"
           >
-            Create Post
+            Upload new Comic
           </Button>
         </div>
       </Form>
