@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'semantic-ui-react';
 import { validate } from '../../Functions/validacionesForm/validationForm';
-import { createUser, getPlans } from '../../Redux/Actions/actions';
+import { getPlans } from '../../Redux/Actions/actions';
 
 const FormSubscribeUser = () => {
 
@@ -55,7 +55,7 @@ const FormSubscribeUser = () => {
     function handleSubmit(e) {
         e.preventDefault();
         console.log(input)
-        dispatch(createUser(input));
+       // dispatch(createUser(input));
         setInput({
             firstName: '',
             lastName: '',

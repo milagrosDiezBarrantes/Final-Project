@@ -28,14 +28,19 @@ const Admin = () => {
 
   const usersList = useSelector((state) => state);
   let users = usersList.ComicsReducer.copyUsers;
+  let usersAll = usersList.ComicsReducer.users;
+  const [statsNewUsers, setStatsNewUsers] = React.useState(0);
+  const [statsNewpayedUsers, setStatsNewpayedUsers] = React.useState(0);
+  const [statsNoRenewalUsers, setStatsNoRenewalUsers] = React.useState(0);
+  const [statsInvoicingUsers, setStatsInvoicingUsers] = React.useState(0);
 
   const [showUsers, setShowUsers] = React.useState(false);
   let comics = useSelector((state) => state.ComicsReducer.copyComics);
-
   const [showComics, setShowComics] = React.useState(false);
   const createdComics = comics.filter((comic) => comic.id === null);
   console.log("created comics here! ", createdComics);
 
+  
   const options = [
     { key: "standar", text: "Monthly", value: 1 },
     { key: "premium", text: "Annual", value: 2 },
@@ -71,6 +76,7 @@ const Admin = () => {
      dispatch(updateComic(id));
    }
 
+
   return (
     <div>
       <Button className="button">
@@ -80,40 +86,23 @@ const Admin = () => {
       </Button>
 
       <h1>Welcome to your dashboard</h1>
-
-      <div style={{ margin: "1rem", width: "40%" }}>
-        <h1>Users</h1>
-        <select
-          onChange={handleFilter}
-          style={{
-            fontSize: "22px",
-            margin: "1rem",
-            borderRadius: "20px",
-            borderColor: "orange",
-            boxShadow: "10px, white",
-            width: "40%",
-          }}
-        >
-          <option value="all">Filter by Plan</option>
-          <option value="1">Monthly</option>
-          <option value="2">Annual</option>
-          <option value="">Canceled</option>
-        </select>
-        <button
-          onClick={handleAll}
-          style={{
-            fontSize: "20px",
-            margin: "1rem",
-            width: "90%",
-            borderRadius: "20px",
-            borderColor: "orange",
-            boxShadow: "10px, white",
-          }}
-        >
-          {" "}
-          Show all users{" "}
-        </button>
+      
+      <div>
+        <Button animated="fade" color="orange">
+          <Button.Content visible>New users</Button.Content>
+          <Button.Content hidden>3</Button.Content>
+        </Button>
+        <Button animated="fade" color="red">
+          <Button.Content visible>Lost users</Button.Content>
+          <Button.Content hidden>0</Button.Content>
+        </Button>
+        <Button animated="fade" color="green">
+          <Button.Content visible>Billing this Month</Button.Content>
+          <Button.Content hidden>$ 21</Button.Content>
+        </Button>
       </div>
+
+      {/*  */}
 
       <br />
       <br />
@@ -123,7 +112,49 @@ const Admin = () => {
       <br />
 
       <div>
-        <Table celled options={options} onChange={handleFilter}>
+      <h2 style={{ margin: "4rem", width: "40%" }} class="ui teal header">USERS MENU</h2>
+   
+      <div >
+
+      <select
+          onChange={handleFilter}
+          style={{
+            fontSize: "22px",
+            margin: "1rem",
+            borderRadius: "20px",
+            
+            boxShadow: "10px, white",
+            width: "40%",
+            padding: "1rem",
+          
+          }}
+        >
+          <option value="all">Filter by Plan</option>
+          <option value="1">Monthly</option>
+          <option value="2">Annual</option>
+          <option value="">Canceled</option>
+        </select>
+
+        </div>
+      <Button
+          onClick={handleAll}
+          style={{
+            fontSize: "20px",
+            margin: "1rem",
+            width: "30%",
+            borderRadius: "20px",
+            borderColor: "orange",
+            boxShadow: "10px, white",
+          }}
+        >
+         Show all users
+        </Button>       
+        <Fab color="primary" aria-label="add">
+          <AddIcon onClick={() => history(`/oz`)} />
+        </Fab>
+
+        <Table style={{margin: "1rem",
+            width: "70%"}}  celled options={options} onChange={handleFilter}>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Fullname</Table.HeaderCell>
@@ -147,12 +178,11 @@ const Admin = () => {
                     <Table.Cell>{user.userName}</Table.Cell>
                     <Table.Cell>{user.plan_id}</Table.Cell>
                     <Table.Cell>
-                      {" "}
-                      Edit:
-                      <button onClick={() => history("/falta esta ruta!!!")}>
-                        {" "}
-                        User profile
-                      </button>
+                    <Fab color="secondary" aria-label="edit">
+                        <EditIcon
+                          onClick={() => history(`/admin/updateUser/${user.id}`)}
+                        />
+                      </Fab>
                     </Table.Cell>
                   </Table.Row>
                 );
@@ -163,26 +193,6 @@ const Admin = () => {
       <br />
       <br />
       <br />
-
-      <div>
-        <Button animated="fade" color="orange">
-          <Button.Content visible>New users</Button.Content>
-          <Button.Content hidden>3</Button.Content>
-        </Button>
-        <Button animated="fade" color="red">
-          <Button.Content visible>Lost users</Button.Content>
-          <Button.Content hidden>0</Button.Content>
-        </Button>
-        <Button animated="fade" color="green">
-          <Button.Content visible>Billing this Month</Button.Content>
-          <Button.Content hidden>$ 21</Button.Content>
-        </Button>
-      </div>
-
-      <br />
-      <br />
-      <br />
-
 
       <div>
       <h2 style={{ margin: "4rem", width: "40%" }} class="ui teal header">COMICS MENU</h2>
@@ -218,7 +228,7 @@ const Admin = () => {
           </Table.Header>
 
           {!createdComics
-            ? "Not comics yet"
+            ? alert("No comics yet")
             : showComics &&
               createdComics?.map((comic) => {
                 return (
@@ -247,6 +257,9 @@ const Admin = () => {
               })}
         </Table>
       </div>
+
+
+
     </div>
   );
 };

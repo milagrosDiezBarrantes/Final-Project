@@ -18,6 +18,7 @@ import Admin from "./Components/Admin/Admin";
 import PostAdmin from "./Components/PostAdmin/PostAdmin";
 import FormUpdateComic from "./Components/FormUpdateComic/FormUpdateComic";
 import FormAdmin from "./Components/Form/FormAdmin";
+import FormSubscribeUser from "./Components/FormSubscribeUser/FormSubscribeUser";
 
 //USER
 import Profile from "./Components/Login/Profile";
@@ -79,11 +80,13 @@ function App() {
             {/* </Route> */}
 
             {/* ADMIN */}
-            {/* <Route element={ <PrivateRoute user={ user }  />}> */}
             <Route path="/formAdmin" element={<FormAdmin />} />
+            {/* <Route element={ <PrivateRoute user={ user }  />}> */}
+            
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
             <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
+            <Route path="/admin/updateUser/:id" element={<FormEditUser />} />
             {/* </Route>  */}
           </Routes>
           {/* </Container> */}

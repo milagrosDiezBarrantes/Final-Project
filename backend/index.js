@@ -7,47 +7,47 @@ conn.sync({ force: false }).then(() => {
 	});
 });
 /*hola que hace */
-// const { Plans, Users } = require("../backend/src/db");
-// var superAdmin = Users.findOrCreate({
-// 	where: {
-// 		email: "soyadmin@henry.com",
-// 		name: "Henry Hero",
-// 		nickname: "Henry-Hero",
-// 		role: "ROLE_SUPER_ADMIN",
-// 	},
-// });
-// var plan1 = Plans.findOrCreate({
-// 	where: {
-// 		name: "monthly",
-// 		amount: 7,
-// 	},
-// });
+const { Plans, Users } = require("../backend/src/db");
+var superAdmin = Users.findOrCreate({
+	where: {
+		email: "soyadmin@henry.com",
+		name: "Henry Hero",
+		nickname: "Henry-Hero",
+		role: "ROLE_SUPER_ADMIN",
+	},
+});
+var plan1 = Plans.findOrCreate({
+	where: {
+		name: "monthly",
+		amount: 7,
+	},
+});
 
-// var plan2 = Plans.findOrCreate({
-// 	where: {
-// 		name: "annual",
-// 		amount: 70,
-// 	},
-// });
-// var plan3 = Plans.findOrCreate({
-// 	where: {
-// 		name: "admin",
-// 		amount: 0,
-// 	},
-// });
-// var plan4 = Plans.findOrCreate({
-// 	where: {
-// 		name: "superAdmin",
-// 		amount: 0,
-// 	},
-// });
+var plan2 = Plans.findOrCreate({
+	where: {
+		name: "annual",
+		amount: 70,
+	},
+});
+var plan3 = Plans.findOrCreate({
+	where: {
+		name: "admin",
+		amount: 0,
+	},
+});
+var plan4 = Plans.findOrCreate({
+	where: {
+		name: "superAdmin",
+		amount: 0,
+	},
+});
 
-// let planes = Plans.findAll();
+let planes = Plans.findAll();
 
-// Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
-// 	.then((res) => {
-// 		console.log([plan1, superAdmin]);
-// 	})
-// 	.then((res) => {
-// 		console.log(planes.Promise);
-// 	});//54465
+Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
+	.then((res) => {
+		console.log([plan1, superAdmin]);
+	})
+	.then((res) => {
+		console.log(planes.Promise);
+	});//54465
