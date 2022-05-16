@@ -6,8 +6,7 @@ export default styled.div`
   align-items: center;
   height: 250px;
   width: 100%;
-  background-color: #00008B;
-  color: #fff;
+  background-color: #9c0101;
   margin: 0 15px;
   font-size: 4em;
 `;
