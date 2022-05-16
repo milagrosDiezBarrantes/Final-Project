@@ -1,33 +1,40 @@
-import { Navigate, Outlet } from 'react-router';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router';
+import Loading from '../Loading/Loading';
 
 const PrivateRoute = ({ redirectPath = '/' }) => {
-    const { user } = useAuth0();
-
-    // const userRedux = useSelector(state => state.CharactersReducer.loginUser)
-    // const role = userRedux.user ? userRedux.user[0]?.role : null
-
-    if (!user) {
-        console.log('user not logged in')
-        return <Navigate to={redirectPath} replace />;
-    }
+    //const dispatch = useDispatch();
+    const userAdmin = useSelector(state => state.ComicsReducer.user)
     
-    console.log('user logged in')
-        return <Outlet/>;
+    console.log(userAdmin)
+    // useEffect(() => {
+    //     dispatch(getAdmin())
+    // }, [dispatch])
+    // setTimeout(() => {
+    //     <Loading />
+    // }, 5000)
+
+        return (
+            <>
+                {
+                    // pageCurrent?.length <= 0 ? 
+    // (<img src={loading} alt='loading'/>) 
+    // : typeof pageCurrent[0] === 'object' ? 
+    // (
+        !userAdmin ? 
+        <p> You are not allowed to perform this action.</p>
+        :
+                    userAdmin?.role === "ROLE_SUPER_ADMIN"
+                    ? <Outlet/> : 
+                    <>
+                        <Loading />
+                    </>
+                } 
+                
+            </>
+            
+        ) 
     };
 
-//     return (
-//     <Route {...rest}> {role === "ROLE_ADMIN"
-//         ? <Component />
-//         : 
-//         <div>
-//             <h5>You are not allowed to perform this action</h5>
-//             <NavLink to='/' >
-//                 <button>Back</button>
-//             </NavLink>
-//         </div>} 
-//     </Route>
-//     )
-// };
 
 export default PrivateRoute;

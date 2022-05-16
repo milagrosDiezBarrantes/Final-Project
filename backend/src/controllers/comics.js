@@ -205,6 +205,7 @@ const createComic = async (req, res, next) => {
 const updateComic = async (req, res, next) => {
   const { id } = req.params;
   const { info } = req.body;
+  console.log(info);
   try {
     const comic = await Comics.findByIdAndUpdate(id, {
       $set: {
@@ -215,6 +216,29 @@ const updateComic = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+// const getDbComic = async (req, res, next) => {
+// //solo comics con id= null
+//   try {
+//     const comic = await Comics.findAll({
+//       idPrincipal: null,
+//     });
+//     res.status(200).json(comic);
+//   } catch (error) {
+//     next(error);
+
+
+//   }
+// }
+const deleteComic = (req, res, next) => {
+let deleted;
+  deleted = Comics.destroy({
+    where: {
+      idPrincipal: req.params.id
+    }    
+  })
+  .then(deleted ? res.status(200).send("Comic succesfully deleted") : res.status(404).send("Comic not found"))    
 };
 
 const getRender = async (req, res, next)=>{
@@ -261,6 +285,7 @@ module.exports = {
   getSerieById,
   createComic,
   updateComic,
-  getRender
+  getRender,
+  deleteComic
 };
 
