@@ -83,7 +83,7 @@ function App() {
             <Route path="/formAdmin" element={<FormAdmin />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
-            <Route path="/admin/updateComic" element={<FormUpdateComic />} />
+            <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
             {/* </Route>  */}
           </Routes>
           {/* </Container> */}

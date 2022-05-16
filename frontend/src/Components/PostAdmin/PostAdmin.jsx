@@ -62,7 +62,6 @@ const PostAdmin = () => {
         ...input,
         creators: input.creators.filter((e) => e !== event.target.value),
       });
-
       console.log(input);
     }
   };
@@ -99,13 +98,13 @@ const PostAdmin = () => {
         <Button>Go back</Button>
       </Link>
 
-      <h1 style={{ textAlign: "center" }}> Create Post</h1>
+      <h1 style={{ textAlign: "center" }}> Create new comic</h1>
       <Form style={{ width: "30%" }} onSubmit={handleSubmit}>
         <div>
           <label>Title:</label>
           <input
             type="text"
-            placeholder="Title comic"
+            placeholder="Comic title"
             name="title"
             value={input.title}
             onChange={handleChange}
@@ -129,7 +128,7 @@ const PostAdmin = () => {
             name="img"
             value={input.img}
             onChange={handleChange}
-            placeholder="Image Comic"
+            placeholder="Comic image"
           />
           {error.picture && <p style={{ color: "red" }}> {error.picture}</p>}
         </div>
@@ -181,7 +180,7 @@ const PostAdmin = () => {
             // disabled={disable}
             type="submit"
           >
-            Create Post
+            Upload new Comic
           </Button>
         </div>
       </Form>

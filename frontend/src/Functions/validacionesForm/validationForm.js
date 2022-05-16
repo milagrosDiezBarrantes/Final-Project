@@ -36,11 +36,14 @@ export function validate(input) {
     if(input.picture && !validPicture.test(input.picture)) {
         error.picture = 'This is not a valid URL'
     }
-    if (!input.title) {
-        error.title = 'This field cannot be empty';
-    }
+    // if (!input.title) {
+    //     error.title = 'This field cannot be empty';
+    // }
     if (!validTitle.test(input.title)) {
         error.title = 'Special characters or numbers are not allowed';
+    }
+    if(input.img && !validPicture.test(input.img)) {
+        error.img = 'This is not a valid URL'
     }
     return error;
 }

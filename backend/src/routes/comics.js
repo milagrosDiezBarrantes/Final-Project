@@ -4,7 +4,7 @@ const { Router } = require('express');
 const router = Router();
 
 
-const { getComics, getById, getSerieById, createComic, updateComic,getRender } = require('../controllers/comics.js');
+const { getComics, getById, getSerieById, createComic, updateComic,getRender,deleteComic } = require('../controllers/comics.js');
 
 
 
@@ -15,6 +15,7 @@ router.get("/render/:id", getRender)
 
 router.post('/create', createComic)
 router.put('/update/:id', updateComic);
-
+router.delete('/delete/:id', deleteComic);
+//router.get('/comicDb', getDbComic);
 
 module.exports = router;
