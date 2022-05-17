@@ -19,8 +19,8 @@ ReactDOM.render(
 			<Auth0Provider
 				domain="dev-8dlcilpo.us.auth0.com"
 				clientId="dNHRYGKTvuFiLFozoy5y7vUawIXvbpZc"
-				redirectUri="http://localhost:3000/homeComics"
-				redirect_uri="http://localhost:3000/homeComics"
+				redirectUri={`${axios.defaults.baseURL}`}
+				redirect_uri={`${axios.defaults.baseURL}`}
 			>
 				<App />
 			</Auth0Provider>

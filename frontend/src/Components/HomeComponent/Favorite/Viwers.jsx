@@ -47,7 +47,7 @@ const Container = styled.div`
   padding: 30px 0 26px;
   display: grid;
   grid-gap: 20px;
-  background-color: #000;
+  background-color: #9c0101;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   @media screen and (max-width: 768px){
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -86,7 +86,7 @@ const Wrap = styled.div`
 
   &:hover{
     transform: scale(1.05);
-    border: 3px solid rgba(249, 249, 249, .8);
+    background-color: #9c0101;
 
     video{
       opacity: 1;

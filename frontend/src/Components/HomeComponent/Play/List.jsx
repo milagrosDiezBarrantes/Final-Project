@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import "./Preguntas.css";
 import "./images/captain.jpg"
 import backgroundImageList from "./backgroundImageList";
+import Footer from "../Footer/Footer";
+import AppBanner from "../../Publicidad/Publicidad";
 
 
 function List() {
@@ -115,7 +117,8 @@ function List() {
     );
 
   return (
-    <div className="List">
+  <> 
+   <div className="List">
      <NavBar />
     <div className="preguntas">
       <div className="lado-izquierdo">
@@ -160,8 +163,12 @@ function List() {
       </div>
     </div>
     </div>
-     
+    <AppBanner/>
+  <Footer />
+  </>
   );
+ 
+
 }
 
 export default List;

@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getById, updateComic } from "../../Redux/Actions/actions";
 import { Container, Form, Button } from "semantic-ui-react";
 import { FaTimesCircle } from "react-icons/fa";
 import AlertPopUp from "../AlertPop/AlertPop";
 import { validate } from "../../Functions/validacionesForm/validationForm";
-import { Link } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 
-const FormUpdateComic = ({ handleClose, id }) => {
+const FormUpdateComic = () => {
+
+  const {id} = useParams();
   const dispatch = useDispatch();
-  const comic = useState((state) => state.ComicsReducer.copyComics);
+  const comic = useSelector((state) => state.ComicsReducer.selectedComic);
 
-  console.log(comic);
-  const [comicDetail, setcomicDetail] = useState({
-    title: "",
-    img: "",
-    description: "",
-    pages: "",
-    creators: [],
+  const [comicDetail, setcomicDetail] = React.useState({
+    title: comic.title,
+    img:comic.img,
+    description: comic.description,
+    pages: comic.pages,
   });
 
-  const [error, setError] = useState({});
+  const [error, setError] = React.useState({});
   const { title, description, image } = comicDetail;
 
   useEffect(() => {
@@ -39,13 +39,13 @@ const FormUpdateComic = ({ handleClose, id }) => {
     setError(validate({ ...comicDetail, [name]: value }));
   };
 
-  const [activeAlertUpgrade, setActiveAlertUpgrade] = useState(false);
+  const [activeAlertUpgrade, setActiveAlertUpgrade] = React.useState(false);
 
   const handleOpenAlertUpgrade = () => {
     setActiveAlertUpgrade(!activeAlertUpgrade);
   };
 
-  const [successForm, setSuccessForm] = useState(false);
+  const [successForm, setSuccessForm] = React.useState(false);
   const handleUpgradeSuccesForm = () => {
     setSuccessForm(!successForm);
   };
@@ -66,6 +66,7 @@ const FormUpdateComic = ({ handleClose, id }) => {
       });
 
       // handleClose();
+      //{()=>history(`/admin/updateComic/${comic.idPrincipal}`)}
       // handleUpgradeSuccesForm()
     }
   }, [dispatch, id, successForm]);
@@ -89,7 +90,6 @@ const FormUpdateComic = ({ handleClose, id }) => {
       <Form style={{ width: "30%" }} onSubmit={handleSubmit}>
         <Button
           onClick={() => {
-            handleClose();
             setcomicDetail({
               name: "",
               description: "",
