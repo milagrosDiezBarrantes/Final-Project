@@ -83,10 +83,12 @@ export class Code extends React.Component {
         <h1>Comunicate con nosotros</h1>
                 <h2>marvel.plus@marvel.com<br></br></h2>
                 <span className="reserverd-rights">©2022 MARVEL</span>
+
                <br></br>
                 <Link to='/' ><button  className="btn btn-primary btn-block">VOLVER A LA 
                 HOME </button></Link>
                  
+
       </Cod>
     );
   }
