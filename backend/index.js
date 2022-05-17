@@ -7,6 +7,7 @@ conn.sync({ force: false }).then(() => {
 	});
 });
 /*hola que hace */
+
 const { Plans, Users } = require("../backend/src/db");
 var superAdmin = Users.findOrCreate({
 	where: {

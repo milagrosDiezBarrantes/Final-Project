@@ -63,7 +63,7 @@ const Loading = () => {
         <div></div>
         <div></div>
       </div>
-      <h2>Cargando...</h2>
+      <h2>Loading...</h2>
     </LoadingStyle>
   );
 };

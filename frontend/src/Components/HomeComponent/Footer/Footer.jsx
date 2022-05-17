@@ -16,7 +16,6 @@ return (
                 </li>
             </ul>
         </div>
-       
     </footer>
   )
 } 

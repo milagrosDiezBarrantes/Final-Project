@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 const Cod = styled.div`
   z-index:-10;
@@ -10,7 +13,7 @@ const Cod = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: url('https://i.redd.it/78sv3hevebqy.jpg');
+  background-image: url('https://data.whicdn.com/images/337237172/original.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -61,6 +64,9 @@ const OverlayImage = styled.div`
 
 `;
 
+
+
+
 export class Code extends React.Component {
   constructor(props) {
     super(props);
@@ -68,17 +74,44 @@ export class Code extends React.Component {
     this.state = { Buzz: false };
   }
 
-  handleClick() {
-    this.setState(prevState => ({ Buzz: !prevState.Buzz }));
-  }
-
   render() {
     return (
       <Cod>
         <OverlayImage Buzz={this.state.Buzz} />
-        <HeadingTop>NOTHING WILL STAND IN OUR WAY</HeadingTop>
+        <HeadingTop>NADA ES IMPOSIBLE <br></br> HACEMOS QUE LAS COSAS SUCEDAN</HeadingTop>
+        <h1>Comunicate con nosotros</h1>
+                <h2>marvel.plus@marvel.com<br></br></h2>
+                <span className="reserverd-rights">©2022 MARVEL</span>
+               <a href="/"> <LogIn>VOLVER A LA 
+                HOME</LogIn> <br></br></a>
+                <button  href="/home" className="btn btn-primary btn-block">VOLVER A LA 
+                HOME </button> 
+                <Box sx={{ '& > :not(style)': { m: 1 } }}>
+              <Fab variant="extended" size="medium" color="primary" aria-label="add">
+                <NavigationIcon sx={{ mr: 1 }}  href="/"   label="" />
+                VOLVER A LA HOME
+              </Fab>
+      
+    </Box>        
       </Cod>
     );
   }
 }
 export default Code;
+
+
+const LogIn = styled.a`
+  border: 2px solid #f9f9f9;
+  border-radius: 7px;
+  margin: 0 20px;
+  padding: 7px 15px;
+  letter-spacing: 1.2px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f9f9f9;
+    color: #000;
+  }
+`;

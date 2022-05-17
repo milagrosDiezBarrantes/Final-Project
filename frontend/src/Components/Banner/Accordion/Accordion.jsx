@@ -24,7 +24,7 @@ const Container = styled.div`
 
 const Wrap = styled.div`
   background: #272727;
-  color: #fff;
+  color: #ffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +43,7 @@ const Wrap = styled.div`
 
 const Dropdown = styled.div`
   background: #1c1c1c;
-  color: #7b0606;
+  color: #f00;
   width: 100%;
   height: 100px;
   display: flex;

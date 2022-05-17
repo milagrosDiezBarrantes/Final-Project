@@ -140,26 +140,28 @@ console.log('está authenticado?', isAuthenticated)
           </ContainerPlan>
         </div>
       </Cont>
+      <Cot> 
+         <Viewer />
+          <Accordion />
+       </Cot>
       <div>
         <Container>
           <Content>
             <CTA>
-              <SignUp target="_blank" href="/AboutUs">
-                <h3>More Information </h3>
-              </SignUp>
-              <Description>
-              <h5> Get Primer Access to Raya and the last Dragon for an additional
-                fee with a Marvel + Subscription. As of 04/05/2022, the price of
-                Marvel + and The Marvel Bundle will increase by $1.</h5>
-              </Description>
+            <a href="/AboutUs">
+          <LogIn> MORE INFORMATION ABOUT US</LogIn>
+              </a>
+            <Description>
+              <br></br>
+              <h5> To consult about our services, Digital agency. We provide digital solutions </h5>
+            </Description>
             </CTA>
             <BackgroundImg />
           </Content>
         </Container>
-       <Cot> 
-         <Viewer />
-          <Accordion />
-       </Cot>
+       
+
+       
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
