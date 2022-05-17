@@ -54,6 +54,7 @@ function App() {
         <div className="app">
           {/* <Container> */}
           <Routes>
+          <Route exact path="/lectures/:comic" element={<Lecture />} />
             <Route exact path="/" element={<Banner />} />
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}

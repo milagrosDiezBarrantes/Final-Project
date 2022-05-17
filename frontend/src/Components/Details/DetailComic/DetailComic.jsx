@@ -122,7 +122,7 @@ const DetailComic = () => {
               <MyButton
                 className="randomchar__name"
                 variant="contained"
-                href="/lecture/a"
+                href={`/lectures/${postFavorite.selectedComic[0].idPrincipal}`}
                 style={{ color: "red" }}
               >
                 Read
