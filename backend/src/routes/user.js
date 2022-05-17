@@ -199,6 +199,7 @@ router.post("/login", async (req, res, next) => {
     },
   });
   if (userOld) {
+    //MAIL: USTED HA INICIADO SESION..
     await main(email)
     return res.status(200).json({ userOld });
   }
@@ -209,7 +210,10 @@ router.post("/login", async (req, res, next) => {
       nickname: nickname,
       name: name,
     });
+    //MAIL: SE HA CREADO UN PERFIL CON SU EMAIL...
+    await main(email)
     return res.status(201).json({ user });
+    
   } catch (error) {
     console.log(error);
     next(error);
