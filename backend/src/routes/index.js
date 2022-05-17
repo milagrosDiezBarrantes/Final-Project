@@ -10,6 +10,7 @@ const plans = require('./plans.js');
 // const mercado = require('./mercado.js');
 const paypal = require('./paypal.js');
 const mailer = require('./mailer.js');
+const mailerPaypal = require('./mailerPaypal.js');
 
 
 const router = Router();
@@ -23,6 +24,7 @@ router.use('/user', user);
 router.use('/plans', plans);
 router.use('/creators', creators);
 router.use('/mailer', mailer);
+router.use('/mailerPaypal', mailerPaypal);
 
 
 // router.use('/mercado', mercado);

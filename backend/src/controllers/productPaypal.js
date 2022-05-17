@@ -153,9 +153,9 @@ nexDay= new Date(nexDay)
         res.json({ data: response.body })
     })
 }
-const success = (req, res) => {
+const success = async (req, res) => {
 	//EMAIL AL USUARIO SUCCESS PAGO EXITOSO...  email_address: "customer@example.com",
-	await main(email)
+	await main(email_address)
         res.json("gracias vuelva pronto")
     
 }

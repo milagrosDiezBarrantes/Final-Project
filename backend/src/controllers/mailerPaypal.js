@@ -1,6 +1,4 @@
 const nodemailer = require('nodemailer');
-// const path = require('path');
-// const fs = require('fs');
 
 // router.post('/', (req, res) => {
     async function main(info) {
@@ -18,7 +16,7 @@ const nodemailer = require('nodemailer');
     let options = await transporter.sendMail({
         from: 'comicmarvel02@gmail.com', // sender address
         to: info, // list of receivers
-        subject: "Welcome to Marvel Plus",
+        subject: "Welcome to Combo Marvel Plus",
         // Subject line
         html: `<div class="es-wrapper-color" style="background-color:#333333"><!--[if gte mso 9]>
         <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
@@ -180,15 +178,6 @@ const nodemailer = require('nodemailer');
 </div>  ` // html body
     });
     return options.messageId;
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if(error) {
-    //         return (error.message);
-    //     }
-    //     else {
-    //         console.log("Email enviado")
-    //         return (req.body);
-    //     }
-    // })
 }
 
 module.exports = main
