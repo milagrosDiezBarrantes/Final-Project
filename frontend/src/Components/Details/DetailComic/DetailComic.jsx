@@ -71,6 +71,8 @@ const DetailComic = () => {
       console.log(arrayIds);
 
       dispatch(postFavoriteComics(arrayIds, user.email));
+      alert('¡Agregado a Favorito con Éxito!')
+
     } else {
       let fil = arrayIds.filter(
         (e) => e !== postFavorite.selectedComic[0].idPrincipal
@@ -79,6 +81,8 @@ const DetailComic = () => {
       console.log("fil");
       console.log(fil);
       dispatch(postFavoriteComics(fil, user.email));
+      alert('Eliminado de Favorito!')
+
     }
 
     // dispatch(postFavoriteComics(user.email,postFavorite.favoritesComics) )
