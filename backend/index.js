@@ -9,7 +9,7 @@ conn.sync({ force: false }).then(() => {
 /*hola que hace */
 
 setTimeout(() => {
-	const { Plans, Users } = require("../backend/src/db");
+	const { Plans, Users } = require("./src/db.js");
 
 var superAdmin = Users.findOrCreate({
 	where: {
