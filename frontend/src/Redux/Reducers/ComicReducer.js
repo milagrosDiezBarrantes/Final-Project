@@ -20,7 +20,8 @@ import {
   GET_CREATORS,
   GET_USER_DATA,
   SET_USER_DATA,
-  GET_ADMIN
+  GET_ADMIN,
+  FILT_BY_STATS,
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,
@@ -148,6 +149,18 @@ function ComicsReducer(state = initialState, { type, payload }) {
         ...state,
         copyUsers: filtered,
       };
+    case FILT_BY_STATS:
+     console.log('EN EL REDUCER FILTER ADMIN, ', payload)
+      const backUp2 = state.users;
+      const all = backUp2;
+      const filtered2 = payload === '' ? all : backUp2.filter((user)=> (new Date(user.createdAt).getMonth()+1) === payload);
+      console.log('filtered2', filtered2)
+      return {
+        ...state,
+        copyUsers: filtered2,
+      };
+      
+      
     case CLEAR_COMICS:
       return {
         ...state,

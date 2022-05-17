@@ -8,7 +8,7 @@ import {
   filterByPlan,
   getAllComics,
   deleteComic,
-  updateComic,
+  filterByStats,
 } from "../../Redux/Actions/actions";
 import { Link } from "react-router-dom";
 import { Table, Button } from "semantic-ui-react";
@@ -17,30 +17,26 @@ import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
+import { FaBookReader } from 'react-icons/fa';
 
 const Admin = () => {
   //CRUD COMICS
-  const user = useAuth0();
-  console.log(user);
 
   const history = useNavigate();
   const dispatch = useDispatch();
 
   const usersList = useSelector((state) => state);
   let users = usersList.ComicsReducer.copyUsers;
-  let usersAll = usersList.ComicsReducer.users;
+ // let usersAll = usersList.ComicsReducer.copyUsers;
   const [statsNewUsers, setStatsNewUsers] = React.useState(0);
-  const [statsNewpayedUsers, setStatsNewpayedUsers] = React.useState(0);
-  const [statsNoRenewalUsers, setStatsNoRenewalUsers] = React.useState(0);
-  const [statsInvoicingUsers, setStatsInvoicingUsers] = React.useState(0);
+  const [, setStatsNewpayedUsers] = React.useState(0);
+  const [statsInvoicing, setStatsInvoicing] = React.useState(0);
 
   const [showUsers, setShowUsers] = React.useState(false);
   let comics = useSelector((state) => state.ComicsReducer.copyComics);
   const [showComics, setShowComics] = React.useState(false);
   const createdComics = comics.filter((comic) => comic.id === null);
-  console.log("created comics here! ", createdComics);
 
-  
   const options = [
     { key: "standar", text: "Monthly", value: 1 },
     { key: "premium", text: "Annual", value: 2 },
@@ -49,8 +45,12 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getAllUsers());
+  
     dispatch(getAllComics());
+    
   }, [dispatch]);
+
+ 
 
   const handleFilter = (e) => {
     e.preventDefault();
@@ -59,6 +59,7 @@ const Admin = () => {
   };
   const handleAll = (e) => {
     e.preventDefault();
+    dispatch(getAllUsers())
     setShowUsers(!showUsers);
   };
 
@@ -66,77 +67,166 @@ const Admin = () => {
     e.preventDefault();
     setShowComics(!showComics);
   };
-  
+
   const handleDeleteComic = (id) => {
     dispatch(deleteComic(id));
     setShowComics(!showComics);
-   }
+  };
 
-   const handleUpdateComic = (id) => {
-     dispatch(updateComic(id));
-   }
 
+  const invoice = () => {
+    let planArr = users.filter((user) => user.plan_id);
+    for (let i = 0; i < planArr.length; i++) {
+      if (planArr[i].plan_id === 1) {
+        setStatsInvoicing(statsInvoicing + 7);
+      } else if (planArr[i].plan_id === 2) {
+        setStatsInvoicing(statsInvoicing + 70);
+      }
+    }
+    return statsInvoicing;
+  };
+
+  const handleFilterMonth = (e) => {
+    e.preventDefault();
+    dispatch(filterByStats(e.target.value));
+    setStatsNewUsers(users.length);
+  console.log('en el habndler filter!!!!', users , e.target.value)  
+    setStatsNewpayedUsers(
+      users.filter((user) => user.role === "ROLE_PRIME").length
+    );
+    setStatsInvoicing(invoice());
+  };
 
   return (
     <div>
+    
       <Button className="button">
         <Link to="/">
-          <span>HOME</span>
+          HOME
         </Link>
       </Button>
 
-      <h1>Welcome to your dashboard</h1>
-      
+      <h1 style={{ margin: "4rem", width: "40%" }} class="ui teal header">
+        Welcome to your DASHBOARD
+      </h1>
       <div>
-        <Button animated="fade" color="orange">
-          <Button.Content visible>New users</Button.Content>
-          <Button.Content hidden>3</Button.Content>
-        </Button>
-        <Button animated="fade" color="red">
-          <Button.Content visible>Lost users</Button.Content>
-          <Button.Content hidden>0</Button.Content>
-        </Button>
-        <Button animated="fade" color="green">
-          <Button.Content visible>Billing this Month</Button.Content>
-          <Button.Content hidden>$ 21</Button.Content>
-        </Button>
-      </div>
-
-      {/*  */}
-
-      <br />
-      <br />
-      <Button onClick={() => history("/editProfile")}>Edit user profile</Button>
-      <Button onClick={() => console.log("banned")}>Banned</Button>
-      <br />
-      <br />
-
-      <div>
-      <h2 style={{ margin: "4rem", width: "40%" }} class="ui teal header">USERS MENU</h2>
-   
-      <div >
-
-      <select
-          onChange={handleFilter}
+        <Button
+          animated="fade"
+          color="orange"
           style={{
             fontSize: "22px",
             margin: "1rem",
             borderRadius: "20px",
-            
+
+            boxShadow: "10px, white",
+            width: "20%",
+            padding: "1rem",
+          }}
+        >
+          <Button.Content visible style={{ fontSize: "22px" }}>
+            New users
+          </Button.Content>
+          <Button.Content hidden style={{ fontSize: "22px" }}>
+            {statsNewUsers}
+          </Button.Content>
+        </Button>
+        <Button
+          animated="fade"
+          color="pink"
+          style={{
+            fontSize: "22px",
+            margin: "1rem",
+            borderRadius: "20px",
+
+            boxShadow: "10px, white",
+            width: "20%",
+            padding: "1rem",
+          }}
+        >
+          <Button.Content style={{ fontSize: "22px" }} visible>
+            New payed users
+          </Button.Content>
+          <Button.Content style={{ fontSize: "22px" }} hidden>
+            {setStatsNewpayedUsers}
+          </Button.Content>
+        </Button>
+        <Button
+          animated="fade"
+          color="green"
+          style={{
+            fontSize: "22px",
+            margin: "1rem",
+            borderRadius: "20px",
+
+            boxShadow: "10px, white",
+            width: "20%",
+            padding: "1rem",
+          }}
+        >
+          <Button.Content style={{ fontSize: "22px" }} visible>
+            Billing this Month
+          </Button.Content>
+          <Button.Content style={{ fontSize: "22px" }} hidden>
+          
+            $ {statsInvoicing}
+          </Button.Content>
+        </Button>
+      </div>
+
+      <div>
+        <select
+          onChange={handleFilterMonth}
+          style={{
+            fontSize: "22px",
+            margin: "1rem",
+            borderRadius: "20px",
+
             boxShadow: "10px, white",
             width: "40%",
             padding: "1rem",
-          
           }}
         >
-          <option value="all">Filter by Plan</option>
-          <option value="1">Monthly</option>
-          <option value="2">Annual</option>
-          <option value="">Canceled</option>
+          <option value="all">Filter by Month</option>
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">Agost</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
         </select>
+      </div>
 
+      <div>
+        <h2 style={{ margin: "4rem", width: "40%" }} class="ui teal header">
+          USERS MENU
+        </h2>
+
+        <div>
+          <select
+            onChange={handleFilter}
+            style={{
+              fontSize: "22px",
+              margin: "1rem",
+              borderRadius: "20px",
+
+              boxShadow: "10px, white",
+              width: "40%",
+              padding: "1rem",
+            }}
+          >
+            <option value="all">Filter by Plan</option>
+            <option value="1">Monthly</option>
+            <option value="2">Annual</option>
+            <option value="">Canceled</option>
+          </select>
         </div>
-      <Button
+        <Button
           onClick={handleAll}
           style={{
             fontSize: "20px",
@@ -147,19 +237,23 @@ const Admin = () => {
             boxShadow: "10px, white",
           }}
         >
-         Show all users
-        </Button>       
-        <Fab color="primary" aria-label="add">
+          Show all users
+        </Button>
+        {/* <Fab color="primary" aria-label="add">
           <AddIcon onClick={() => history(`/oz`)} />
-        </Fab>
+        </Fab> */}
 
-        <Table style={{margin: "1rem",
-            width: "70%"}}  celled options={options} onChange={handleFilter}>
+        <Table
+          style={{ margin: "1rem", width: "70%" }}
+          celled
+          options={options}
+          onChange={handleFilter}
+        >
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Fullname</Table.HeaderCell>
+              <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>email</Table.HeaderCell>
-              <Table.HeaderCell>Username</Table.HeaderCell>
+              <Table.HeaderCell>Role</Table.HeaderCell>
               <Table.HeaderCell>Plan</Table.HeaderCell>
               <Table.HeaderCell>Id</Table.HeaderCell>
             </Table.Row>
@@ -170,17 +264,19 @@ const Admin = () => {
             : showUsers &&
               users?.map((user) => {
                 return (
-                  <Table.Row>
+                  <Table.Row  key ={user.id}>
                     <Table.Cell>
-                      {user.firstName + " " + user.lastName}
+                      {user.name}
                     </Table.Cell>
                     <Table.Cell>{user.email}</Table.Cell>
-                    <Table.Cell>{user.userName}</Table.Cell>
+                    <Table.Cell>{user.role}</Table.Cell>
                     <Table.Cell>{user.plan_id}</Table.Cell>
                     <Table.Cell>
-                    <Fab color="secondary" aria-label="edit">
+                      <Fab color="secondary" aria-label="edit">
                         <EditIcon
-                          onClick={() => history(`/admin/updateUser/${user.id}`)}
+                          onClick={() =>
+                            history(`/admin/updateUser/${user.id}`)
+                          }
                         />
                       </Fab>
                     </Table.Cell>
@@ -195,7 +291,9 @@ const Admin = () => {
       <br />
 
       <div>
-      <h2 style={{ margin: "4rem", width: "40%" }} class="ui teal header">COMICS MENU</h2>
+        <h2 style={{ margin: "4rem", width: "40%" }} class="ui teal header">
+          COMICS MENU
+        </h2>
 
         <Button
           onClick={handleShowComics}
@@ -208,15 +306,18 @@ const Admin = () => {
             boxShadow: "10px, white",
           }}
         >
-        Show uploaded comics
+          Show uploaded comics
         </Button>
 
         <Fab color="primary" aria-label="add">
           <AddIcon onClick={() => history("postAdmin")} />
         </Fab>
 
-        <Table style={{margin: "1rem",
-            width: "70%"}} celled options={options}>
+        <Table
+          style={{ margin: "1rem", width: "70%" }}
+          celled
+          options={options}
+        >
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>ID</Table.HeaderCell>
@@ -240,26 +341,30 @@ const Admin = () => {
                     <Table.Cell>
                       <Fab color="secondary" aria-label="edit">
                         <EditIcon
-                          onClick={() => history(`/admin/updateComic/${comic.idPrincipal}`)}
+                          onClick={() =>
+                            history(`/admin/updateComic/${comic.idPrincipal}`)
+                          }
                         />
                       </Fab>
-                      <Fab color ="error" aria-label="delete">
+                      <Fab color="error" aria-label="delete">
                         <DeleteIcon
-                          onClick={()=>{handleDeleteComic(comic.idPrincipal)}}
+                          onClick={() => {
+                            handleDeleteComic(comic.idPrincipal);
+                          }}
                         />
                       </Fab>
                       <Fab color="primary" aria-label="add">
                         <AddIcon onClick={() => history("postAdmin")} />
                       </Fab>
+                        <FaBookReader onClick={() =>
+                            history(`/homeComics/detailComic/${comic.idPrincipal}`)
+                          } />
                     </Table.Cell>
                   </Table.Row>
                 );
               })}
         </Table>
       </div>
-
-
-
     </div>
   );
 };
