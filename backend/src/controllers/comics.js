@@ -243,7 +243,7 @@ let deleted;
 
 const getRender = async (req, res, next)=>{
   try{
-    const {id} = req.params
+    const id = req.params.id
     const data = await Comics.findOne({where:{idPrincipal:id}})
     
     res.send(data).status(200)
