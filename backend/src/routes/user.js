@@ -10,6 +10,7 @@ const {
   Characters,
   Comics,
 } = require(`../db`);
+const main = require("../controllers/mailer");
 
 const router = Router();
 
@@ -29,6 +30,7 @@ router.post("/", async (req, res) => {
         email,
         name,
         nickname,
+
       },
       
     });
@@ -36,6 +38,7 @@ router.post("/", async (req, res) => {
     // 	where: { name: plan },
     //   });
     //   await user.setPlans(ElPlan.id);
+
     console.log("se creó mi usuario pa? " + created);
 
     return res.status(201).json({ user, created });
@@ -196,6 +199,7 @@ router.post("/login", async (req, res, next) => {
     },
   });
   if (userOld) {
+    await main(email)
     return res.status(200).json({ userOld });
   }
   try {
@@ -295,6 +299,8 @@ router.get('/admin/:email', async (req, res, next) => {
 		})
 	}
 })
+
+
 // router.get("/byid", async (req, res) => {
 // 	// const {  email, firstName, lastName, userName, age, password, picture } =    req.body;
 // 	const { id } = req.body;

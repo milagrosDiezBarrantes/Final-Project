@@ -13,6 +13,14 @@ const PrivateRoute = ({ redirectPath = '/' }) => {
     // setTimeout(() => {
     //     <Loading />
     // }, 5000)
+    function timer () {
+        setTimeout(() => {
+            <>
+                <Loading />
+                <p> You are not allowed to perform this action.</p>
+            </>
+        }, 5000)
+    }
 
         return (
             <>
@@ -21,13 +29,15 @@ const PrivateRoute = ({ redirectPath = '/' }) => {
     // (<img src={loading} alt='loading'/>) 
     // : typeof pageCurrent[0] === 'object' ? 
     // (
-        !userAdmin ? 
-        <p> You are not allowed to perform this action.</p>
-        :
+        
                     userAdmin?.role === "ROLE_SUPER_ADMIN"
                     ? <Outlet/> : 
                     <>
-                        <Loading />
+                    {
+                        timer()
+                    }
+
+                        
                     </>
                 } 
                 

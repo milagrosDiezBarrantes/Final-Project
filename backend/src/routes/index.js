@@ -9,7 +9,7 @@ const creators = require('./creators.js');
 const plans = require('./plans.js');
 // const mercado = require('./mercado.js');
 const paypal = require('./paypal.js');
-//const mailer = require('./mailer.js');
+const mailer = require('./mailer.js');
 
 
 const router = Router();
@@ -22,6 +22,7 @@ router.use('/comics', comicsRoute);
 router.use('/user', user);
 router.use('/plans', plans);
 router.use('/creators', creators);
+router.use('/mailer', mailer);
 
 
 // router.use('/mercado', mercado);
