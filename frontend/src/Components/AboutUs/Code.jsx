@@ -4,6 +4,7 @@ import { keyframes } from "styled-components";
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import NavigationIcon from '@mui/icons-material/Navigation';
+import {Link} from "react-router-dom";
 
 const Cod = styled.div`
   z-index:-10;
@@ -82,17 +83,12 @@ export class Code extends React.Component {
         <h1>Comunicate con nosotros</h1>
                 <h2>marvel.plus@marvel.com<br></br></h2>
                 <span className="reserverd-rights">©2022 MARVEL</span>
-               <a href="/"> <LogIn>VOLVER A LA 
-                HOME</LogIn> <br></br></a>
-                <button  href="/home" className="btn btn-primary btn-block">VOLVER A LA 
-                HOME </button> 
-                <Box sx={{ '& > :not(style)': { m: 1 } }}>
-              <Fab variant="extended" size="medium" color="primary" aria-label="add">
-                <NavigationIcon sx={{ mr: 1 }}  href="/"   label="" />
-                VOLVER A LA HOME
-              </Fab>
-      
-    </Box>        
+
+               <br></br>
+                <Link to='/' ><button  className="btn btn-primary btn-block">VOLVER A LA 
+                HOME </button></Link>
+                 
+
       </Cod>
     );
   }

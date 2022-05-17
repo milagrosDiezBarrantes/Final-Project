@@ -51,13 +51,16 @@ const DetailCharacter = () => {
         console.log("arrayIds")
         console.log(arrayIds)
         dispatch(postFavoriteCharacters(arrayIds,user.email))
-        
+        alert('¡Agregado a Favorito con Éxito!')
+
       } else {
         let fil= arrayIds.filter((e) => e !== detailCharacter.idPrincipal)
         // console.log([...postFavorite.favoritesComics,postFavorite.detailCharacter])
        console.log("fil")
        console.log(fil)
        dispatch(postFavoriteCharacters(fil,user.email))
+       alert('Eliminado de Favorito!')
+
         }
       
       // dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
