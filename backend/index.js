@@ -56,4 +56,4 @@ Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes])
 		console.log(planes.Promise);
 	});//54465
 
-  }, 15000);
+}, 15000);
