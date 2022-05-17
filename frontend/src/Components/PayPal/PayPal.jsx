@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 // import './PayPal.css'
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { postPayment } from "../../Redux/Actions/actions";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function CheckoutBut({totalPrice}) {
@@ -26,8 +27,17 @@ function CheckoutBut({totalPrice}) {
   };
 
   const onApprove = (data, actions) => {
-    console.log(data)
-    console.log(actions)
+    console.log(data);
+    console.log(user);
+    let pago = {
+      email: user.email,//orderID: '267984262X213011X', payerID
+      orderID:data.orderID,
+      payerID:data.payerID,
+      amount: totalPrice
+    }
+    dispatch(postPayment(pago))
+    
+    console.log(actions.order.capture());
     return actions.order.capture();
   };
 

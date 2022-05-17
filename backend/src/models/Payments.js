@@ -2,16 +2,19 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("Payments", {
-    order: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    client_id: { 
-      type: DataTypes.UUID,
+    orderID: {
+      type: DataTypes.STRING,
+    },
+    email: { 
+      type: DataTypes.STRING,
       allowNull: false
     },
-    plan: {
+    payerID: {
         type: DataTypes.STRING,
         allowNull: false
       },

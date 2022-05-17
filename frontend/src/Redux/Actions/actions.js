@@ -537,13 +537,13 @@ export function getFavoritesCharacters(email) {
 
 
 //PAYPAL
-export function postPayment() {
+export function postPayment(pago) {
     return async function (dispatch) {
         try {
-            const { id } = await axios.post(`/success`)
+            const { data } = await axios.post(`/success`,pago)
             return dispatch({
                 type: "POST_PAYMENT",
-                payload: id
+                payload: data
             })
         }
         catch (err) {

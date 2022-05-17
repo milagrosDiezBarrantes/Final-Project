@@ -38,9 +38,9 @@ export default function Navbar() {
 
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
-  console.log(theme);
+  
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
+  
 
 
     return (

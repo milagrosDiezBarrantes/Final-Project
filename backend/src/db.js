@@ -68,8 +68,6 @@ Comics.belongsToMany(Users,{through: "Favorites_comics"})
 Users.belongsToMany(Characters,{through:"Favorites_characters" })
 Characters.belongsToMany(Users,{through: "Favorites_characters"})
 
-Payments.belongsTo(Users,{foreingKey:"client_id"})
-Users.hasOne(Payments,{foreingKey:"client_id"})
 
 Users.belongsTo(Plans, {foreignKey:"plan_id"})
 Plans.hasMany(Users, {foreignKey:"plan_id"})
