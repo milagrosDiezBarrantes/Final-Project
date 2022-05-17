@@ -49,7 +49,7 @@ export const GET_ADMIN = "GET_ADMIN"
 export function getAllCharacters() {    // Obtener todos los personajes
     return async function (dispatch) {
         try {
-            const allCharacters = await axios.get('http://localhost:3001/characters/all');
+            const allCharacters = await axios.get('/characters/all');
 
             return dispatch({
                 type: GET_CHARACTERS,
@@ -65,7 +65,7 @@ export function getCharacterId(id) { // Obtener personaje por id
     return async function (dispatch) {
         try {
 
-            const { data } = await axios.get(`http://localhost:3001/characters/${id}`);
+            const { data } = await axios.get(`/characters/${id}`);
 
             return dispatch({
                 type: GET_CHARACTER_ID,
@@ -80,7 +80,7 @@ export function getCharacterId(id) { // Obtener personaje por id
 export function getCharacterByName(name) { //obten personajes por nombre
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/characters/all?name=${name}`);
+            const { data } = await axios.get(`/characters/all?name=${name}`);
             return dispatch({
                 type: GET_NAME,
                 payload: data
@@ -98,7 +98,7 @@ export function getCharacterByName(name) { //obten personajes por nombre
 export function getAllComics() {          //para trerce todos los comics
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/comics`)
+            const { data } = await axios.get(`/comics`)
             return dispatch({
                 type: GET_COMICS,
                 payload: data
@@ -113,7 +113,7 @@ export function getAllComics() {          //para trerce todos los comics
 export function getComicsByTitle(title) {
     return async function (dispatch) {
         try {
-            //const queryTitle = await axios.get(`http://localhost:3001/comics?title=${title}`)
+            //const queryTitle = await axios.get(`/comics?title=${title}`)
             return dispatch({
                 type: GET_TITLE,
                 payload: title
@@ -128,7 +128,7 @@ export function getComicsByTitle(title) {
 
 export const getById = (id) => async dispatch => {
     try{
-        const res= await axios(`http://localhost:3001/comics/${id}`);
+        const res= await axios(`/comics/${id}`);
         // console.log('llega id?', id)
         // console.log('llega comic al payoad?', res)
         return dispatch({
@@ -144,14 +144,14 @@ export const getById = (id) => async dispatch => {
 
 //======================USER  ===============
 // function createUser() {
-//     axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
+//     axios.post(`/user`, {email:user.email, nickname: user.nickname, name: user.name});
 //     console.log("SE CREA EL USER?")
 //   }
 export const setUserByEmail= (email, user) => {
     (console.log("email en reducer", email))
     return async function (dispatch) {
         try{
-            const res= await axios.put(`http://localhost:3001/user/${email}`, user);
+            const res= await axios.put(`/user/${email}`, user);
             console.log('llega email.data?', res.data)
             return dispatch({
                 type: SET_USER_DATA,
@@ -165,7 +165,7 @@ export const setUserByEmail= (email, user) => {
 
     export const getUserByEmail = (email) => async dispatch => {
         try{
-            const res= await axios(`http://localhost:3001/user/${email}`);
+            const res= await axios(`/user/${email}`);
             console.log('llega email.data?', res.data.userOld)
             return dispatch({
                 type: GET_USER_DATA,
@@ -181,7 +181,7 @@ export const setUserByEmail= (email, user) => {
     //     return async (dispatch) => {
     //         try {
     //             console.log("email", user.email, "nickname", user.nickname, "name", user.name)
-    //             const userCreate = await axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name});
+    //             const userCreate = await axios.post(`/user`, {email:user.email, nickname: user.nickname, name: user.name});
     //             console.log(userCreate, 'se crea usuario?');
     //             return dispatch({
     //                 type: CREATE_USER,
@@ -205,7 +205,7 @@ export const login = (payload)=>{
 export const loginUser= (email) => {
         return async (dispatch) => {
             try {
-                const userLogin = await axios.get("http://localhost:3001/user/login",{
+                const userLogin = await axios.get("/user/login",{
                     params: {
                         email
                     }});
@@ -233,7 +233,7 @@ export const loginUser= (email) => {
 export const getFavorites= (email) => {
         return async (dispatch) => {
             try {
-                const favorites = await axios.get(`http://localhost:3001/user/favoritesComics/${email}`);
+                const favorites = await axios.get(`/user/favoritesComics/${email}`);
                 console.log(favorites.data, 'se favoriteo el user?');
                 return dispatch({
                     type: GET_FAVORITES,
@@ -249,7 +249,7 @@ export const getFavorites= (email) => {
 export function getPlans() {
     return async function(dispatch) {
         try {
-            const plansUser = await axios.get('http://localhost:3001/plans')
+            const plansUser = await axios.get('/plans')
             const plan = plansUser.data.filter(e=>e.name !=="admin")
             console.log(plan)
             return dispatch({
@@ -268,7 +268,7 @@ export function getPlans() {
 //     return async (dispatch) => {
 //         try {
 //             console.log(user);
-//             const editUser = await axios.put(`http://localhost:3001/user/${user.id}`, user);
+//             const editUser = await axios.put(`/user/${user.id}`, user);
 //             console.log(editUser, 'se edita?');
 //             return dispatch({
 //                 type: USER_EDIT,
@@ -284,7 +284,7 @@ export function getPlans() {
 export function getAllUsers (){    
     return async function(dispatch) {
         try {
-            const users = await axios('http://localhost:3001/user');
+            const users = await axios('/user');
             console.log(users.data)
             return dispatch ({
                 type: GET_USERS,
@@ -308,7 +308,7 @@ export function getAdmin(email) {
     console.log('llega este email??',email)
     return async function(dispatch) {
         try {
-            const adminLogin = await axios.get(`http://localhost:3001/user/admin/${email}`)
+            const adminLogin = await axios.get(`/user/admin/${email}`)
             console.log('actions get admin',adminLogin)
             return dispatch({
                 type: GET_ADMIN,
@@ -329,7 +329,7 @@ export function updateComic(comic) {
                 description: comic.description,
                 image: comic.image,
             };
-            const editComic = await axios.put(`http://localhost:3001/comics/update/${comic.id}`, comicE);
+            const editComic = await axios.put(`/comics/update/${comic.id}`, comicE);
             return dispatch ({
                 type: UPDATE_COMIC,
                 payload: editComic.data
@@ -350,7 +350,7 @@ export function postComic(comic) {
                 pages: comic.pages,
                 creators:comic.creators
             };
-            const editComic = await axios.post("http://localhost:3001/comics/create", comicE);
+            const editComic = await axios.post("/comics/create", comicE);
             return dispatch ({
                 type: POST_COMICS,
                 payload: editComic.data
@@ -366,7 +366,7 @@ export const deleteComic = (id) => {
     console.log(id)
     return async (dispatch) => {
         try {
-            const comicDelete= await axios.delete(`http://localhost:3001/comics/delete/${id}`);
+            const comicDelete= await axios.delete(`/comics/delete/${id}`);
             
             return dispatch({
                 type: "DELETE_COMIC",
@@ -395,7 +395,7 @@ export const sortBy = (payload) =>{
 export const getCreators = () =>{
     return async (dispatch) => {
         try {
-            const {data}= await axios.get(`http://localhost:3001/creators/all`);
+            const {data}= await axios.get(`/creators/all`);
             return dispatch({
                 type: GET_CREATORS,
         payload: data
@@ -441,8 +441,8 @@ export const clearComicDetail =() => {
 export function postFavoriteComics(idComics, email) {          
     return async function (dispatch) {
         try {
-            const { data } = await axios.post(`http://localhost:3001/user/favoritesComics`,{idComics, email});
-            const nuevos = await axios.get(`http://localhost:3001/user/favoritesComics/${email}`);
+            const { data } = await axios.post(`/user/favoritesComics`,{idComics, email});
+            const nuevos = await axios.get(`/user/favoritesComics/${email}`);
             
             console.log("action",idComics)
             console.log("nuevos",nuevos)
@@ -460,7 +460,7 @@ export function postFavoriteComics(idComics, email) {
 /*export function removeFavoriteComics() {
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/user/favoritesComics`)
+            const { data } = await axios.get(`/user/favoritesComics`)
             return dispatch({
                 type: "REMOVE_FAVORITE",
                 payload: data
@@ -475,7 +475,7 @@ export function postFavoriteComics(idComics, email) {
 /*export function postFavoriteCharacters(idCharacters, id) {          
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/user/favoritesCharactersc`, idCharacters, id)
+            const { data } = await axios.get(`/user/favoritesCharactersc`, idCharacters, id)
             return dispatch({
                 type: "POST_FAVORITE_CHARACTERS",
                 payload: data
@@ -491,8 +491,8 @@ export function postFavoriteComics(idComics, email) {
 export function postFavoriteCharacters(idCharacters, email) {          
     return async function (dispatch) {
         try {
-            const { data } = await axios.post(`http://localhost:3001/user/favoritesCharacters`,{idCharacters, email});
-            const nuevos = await axios.get(`http://localhost:3001/user/favoritesCharacters/${email}`);
+            const { data } = await axios.post(`/user/favoritesCharacters`,{idCharacters, email});
+            const nuevos = await axios.get(`/user/favoritesCharacters/${email}`);
             return dispatch({
                 type: "POST_FAVORITE_CHARACTERS",
                 payload: nuevos.data
@@ -506,7 +506,7 @@ export function postFavoriteCharacters(idCharacters, email) {
 export function getFavoritesCharacters(email) {          
     return async function (dispatch) {
         try {
-            const nuevos = await axios.get(`http://localhost:3001/user/favoritesCharacters/${email}`);
+            const nuevos = await axios.get(`/user/favoritesCharacters/${email}`);
             return dispatch({
                 type: "GET_FAVORITE_CHARACTERS",
                 payload: nuevos.data
@@ -522,7 +522,7 @@ export function getFavoritesCharacters(email) {
 /*export function removeFavoriteCharacters() {
     return async function (dispatch) {
         try {
-            const { data } = await axios.get(`http://localhost:3001/user/favoritesCharacters`)
+            const { data } = await axios.get(`/user/favoritesCharacters`)
             return dispatch({
                 type: "REMOVE_FAVORITE",
                 payload: data

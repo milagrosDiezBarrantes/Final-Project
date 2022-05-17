@@ -9,7 +9,7 @@
   
 //   function createUser() {
 //     console.log("email", user.email, "nickname", user.nickname, "name", user.name)
-//     axios.post(`http://localhost:3001/user`, {email:user.email, nickname: user.nickname, name: user.name})
+//     axios.post(`/user`, {email:user.email, nickname: user.nickname, name: user.name})
 //   }
 
 //   setTimeout(() => {

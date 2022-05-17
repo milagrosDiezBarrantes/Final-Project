@@ -16,7 +16,7 @@ const Lecture =  () => {
     
     
     const data= async()=>{
-        const a = await axios.get(`http://localhost:3001/comics/render/${comic}`) //url, nombre,paginas
+        const a = await axios.get(`/comics/render/${comic}`) //url, nombre,paginas
         return a
     }
 
