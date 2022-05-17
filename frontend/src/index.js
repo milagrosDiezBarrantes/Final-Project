@@ -12,15 +12,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
-
+let localhst = process.env.REACT_APP_API ||"http://localhost:3001"
 ReactDOM.render(
 	<Provider store={store}>
 		{/* <React.StrictMode> */}
 			<Auth0Provider
 				domain="dev-8dlcilpo.us.auth0.com"
 				clientId="dNHRYGKTvuFiLFozoy5y7vUawIXvbpZc"
-				redirectUri="http://localhost:3000/homeComics"
-				redirect_uri="http://localhost:3000/homeComics"
+				redirectUri={window.location.origin}
+				redirect_uri={window.location.origin}
 			>
 				<App />
 			</Auth0Provider>

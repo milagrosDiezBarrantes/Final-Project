@@ -39,7 +39,7 @@ function CheckoutBut({totalPrice}) {
         createOrder={(data, actions) => createOrder(data, actions)}
         onApprove={(data, actions) => onApprove(data, actions)         
       }/>
-
+    
     </div>
       
     );

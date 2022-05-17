@@ -11,7 +11,7 @@ const AuthNav = () => {
 
   function createUser() {
     axios
-      .post(`http://localhost:3001/user/login`, { email: user.email })
+      .post(`/user/login`, { email: user.email })
       .then((res) => {
         dispatch(login(res.data));
       }, []);
