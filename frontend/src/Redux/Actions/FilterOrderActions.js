@@ -9,7 +9,7 @@ export function getAllCreators() {
   // Obtener todos los Creadores
   return async function (dispatch) {
     try {
-      const { data } = await axios.get("http://localhost:3001/creators/all");
+      const { data } = await axios.get("/creators/all");
       return dispatch({
         type: GET_CREATORS,
         payload: data,
@@ -24,7 +24,7 @@ export function getByCreators(id) {
   return async function (dispatch) {
     try {
       const { data } = await axios(
-        `http://localhost:3001/creators/${id}/comics`
+        `/creators/${id}/comics`
       );
       return dispatch({
         type: FILT_BY_CREATOR,
