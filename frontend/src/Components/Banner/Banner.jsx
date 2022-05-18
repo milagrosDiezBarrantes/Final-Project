@@ -163,9 +163,9 @@ console.log('está authenticado?', isAuthenticated)
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        <a href="/formAdmin">
+        {/* <a href="/formAdmin">
           <LogIn>ACCESS ADMIN</LogIn>
-        </a>
+        </a> */}
       </div>
     </>
   );
