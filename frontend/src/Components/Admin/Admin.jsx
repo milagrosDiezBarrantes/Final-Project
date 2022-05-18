@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-
+import swal from 'sweetalert';
 import {
   getAllUsers,
   filterByPlan,
@@ -135,7 +135,10 @@ const Admin = () => {
           </Table.Header>
 
           {users === "tabla vacía"
-            ? alert("Not users yet")
+            ?  swal({
+              title:"Not users yet",
+              icon: "success",
+            })
             : showUsers &&
               users?.map((user) => {
                 return (
