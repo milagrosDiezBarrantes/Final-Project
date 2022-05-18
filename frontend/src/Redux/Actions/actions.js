@@ -547,7 +547,7 @@ export function postPayment(pago) {
             })
         }
         catch (err) {
-            alert("error get comics(se rompio)", err)
+            alert("error post paypal(se rompio)", err)
         }
     }
     }

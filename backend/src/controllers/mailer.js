@@ -1,14 +1,11 @@
 const nodemailer = require('nodemailer');
-// const path = require('path');
-// const fs = require('fs');
 
-// router.post('/', (req, res) => {
-    async function main(info) {
-        let transporter = nodemailer.createTransport({
-            service: "gmail",
-            port: 587,
-            secure: false,
-            auth: {
+async function main(info) {
+    let transporter = nodemailer.createTransport({
+        service: "gmail",
+        port: 587,
+        secure: false,
+        auth: {
               user: "comicmarvel02@gmail.com", // generated ethereal user
               pass: "M4rvel12" // generated ethereal password
             },
@@ -180,15 +177,6 @@ const nodemailer = require('nodemailer');
 </div>  ` // html body
     });
     return options.messageId;
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if(error) {
-    //         return (error.message);
-    //     }
-    //     else {
-    //         console.log("Email enviado")
-    //         return (req.body);
-    //     }
-    // })
 }
 
 module.exports = main

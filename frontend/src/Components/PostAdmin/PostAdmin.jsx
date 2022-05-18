@@ -25,7 +25,7 @@ const PostAdmin = () => {
     title: "",
     img: "",
     description: "",
-    pages: "",
+    pages: 0,
     creators: [],
   });
 
@@ -48,6 +48,7 @@ const PostAdmin = () => {
         [e.target.name]: e.target.value,
       })
     );
+    console.log(typeof input.pages)
   }
 
   const handleOnPlatforms = function (event) {
@@ -75,7 +76,7 @@ const PostAdmin = () => {
       title: "",
       img: "",
       description: "",
-      pages: "",
+      pages: 0,
       creators: [],
     });
     setTimeout(() => {
@@ -138,7 +139,9 @@ const PostAdmin = () => {
             type="number"
             name="pages"
             value={input.pages}
-            onChange={handleChange}
+            onChange={(e) => {
+              console.log(typeof input.pages)
+              handleChange(e)}}
             placeholder="Number Pages"
           />
         </div>

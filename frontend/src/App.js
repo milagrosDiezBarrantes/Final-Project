@@ -79,18 +79,18 @@ function App() {
               />
               <Route path="/Playlist" element={<Playlist />} />
 
-            <Route element ={ <CommonRoute /> } >
+            <Route element ={ <CommonRoute /> } > 
               <Route exact path="/lecture/:comic" element={<Lecture />} />
-            </Route>
+            </Route> 
 
             {/* ADMIN */} 
             <Route path="/formAdmin" element={<FormAdmin />} />
-            <Route element={ <PrivateRoute /> }> 
+          <Route element={ <PrivateRoute /> }>  
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
             <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
             <Route path="/homeComics" element={<HomeComics />} />
-            </Route>  
+          </Route>  
           </Routes>
           {/* </Container> */}
         </div>
