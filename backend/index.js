@@ -53,14 +53,7 @@ const BatmanSpiderman = Comics.findOrCreate({where:{
     
   }})
 
-  const UltimateSpiderman = Comics.findOrCreate({where:{
-  
-    title:"Ultimate Spiderman",
-    img:"https://2.bp.blogspot.com/vEjA_hhJuxt1mlpg-tMN7vzNz7xeWqdv8OKCJlPy5BofEyjMRajqtbqtADDaQpOcrw7TOfCqJmJaeRxz-b5HQRzKCBdjwQnhcQk-hHp_22wts0LgmX7CYtf1hxaa_rTQzyJ83466lw=s0",
-    pages:54,
-    description:"The Spiderman In Action"
-    
-  }})
+
 const LosVengadoresAcosoNuncaMas = Comics.findOrCreate({where:{
     title:"Los Vengadores Acoso Nunca Mas",
     img:"https://d20ohkaloyme4g.cloudfront.net/img/document_thumbnails/eb92952db8a4f7c44fbee7d4abf960b6/thumb_1200_1719.png",
@@ -71,11 +64,11 @@ const LosVengadoresAcosoNuncaMas = Comics.findOrCreate({where:{
 
   let planes = Plans.findAll();
 
-Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes,BatmanSpiderman,UltimateSpiderman,LosVengadoresAcosoNuncaMas])
+Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes,BatmanSpiderman,LosVengadoresAcosoNuncaMas])
 	.then((res) => {
 		console.log([plan1, superAdmin]);
 	})
 	.then((res) => {
-		console.log([BatmanSpiderman,UltimateSpiderman,LosVengadoresAcosoNuncaMas]);
+		console.log([BatmanSpiderman,LosVengadoresAcosoNuncaMas]);
 	});//54465
 },15000)

@@ -108,7 +108,7 @@ function App() {
                 <Route path="/homeCharacter/DetailCharacter/:id" element={<DetailCharacter />}/>
                 <Route path="/homeComics/DetailCharacter/:id" element={<DetailCharacter />}/>
                 <Route path="/Playlist" element={<Playlist />} />
-                <Route exact path="/lecture/:comic" element={<Lecture />} />
+                <Route exact path="/lectures/:comic" element={<Lecture />} />
            </Route>   
           </Routes>
         </div>

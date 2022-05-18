@@ -67,7 +67,7 @@ const CommonRoute = ({ redirectPath = '/' }) => {
                     </>  
         )
       }
-      if( userPrime.role ==="ROLE_PRIME") {
+      if( userPrime.role ==="ROLE_PRIME"||userPrime.role ==="ROLE_SUPER_ADMIN") {
         return (
           <>
             <Lecture/>
