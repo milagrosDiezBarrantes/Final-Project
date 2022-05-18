@@ -1,29 +1,68 @@
-import * as React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Outlet } from "react-router";
+import { Link } from "react-router-dom";
+import Loading from "../Loading/Loading";
+import Navbar from "../Navbar/Navbar";
+import { useAuth0} from "@auth0/auth0-react";
 
-import { useSelector } from 'react-redux';
-import {
-  Routes,
-  Route,
-  NavLink,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+const Registered = () => {
+  //const dispatch = useDispatch();
+  const userAdmin = useSelector((state) => state.ComicsReducer.user);
+  console.log(userAdmin);
+  const [load, setLoad] = React.useState(true);
+  const [hola, setHola] = React.useState(false);
 
-const ProtectedRoute = ({  children }) => {
+  const loadingchill =() =>{
 
-    const user = useSelector((state) => state.ComicsReducer.user);
-    console.log('USER EN LÑA RYUTA PROTEGIDA ', user)
+    setTimeout(() => {
+      setLoad(false);
+      setHola(true);
 
-        if (!user) {
-          return(
-          <div>
-          <Navigate to="/" replace />
-          <p> You are not allowed to perform this action.</p>
-          </div>)
+    }, 5000);
+
+  }
+ 
+  setTimeout(() => {
+    <Loading />
+  }, 1000);
+
+  return (
+    <>
+    <Navbar/>
+        { 
+          load ? <Loading />  : null
         }
-      
-        return <h1>OLAAAAAAAAAAAAAAAAAAA</h1>;
-      };
+        { hola ? 
+      (    <>
+          {
+            userAdmin.role === undefined ?
+            <p>
+            You are not allowed to perform this action. If you ´re not
+            redirected, click below
+            <Link to="/">Go to log in</Link>
+            </p> 
+          :  userAdmin?.role === "ROLE_USER" 
+          ?
+        <Outlet />
+        : (
+       
+          <p>
+            You are not allowed to perform this action. If you ´re not
+            redirected, click below
+            <Link to="/">Go to log in</Link>
+          </p>
+      )
+      }
+      </>)
+      : null
 
-      export default ProtectedRoute;
+        }
+        {
+          loadingchill()
+        }
+    </>
+  );
+};
+
+export default Registered;
