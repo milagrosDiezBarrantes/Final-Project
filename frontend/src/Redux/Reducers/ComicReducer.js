@@ -9,6 +9,7 @@ import {
   DELETE_COMIC,
   CLEAR_COMICS,
   CLEAR_DETAIL,
+  GET_ADMIN,
   // ADD_FAVORITE,
   POST_FAVORITE_COMICS,
   POST_FAVORITE_CHARACTERS,
@@ -20,7 +21,6 @@ import {
   GET_CREATORS,
   GET_USER_DATA,
   SET_USER_DATA,
-  GET_ADMIN
 } from "../Actions/actions";
 import {
   FILT_BY_CHARACTER,

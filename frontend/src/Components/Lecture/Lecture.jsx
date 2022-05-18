@@ -41,18 +41,11 @@ const Lecture =  () => {
                     <center className="containedPrimari">
                         <h1>{info.title}</h1>
                     <br/>
-                     <Link to= '/homeComics'>  
-                        <button className='btn'>HomeComics</button>
-                     </Link> 
-                    <Link to='/homeCharacter'>
-                    
-                        <button className='btn'>HomeCharacters</button>
-                    </Link>
                     </center>
                 <center className="containedSecundari">
-                    <div className='Publiciti'>Publicidad</div>
+                 
                     <RenderComic className="comic" url={comicc[0]} />
-                    <div className='Publiciti'>Publicidad</div>
+                  
                 </center>
             </div>
         )

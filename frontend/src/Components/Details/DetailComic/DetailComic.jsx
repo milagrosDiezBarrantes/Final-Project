@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import "./DetailComic.scss";
 import Loading from "../../Loading/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
+import swal from 'sweetalert';
 
 const DetailComic = () => {
   const { id } = useParams();
@@ -28,12 +29,14 @@ const DetailComic = () => {
 
   const [show, setShow] = React.useState(true);
 
-  //////////////////FAVORITE//////////
-  const postFavorite = useSelector((state) => state.ComicsReducer);
-  // console.log(postFavorite);
-  // console.log(postFavorite.user.id);
+//////////////////FAVORITE//////////
+const postFavorite = useSelector((state) => state.ComicsReducer)
+// console.log(postFavorite);
+// console.log(postFavorite.loginUser.id);
 
-  const [input, setInput] = React.useState({});
+
+const [input, setInput] = React.useState({})
+
 
   ////////////////FAVORITE//////////////
 
@@ -46,46 +49,49 @@ const DetailComic = () => {
     if (user.email) {
       dispatch(getFavorites(user.email));
     }
-  }, [user]);
+  }, [ postFavorite.loginUser.id]);
 
-  // if(postFavorite.user.id&&!postFavorite.favoritesComics){
-  //   dispatch(getFavorites(postFavorite.user.id));
+  // if(postFavorite.loginUser.id&&!postFavorite.favoritesComics){
+  //   dispatch(getFavorites(postFavorite.loginUser.id));
   // }
 
-  const handleClick = (e) => {
-    console.log("estrellita");
+ const handleClick = (e) => {
+    console.log("estrellita")
 
-    let arrayIds = [...postFavorite.favoritesComics];
-    arrayIds = arrayIds.map((e) => e.idPrincipal);
-    console.log("arrayIds");
-    console.log(arrayIds);
-    if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
-      // setSelect([...select, event.target.value]);
-      console.log("entre al if not find");
-      console.log([
-        ...postFavorite.favoritesComics,
-        postFavorite.selectedComic[0],
-      ]);
-      arrayIds = [...arrayIds, postFavorite.selectedComic[0].idPrincipal];
-      console.log("arrayIds");
-      console.log(arrayIds);
+let arrayIds = [...postFavorite.favoritesComics]
+arrayIds=arrayIds.map(e=>e.idPrincipal)
+console.log("arrayIds")
+console.log(arrayIds)
+if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
+  // setSelect([...select, event.target.value]);
+  console.log("entre al if not find")
+  console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+  arrayIds = [...arrayIds,postFavorite.selectedComic[0].idPrincipal]
+  console.log("arrayIds")
+  console.log(arrayIds)
+  
+  dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
 
-      dispatch(postFavoriteComics(arrayIds, user.email));
-      alert('¡Agregado a Favorito con Éxito!')
+  swal({
+    title: "Add  from Favorite, Successfully!",
+    icon: "success",
+  });
 
-    } else {
-      let fil = arrayIds.filter(
-        (e) => e !== postFavorite.selectedComic[0].idPrincipal
-      );
-      // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
-      console.log("fil");
-      console.log(fil);
-      dispatch(postFavoriteComics(fil, user.email));
-      alert('Eliminado de Favorito!')
+} else {
+  let fil= arrayIds.filter((e) => e !== postFavorite.selectedComic[0].idPrincipal)
+  // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
+ console.log("fil")
+ console.log(fil)
+ dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
+ swal({
+  title: "Removed from Favorites!",
+  icon: "error",
+});
 
-    }
+  }
 
-    // dispatch(postFavoriteComics(user.email,postFavorite.favoritesComics) )
+// dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
+
   };
 
   const img = (comic) => {
@@ -143,19 +149,8 @@ const DetailComic = () => {
               <br></br>
               <br></br>
               <ReactStars></ReactStars>
-              <div>
-                {" "}
-                <br></br>
-                <br></br>
-                <MyButton
-                  className="randomchar__name"
-                  variant="contained"
-                  style={{ color: "red" }}
-                  onClick={() => handleClick()}
-                >
-                  {" "}
-                  Agregar a Favorito ⭐
-                </MyButton>
+              <div> <br></br><br></br>
+              <MyButton className="randomchar__name" variant="contained"  style={{ color: "red" }}  onClick={(e) => handleClick(e)}> Agregar a Favorito ⭐</MyButton>
               </div>
             </div>
           </div>
