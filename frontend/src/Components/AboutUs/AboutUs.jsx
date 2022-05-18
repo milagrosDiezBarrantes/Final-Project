@@ -1,14 +1,13 @@
 import React from "react";
 import style from "styled-components";
-
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-
 import styled from "styled-components";
 import Code from '../AboutUs/Code';
-import mili from './img/team/Screenshot_9.jpg';
+import mili from './img/team/WhatsApp Image 2022-05-18 at 12.51.25.jpeg';
 import meli from './img/team/WhatsApp Image 2022-05-16 at 20.09.00.jpeg';
 import lu from  './img/team/WhatsApp Image 2022-05-17 at 13.51.18.jpeg';
-
+import Joel from './img/team/WhatsApp Image 2022-05-18 at 12.38.16.jpeg'
+import Ale from './img/team/WhatsApp Image 2022-05-18 at 12.52.05.jpeg'
 const AboutUs = () =>{
 return (
     <Sec>
@@ -43,7 +42,7 @@ return (
                     <p>Melisa Ferreira</p>
                 </Wrap>
                 <Wrap>
-                <img src="https://c.tenor.com/y63lhTUEIOsAAAAC/captain-marvel.gif" alt="viewer"/>
+                <img src={Joel} alt="viewer"/>
                     <video autoPlay={true} playsInline={true} loop={true}>
                       <source></source>
                     </video>
@@ -53,25 +52,18 @@ return (
                     <video autoPlay={true} playsInline={true} loop={true}>
                       <source src="/videos/1564676296-national-geographic.mp4"></source>
                     </video>
-                    <p>Melisa Ferreira</p>
-
                 </Wrap>
                 <Wrap>
-                <h1>Melisa Ferreira</h1>
-                    <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c069b806-a231-4655-990d-1cc4375444e8/d5cnxwi-4b34b903-3f8b-43de-b290-2169408ffc64.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2MwNjliODA2LWEyMzEtNDY1NS05OTBkLTFjYzQzNzU0NDRlOFwvZDVjbnh3aS00YjM0YjkwMy0zZjhiLTQzZGUtYjI5MC0yMTY5NDA4ZmZjNjQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.4avrDj7Ngah3Dj-_RbPHXfbjbJ1fr3gPFQW8H6ObvYA" alt="viewer"/>
-                    
+                    <img src={Ale} alt="viewer"/>
                     <video autoPlay={true} playsInline={true} loop={true}>
                       <source src="/videos/1564676296-national-geographic.mp4"></source>
                     </video>
-                    <h1>Melisa Ferreira</h1>
-
                 </Wrap>
                 <Wrap>
                     <img src={mili} alt="viewer"/>
                     <video autoPlay={true} playsInline={true} loop={true}>
                       <source src="/videos/1564676296-national-geographic.mp4"></source>
                     </video>
-                    <p>Melisa Ferreira</p>
                 </Wrap>  
             </Cot> 
         <Code /> 

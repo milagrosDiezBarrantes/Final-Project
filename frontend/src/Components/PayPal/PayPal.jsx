@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom"
 import { useDispatch } from "react-redux";
 // import './PayPal.css'
-
+import swal from 'sweetalert';
 import { useAuth0 } from "@auth0/auth0-react";
 import { postPayment } from "../../Redux/Actions/actions";
+import { useNavigate } from "react-router-dom";
+
+
+
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function CheckoutBut({totalPrice}) {
-  
+  const navigate = useNavigate(); 
 
   const {user, isAuthenticated} = useAuth0()
   const dispatch = useDispatch()
@@ -36,7 +40,11 @@ function CheckoutBut({totalPrice}) {
       amount: totalPrice
     }
     dispatch(postPayment(pago));
-    alert('Successful Payment')
+    swal({
+      title:"Successful Payment",
+      icon: "success",
+    });
+    navigate('/banner')
     
     console.log(actions.order.capture());
     return actions.order.capture();
