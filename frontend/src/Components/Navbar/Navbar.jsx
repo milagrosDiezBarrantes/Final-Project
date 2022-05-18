@@ -25,6 +25,9 @@ export default function Navbar() {
   // const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
+  console.log('en el navbar eswte es el user', user);
+  
+
   // console.log(user)
 
   //   useEffect(() => {
@@ -78,7 +81,8 @@ export default function Navbar() {
               </Tabs>
               <Link to= '/profile'>
                 <Avatar 
-                src={user.picture}
+                // src= {userIcon}
+                src= {!user ? userIcon : user.picture }
                 alt="A" />
               </Link>
               <AuthNav/>

@@ -18,7 +18,7 @@ const CommonRoute = ({ redirectPath = '/' }) => {
   }, 1000);
 
     function user() {
-      if(userPrime.role === 'null' || userPrime.role === 'ROLE_USER') {
+      if(userPrime.role === null || userPrime.role === 'ROLE_USER') {
         return (
           <>
                       <h1> Would you like to read? Subscribe now! </h1>

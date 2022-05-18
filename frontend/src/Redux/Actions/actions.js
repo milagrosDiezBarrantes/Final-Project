@@ -42,8 +42,9 @@ export const GET_FAVORITE_CHARACTERS = "GET_FAVORITE_CHARACTERS"
 export const POST_COMICS = "POST_COMICS"
 export const GET_CREATORS = "GET_CREATORS"
 export const GET_CREATED_COMICS = " GET_CREATED_COMICS"
-
 export const GET_ADMIN = "GET_ADMIN"
+export const FILT_BY_STATS = "FILT_BY_STATS"
+
 export const POST_PAYMENT = "POST_PAYMET"
 
 //================CHARACTERS=================//
@@ -384,6 +385,13 @@ export const filterByPlan = (plan) =>{
     return{
         type: FILT_BY_PLAN,
         payload: Number(plan)
+    }
+}
+
+export const filterByStats = (payload) =>{
+    return{
+        type: FILT_BY_STATS,
+        payload: payload
     }
 }
 

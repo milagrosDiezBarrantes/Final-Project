@@ -8,6 +8,18 @@ import { getAdmin } from "../../Redux/Actions/actions";
 import { useMemo } from "react";
 
 const FormAdmin = () => {
+
+    const[ email, setEmail] = useState ('');
+    const [ password, setPassword] = useState ( '');
+    
+    // const handleLoginSubmit = (e) => {
+    
+    //     e.preventDefault();
+    //     console.log("ACA HANDLESUBMIT DEL POST ADMIN");
+    
+    // }
+
+
     const [error, setError] = useState({});
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -62,6 +74,16 @@ const FormAdmin = () => {
                 height:"100vh",
             }}
         >
+{/*<form onSubmit={handleLoginSubmit}>
+<input type="text" name="email" value={email} onChange={({e}) => setEmail(e.target.value)} placeholder= 'email'/>
+<input type="password" name="password" value={password} onChange={({e}) => setPassword(e.target.value)} placeholder= 'password'/>
+<button>
+    Login
+</button> */}
+
+
+
+
             <h1>LOGIN ADMIN</h1>
             <Form style={{ width:"30%"}} onSubmit={handleSubmit} >
                 <div>
@@ -94,6 +116,11 @@ const FormAdmin = () => {
                     </Button>
                 </div>
             </Form>
+
+
+
+
+
         </Container>
     )
 }

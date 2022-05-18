@@ -70,7 +70,6 @@ const PostAdmin = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("ACA HANDLESUBMIT DEL POST ADMIN", input);
     dispatch(postComic(input));
     swal({
       title:"Post created successfully!",
@@ -84,7 +83,7 @@ const PostAdmin = () => {
       creators: [],
     });
     setTimeout(() => {
-      navigate(`/homeComics`);
+      navigate(`/admin`);
     }, 1500);
   }
 
