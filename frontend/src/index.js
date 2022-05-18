@@ -12,7 +12,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
-let localhst = process.env.REACT_APP_API ||"http://localhost:3001"
+
 ReactDOM.render(
 	<Provider store={store}>
 		{/* <React.StrictMode> */}
