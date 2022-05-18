@@ -59,7 +59,7 @@ const DetailCharacter = () => {
        console.log("fil")
        console.log(fil)
        dispatch(postFavoriteCharacters(fil,user.email))
-       alert('Eliminado de Favorito!')
+       alert('Removed from favorites!')
 
         }
       

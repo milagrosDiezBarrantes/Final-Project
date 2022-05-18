@@ -35,7 +35,8 @@ function CheckoutBut({totalPrice}) {
       payerID:data.payerID,
       amount: totalPrice
     }
-    dispatch(postPayment(pago))
+    dispatch(postPayment(pago));
+    alert('Successful Payment')
     
     console.log(actions.order.capture());
     return actions.order.capture();
