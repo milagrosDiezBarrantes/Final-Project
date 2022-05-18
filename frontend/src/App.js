@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 //RUTAS USER
 import Banner from "./Components/Banner/Banner";
 import AboutUs from "./Components/AboutUs/AboutUs";
@@ -40,13 +40,22 @@ import CommonRoute from "./Components/PermissionRoute/CommonRoute";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
-import ProtectedRoute from "./Components/PermissionRoute/Registered";
 
 function App() {
   const { user, isLoading, isAuthenticated } = useAuth0();
-  console.log(user, 'EN TOOOOOOOOOOOOODA ÑLA APPP');
-  const [log, setLog] = useState(false);
 
+  const log = useSelector((state) => state.ComicsReducer.user);
+  // const [admin, setAdmin] = useState(false);
+
+  // useEffect(() => {
+  //   log === "ROLE_SUPER_ADMIN"?
+  //   setAdmin(true)
+  //   :
+  //   setAdmin(false)
+  // }, [log])
+  // console.log('HOLAAA ACCAAA LO UE SE LOGIUEAAAA', log)
+
+  
   if (isLoading) {
     return (
       <div className="app">
@@ -59,35 +68,18 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <div className="app">
+          {/* <Container> */}
           <Routes>
-
-          {/* //rutas públicas */}
             <Route exact path="/" element={<Banner />} />
-            <Route path='/AboutUs' element={<AboutUs />} /> 
-            <Route path='*' element={<Banner />} />
-
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
-            <Route
-          path="profile"
-          element={
-            <ProtectedRoute user={user}>
-              <Route path='/profile' element={<Profile />} /> 
-            </ProtectedRoute>
-          }
-        />
-
-
-
-
             
-              
-              
+              <Route path='/profile' element={log? <Profile /> : (<Navigate to='/admin'/>)} /> 
+              <Route path='/AboutUs' element={<AboutUs />} /> 
               <Route path='/profile/edit' element={<FormEditUser />} />
               <Route path="/favorite" element={<Favorite />} />
               <Route path="/homeCharacter" element={<HomeCharacter />} />
               <Route path="/homeComics" element={<HomeComics />} />
-              <Route exact path="/lecture/:comic" element={<Lecture />} />
             
               <Route
                 path="/homeComics/DetailComic/:id"
