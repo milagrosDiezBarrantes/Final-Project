@@ -16,6 +16,7 @@ const Profile = () => {
     <Loading />
   ) : (
     <div>
+  {logged.role === "ROLE_SUPER_ADMIN" ?  <button onClick={() => navigate("/admin")}>Admin</button>  : ( null)}
       <Navbar />
 
       <div className="row align-items-center profile-header">

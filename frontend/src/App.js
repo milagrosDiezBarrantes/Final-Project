@@ -37,10 +37,25 @@ import Loading from "./Components/Loading/Loading";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
 import PrivateRoute from "./Components/PermissionRoute/PrivateRoute";
 import CommonRoute from "./Components/PermissionRoute/CommonRoute";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const { user, isLoading, isAuthenticated } = useAuth0();
 
+  // const log = useSelector((state) => state.ComicsReducer.user.role);
+  // const [admin, setAdmin] = useState(false);
+
+  // useEffect(() => {
+  //   log === "ROLE_SUPER_ADMIN"?
+  //   setAdmin(true)
+  //   :
+  //   setAdmin(false)
+  // }, [log])
+  // console.log('HOLAAA ACCAAA LO UE SE LOGIUEAAAA', log)
+
+  
   if (isLoading) {
     return (
       <div className="app">
@@ -95,13 +110,13 @@ function App() {
             {/* </Route>  */}
             {/* ADMIN */} 
             <Route path="/formAdmin" element={<FormAdmin />} />
-            <Route element={ <PrivateRoute /> }> 
+            {/* <Route element={ <PrivateRoute /> }>  */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
             <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
             <Route path="/admin/updateUser/:id" element={<FormEditUser />} />
             <Route path="/homeComics" element={<HomeComics />} />
-            </Route>  
+            {/* </Route>   */}
           </Routes>
           {/* </Container> */}
         </div>

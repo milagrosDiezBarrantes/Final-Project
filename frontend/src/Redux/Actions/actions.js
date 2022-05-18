@@ -203,25 +203,24 @@ export const login = (payload)=>{
     }
 }
 
-export const loginUser= (email) => {
-        return async (dispatch) => {
-            try {
-                const userLogin = await axios.get("http://localhost:3001/user/login",{
-                    params: {
-                        email
-                    }});
-                // console.log("de la action");
-                // console.log(userName,password);
-                return dispatch({
-                    type: LOGIN_USER,
-                    payload: userLogin.data
-                })
-            }
-            catch(err) {
-                console.log(err, 'userCreate || Error');
-            }
-        }
-}
+// export const loginUser= (email) => {
+//         return async (dispatch) => {
+//             try {
+//                 const userLogin = await axios.get("http://localhost:3001/user/login",{
+//                     params: {
+//                         email
+//                     }});
+//                 // console.log("de la action");
+//                 // console.log(userName,password);
+//                 return dispatch({
+//                     type: LOGIN_USER,
+//                     payload: userLogin.data
+//                 })
+//             }
+//             catch(err) {
+//                 console.log(err, 'userCreate || Error');
+//             }
+//         }
 // export const pruebaStatusLog =(user)=>{
 //     return async (dispatch) => {
 //     return await dispatch({

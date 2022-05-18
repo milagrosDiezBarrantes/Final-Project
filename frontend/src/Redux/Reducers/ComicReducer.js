@@ -152,15 +152,12 @@ function ComicsReducer(state = initialState, { type, payload }) {
     case FILT_BY_STATS:
      console.log('EN EL REDUCER FILTER ADMIN, ', payload)
       const backUp2 = state.users;
-      const all = backUp2;
-      const filtered2 = payload === '' ? all : backUp2.filter((user)=> (new Date(user.createdAt).getMonth()+1) === payload);
-      console.log('filtered2', filtered2)
+      const filtered2 = backUp2.filter((user)=> (new Date(user.createdAt).getMonth()+1) === payload);
       return {
         ...state,
         copyUsers: filtered2,
       };
-      
-      
+            
     case CLEAR_COMICS:
       return {
         ...state,
