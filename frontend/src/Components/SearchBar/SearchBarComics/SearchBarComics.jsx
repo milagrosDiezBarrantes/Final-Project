@@ -58,7 +58,7 @@ export default function SearchBarComics() {
         style={{
           background: "transparent",
           border: "none",
-          width: "10%",
+          width: "5%",
           padding: "10px",
           overflow: "visible",
           /* margin: auto; */

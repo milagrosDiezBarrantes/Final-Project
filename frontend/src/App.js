@@ -79,9 +79,9 @@ function App() {
               />
               <Route path="/Playlist" element={<Playlist />} />
 
-            <Route element ={ <CommonRoute /> } > 
+            {/* <Route element ={ <CommonRoute /> } >  */}
               <Route exact path="/lecture/:comic" element={<Lecture />} />
-            </Route> 
+            {/* </Route>  */}
 
             {/* ADMIN */} 
             <Route path="/formAdmin" element={<FormAdmin />} />
