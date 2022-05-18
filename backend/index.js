@@ -8,9 +8,7 @@ conn.sync({ force: false }).then(() => {
 });
 /*hola que hace */
 
-setTimeout(() => {
-	const { Plans, Users } = require("./src/db.js");
-
+const { Plans, Users } = require("../backend/src/db");
 var superAdmin = Users.findOrCreate({
 	where: {
 		email: "soyadmin@henry.com",

@@ -55,11 +55,11 @@ function App() {
           {/* <Container> */}
           <Routes>
             <Route exact path="/" element={<Banner />} />
+            <Route path='/AboutUs' element={<AboutUs />} /> 
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
             
               <Route path='/profile' element={<Profile />} /> 
-              <Route path='/AboutUs' element={<AboutUs />} /> 
               <Route path='/profile/edit' element={<FormEditUser />} />
               <Route path="/favorite" element={<Favorite />} />
               <Route path="/homeCharacter" element={<HomeCharacter />} />
