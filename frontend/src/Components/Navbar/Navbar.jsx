@@ -79,11 +79,11 @@ export default function Navbar() {
                   {/* <Tab label="About Us" href="/AboutUs" />
                   <Tab label="Contact" href="/Contact"  /> */}
               </Tabs>
-              {/* <Link to= '/profile'>
+              <Link to= '/profile'>
                 <Avatar 
                 src= {user.picture? user.picture : {userIcon}}
                 alt="A" />
-              </Link> */}
+              </Link>
               <AuthNav/>
         </Toolbar>
         <SimpleBottomNavigation />

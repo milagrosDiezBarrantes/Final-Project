@@ -12,12 +12,11 @@ import {
 } from "../../Redux/Actions/actions";
 import { Link } from "react-router-dom";
 import { Table, Button } from "semantic-ui-react";
-import { useAuth0 } from "@auth0/auth0-react";
 import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
-import { FaBookReader } from 'react-icons/fa';
+import AuthNav from "../Login/auth-nav";
 
 const Admin = () => {
   //CRUD COMICS
@@ -25,8 +24,7 @@ const Admin = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
 
-  const usersList = useSelector((state) => state);
-  let users = usersList.ComicsReducer.copyUsers;
+  const users  = useSelector((state) => state.ComicsReducer.copyUsers);
  // let usersAll = usersList.ComicsReducer.copyUsers;
   const [statsNewUsers, setStatsNewUsers] = React.useState(0);
   const [, setStatsNewpayedUsers] = React.useState(0);
@@ -45,7 +43,6 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  
     dispatch(getAllComics());
     
   }, [dispatch]);
@@ -90,7 +87,7 @@ const Admin = () => {
     e.preventDefault();
     dispatch(filterByStats(e.target.value));
     setStatsNewUsers(users.length);
-  console.log('en el habndler filter!!!!', users , e.target.value)  
+  console.log('en el habndler filter!!!!', users , e.target.value, typeof(e.target.value))  
     setStatsNewpayedUsers(
       users.filter((user) => user.role === "ROLE_PRIME").length
     );
@@ -105,6 +102,8 @@ const Admin = () => {
           HOME
         </Link>
       </Button>
+
+      <AuthNav/>
 
       <h1 style={{ margin: "4rem", width: "40%" }} class="ui teal header">
         Welcome to your DASHBOARD
@@ -187,15 +186,15 @@ const Admin = () => {
           }}
         >
           <option value="all">Filter by Month</option>
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">Agost</option>
-          <option value="09">September</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">Agost</option>
+          <option value="9">September</option>
           <option value="10">October</option>
           <option value="11">November</option>
           <option value="12">December</option>
@@ -353,12 +352,12 @@ const Admin = () => {
                           }}
                         />
                       </Fab>
-                      <Fab color="primary" aria-label="add">
-                        <AddIcon onClick={() => history("postAdmin")} />
-                      </Fab>
-                        <FaBookReader onClick={() =>
+                      <Fab color="secondary" aria-label="add">
+                        <AddIcon onClick={() =>
                             history(`/homeComics/detailComic/${comic.idPrincipal}`)
                           } />
+                      </Fab>
+                     
                     </Table.Cell>
                   </Table.Row>
                 );
