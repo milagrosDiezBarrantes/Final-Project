@@ -9,10 +9,6 @@ import Ultimate from "../../Img/Ultimate.pdf"
 import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
 import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
 
-import Ultimate from "../../Img/Ultimate.pdf"
-import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
-import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
-
 import Navbar from '../Navbar/Navbar';
 import { getById } from '../../Redux/Actions/actions';
 

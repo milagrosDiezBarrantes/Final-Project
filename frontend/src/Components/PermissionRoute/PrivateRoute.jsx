@@ -17,12 +17,9 @@ const PrivateRoute = () => {
             <AuthNav />
             
                 {
-                    !userAdmin?  <Loading /> :
-
-                    userAdmin.role === "ROLE_SUPER_ADMIN"                    
-                        ? <Outlet/> : 
+                    !userAdmin?  <Loading /> :  userAdmin.role === "ROLE_SUPER_ADMIN" ? <Outlet/> : 
                         <>
-                            <p> You are not allowed to perform this action. If you ´re not redirected, click below
+                            <p> You are not allowed to perform this action. If you re not redirected, click below
                             <Link to='/'>Go to log in</Link>
                             </p>    
                         </>

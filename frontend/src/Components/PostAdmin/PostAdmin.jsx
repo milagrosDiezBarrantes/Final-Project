@@ -145,6 +145,17 @@ const PostAdmin = () => {
           />
         </div>
         <div>
+          <label>PDF</label>
+          <input
+            type="file"
+            name="PDF"
+            value={input.pdf}
+            onChange={(e) => {
+
+              handleChange(e)}}
+          />
+        </div>
+        <div>
           <label>Creators</label>
 
           <select onChange={handleOnPlatforms}>

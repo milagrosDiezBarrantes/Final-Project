@@ -70,7 +70,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   console.log("arrayIds")
   console.log(arrayIds)
   
-  dispatch(postFavoriteComics(arrayIds,postFavorite.loginUser.id))
+  dispatch(postFavoriteComics(arrayIds,postFavorite.user.email))
 
   swal({
     title: "Add  from Favorite, Successfully!",
@@ -82,7 +82,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
   // console.log([...postFavorite.favoritesComics,postFavorite.selectedComic[0]])
  console.log("fil")
  console.log(fil)
- dispatch(postFavoriteComics(fil,postFavorite.loginUser.id))
+ dispatch(postFavoriteComics(fil,postFavorite.user.email))
  swal({
   title: "Removed from Favorites!",
   icon: "error",

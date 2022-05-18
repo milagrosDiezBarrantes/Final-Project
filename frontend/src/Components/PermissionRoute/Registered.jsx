@@ -38,17 +38,17 @@ const Registered = () => {
           {
             userAdmin.role === undefined ?
             <p>
-            You are not allowed to perform this action. If you ´re not
+            You are not allowed to perform this action. If you re not
             redirected, click below
             <Link to="/">Go to log in</Link>
             </p> 
-          :  userAdmin?.role === "ROLE_USER" 
+          :  userAdmin?.role !== "ROLE_BANNED" 
           ?
         <Outlet />
         : (
        
           <p>
-            You are not allowed to perform this action. If you ´re not
+            You are not allowed to perform this action. If you re not
             redirected, click below
             <Link to="/">Go to log in</Link>
           </p>
