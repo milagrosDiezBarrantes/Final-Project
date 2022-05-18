@@ -132,7 +132,7 @@ if (!arrayIds.includes(postFavorite.selectedComic[0].idPrincipal)) {
               <MyButton
                 className="randomchar__name"
                 variant="contained"
-                href={`/lecture/${postFavorite.selectedComic[0].idPrincipal}`}
+                href={`/lectures/${postFavorite.selectedComic[0].idPrincipal}`}
                 style={{ color: "red" }}
               >
                 Read

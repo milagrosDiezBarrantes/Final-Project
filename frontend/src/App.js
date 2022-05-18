@@ -56,7 +56,7 @@ function App() {
         <div className="app">
       {/* PÚBLICAS */}
           <Routes>
-          <Route exact path="/lectures/:comic" element={<Lecture />} />
+          
             <Route exact path="/" element={<Banner />} />
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="*" element={<Banner/>} />
@@ -88,7 +88,7 @@ function App() {
 
             {/* <Route element={log.role === 'ROLE_SUPER_ADMIN?'? <PrivateRoute /> : (<Navigate to='/banner'/>)}/> */}
             <Route element={<CommonRoute />}>
-              <Route exact path="/lecture/:comic" element={<Lecture />} />
+            <Route exact path="/lectures/:comic" element={<Lecture />} />
             </Route> 
               
               

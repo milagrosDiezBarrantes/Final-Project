@@ -16,6 +16,7 @@ import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
+import { IoEyeSharp } from "react-icons/io5";
 import AuthNav from "../Login/auth-nav";
 
 const Admin = () => {
@@ -353,7 +354,7 @@ const Admin = () => {
                         />
                       </Fab>
                       <Fab color="secondary" aria-label="add">
-                        <AddIcon onClick={() =>
+                        <IoEyeSharp  onClick={() =>
                             history(`/homeComics/detailComic/${comic.idPrincipal}`)
                           } />
                       </Fab>

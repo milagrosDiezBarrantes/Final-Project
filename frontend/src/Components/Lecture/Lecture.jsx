@@ -48,9 +48,9 @@ const Lecture =  () => {
                     <br/>
                     </center>
                 <center className="containedSecundari">
-                    <div className='Publiciti'>Publicidad</div>
+                   
                     <RenderComic className="comic" url={comicc[0]} />
-                    <div className='Publiciti'>Publicidad</div>
+                    
                 </center>
             </div>
         )
