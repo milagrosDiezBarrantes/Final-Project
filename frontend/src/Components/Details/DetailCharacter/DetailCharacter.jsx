@@ -12,6 +12,7 @@ import Navbar from "../../Navbar/Navbar";
 import "./DetailCharacter.scss"
 import { useAuth0 } from "@auth0/auth0-react";  
 import ReactStars from "react-rating-stars-component";
+import swal from 'sweetalert';
 
 
 const DetailCharacter = () => {
@@ -51,13 +52,21 @@ const DetailCharacter = () => {
         console.log("arrayIds")
         console.log(arrayIds)
         dispatch(postFavoriteCharacters(arrayIds,user.email))
-        
+        swal({
+          title: "Add  from Favorite, Successfully!",
+          icon: "success",
+        });
       } else {
         let fil= arrayIds.filter((e) => e !== detailCharacter.idPrincipal)
         // console.log([...postFavorite.favoritesComics,postFavorite.detailCharacter])
        console.log("fil")
        console.log(fil)
        dispatch(postFavoriteCharacters(fil,user.email))
+       
+       swal({
+        title: "Removed from Favorites!",
+        icon: "error",
+      });
         }
       
       // dispatch(postFavoriteComics(postFavorite.loginUser.id,postFavorite.favoritesComics) )
@@ -73,8 +82,8 @@ return character.length === 0 ? (
    src={character.img} 
    alt='img'
    style={{
-              marginLeft: "center",
-              marginRight: "center",
+              marginLeft: "auto",
+              marginRight: "auto",
               height: "35rem",
               width: "30rem",
               borderRadius: "10px"}}

@@ -25,6 +25,9 @@ export default function Navbar() {
   // const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
+  console.log('en el navbar eswte es el user', user);
+  
+
   // console.log(user)
 
   //   useEffect(() => {
@@ -38,9 +41,9 @@ export default function Navbar() {
 
   const [clicked, setClicked] = useState(false)
   const theme = useTheme();
-  console.log(theme);
+  
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
+  
 
 
     return (
@@ -78,7 +81,8 @@ export default function Navbar() {
               </Tabs>
               <Link to= '/profile'>
                 <Avatar 
-                src={user.picture}
+                // src= {userIcon}
+                src= {!user ? userIcon : user.picture }
                 alt="A" />
               </Link>
               <AuthNav/>
@@ -132,7 +136,7 @@ const LogIn = styled.a`
   border-radius: 7px;
   margin: 0 20px;
   padding: 7px 15px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.1px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease-in-out;

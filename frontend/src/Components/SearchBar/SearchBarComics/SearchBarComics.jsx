@@ -7,16 +7,16 @@ import { FiSearch } from "react-icons/fi";
 
 export default function SearchBarComics() {
   const dispatch = useDispatch();
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  // const { isAuthenticated, loginWithRedirect } = useAuth0();
 
-  const authorized = useSelector((state) => state.ComicsReducer.authenticated);
+  // const authorized = useSelector((state) => state.ComicsReducer.authenticated);
 
-  console.log(isAuthenticated, "es autenticado");
-  console.log(authorized, "es autorizado?");
+  // console.log(isAuthenticated, "es autenticado");
+  // console.log(authorized, "es autorizado?");
 
-  useEffect(() => {
-    dispatch(authenticateUser());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(authenticateUser());
+  // }, []);
 
   const [title, setTitle] = useState("");
 
@@ -58,7 +58,7 @@ export default function SearchBarComics() {
         style={{
           background: "transparent",
           border: "none",
-          width: "10%",
+          width: "5%",
           padding: "10px",
           overflow: "visible",
           /* margin: auto; */

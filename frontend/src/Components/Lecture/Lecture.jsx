@@ -9,8 +9,13 @@ import Ultimate from "../../Img/Ultimate.pdf"
 import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
 import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
 
+import Ultimate from "../../Img/Ultimate.pdf"
+import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
+import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
+
 import Navbar from '../Navbar/Navbar';
 import { getById } from '../../Redux/Actions/actions';
+
 
 
 
@@ -45,13 +50,6 @@ const Lecture =  () => {
                     <center className="containedPrimari">
                         <h1>{comicSelected?.title}</h1>
                     <br/>
-                     <Link to= '/homeComics'>  
-                        <button className='btn'>HomeComics</button>
-                     </Link> 
-                    <Link to='/homeCharacter'>
-                    
-                        <button className='btn'>HomeCharacters</button>
-                    </Link>
                     </center>
                 <center className="containedSecundari">
                     <div className='Publiciti'>Publicidad</div>

@@ -2,9 +2,9 @@ const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
 conn.sync({ force: false }).then(() => {
-	server.listen(process.env.PORT, () => {
-		console.log(`%s listening at ${process.env.PORT}`);
-	});
+  server.listen(process.env.PORT, () => {
+    console.log(`%s listening at ${process.env.PORT}`);
+  });
 });
 /*hola que hace */
 
@@ -69,7 +69,7 @@ const LosVengadoresAcosoNuncaMas = Comics.findOrCreate({where:{
     
   }})
 
-let planes = Plans.findAll();
+  let planes = Plans.findAll();
 
 Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes,BatmanSpiderman,UltimateSpiderman,LosVengadoresAcosoNuncaMas])
 	.then((res) => {
@@ -78,5 +78,4 @@ Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes,BatmanSpiderman,Ulti
 	.then((res) => {
 		console.log([BatmanSpiderman,UltimateSpiderman,LosVengadoresAcosoNuncaMas]);
 	});//54465
-
-  }, 15000);
+},15000)
