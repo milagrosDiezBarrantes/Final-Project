@@ -81,7 +81,8 @@ export default function Navbar() {
               </Tabs>
               <Link to= '/profile'>
                 <Avatar 
-                src= {user.picture? user.picture : {userIcon}}
+                // src= {userIcon}
+                src= {!user ? userIcon : user.picture }
                 alt="A" />
               </Link>
               <AuthNav/>

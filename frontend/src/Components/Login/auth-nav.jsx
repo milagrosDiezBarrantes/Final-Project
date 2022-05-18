@@ -24,6 +24,7 @@ const AuthNav = () => {
   }, []);
 
   return (
+
     <div className="navbar-nav ml-auto">
       <AuthenticationButton />
     </div>
