@@ -81,6 +81,9 @@ console.log('está authenticado?', isAuthenticated)
        <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
+        <a href="/formAdmin">
+          <LogIn>ACCESS ADMIN</LogIn>
+        </a>
         <AuthNav/>
 
         {isAuthenticated ? (
@@ -165,9 +168,7 @@ console.log('está authenticado?', isAuthenticated)
         <a href="/">
           <Logo src={logo} alt="Marvel" />
         </a>
-        {/* <a href="/formAdmin">
-          <LogIn>ACCESS ADMIN</LogIn>
-        </a> */}
+       
       </div>
     </>
   );
