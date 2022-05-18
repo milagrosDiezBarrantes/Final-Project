@@ -3,8 +3,11 @@
     display: flex;
     align-items: center;
     height: 100vh;
-    background: #0f000067;  /* fallback for old browsers */
-    
+    background: #0f000067; 
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+     /* fallback for old browsers */
 }
 .details_container{
     width: 80px;

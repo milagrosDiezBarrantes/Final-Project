@@ -25,7 +25,7 @@ export default function Navbar() {
   // const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
-  console.log('en el navbar eswte es el user', user);
+  // console.log('en el navbar eswte es el user', user);
   
 
   // console.log(user)

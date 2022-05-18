@@ -9,7 +9,7 @@ import { useAuth0} from "@auth0/auth0-react";
 const Registered = () => {
   //const dispatch = useDispatch();
   const userAdmin = useSelector((state) => state.ComicsReducer.user);
-  console.log(userAdmin);
+  // console.log(userAdmin);
   const [load, setLoad] = React.useState(true);
   const [hola, setHola] = React.useState(false);
 

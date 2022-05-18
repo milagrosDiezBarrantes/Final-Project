@@ -31,13 +31,11 @@ const Profile = () => {
 
       <Navbar />
 
-      <div className="row align-items-center profile-header">
-        <div className="col-md-2 mb-3">
-          <Image
-            src={logged.picture ? logged.picture : user.picture}
-            size="medium"
-            circular
-          />
+      <Navbar />
+     
+      <div className="perfil_container">
+        <div className="details_container">
+          <Image src={logged.picture} size="medium" circular />
         </div>
         <div className="col-md text-center text-md-left">
           <p className="lead text-muted">{logged.email}</p>
