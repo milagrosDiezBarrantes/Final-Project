@@ -3,14 +3,16 @@ import ReactDOM from "react-dom"
 import { useDispatch } from "react-redux";
 import swal from 'sweetalert';
 // import './PayPal.css'
-
 import { useAuth0 } from "@auth0/auth0-react";
 import { postPayment } from "../../Redux/Actions/actions";
 import { useNavigate } from "react-router-dom";
+
+
+
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function CheckoutBut({totalPrice}) {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const {user, isAuthenticated} = useAuth0()
   const dispatch = useDispatch()
