@@ -4,7 +4,7 @@ import { getComicsByTitle } from "../../../Redux/Actions/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { authenticateUser } from "../../../Redux/Actions/actions";
 import { FiSearch } from "react-icons/fi";
-
+import swal from 'sweetalert';
 export default function SearchBarComics() {
   const dispatch = useDispatch();
   // const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -30,7 +30,10 @@ export default function SearchBarComics() {
     dispatch(getComicsByTitle(title));
     setTitle("");
     if (!title) {
-      alert("Comic's title not found");
+      swal({
+        title:"Name not found",
+        icon: "error",
+      });
     }
   }
   return (

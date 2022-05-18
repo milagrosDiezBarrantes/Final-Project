@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Container, Form, Button } from "semantic-ui-react";
 import { validate } from "../../Functions/validacionesForm/validationForm";
 import { getCreators, postComic } from "../../Redux/Actions/actions";
-
+import swal from 'sweetalert';
 const PostAdmin = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState({});
@@ -70,7 +70,10 @@ const PostAdmin = () => {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postComic(input));
-    alert("Post created successfully!");
+    swal({
+      title:"Post created successfully",
+      icon: "success",
+    });
     setInput({
       title: "",
       img: "",

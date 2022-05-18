@@ -7,6 +7,7 @@ import CustomPagination from '../../Pagination/Pagination.jsx'
 import AppBanner from "../../Publicidad/Publicidad";
 import Footer from "../Footer/Footer";
 import "./HomeCharacter.css"
+import SearchBarCharacter from "../../SearchBar/SearchBarCharacters/SearchBarCharacters";
 
 const HomeCharacter = () => {
     const dispatch = useDispatch()
@@ -55,6 +56,7 @@ console.log(data)
             <AppBanner/>
             <div>
                 <NavBar />
+                <SearchBarCharacter />
                 <div>
                     {currentPageData}
                 </div>
