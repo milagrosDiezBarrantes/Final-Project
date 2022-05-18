@@ -85,6 +85,8 @@ function App() {
 
             {/* ADMIN */} 
             <Route path="/formAdmin" element={<FormAdmin />} />
+            <Route path="/admin" element={<Admin />} />
+
           <Route element={ <PrivateRoute /> }>  
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
