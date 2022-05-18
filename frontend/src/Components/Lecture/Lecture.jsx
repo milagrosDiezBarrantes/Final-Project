@@ -3,35 +3,44 @@ import RenderComic from '../RenderComic/RenderComic'
 import { Link, useParams } from 'react-router-dom';
 import'./Lecture.css'
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+
+import Ultimate from "../../Img/Ultimate.pdf"
+import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
+import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
 
 import Ultimate from "../../Img/Ultimate.pdf"
 import BatmanSpiderman from "../../Img/batman-spiderman.pdf"
 import Vengadores from "../../Img/los_vengadores_acoso_nunca_mas.pdf"
 
 import Navbar from '../Navbar/Navbar';
+import { getById } from '../../Redux/Actions/actions';
+
 
 
 
 const Lecture =  () => {
     const {comic} = useParams()
-    const [info, setInfo] = useState({})
-    const [comicc,setComicc] = useState(["Alerta Roja "])
 
-    useEffect(()=>{
-        setInfo(data())
-        handle()
-    },[comic])
-    const handle = ()=>{
-        setComicc(["Alerta Roja "])
-        if (info.title === "Ultimate Spiderman") setComicc([Ultimate])
-        if (info.title === "Los Vengadores Acoso Nunca Mas") setComicc([Vengadores ])
-        if (info.title === "Batman & Spiderman") setComicc([BatmanSpiderman])
-        console.log( "INFO",info)
+    const [comicc,setComicc] = useState("")
+    const comicSelected = useSelector((state) => state.ComicsReducer.selectedComic[0]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getById(comic));
+        
+      }, [dispatch]);
+    
+
+    if(comicSelected?.title && comicc===""  ){
+       console.log(comicSelected)
+        if (comicSelected.title === "Ultimate Spiderman"){ setComicc([Ultimate])
+        }else if(comicSelected.title === "Los Vengadores Acoso Nunca Mas"){setComicc([Vengadores ])
+        }else if (comicSelected.title === "Batman & Spiderman"){ setComicc([BatmanSpiderman])
+        }else setComicc(["Alerta Roja "])
+        
     }
-    const data= async()=>{
-        const a = await axios.get(`/comics/render/${comic}`) //url, nombre,paginas
-        return a
-    }
+    
 
    
         return (
@@ -39,13 +48,13 @@ const Lecture =  () => {
                 <Navbar/>
                 
                     <center className="containedPrimari">
-                        <h1>{info.title}</h1>
+                        <h1>{comicSelected?.title}</h1>
                     <br/>
                     </center>
                 <center className="containedSecundari">
-                 
+                    <div className='Publiciti'>Publicidad</div>
                     <RenderComic className="comic" url={comicc[0]} />
-                  
+                    <div className='Publiciti'>Publicidad</div>
                 </center>
             </div>
         )

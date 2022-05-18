@@ -25,7 +25,7 @@ const RenderComic = ({url})=>{
         <div className="ContainerReadComic">
             <center>
                 {/* <embed className="sapeeee" height={alto(pages)} type="application/pdf" src={url} data={url}/> */}
-                    {url ==="Alerta Roja "?<div>Este comics se encuentra en camino... Disponible en {Math.random()} dias</div>
+                    {url ==="Alerta Roja "?<div>Este comics se encuentra en camino... Disponible en {Math.floor(Math.random()*31)} dias</div>
                     :   <div> 
                             <Document src={url} file={url} onLoadSuccess={onDocumentLoadSuccess}>
                                 {Array.from(
