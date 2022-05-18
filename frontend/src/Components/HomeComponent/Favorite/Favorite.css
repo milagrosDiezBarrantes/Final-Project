@@ -5,7 +5,10 @@
     justify-content: center;
     height: 100vh;
   }
-  
+  .h2{
+    align-items: center;
+    margin: 15px;
+  }
   .item{
     width: 200px;
     box-shadow: 2px 2px 30px rgba(26, 23, 23, 0.2);

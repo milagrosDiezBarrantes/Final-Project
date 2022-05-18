@@ -8,6 +8,7 @@ const { getComics, getById, getSerieById, createComic, updateComic,getRender,del
 
 
 
+
 router.get('/', getComics);
 router.get('/:id', getById);
 router.get('/serie/:id', getSerieById);
@@ -17,5 +18,7 @@ router.post('/create', createComic)
 router.put('/update/:id', updateComic);
 router.delete('/delete/:id', deleteComic);
 //router.get('/comicDb', getDbComic);
+
+
 
 module.exports = router;

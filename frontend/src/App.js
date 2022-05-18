@@ -71,6 +71,7 @@ function App() {
           {/* <Container> */}
           <Routes>
             <Route exact path="/" element={<Banner />} />
+            <Route path='/AboutUs' element={<AboutUs />} /> 
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
             
@@ -95,9 +96,9 @@ function App() {
               />
               <Route path="/Playlist" element={<Playlist />} />
 
-            <Route element ={ <CommonRoute /> } >
+            {/* <Route element ={ <CommonRoute /> } >  */}
               <Route exact path="/lecture/:comic" element={<Lecture />} />
-            </Route>
+            {/* </Route>  */}
 
             {/* ADMIN damos*/}
             {/* <Route path="/formAdmin" element={<FormAdmin />} />

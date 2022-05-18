@@ -45,6 +45,7 @@ export const GET_CREATED_COMICS = " GET_CREATED_COMICS"
 export const GET_ADMIN = "GET_ADMIN"
 export const FILT_BY_STATS = "FILT_BY_STATS"
 
+export const POST_PAYMENT = "POST_PAYMET"
 
 //================CHARACTERS=================//
 export function getAllCharacters() {    // Obtener todos los personajes
@@ -541,3 +542,20 @@ export function getFavoritesCharacters(email) {
         }
     }
 }*/
+
+
+//PAYPAL
+export function postPayment(pago) {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.post(`/success`,pago)
+            return dispatch({
+                type: "POST_PAYMENT",
+                payload: data
+            })
+        }
+        catch (err) {
+            alert("error post paypal(se rompio)", err)
+        }
+    }
+    }

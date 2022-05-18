@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
+import './Profile.css';
 
 const Profile = () => {
   const login = useSelector((state) => state);
@@ -41,7 +42,6 @@ const Profile = () => {
         <div className="col-md text-center text-md-left">
           <p className="lead text-muted">{logged.email}</p>
           <h2>Welcome {logged.name}!</h2>
-
           <br />
           <br />
           <h2>
@@ -70,23 +70,19 @@ const Profile = () => {
         {/* <pre className="col-12 text-light bg-dark p-4">
               {JSON.stringify(user, null, 2)}
             </pre>  */}
+      
+          <button
+            onClick={() => navigate("/profile/edit")}
+            className="btn btn-primary btn-block"
+          >Edit{" "} </button>
+          <button
+            className="btn btn-primary btn-block"
+            onClick={() => navigate("/homeComics")}
+          > Go back </button>
+      
       </div>
-      <br />
-      <br />
-      <button
-        onClick={() => navigate("/profile/edit")}
-        className="btn btn-primary btn-block"
-      >
-        Edit{" "}
-      </button>
-
-      <button
-        className="btn btn-primary btn-block"
-        onClick={() => navigate("/homeComics")}
-      >
-        Go back
-      </button>
-    </div>
+     </div>
+  
   );
 };
 export default withAuthenticationRequired(Profile, {

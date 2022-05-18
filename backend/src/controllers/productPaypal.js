@@ -6,6 +6,7 @@ const SECRET =
 	"EE0Jnrk_G1qbG1I2m-6hH_bjhQtIwbupo_G-onXMbAFOXYcI8H8vVdcr4UnWj3ct-jxzKolnMTwFaHW3";
 const PAYPAL_API = "https://api-m.sandbox.paypal.com"; // live: "https://api-m.paypal.com"  para deploy
 const auth = { user: CLIENT, pass: SECRET };
+const main = require("../controllers/mailer");
 
 const createPayment = (req, res) => {
 
@@ -152,8 +153,10 @@ nexDay= new Date(nexDay)
         res.json({ data: response.body })
     })
 }
-const success = (req, res) => {
-   
+const success = async (req, res) => {
+	//EMAIL AL USUARIO SUCCESS PAGO EXITOSO...  email_address: "customer@example.com",
+	
+	// await main(email_address)
         res.json("gracias vuelva pronto")
     
 }

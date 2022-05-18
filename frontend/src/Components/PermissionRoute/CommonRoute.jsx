@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Loading from '../Loading/Loading';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Lecture from '../Lecture/Lecture';
 
 const CommonRoute = ({ redirectPath = '/' }) => {
     //const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const CommonRoute = ({ redirectPath = '/' }) => {
             <>
                 {
                     userPrime?.role === "ROLE_PRIME"
-                    ? <Outlet/> : 
+                    ? <Lecture/> : 
                     <>
                       <h1> Would you like to read? Subscribe now! </h1>
                       <Cont>
