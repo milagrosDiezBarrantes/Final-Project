@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useDispatch } from 'react-redux';
 import {getCharacterByName} from "../../../Redux/Actions/actions"
+import swal from 'sweetalert';
 
 const SearchBarCharacter= () => {
     const dispatch = useDispatch();
@@ -16,7 +17,10 @@ const SearchBarCharacter= () => {
         e.preventDefault();
 
         if (!name) {
-            alert("Comic's title not found");
+            swal({
+                title:"Comic's title not found",
+                icon: "error",
+            });
         }
         
         dispatch(getCharacterByName(name));

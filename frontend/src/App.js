@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 //RUTAS USER
 import Banner from "./Components/Banner/Banner";
 import AboutUs from "./Components/AboutUs/AboutUs";
@@ -36,9 +36,14 @@ import Loading from "./Components/Loading/Loading";
 import FormEditUser from "./Components/FormEditUser/FormEditUser";
 import PrivateRoute from "./Components/PermissionRoute/PrivateRoute";
 import CommonRoute from "./Components/PermissionRoute/CommonRoute";
+import { UserBanned } from "./Components/Banned/UserBanned";
+import { useSelector } from "react-redux";
+
 
 function App() {
   const { user, isLoading, isAuthenticated } = useAuth0();
+  
+  const log = useSelector((state) => state.ComicsReducer.user);
 
   if (isLoading) {
     return (
@@ -53,44 +58,50 @@ function App() {
       <BrowserRouter>
         <div className="app">
           {/* <Container> */}
+  
           <Routes>
+            <Route path='/profile' element={log.role === 'ROLE_SUPER_ADMIN?'? <Profile /> : (<Navigate to='/admin'/>)} /> 
             <Route exact path="/" element={<Banner />} />
             <Route path='/AboutUs' element={<AboutUs />} /> 
+            <Route exact path="*" element={<Banner />} />
             {/* <Route path='/login' element={<LoginButton />} />   */}
             {/* USER */}
             
-              <Route path='/profile' element={<Profile />} /> 
-              <Route path='/profile/edit' element={<FormEditUser />} />
-              <Route path="/favorite" element={<Favorite />} />
-              <Route path="/homeCharacter" element={<HomeCharacter />} />
-              <Route path="/homeComics" element={<HomeComics />} />
+                <Route path='/profile' element={<Profile />} /> 
+                <Route path='/profile/edit' element={<FormEditUser />} />
+                <Route path="/favorite" element={<Favorite />} />
+                <Route path="/homeCharacter" element={<HomeCharacter />} />
+                <Route path="/homeComics" element={<HomeComics />} />
             
-              <Route
-                path="/homeComics/DetailComic/:id"
-                element={<DetailComic />}
-              />
-              <Route
-                path="/homeCharacter/DetailCharacter/:id"
-                element={<DetailCharacter />}
-              />
-              <Route
-                path="/homeComics/DetailCharacter/:id"
-                element={<DetailCharacter />}
-              />
-              <Route path="/Playlist" element={<Playlist />} />
-
-            {/* <Route element ={ <CommonRoute /> } >  */}
+                <Route
+                  path="/homeComics/DetailComic/:id"
+                  element={<DetailComic />}
+                />
+                <Route
+                  path="/homeCharacter/DetailCharacter/:id"
+                  element={<DetailCharacter />}
+                />
+                <Route
+                  path="/homeComics/DetailCharacter/:id"
+                  element={<DetailCharacter />}
+                />
+                <Route path="/Playlist" element={<Playlist />} />
+            
+            <Route element ={ <CommonRoute /> } >
               <Route exact path="/lecture/:comic" element={<Lecture />} />
-            {/* </Route>  */}
+          
+            </Route> 
+
+
 
             {/* ADMIN */} 
             <Route path="/formAdmin" element={<FormAdmin />} />
-          <Route element={ <PrivateRoute /> }>  
+          {/* <Route element={ <PrivateRoute /> }>   */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/postAdmin" element={<PostAdmin />} />            
             <Route path="/admin/updateComic/:id" element={<FormUpdateComic />} />
             <Route path="/homeComics" element={<HomeComics />} />
-          </Route>  
+          {/* </Route>   */}
           </Routes>
           {/* </Container> */}
         </div>

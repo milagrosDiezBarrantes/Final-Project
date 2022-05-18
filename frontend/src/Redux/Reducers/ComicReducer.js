@@ -129,6 +129,7 @@ function ComicsReducer(state = initialState, { type, payload }) {
         copyComics: [...deletedComic],
       };
     case LOGIN_USER:
+      console.log('REDUCER', payload)
       return {
         ...state,
         user: payload,

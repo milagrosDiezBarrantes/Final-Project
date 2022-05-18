@@ -211,7 +211,7 @@ export const loginUser= (email) => {
                         email
                     }});
                 // console.log("de la action");
-                // console.log(userName,password);
+                console.log(email);
                 return dispatch({
                     type: LOGIN_USER,
                     payload: userLogin.data

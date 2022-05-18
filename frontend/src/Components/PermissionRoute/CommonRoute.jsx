@@ -1,28 +1,26 @@
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router';
 import CheckoutBut from "../PayPal/PayPal";
 import styled from "styled-components";
 import Loading from '../Loading/Loading';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Lecture from '../Lecture/Lecture';
+import Navbar from '../Navbar/Navbar';
 
 const CommonRoute = ({ redirectPath = '/' }) => {
     //const dispatch = useDispatch();
     
     const userPrime = useSelector(state => state.ComicsReducer.user)
-    console.log(userPrime)
-    
-    setTimeout(() => {
-        <Loading />
-    }, 5000)
+    console.log(userPrime.role)
+  
+  setTimeout(() => {
+    <Loading /> 
+  }, 1000);
 
+    function user() {
+      if(userPrime.role === 'null' || userPrime.role === 'ROLE_USER') {
         return (
-            <>
-                {
-                    userPrime?.role === "ROLE_PRIME"
-                    ? <Lecture/> : 
-                    <>
+          <>
                       <h1> Would you like to read? Subscribe now! </h1>
                       <Cont>
                         <div class="">
@@ -67,6 +65,23 @@ const CommonRoute = ({ redirectPath = '/' }) => {
 
                       
                     </>  
+        )
+      }
+      if( userPrime.role ==="ROLE_PRIME") {
+        return (
+          <>
+            <Lecture/>
+          </>
+        )
+      }
+    }
+
+        return (
+            <>
+              <Navbar />
+                {
+                    user()
+                    
                 } 
                 
             </>  
