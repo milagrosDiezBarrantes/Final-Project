@@ -190,7 +190,8 @@ router.get("/validates", async (req, res) => {
 });
 //NO CAMBIAR NADA SIN PREGUNTAR PORQUE SE ROMPE EL LOGUEO _/\_
 router.post("/login", async (req, res, next) => {
-  let { email, name, nickname } = req.body;
+  try {
+  let { email, nickname } = req.body;
   console.log(req.body);
 
   let userOld = await Users.findOne({
@@ -203,12 +204,11 @@ router.post("/login", async (req, res, next) => {
     await main(email)
     return res.status(200).json({ userOld });
   }
-  try {
+  
     let user = await Users.findOrCreate({
       email: email,
       firstname: nickname,
       nickname: nickname,
-      name: name,
     });
     //MAIL: SE HA CREADO UN PERFIL CON SU EMAIL...
     await main(email)
