@@ -200,7 +200,7 @@ export const login = (payload)=>{
     console.log('llega user?', payload)
     return {
         type: LOGIN_USER,
-        payload: payload.userOld
+        payload: payload
     }
 }
 
