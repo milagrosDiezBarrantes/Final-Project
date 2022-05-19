@@ -8,13 +8,14 @@ import axios from "axios";
 const AuthNav = () => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
-
-  function createUser() {
-    axios
+ 
+    async  function createUser() {
+  const elegiunnombre = await axios
       .post(`/user/login`, { email: user.email })
       .then((res) => {
         dispatch(login(res.data));
-      }, []);
+       
+      }, [user]);
   }
 
   useEffect(() => {
