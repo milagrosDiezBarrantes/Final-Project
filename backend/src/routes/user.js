@@ -15,7 +15,7 @@ const main = require("../controllers/mailer");
 const router = Router();
 
 router.post("/", async (req, res) => {
-  const { email, name, nickname, picture, plan_id, role } = req.body;
+  const { email} = req.body;
   // id
   // email
   // firstName
@@ -28,8 +28,7 @@ router.post("/", async (req, res) => {
     const [user, created] = await Users.findOrCreate({
       where: {
         email,
-        name,
-        nickname,
+
 
       },
       
@@ -191,7 +190,7 @@ router.get("/validates", async (req, res) => {
 //NO CAMBIAR NADA SIN PREGUNTAR PORQUE SE ROMPE EL LOGUEO _/\_
 router.post("/login", async (req, res, next) => {
   try {
-  let { email, nickname } = req.body;
+  let { email } = req.body;
   console.log(req.body);
 
   let userOld = await Users.findOne({
@@ -207,8 +206,6 @@ router.post("/login", async (req, res, next) => {
   
     let user = await Users.findOrCreate({
       email: email,
-      firstname: nickname,
-      nickname: nickname,
     });
     //MAIL: SE HA CREADO UN PERFIL CON SU EMAIL...
     await main(email)
