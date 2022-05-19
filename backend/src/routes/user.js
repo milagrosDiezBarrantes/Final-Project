@@ -205,8 +205,9 @@ router.post("/login", async (req, res, next) => {
   }
   
     let user = await Users.findOrCreate({
+      where:{
       email: email,
-    });
+    }});
     //MAIL: SE HA CREADO UN PERFIL CON SU EMAIL...
     await main(email)
     return res.status(201).json( user );
