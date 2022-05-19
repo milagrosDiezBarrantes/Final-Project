@@ -19,9 +19,9 @@ const AuthNav = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      user ? createUser() : console.log("We ´re hiring developers");
+      user ? createUser() : console.log("We re hiring developers");
     }, 2);
-  }, []);
+  }, [user]);
 
   return (
 
