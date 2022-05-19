@@ -15,14 +15,12 @@ router.get("/all", async (req, res) => {
 		try {	
 
 			let i=0
-while(i < 5595){
+while(i < 3000){
 	let cha	= axios.get(`https://gateway.marvel.com/v1/public/creators?limit=100&offset=${i}&ts=1&apikey=${API_KEY}&hash=${HASH_KEY}`)
 	creators.push(cha)
   console.log(i)
-  if(i!=5500){
+  if(i!=3000){
   i=i+100   
-  }else{
-    i=i+95
   }
   console.log(i)
 };
@@ -48,9 +46,9 @@ while(i < 5595){
 
 			{
 				id:e.id,
-			firstName: e.firstName,
-			lastName: e.lastName,
-			fullName: e.fullName,
+			firstName: String(e.firstName),
+			lastName: String(e.lastName),
+			fullName: String(e.fullName),
 			comics: e.comics,
 			series: e.series,
 			stories: e.stories,

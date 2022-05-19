@@ -1,7 +1,7 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(process.env.PORT, () => {
     console.log(`%s listening at ${process.env.PORT}`);
   });
@@ -13,10 +13,19 @@ setTimeout(() => {
 
 var superAdmin = Users.findOrCreate({
 	where: {
-		email: "soyadmin@henry.com",
-		password: 'admin123',
-		name: "Henry Hero",
-		nickname: "Henry-Hero",
+		email: "Milagrosdiezbarrantes@gmail.com",
+		password: 'mili123',
+		name: "Milagros Berrantes",
+		nickname: "La-Mili",
+		role: "ROLE_SUPER_ADMIN",
+	},
+});
+var superAdmin2 = Users.findOrCreate({
+	where: {
+		email: "281212.namaste@gmail.com",
+		password: 'alex123',
+		name: "Alex Wolf",
+		nickname: "The-Machine",
 		role: "ROLE_SUPER_ADMIN",
 	},
 });
@@ -64,7 +73,7 @@ const LosVengadoresAcosoNuncaMas = Comics.findOrCreate({where:{
 
   let planes = Plans.findAll();
 
-Promise.all([plan1, plan2, plan3, plan4, superAdmin, planes,BatmanSpiderman,LosVengadoresAcosoNuncaMas])
+Promise.all([plan1, plan2, plan3, plan4, superAdmin,superAdmin2, planes,BatmanSpiderman,LosVengadoresAcosoNuncaMas])
 	.then((res) => {
 		console.log([plan1, superAdmin]);
 	})

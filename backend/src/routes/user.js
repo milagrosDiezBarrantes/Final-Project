@@ -204,7 +204,7 @@ router.post("/login", async (req, res, next) => {
     return res.status(200).json({ userOld });
   }
   try {
-    let user = await Users.create({
+    let user = await Users.findOrCreate({
       email: email,
       firstname: nickname,
       nickname: nickname,
