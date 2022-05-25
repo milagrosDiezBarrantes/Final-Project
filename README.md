@@ -14,7 +14,7 @@ We lost some colegues in this journey, but that made us be even more effective a
 At tech level, I´ve definitely connected what I 've learned so far about React JS and its lifecycles, and implemented succesfully its latests features, such as hooks , React router v6, among others.
 Although my participation was stronger in frontend, I was also actively involved in backend. At firs, defining the necesary routes to connect components and then in a more global way I´ve colaborated ind the creation of models to improve database-
 I learned about login libraries, and choose to implememt Auh0 . I also took care of protected routes to allow access according to user role.
-Finally, this project gave me the chance to onvestigate about several libraries-some of them barely heard for me- some were implemented other have already become avaiñable tools for future work.
+Finally, this project gave me the chance to onvestigate about several libraries-some of them barely heard for me- some were implemented other have already become available tools for future work.
 
 
 
