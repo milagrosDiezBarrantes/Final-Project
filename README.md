@@ -42,7 +42,7 @@ The project will run by default at port 3000 and you  run on your browser and ba
 The project will run by default at port 3000 and you may watch it running on your browser
 ```
 <p align="left">
-  <img del front ok />
+  <img height="150" src="./assets/frontOk.JPG" />
 </p>
 
 ```
@@ -50,7 +50,7 @@ backend should be listening at 3001.
 ```
 
 <p align="left">
-  <img back ok />
+  <img height="150" src="./assets/ListenigOk.JPG" />
 </p>
 
 <!--- faltan los test por aquí --->
@@ -64,9 +64,7 @@ backend should be listening at 3001.
 
 ## Authors
 
-* **[Luciana Chamorro![image](https://user-images.githubusercontent.com/76781967/170148423-f34c78d5-c414-468f-aa71-acbcf6186aed.png)
-![image](https://user-images.githubusercontent.com/76781967/170148431-9327539f-2360-4356-9734-a2efe7e61413.png)
-](https://github.com/LucianaCHA)**
+* **[Luciana Chamorro](https://github.com/LucianaCHA)**
 * **[Melisa Ferreyra](https://github.com/MelisaF)**
 * **[Milagros Barrantes](https://github.com/milagrosDiezBarrantes)**
 * **[Joel Perez ](https://github.com/Fenrir0990)**
@@ -76,17 +74,17 @@ backend should be listening at 3001.
 ## :pushpin: Previews :pushpin:
 
 <div >
-<p align="left">
-  <img height="150" src="./assets/Captura1.JPG" />
+  <p align="left"><h5 align="left">Landing Page</h3>
+  <img height="250" src="./assets/frontOk.JPG" />
 
-  
-  <img height="150" src="./assets/Captura2.JPG" />
+  <h5 align="left">Favorite section and amazing carrousel</h3>
+  <img height="250" src="./assets/Marvel4.JPG" />
 
- 
-  <img height="150" src="./assets/Captura3.JPG" />
+ <h5 align="left">Home comics</h3>
+  <img height="250" src="./assets/Marvel2.JPG" />
 
-
-  <img height="150" src="./assets/Captura4.JPG" />
+<h5 align="left">Detail view</h3>
+  <img height="250" src="./assets/Marvel3.JPG" />
 
 
 </p>
